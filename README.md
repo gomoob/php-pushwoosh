@@ -109,7 +109,7 @@ $createMessageResponse1 = $pushwoosh -> createMessage($createMessageRequest1);
 
 ## Pushwoosh clients methods
 
-### Method /createMessage
+### Method `/createMessage`
 
 Offical documentation : [Method /createMessage](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
 
@@ -149,7 +149,7 @@ $pushwoosh -> createMessage($createMessageRequest);
 ```
 
 
-### deleteMessage
+### Method `/deleteMessage`
 
 Offical documentation : [Method /deleteMessage](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-delete)
 
@@ -161,7 +161,7 @@ How to use it :
 Sample code : 
 
 
-### registerDevice
+### Method `/registerDevice`
 
 Offical documentation : [Method /registerDevice](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodRegister)
 
@@ -173,7 +173,7 @@ How to use it :
 Sample code : 
 
 
-### unregisterDevice
+### Method `/unregisterDevice`
 
 Offical documentation : [Method /unregisterDevice](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodUnregister)
 
@@ -185,7 +185,7 @@ How to use it :
 Sample code : 
 
 
-### setTags
+### Method `/setTags`
 
 Offical documentation : [Method /setTags](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetTags)
 
@@ -197,7 +197,7 @@ How to use it :
 Sample code : 
 
 
-### setBadge
+### Method `/setBadge`
 
 Offical documentation : [Method /setBadge](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetBadge)
 
@@ -209,7 +209,7 @@ How to use it :
 Sample code : 
 
 
-### pushStat
+### Method `/pushStat`
 
 Offical documentation : [Method /pushStat](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodPushStat)
 
@@ -221,7 +221,7 @@ How to use it :
 Sample code : 
 
 
-### getNearestZone
+### Method `/getNearestZone`
 
 Offical documentation : [Method /getNearestZone](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodGetNearestZone)
 
@@ -237,7 +237,7 @@ Sample code :
 
 This chapter details each request object used by the API. 
 
-### CreateMessageRequest
+### Class `CreateMessageRequest`
 
 The  `CreateMessageRequest` class is used to call the `createMessage` Pushwoosh client method.
 
@@ -281,31 +281,55 @@ $createMessageRequest -> addNotification($notification2)
  * `setNotifications`       : Sets the Pushwoosh notifications to attach to the create message request.
  * `toJSON`                 : Converts the informations of the request into an array which can be passed the PHP [`json_encode`](http://www.php.net/manual/function.json-encode.php) method.
 
-### DeleteMessageRequest
+### Class `DeleteMessageRequest`
 
 The `DeleteMessageRequest` class is used to call the `deleteMessage` Pushwoosh client method.
 
-### RegisterDeviceRequest
+Methods : 
+ * `__construct`    :
+ * `create`         : 
+ * `getAuth`        : 
+ * `getMessage`     :
+ * `setAuth`        :
+ * `setMessage`     :
+
+### Class `RegisterDeviceRequest`
 
 The `RegisterDeviceRequest` class is used to call the `registerDevice` Pushwoosh client method.
 
-### UnregisterDeviceRequest
+Methods : 
+ * `__construct`    :
+ * `create`         :
+ * `getApplication` :
+ * `getDeviceType`  :
+ * `getHwid`        :
+ * `getLanguage     :
+ * `getPushToken    :
+ * `getTimezone`    :
+ * `setApplication` :
+ * `setDeviceType`  :
+ * `setHwid`        :
+ * `setLanguage`    :
+ * `setPushToken`   :
+ * `setTimezone`    : 
+
+### Class `UnregisterDeviceRequest`
 
 The `UnregisterDeviceRequest` class is used to call the `unregisterDevice` Pushwoosh client method.
 
-### SetTagsRequest
+### Class `SetTagsRequest`
 
 The `SetTagsRequest` class is used to call the `setTags` Pushwoosh client method.
 
-### SetBadgeRequest
+### Class `SetBadgeRequest`
 
 The `SetBadgeRequest` class is used to call the `setBadge` Pushwoosh client method.
 
-### PushStatRequest
+### Class `PushStatRequest`
 
 The `PushStatRequest` class is used to call the `pushStat` Pushwoosh client method.
 
-### GetNearestZoneRequest
+### Class `GetNearestZoneRequest`
 
 The `GetNearestZoneRequest` class is used to call the `getNearestZone` Pushwoosh client method.
 
