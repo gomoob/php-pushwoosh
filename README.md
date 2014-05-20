@@ -4,27 +4,29 @@
 
 # API Documentation
 
-The GoMoob Pushwoosh PHP Library is written to be almost identic to the standard Pushwoosh REST API. Each request sent 
-to the Pushwoob Web Services is identified by a `xxxRequest` object located in the `Gomoob\Pushwoosh\Model\Request` 
-namespace. Responses are represented by a `xxxResponse` object located in the `Gomoob\Pushwoosh\Model\Response` 
-namespace.
+The GoMoob Pushwoosh PHP Library is written to be almost identic to the standard Pushwoosh REST API.
+
+Calls to the Pushwoosh REST Web Services are done using a Pushwoosh client class. Then you call a method by using a request object, you receive a response object with a success or the detail of an error.
+
+Each request sent to the Pushwoob REST Web Services is represented by a `xxxRequest` object / class defined in the `Gomoob\Pushwoosh\Model\Request` namespace. 
+
+Each response returned by the Pushwoosh REST Web Services is represented by a `xxxResponse` object / class defined in the `Gomoob\Pushwoosh\Model\Response` namespace.
 
 ## Pushwoosh clients
 
-The API provides 2 different Pushwoosh clients which declare methods described in the official Pushwoosh Remote API 
-guide (http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api) : 
+The API provides 2 Pushwoosh clients which redeclare the methods described in the official [Pushwoosh Remote API 
+guide](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api) : 
 
- * A concrete or standard Pushwoosh client defined by the `Gomoob\Pushwoosh\Client\Pushwoosh` class
+ * A standard Pushwoosh client defined by the `Gomoob\Pushwoosh\Client\Pushwoosh` class
  * A mock Pushwoosh client defined by the `Gomoob\Pushwoosh\Client\PushwooshMock` class
 
-Those two classes implements the `Gomoob\Pushwoosh\IPushwoosh` interface where you'll find a copy of the docuemtation of  
-each method described in the Pushwoosh Remote API guide.
+Those two classes implement the `Gomoob\Pushwoosh\IPushwoosh` interface where you'll find a copy of the documentation of each method described in the [Pushwoosh Remote API  guide](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api).
 
 ### Working with the standard Pushwoosh client
 
 Using the standard Pushwoosh client is very easy, simply instanciate it and use it : 
 
-```
+```php
 use Gomoob\Pushwoosh\Client\Pushwoosh;
 use Gomoob\Pushwoosh\Model\Notification\Notification;
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
@@ -41,16 +43,14 @@ $createMessageRequest = CreateMessageRequest::create()
 $response = $pushwoosh -> createMessage($createMessageRequest);
 ```
 
-Setting the `application` (or `applicationsGroup`) and `auth` parameters on each request can be boring. It is more 
-convenient to keep those informations at one place only. You can set those informations on the Pushwoosh client, then 
-the client will use them automatically.
+Setting the `application` (or `applicationsGroup`) and `auth` parameters in each request can be boring. It is more convenient to keep those informations at one place only. You can set those informations on the Pushwoosh client directly, then the client will use them automatically.
 
-```
+```php
 use Gomoob\Pushwoosh\Client\Pushwoosh;
 use Gomoob\Pushwoosh\Model\Notification\Notification;
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 
-$pushwoosh = Pushwoosh::create();
+$pushwoosh = Pushwoosh::create()
     -> setApplication('XXXX-XXX');
     -> setAuth('xxxxxxxx');
 
@@ -79,7 +79,7 @@ To create a message you have to :
  * Check if everything is good using the return `CreateMessageResponse` object
 
 Here is a sample code : 
-```
+```php
 $createMessageRequest = CreateMessageRequest::create()
     -> addNotification(Notification::create() -> setContent('Hello World'!));
     
@@ -98,7 +98,7 @@ print 'Great, message sent !';
 ```
 
 You can also easily associate multiple notifications with your request : 
-```
+```php
 $createMessageRequest = CreateMessageRequest::create()
     -> addNotification(Notification::create() -> setContent('Hello'))
     -> addNotification(Notification::create() -> setContent('World'))
