@@ -256,7 +256,7 @@ $createMessageRequest = CreateMessageRequeste::create();
 ```
  
  * `addNotification`        : Method used to attach a new Pushwoosh notification to the create message request, this function returns the create message request instance to allow subsequent calls. 
-```
+```php
 // Add notifications one by one
 $createMessageRequest -> addNotification($notification0);
 $createMessageRequest -> addNotification($notification1);
@@ -269,15 +269,15 @@ $createMessageRequest -> addNotification($notification2)
 ```
  
  
- * `getApplication`         :
- * `getApplicationsGroup`   :
- * `getAuth`                : 
- * `getNotifications`       : 
- * `setApplication`         : 
- * `setApplicationsGroup`   : 
- * `setAuth`                : 
- * `setNotifications`       : 
- * `toJSON`                 : 
+ * `getApplication`         : Gets the application ID where to send the messages to, if the application is defined then the applications group is not defined.
+ * `getApplicationsGroup`   : Gets the Pushwoosh applications group code, if the applications group code is defined the application is not defined.  
+ * `getAuth`                : Gets the API access token taken from the [Pushwoosh control panel](https://cp.pushwoosh.com/api_access).
+ * `getNotifications`       : Gets an array of Pushwoosh notification attached to the create message request.
+ * `setApplication`         : Sets the application ID where to send the messages to, if the application is defined tne the applications group must not be defined. 
+ * `setApplicationsGroup`   : Sets the Pushwoosh applications group code, if the applications group code is defined then the application must not be defined.
+ * `setAuth`                : Sets the API access token taken from the [Pushwoosh control panel](https://cp.pushwoosh.com/api_access).
+ * `setNotifications`       : Sets the Pushwoosh notifications to attach to the create message request.
+ * `toJSON`                 : Converts the informations of the request into an array which can be passed the PHP [`json_encode`](http://www.php.net/manual/function.json-encode.php) method.
 
 ### DeleteMessageRequest
 
