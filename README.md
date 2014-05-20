@@ -2,6 +2,8 @@
 
 > A PHP Library to easily work with the Pushwoosh REST Web Services.
 
+**WARNING** : Do not use this library for the moment, we are currently working hard on it to release the first version. So please be patient.
+
 Sample code to send a Pushwoosh message with the library : 
 
 ```php
