@@ -1,0 +1,38 @@
+<phpunit
+    bootstrap="src/test/php/bootstrap.php"
+    stopOnError="true"
+    stopOnFailure="true"
+    stopOnIncomplete="true"
+    stopOnSkipped="true"
+    verbose="true">
+    
+    <logging>
+        
+        <!-- Log Unit Test results into a JUnit XML file -->
+        <log type="junit" 
+             target="target/reports/phpunit/TEST-phpunit.report.xml" 
+             logIncompleteSkipped="false"/>
+
+        <!-- Log Code Coverage results as HTML -->
+        <log type="coverage-html" 
+             target="target/reports/coverage/html" 
+             charset="UTF-8"
+             yui="true" 
+             highlight="false"
+             lowUpperBound="35" 
+             highLowerBound="70" />
+        
+        <!-- Log Code Coverage results as a Clover XML file -->
+        <log type="coverage-clover" 
+             target="target/reports/coverage/clover/coverage.xml" />
+        
+    </logging>
+    
+    <!-- Includes and Excludes files for Code Coverage -->
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">src/main/php</directory>
+		</whitelist>
+	</filter>
+	
+</phpunit>
