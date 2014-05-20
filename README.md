@@ -231,6 +231,84 @@ How to use it :
 Sample code : 
 
 
+## Requests Data Model 
+
+This chapter details each request object used by the API. 
+
+### CreateMessageRequest
+
+The  `CreateMessageRequest` class is used to call the `createMessage` Pushwoosh client method.
+
+Methods : 
+ * `__construct`            : Create a new `CreateMessageRequest` instance, this constructor has the same behavior as the `create` method.
+```php
+use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+
+$createMessageRequest = new CreateMessageRequest();
+```
+
+
+ * `create`                 : Static method used to create a new `CreateMessageRequest` instance, this method has the same behavior as the constructor.
+```php
+use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+
+$createMessageRequest = CreateMessageRequeste::create();
+```
+ 
+ * `addNotification`        : Method used to attach a new Pushwoosh notification to the create message request, this function returns the create message request instance to allow subsequent calls. 
+```
+// Add notifications one by one
+$createMessageRequest -> addNotification($notification0);
+$createMessageRequest -> addNotification($notification1);
+
+// Add multiple notifications in one shot
+$createMessageRequest -> addNotification($notification2)
+                      -> addNotification($notification3)
+                      -> addNotification($notification4)
+                      -> addNotification($notification5);
+```
+ 
+ 
+ * `getApplication`         :
+ * `getApplicationsGroup`   :
+ * `getAuth`                : 
+ * `getNotifications`       : 
+ * `setApplication`         : 
+ * `setApplicationsGroup`   : 
+ * `setAuth`                : 
+ * `setNotifications`       : 
+ * `toJSON`                 : 
+
+### DeleteMessageRequest
+
+The `DeleteMessageRequest` class is used to call the `deleteMessage` Pushwoosh client method.
+
+### RegisterDeviceRequest
+
+The `RegisterDeviceRequest` class is used to call the `registerDevice` Pushwoosh client method.
+
+### UnregisterDeviceRequest
+
+The `UnregisterDeviceRequest` class is used to call the `unregisterDevice` Pushwoosh client method.
+
+### SetTagsRequest
+
+The `SetTagsRequest` class is used to call the `setTags` Pushwoosh client method.
+
+### SetBadgeRequest
+
+The `SetBadgeRequest` class is used to call the `setBadge` Pushwoosh client method.
+
+### PushStatRequest
+
+The `PushStatRequest` class is used to call the `pushStat` Pushwoosh client method.
+
+### GetNearestZoneRequest
+
+The `GetNearestZoneRequest` class is used to call the `getNearestZone` Pushwoosh client method.
+
+## Responses Data Model
+
 # FAQ
 
 ## SSL error 
