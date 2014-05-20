@@ -97,6 +97,17 @@ class CreateMessageResponse {
 	}
 
 	/**
+	 * Function used to indicate if the response represents a success.
+	 *
+	 * @return boolean true if the response represents a success, false otherwise.
+	 */
+	public function isOk() {
+
+		return $this -> statusCode === 200;
+
+	}
+
+	/**
 	 * Sets the Pushwoosh response.
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse $response the Pushwoosh response.

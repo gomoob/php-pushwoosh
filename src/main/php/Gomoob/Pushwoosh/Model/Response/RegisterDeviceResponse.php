@@ -75,6 +75,17 @@ class RegisterDeviceResponse {
 	}
 
 	/**
+	 * Function used to indicate if the response represents a success.
+	 *
+	 * @return boolean true if the response represents a success, false otherwise.
+	 */
+	public function isOk() {
+
+		return $this -> statusCode === 200;
+
+	}
+
+	/**
 	 * Sets the Pushwoosh status code, the Pushwoosh API can return the following register device status codes :
 	 * 	- 200	: (HTTP Status Code = 200) Device successfully registered.
 	 *  - 210	: (HTTP Status Code = 200) Argument error. See statusMessage for more info.

@@ -20,6 +20,36 @@ class Notification {
 	 */
 	private $android;
 
+	/**
+	 * An array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to send
+	 * push notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition like
+	 * this:
+	 *
+	 * "conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]
+	 *
+	 * A Tag condition is an array like: [tagName, operator, operand], where
+	 *  - tagName  : string
+	 *  - operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”
+	 *  - operand  : string|integer|array
+	 *
+	 * Valid operators for String tags:
+	 *  - EQ		: tag value equals to operand. Operand must be a string.
+	 *
+	 * Valid operators for Integer tags:
+	 *  - GTE		: tag value greater then or equals to operand. Operand must be an integer;
+	 *  - LTE		: tag value less then or equals to operand. Operand must be an integer;
+	 *  - EQ		: tag value equals to operand. Operand must be an integer;
+	 *  - BETWEEN	: tag value greater then or equals to min_operand value and tag value less then or equals to max
+	 *                operand value. Operand must be an array like: [min_value, max_value].
+	 *
+	 * Valid operators for List tags:
+	 *  - IN		: Intersect user values and operand. Operand must be an array of strings like:
+	 *                ["value 1", "value 2", "value N"].
+	 *
+	 * You cannot use 'filter' and 'conditions' parameters together.
+	 *
+	 * @var array
+	 */
 	private $conditions;
 
 	/**
@@ -37,8 +67,21 @@ class Notification {
 	 */
 	private $data;
 
+	/**
+	 * (Optional) If set, message will only be delivered to the devices in the list. Ignored if the applications group
+	 * is used.
+	 *
+	 * @var string[]
+	 */
 	private $devices;
 
+	/**
+	 * The name of a filter used to select users to which one messages have to be sent.
+	 *
+	 * This parameter is optional.
+	 *
+	 * @var string
+	 */
 	private $filter;
 
 	/**
@@ -81,6 +124,17 @@ class Notification {
 	private $plateforms;
 
 	/**
+	 * Utility function used to create a new notification.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification the new created notification.
+	 */
+	public static function create() {
+
+		return new Notification();
+
+	}
+
+	/**
 	 * Gets the object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Notification\Android
@@ -92,6 +146,42 @@ class Notification {
 	}
 
 	/**
+	 * Gets the array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to
+	 * sendpush notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition
+	 * like this:
+	 *
+	 * "conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]
+	 *
+	 * A Tag condition is an array like: [tagName, operator, operand], where
+	 *  - tagName  : string
+	 *  - operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”
+	 *  - operand  : string|integer|array
+	 *
+	 * Valid operators for String tags:
+	 *  - EQ		: tag value equals to operand. Operand must be a string.
+	 *
+	 * Valid operators for Integer tags:
+	 *  - GTE		: tag value greater then or equals to operand. Operand must be an integer;
+	 *  - LTE		: tag value less then or equals to operand. Operand must be an integer;
+	 *  - EQ		: tag value equals to operand. Operand must be an integer;
+	 *  - BETWEEN	: tag value greater then or equals to min_operand value and tag value less then or equals to max
+	 *                operand value. Operand must be an array like: [min_value, max_value].
+	 *
+	 * Valid operators for List tags:
+	 *  - IN		: Intersect user values and operand. Operand must be an array of strings like:
+	 *                ["value 1", "value 2", "value N"].
+	 *
+	 * You cannot use 'filter' and 'conditions' parameters together.
+	 *
+	 * @return array the array of tag conditions.
+	 */
+	public function getConditions() {
+
+		return $this -> conditions;
+
+	}
+
+	/**
 	 * Gets the text push message delivered to the application.
 	 *
 	 * @return string the test push message delivered to the application.
@@ -99,6 +189,31 @@ class Notification {
 	public function getContent() {
 
 		return $this -> content;
+
+	}
+
+	/**
+	 * Gets the list of devices where to deliver the messages, this parameter is optional and is ignored if the
+	 * applications group parameter is used.
+	 *
+	 * @return string[] the list of devices where to deliver the messages.
+	 */
+	public function getDevices() {
+
+		return $this -> devices;
+
+	}
+
+	/**
+	 * Gets the name of a filter used to select users to which one messages have to be sent.
+	 *
+	 * This parameter is optional.
+	 *
+	 * @return string the name of a filter.
+	 */
+	public function getFilter() {
+
+		return $this -> filter;
 
 	}
 
@@ -142,6 +257,42 @@ class Notification {
 	}
 
 	/**
+	 * Sets the array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to
+	 * sendpush notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition
+	 * like this:
+	 *
+	 * "conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]
+	 *
+	 * A Tag condition is an array like: [tagName, operator, operand], where
+	 *  - tagName  : string
+	 *  - operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”
+	 *  - operand  : string|integer|array
+	 *
+	 * Valid operators for String tags:
+	 *  - EQ		: tag value equals to operand. Operand must be a string.
+	 *
+	 * Valid operators for Integer tags:
+	 *  - GTE		: tag value greater then or equals to operand. Operand must be an integer;
+	 *  - LTE		: tag value less then or equals to operand. Operand must be an integer;
+	 *  - EQ		: tag value equals to operand. Operand must be an integer;
+	 *  - BETWEEN	: tag value greater then or equals to min_operand value and tag value less then or equals to max
+	 *                operand value. Operand must be an array like: [min_value, max_value].
+	 *
+	 * Valid operators for List tags:
+	 *  - IN		: Intersect user values and operand. Operand must be an array of strings like:
+	 *                ["value 1", "value 2", "value N"].
+	 *
+	 * You cannot use 'filter' and 'conditions' parameters together.
+	 *
+	 * @param array $conditions the array of tag conditions.
+	 */
+	public function setConditions($conditions) {
+
+		$this -> conditions = $conditions;
+
+	}
+
+	/**
 	 * Sets the text push message delivered to the application.
 	 *
 	 * @param string $content the text push message delivered to the application.
@@ -149,6 +300,31 @@ class Notification {
 	public function setContent($content) {
 
 		$this -> content = $content;
+
+	}
+
+	/**
+	 * Sets the list of devices where to deliver the messages, this parameter is optional and is ignored if the
+	 * applications group parameter is used.
+	 *
+	 * @param string[] $devices the list of devices where to deliver the messages.
+	 */
+	public function setDevices(array $devices) {
+
+		$this -> devices = $devices;
+
+	}
+
+	/**
+	 * Sets the name of a filter used to select users to which one messages have to be sent.
+	 *
+	 * This parameter is optional.
+	 *
+	 * @param string $filter the name of a filter.
+	 */
+	public function setFilter($filter) {
+
+		$this -> filter = $filter;
 
 	}
 

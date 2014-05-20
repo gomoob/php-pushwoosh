@@ -51,20 +51,35 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 
 		$pushwoosh = new Pushwoosh();
 
-		$createMessageRequest = new CreateMessageRequest();
-		$createMessageRequest -> setApplication($this -> pushwooshTestProperties['application']);
-		$createMessageRequest -> setAuth($this -> pushwooshTestProperties['auth']);
+		$request = new CreateMessageRequest();
+		$request -> setApplication($this -> pushwooshTestProperties['application']);
+		$request -> setAuth($this -> pushwooshTestProperties['auth']);
 
 		$notification = new Notification();
-		$createMessageRequest -> setNotifications(array($notification));
+		$request -> setNotifications(array($notification));
 
-		// Test with a CreateMessageRequest without any notification
-		$createMessageResponse = $pushwoosh -> createMessage($createMessageRequest);
-		$this -> assertNotNull($createMessageResponse);
-		$this -> assertEquals(200, $createMessageResponse -> getStatusCode());
-		$this -> assertEquals('OK', $createMessageResponse -> getStatusMessage());
-		$this -> assertNotNull($createMessageResponse -> getResponse());
-		$this -> assertCount(1, $createMessageResponse -> getResponse() -> getMessages());
+		// Test with a CreateMessageRequest with an empty notification
+		$response = $pushwoosh -> createMessage($request);
+		$this -> assertNotNull($response);
+		$this -> assertTrue($response -> isOk());
+		$this -> assertEquals(200, $response -> getStatusCode());
+		$this -> assertEquals('OK', $response -> getStatusMessage());
+		$this -> assertNotNull($response -> getResponse());
+		$this -> assertCount(1, $response -> getResponse() -> getMessages());
+
+		// Test with credentials set on the Pushwoosh client
+		$pushwoosh = Pushwoosh::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setAuth($this -> pushwooshTestProperties['auth']);
+
+		$request = CreateMessageRequest::create() -> addNotification(new Notification());
+		$response = $pushwoosh -> createMessage($request);
+		$this -> assertNotNull($response);
+		$this -> assertTrue($response -> isOk());
+		$this -> assertEquals(200, $response -> getStatusCode());
+		$this -> assertEquals('OK', $response -> getStatusMessage());
+		$this -> assertNotNull($response -> getResponse());
+		$this -> assertCount(1, $response -> getResponse() -> getMessages());
 
 	}
 

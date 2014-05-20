@@ -90,6 +90,17 @@ class Pushwoosh implements IPushwoosh {
 	}
 
 	/**
+	 * Utility function used to create a new instance of the Pushwoosh client.
+	 *
+	 * @return \Gomoob\Pushwoosh\Client\Pushwoosh the new created instance.
+	 */
+	public static function create() {
+
+		return new Pushwoosh();
+
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
     public function createMessage(CreateMessageRequest $createMessageRequest) {

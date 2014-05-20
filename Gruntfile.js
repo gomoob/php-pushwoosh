@@ -72,8 +72,8 @@ module.exports = function(grunt) {
                     
                     // This is used to prevent PHPUnit to fail with a 'zend_mm_heap corrupted' error
                     // see: http://stackoverflow.com/questions/14597468/how-to-diagnose-these-php-code-coverage-segmentation-and-zend-mm-heap-corrupted
-                    d: 'zend.enable_gc=0',
-                    group : 'PushwooshTest'
+                    d: 'zend.enable_gc=0'//,
+                    //group : 'PushwooshTest'
                         
                 }
                 

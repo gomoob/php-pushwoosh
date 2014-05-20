@@ -5,6 +5,8 @@
  */
 namespace Gomoob\Pushwoosh\Model\Request;
 
+use Gomoob\Pushwoosh\Model\Notification\Notification;
+
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 /**
