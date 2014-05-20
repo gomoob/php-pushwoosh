@@ -303,8 +303,8 @@ Methods :
  * `getApplication` :
  * `getDeviceType`  :
  * `getHwid`        :
- * `getLanguage     :
- * `getPushToken    :
+ * `getLanguage`    :
+ * `getPushToken`   :
  * `getTimezone`    :
  * `setApplication` :
  * `setDeviceType`  :
