@@ -5,16 +5,16 @@
 Sample code to send a Pushwoosh message with the library : 
 
 ```php
-// Creates a Pushwoosh client
+// Create a Pushwoosh client
 $pushwoosh = Pushwoosh::create() -> setApplication('XXXX-XXX') -> setAuth('xxxxxxxx');
 
-// Creates a request for the '/createMessage' service
+// Create a request for the '/createMessage' service
 $request = CreateMessageRequest::create() -> addNotification(Notification::create() -> setContent('Hello Jean !'));
 
-// Calls the REST Web Service
+// Call the REST Web Service
 $response = $pushwoosh -> createMessage($request);
 
-// Checks if its ok
+// Check if its ok
 if($response -> isOk()) {
     print 'Great, my message has been sent !';
 } else {
@@ -33,17 +33,13 @@ The GoMoob Pushwoosh PHP Library should work with PHP 5.3 or higher.
 The easiest way to install the library is to use [composer](https://getcomposer.org/) and define the following dependency inside your composer.json file : 
 ```json
 {
-    ...
     "require": {
-        ...
         "gomoob/php-pushwoosh": "~0.1.0"
-        ...
     },
-    ...
 }
 ```
 
-The run a `composer update` command to pull the library and insert it inside your project's PHP dependencies.
+Then run a `composer update` command to pull the library and insert it inside your project's PHP dependencies.
 
 # API Documentation
 
