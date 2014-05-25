@@ -11,6 +11,7 @@ use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Notification\Notification;
 use Gomoob\Pushwoosh\Model\Notification\Android;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
@@ -33,7 +34,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 
 		$this -> markTestSkipped(
-			'Remove me to enable tests.'
+			'Comment me to enable tests.'
 		);
 
 		$testConfigurationFile = TEST_RESOURCES_DIRECTORY . '/pushwoosh-test-properties.json';
@@ -126,6 +127,25 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 			-> setPushToken('APA91bFIFfTSUQJknA3atnY2ioN2M2VttHnhrdWZQu9wk03LC5QVHkUV4fcaXBnYOnGa0zLwMuGibHQDzrBke3MAC-zq5r6EqLsMyQ-nyLA7mIpCSI5Q2Sg0FRrM9mXXwKxkvYGDZgRWN4X16MzAHPrskk69F0V0aPvLwUBeTW_VCHcO0oZ0GOc');
 
 		$response = $pushwoosh -> registerDevice($request);
+
+	}
+
+	/**
+	 * Test method for the <tt>unregisterDevice()</tt> function.
+	 *
+	 * @group PushwooshTest.testUnregisterDevice
+	 */
+	public function testUnregisterDevice() {
+
+		$pushwoosh = Pushwoosh::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setAuth($this -> pushwooshTestProperties['auth']);
+
+		$request = UnregisterDeviceRequest::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setHwid('48df748567e3b130');
+
+		$response = $pushwoosh -> unregisterDevice($request);
 
 	}
 

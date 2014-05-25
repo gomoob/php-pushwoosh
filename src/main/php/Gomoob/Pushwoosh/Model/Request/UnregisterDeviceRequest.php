@@ -29,6 +29,17 @@ class UnregisterDeviceRequest {
 	private $hwid;
 
 	/**
+	 * Utility function used to create a new instance of the <tt>UnregisterDeviceRequest</tt>.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest the new created instance.
+	 */
+	public static function create() {
+
+		return new UnregisterDeviceRequest();
+
+	}
+
+	/**
 	 * Gets the Pushwoosh application ID for which one to register a new device.
 	 *
 	 * @return string the Pushwoosh application ID for which one to register a new device.
@@ -56,10 +67,14 @@ class UnregisterDeviceRequest {
 	 * Sets the Pushwoosh application ID for which one to register a new device.
 	 *
 	 * @param string $application the the Pushwoosh application ID for which one to register a new device.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest this instance.
 	 */
 	public function setApplication($application) {
 
 		$this -> application = $application;
+
+		return $this;
 
 	}
 
@@ -69,10 +84,30 @@ class UnregisterDeviceRequest {
 	 *
 	 * @param string $hwid the Unique string to identify the device (Please note that accessing UDID on iOS is
 	 *        deprecated and not allowed, one of the alternative ways now is to use MAC address).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest this instance.
 	 */
 	public function setHwid($hwid) {
 
 		$this -> hwid = $hwid;
+
+		return $this;
+
+	}
+
+	/**
+	 * Creates a JSON representation of this request.
+	 *
+	 * @return array a PHP which can be passed to the 'json_encode' PHP method.
+	 */
+	public function toJSON() {
+
+		$json = array(
+			'application' => $this -> application,
+			'hwid' => $this -> hwid
+		);
+
+		return $json;
 
 	}
 

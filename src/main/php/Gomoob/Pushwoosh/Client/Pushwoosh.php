@@ -220,11 +220,11 @@ class Pushwoosh implements IPushwoosh {
      */
     public function registerDevice(RegisterDeviceRequest $registerDeviceRequest) {
 
-    	// If both the 'application' and 'applicationsGroup' attribute are not set in the request we try to get a
-    	// default one from the Pushwoosh client
+    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+    	// client
     	if($registerDeviceRequest -> getApplication() === null) {
 
-    		// The 'application must be set
+    		// The 'application' must be set
     		if(!isset($this -> application)) {
 
     			throw new PushwooshException('The  \'application\' property is not set !');
@@ -294,6 +294,21 @@ class Pushwoosh implements IPushwoosh {
      * {@inheritDoc}
      */
     public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest) {
+
+    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+    	// client
+    	if($unregisterDeviceRequest -> getApplication() === null) {
+
+    		// The 'application' must be set
+    		if(!isset($this -> application)) {
+
+    			throw new PushwooshException('The  \'application\' property is not set !');
+
+    		}
+
+    		$unregisterDeviceRequest -> setApplication($this -> application);
+
+    	}
 
     	$response = $this -> pwCall('unregisterDevice', $unregisterDeviceRequest -> toJSON());
 
