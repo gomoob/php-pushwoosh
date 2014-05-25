@@ -417,10 +417,14 @@ class Notification {
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\Android $android the object which contains specific Pushwoosh
 	 *        notification informations for Android (Google Cloud Messaging).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
 	public function setAndroid(Android $android) {
 
 		$this -> android = $android;
+
+		return $this;
 
 	}
 
@@ -464,10 +468,14 @@ class Notification {
 	 * Sets the text push message delivered to the application.
 	 *
 	 * @param string $content the text push message delivered to the application.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
 	public function setContent($content) {
 
 		$this -> content = $content;
+
+		return $this;
 
 	}
 
@@ -610,7 +618,18 @@ class Notification {
 		$json['send_date'] = is_string($this -> sendDate) ? $this -> sendDate : $this -> sendDate -> format('Y-m-d H:i');
 
 		// Optional parameters
-		isset($this -> content) ? $json['content'] = $this -> content : '';
+		isset($this -> content) ? $json['content'] = $this -> content : false;
+
+		// Android Specific informations
+		if(isset($this -> android)) {
+
+			foreach($this -> android -> toJSON() as $key => $value) {
+
+				$json[$key] = $value;
+
+			}
+
+		}
 
 		return $json;
 

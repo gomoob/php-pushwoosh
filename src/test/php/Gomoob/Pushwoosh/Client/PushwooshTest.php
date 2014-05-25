@@ -9,6 +9,8 @@ use Gomoob\Pushwoosh\Client\Pushwoosh;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Notification\Notification;
+use Gomoob\Pushwoosh\Model\Notification\Android;
+use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
@@ -30,6 +32,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function setUp() {
 
+		$this -> markTestSkipped(
+			'Remove me to enable tests.'
+		);
+
 		$testConfigurationFile = TEST_RESOURCES_DIRECTORY . '/pushwoosh-test-properties.json';
 
 		// The test configuration must exist
@@ -46,6 +52,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * Test method for the <tt>createMessage()</tt> function.
+	 *
+	 * @group PushwooshTest.testCreateMessage
 	 */
 	public function testCreateMessage() {
 
@@ -81,14 +89,43 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 		$this -> assertNotNull($response -> getResponse());
 		$this -> assertCount(1, $response -> getResponse() -> getMessages());
 
+		// Test with a message having one notification
+		$pushwoosh = Pushwoosh::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setAuth($this -> pushwooshTestProperties['auth']);
+
+		$request = CreateMessageRequest::create();
+
+		$android = Android::create() -> setHeader('My Sample Application');
+		$notification = Notification::create()
+			-> setContent('Hello !')
+			-> setAndroid($android);
+
+		$request -> addNotification($notification);
+
+		$response = $pushwoosh -> createMessage($request);
+
 	}
 
 	/**
 	 * Test method for the <tt>registerDevice()</tt> function.
+	 *
+	 * @group PushwooshTest.testRegisterDevice
 	 */
 	public function testRegisterDevice() {
 
-		$pushwoosh = new Pushwoosh();
+		$pushwoosh = Pushwoosh::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setAuth($this -> pushwooshTestProperties['auth']);
+
+		$request = RegisterDeviceRequest::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setDeviceType(3)
+			-> setHwid('48df748567e3b130')
+			-> setLanguage('fr')
+			-> setPushToken('APA91bFIFfTSUQJknA3atnY2ioN2M2VttHnhrdWZQu9wk03LC5QVHkUV4fcaXBnYOnGa0zLwMuGibHQDzrBke3MAC-zq5r6EqLsMyQ-nyLA7mIpCSI5Q2Sg0FRrM9mXXwKxkvYGDZgRWN4X16MzAHPrskk69F0V0aPvLwUBeTW_VCHcO0oZ0GOc');
+
+		$response = $pushwoosh -> registerDevice($request);
 
 	}
 

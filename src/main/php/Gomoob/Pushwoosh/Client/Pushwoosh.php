@@ -220,6 +220,21 @@ class Pushwoosh implements IPushwoosh {
      */
     public function registerDevice(RegisterDeviceRequest $registerDeviceRequest) {
 
+    	// If both the 'application' and 'applicationsGroup' attribute are not set in the request we try to get a
+    	// default one from the Pushwoosh client
+    	if($registerDeviceRequest -> getApplication() === null) {
+
+    		// The 'application must be set
+    		if(!isset($this -> application)) {
+
+    			throw new PushwooshException('The  \'application\' property is not set !');
+
+    		}
+
+    		$registerDeviceRequest -> setApplication($this -> application);
+
+    	}
+
     	$response = $this -> pwCall('registerDevice', $registerDeviceRequest -> toJSON());
 
     	return RegisterDeviceResponse::create($response);
