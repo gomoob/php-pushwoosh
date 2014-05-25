@@ -12,6 +12,7 @@ use Gomoob\Pushwoosh\Model\Notification\Notification;
 use Gomoob\Pushwoosh\Model\Notification\Android;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
@@ -127,6 +128,29 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 			-> setPushToken('APA91bFIFfTSUQJknA3atnY2ioN2M2VttHnhrdWZQu9wk03LC5QVHkUV4fcaXBnYOnGa0zLwMuGibHQDzrBke3MAC-zq5r6EqLsMyQ-nyLA7mIpCSI5Q2Sg0FRrM9mXXwKxkvYGDZgRWN4X16MzAHPrskk69F0V0aPvLwUBeTW_VCHcO0oZ0GOc');
 
 		$response = $pushwoosh -> registerDevice($request);
+
+	}
+
+	/**
+	 * Test method for the <tt>setTags()</tt> function.
+	 *
+	 * @group PushwooshTest.setTags
+	 */
+	public function testSetTags() {
+
+		$pushwoosh = Pushwoosh::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setAuth($this -> pushwooshTestProperties['auth']);
+
+		$request = SetTagsRequest::create()
+			-> setApplication($this -> pushwooshTestProperties['application'])
+			-> setHwid('48df748567e3b130')
+			-> setTags(array(
+			    'tag0' => 'tag0_value',
+				'tag1' => 'tag1_value'
+			));
+
+		$response = $pushwoosh -> setTags($request);
 
 	}
 

@@ -7,6 +7,7 @@ namespace Gomoob\Pushwoosh;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 /**
@@ -116,7 +117,17 @@ interface IPushwoosh {
 
 	function setBadge();
 
-	function setTags();
+	/**
+	 * Function used to set tags for a device.
+	 *
+	 * @param \Gomoob\Pushwoosh\Model\Request\SetTagsRequest $setTagsRequest the set tags request used to set tags for a
+	 *        device.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Response\SetTagsResponse the resulting set tags response.
+	 *
+	 * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetTags
+	 */
+	function setTags(SetTagsRequest $setTagsRequest);
 
 	/**
 	 * Function used to remove a device from an application.
