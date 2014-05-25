@@ -32,7 +32,7 @@ Easy, isn't it ?
 # Installation 
 The GoMoob Pushwoosh PHP Library should work with PHP 5.3 or higher. 
 
-The easiest way to install the library is to use [composer](https://getcomposer.org/) and define the following dependency inside your composer.json file : 
+The easiest way to install the library is to use [composer](https://getcomposer.org/) and define the following dependency inside your `composer.json` file : 
 ```json
 {
     "require": {
@@ -47,7 +47,7 @@ Then run a `composer update` command to pull the library and insert it inside yo
 
 The GoMoob Pushwoosh PHP Library is written to be almost identic to the standard Pushwoosh REST API.
 
-Calls to the Pushwoosh REST Web Services are done using a Pushwoosh client class. Then you call a method by using a request object, you receive a response object with a success or the detail of an error.
+Calls to the Pushwoosh REST Web Services are done using a Pushwoosh client class. Then you call a method by using a request object and receive a response object with a success message or the detail of an error.
 
 Each request sent to the Pushwoob REST Web Services is represented by a `xxxRequest` object / class defined in the `Gomoob\Pushwoosh\Model\Request` namespace. 
 
@@ -84,7 +84,7 @@ $createMessageRequest = CreateMessageRequest::create()
 $response = $pushwoosh -> createMessage($createMessageRequest);
 ```
 
-Setting the `application` (or `applicationsGroup`) and `auth` parameters in each request can be boring. It is more convenient to keep those informations at one place only. You can set those informations on the Pushwoosh client directly, then the client will use them automatically.
+Setting the `application` (or `applicationsGroup`) and `auth` parameters in each request can be boring. It is a good practice to keep those informations in one place only. You can set those informations on the Pushwoosh client directly, then the client will use them automatically.
 
 ```php
 use Gomoob\Pushwoosh\Client\Pushwoosh;
@@ -105,7 +105,13 @@ $createMessageResponse1 = $pushwoosh -> createMessage($createMessageRequest1);
 
 ```
 
-### Working with the mock Pushwoosh client
+### Working with the Mock Pushwoosh client
+
+The Mock Pushwoosh client is a Mock object which implements the same software interface as the standard Pushwoosh client but which do not communicate with the Pushwoosh servers. 
+
+The Mock Pushwoosh client is convenient when want to perform unit testing which are periodically executed by your continuous integration server and do not want to communicate with the Pushwoosh servers each time. 
+
+The Mock Pushwoosh client can be used exactly the same way as the standard Pushwoosh client. The only thing you have to be careful of is that the Mock Pushwoosh client uses in memory arrays to simulate the storage used by the Pushwoosh servers. So, you data will be lost between each requests.
 
 ## Pushwoosh clients methods
 
@@ -159,7 +165,9 @@ How to use it :
  * Check if everything is good using the returned `DeleteMessageResponse` object
 
 Sample code : 
+```php
 
+```
 
 ### Method `/registerDevice`
 
@@ -171,7 +179,9 @@ How to use it :
  * Check if everything is good using the returned `RegisterDeviceResponse` object
 
 Sample code : 
+```php
 
+```
 
 ### Method `/unregisterDevice`
 
@@ -183,7 +193,9 @@ How to use it :
  * Check if everything is good using the returned `UnregisterDeviceResponse` object
 
 Sample code : 
+```php
 
+```
 
 ### Method `/setTags`
 
@@ -195,7 +207,9 @@ How to use it :
  * Check if everything is good using the returned `SetTagsResponse` object
 
 Sample code : 
+```php
 
+```
 
 ### Method `/setBadge`
 
@@ -207,7 +221,9 @@ How to use it :
  * Check if everything is good using the returned `SetBadgeResponse` object
 
 Sample code : 
+```php
 
+```
 
 ### Method `/pushStat`
 
@@ -219,7 +235,9 @@ How to use it :
  * Check if everything is good using the returned `PushStatResponse` object
 
 Sample code : 
+```php
 
+```
 
 ### Method `/getNearestZone`
 
@@ -231,7 +249,9 @@ How to use it :
  * Check if everything is good using the returned `GetNearestZoneResponse` object
 
 Sample code : 
+```php
 
+```
 
 ## Requests Data Model 
 
