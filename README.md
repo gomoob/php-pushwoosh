@@ -362,5 +362,9 @@ See http://curl.haxx.se/docs/sslcerts.html
 
 # Release history
 
-## 0.1.0 (2014-05-19)
- * First release
+## 0.1.0-alpha1 (2014-05-26)
+ * First alpha release which only implements the following Pushwoosh REST Web Services
+   * `/createMessage`
+   * `/registerDevice`
+   * `/setTags`
+   * `/unregisterDevice`
