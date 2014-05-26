@@ -364,7 +364,8 @@ See http://curl.haxx.se/docs/sslcerts.html
 
 ## 0.1.0-alpha1 (2014-05-26)
  * First alpha release which only implements the following Pushwoosh REST Web Services
-   * `/createMessage`
-   * `/registerDevice`
-   * `/setTags`
-   * `/unregisterDevice`
+   * [`/createMessage`](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
+   * [`/registerDevice`](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodRegister)
+   * [`/setTags`](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetTags)
+   * [`/unregisterDevice`](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodUnregister)
+   
