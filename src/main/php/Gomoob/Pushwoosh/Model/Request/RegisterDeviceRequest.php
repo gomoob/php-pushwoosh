@@ -6,7 +6,7 @@
 namespace Gomoob\Pushwoosh\Model\Request;
 
 /**
- * Class which represents Pushwoosh 'registerDevice' request.
+ * Class which represents Pushwoosh '/registerDevice' request.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create

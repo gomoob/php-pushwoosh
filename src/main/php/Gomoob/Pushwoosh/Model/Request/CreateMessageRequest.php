@@ -8,7 +8,7 @@ namespace Gomoob\Pushwoosh\Model\Request;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 /**
- * Class which represents Pushwoosh 'createMessage' request.
+ * Class which represents Pushwoosh '/createMessage' request.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create

@@ -6,7 +6,7 @@
 namespace Gomoob\Pushwoosh\Model\Response;
 
 /**
- * Class which represents Pushwoosh CreateMessage response response (i.e returned by the
+ * Class which represents Pushwoosh '/createMessage' response response (i.e returned by the
  * CreateMessageResponse#getResponse() method).
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
