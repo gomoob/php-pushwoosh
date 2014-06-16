@@ -11,6 +11,8 @@ namespace Gomoob\Pushwoosh\Model\Response;
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodPushStat
  */
-class PushStatResponse {
-	
+class GetNearestZoneResponse {
+
+
+
 }

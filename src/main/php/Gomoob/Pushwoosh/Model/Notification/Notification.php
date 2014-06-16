@@ -6,6 +6,7 @@
 namespace Gomoob\Pushwoosh\Model\Notification;
 
 use Gomoob\Pushwoosh\PushwooshException;
+
 /**
  * Class which represents a Pushwoosh notification.
  *
@@ -31,12 +32,22 @@ class Notification {
 
 	/**
 	 * Use this only if you want to pass custom data to the application (JSON format) or omit this parameter. Please
-	 * note that iOS push is limited to 256 bytes
+	 * note that iOS push is limited to 256 bytes.
+	 * 
+	 * This will be passed as a "u" parameter in the payload.
 	 *
-	 * @var string
+	 * @var array
 	 */
 	private $data;
 
+	/**
+	 * The list of device tokens used to identify the devices to send the notification to, this parameter is optional. 
+	 * 
+	 * Not more than 1000 tokens in an array. If set, message will only be delivered to the devices in the list. Ignored 
+	 * if the applications group is used.
+	 * 
+	 * @var string[]
+	 */
 	private $devices;
 
 	private $filter;
@@ -81,6 +92,23 @@ class Notification {
 	private $plateforms;
 
 	/**
+	 * Adds a new device Token to the list of device tokens to identify the devices to send the notification to.
+	 *
+	 * @param string $device the new device Token to add.
+	 */
+	public function addDevice($device) {
+	
+		if(!isset($this -> devices)) {
+				
+			$this -> devices[] = array();
+				
+		}
+	
+		$this -> devices[] = $device;
+	
+	}
+	
+	/**
 	 * Gets the object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Notification\Android
@@ -100,6 +128,33 @@ class Notification {
 
 		return $this -> content;
 
+	}
+	
+	/**
+	 * Gets additional data to attach to the notification, use this only if you want to pass custom data to the
+	 * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
+	 *
+	 * This will be passed as a "u" parameter in the payload.
+	 *
+	 * @return array an array which represents a JSON object.
+	 */
+	public function getData() {
+	
+		return $this -> data;
+	
+	}
+	
+	/**
+	 * Gets the list of device tokens used to identify the devices to send the notification to, this parameter is
+	 * optional.
+	 *
+	 * @return string[] the list of device tokens used to identify the devices to send the notification to, this
+	 *         parameter is optional.
+	 */
+	public function getDevices() {
+	
+		return $this -> devices;
+	
 	}
 
 	/**
@@ -128,6 +183,22 @@ class Notification {
 		return $this -> sendDate;
 
 	}
+	
+	/**
+	 * Removes an existing additional data parameter from the additional data attached to this notification.
+	 *
+	 * @param string $parameterName the name of the existing additional data parameter to remove, if no data parameter
+	 *        with the specified name exists the function has no effect.
+	 */
+	public function removeDataParameter($parameterName) {
+	
+		if(isset($this -> data) && array_key_exists($parameterName, $this -> data)) {
+	
+			unset($this -> data[$parameterName]);
+				
+		}
+	
+	}
 
 	/**
 	 * Sets the object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).
@@ -149,6 +220,52 @@ class Notification {
 	public function setContent($content) {
 
 		$this -> content = $content;
+
+	}
+	
+	/**
+	 * Sets the additional data to attache to the notification, use this only if you want to pass custom data to the
+	 * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
+	 *
+	 * This will be passed as a "u" parameter in the payload.
+	 *
+	 * @param array $data the additional data to be passed to the notification.
+	 */
+	public function setData(array $data) {
+	
+		$this -> data = $data;
+	
+	}
+	
+	/**
+	 * Sets an additional data parameter or overwrites an existing one.
+	 *
+	 * @param string $parameterName the name of the additional data parameter to set.
+	 * @param mixed $parameterValue the value of the additional data parameter to set. This parameter must be compliant
+	 *        with JSON primitive types or must be an array.
+	 */
+	public function setDataParameter($parameterName, $parameterValue) {
+	
+		if(!isset($this -> data)) {
+	
+			$this -> data = array();
+	
+		}
+	
+		$this -> data[$parameterName] = $parameterValue;
+	
+	}
+	
+	/**
+	 * Sets the list of device tokens used to identify the devices to send the notification to, this parameter is
+	 * optional.
+	 *
+	 * @param string[] $devices the list of device tokens used to identify the devices to send the notification to, this
+	 *        parameter is optional.
+	 */
+	public function setDevices(array $devices) {
+	
+		$this -> devices = $devices;
 
 	}
 
@@ -206,6 +323,8 @@ class Notification {
 
 		// Optional parameters
 		isset($this -> content) ? $json['content'] = $this -> content : '';
+		isset($this -> data) ? $json['data'] = $this -> data : '';
+		isset($this -> devices) ? $json['devices'] = $this -> devices : '';
 
 		return $json;
 

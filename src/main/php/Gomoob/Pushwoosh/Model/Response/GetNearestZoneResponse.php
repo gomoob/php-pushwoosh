@@ -12,5 +12,7 @@ namespace Gomoob\Pushwoosh\Model\Response;
  * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodGetNearestZone
  */
 class GetNearestZoneResponse {
-	
+
+
+
 }
