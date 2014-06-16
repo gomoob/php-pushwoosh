@@ -15,9 +15,9 @@ use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
  */
 class PushwooshMock implements IPushwoosh {
 
-	/**
-	 * {@inheritDoc}
-	 */
+    /**
+     * {@inheritDoc}
+     */
     public function createMessage(CreateMessageRequest $createMessageRequest) {
         // TODO: Auto-generated method stub
 
@@ -28,6 +28,30 @@ class PushwooshMock implements IPushwoosh {
      */
     public function deleteMessage() {
         // TODO: Auto-generated method stub
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getApplication() {
+    	// TODO: Auto-generated method stub
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getApplicationsGroup() {
+    	// TODO: Auto-generated method stub
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAuth() {
+    	// TODO: Auto-generated method stub
 
     }
 
@@ -52,6 +76,30 @@ class PushwooshMock implements IPushwoosh {
      */
     public function registerDevice() {
         // TODO: Auto-generated method stub
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setApplication($application) {
+    	// TODO: Auto-generated method stub
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setApplicationsGroup($applicationsGroup) {
+    	// TODO: Auto-generated method stub
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAuth($auth) {
+    	// TODO: Auto-generated method stub
 
     }
 

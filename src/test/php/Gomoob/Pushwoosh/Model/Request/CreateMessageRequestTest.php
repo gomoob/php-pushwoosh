@@ -6,6 +6,7 @@
 namespace Gomoob\Pushwoosh\Model\Request;
 
 use Gomoob\Pushwoosh\Exception\PushwooshException;
+use Gomoob\Pushwoosh\Model\Notification\Notification;
 
 /**
  * Test case used to test the <code>CreateMessageRequest</code> class.
@@ -63,19 +64,8 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase {
 
 		}
 
-		// Test without any notification set
-		$createMessageRequest -> setAuth('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-
-		try {
-
-			$createMessageRequest -> toJSON();
-			$this -> fail('Must have thrown a PushwooshException !');
-
-		} catch(PushwooshException $pe) {
-
-			// Expected
-
-		}
+		// Test with a very complex notification
+		$notification = Notification::create();
 
 	}
 

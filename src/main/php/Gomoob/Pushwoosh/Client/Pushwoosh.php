@@ -10,11 +10,13 @@ use Gomoob\Pushwoosh\PushwooshException;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 use Gomoob\Pushwoosh\Model\Response\CreateMessageResponse;
 use Gomoob\Pushwoosh\Model\Response\RegisterDeviceResponse;
 use Gomoob\Pushwoosh\Model\Response\UnregisterDeviceResponse;
+use Gomoob\Pushwoosh\Model\Response\SetTagsResponse;
 
 /**
  * Class which defines a Pushwoosh client.
@@ -86,6 +88,17 @@ class Pushwoosh implements IPushwoosh {
 		curl_close($ch);
 
 		return json_decode($response, true);
+
+	}
+
+	/**
+	 * Utility function used to create a new instance of the Pushwoosh client.
+	 *
+	 * @return \Gomoob\Pushwoosh\Client\Pushwoosh the new created instance.
+	 */
+	public static function create() {
+
+		return new Pushwoosh();
 
 	}
 
@@ -209,6 +222,21 @@ class Pushwoosh implements IPushwoosh {
      */
     public function registerDevice(RegisterDeviceRequest $registerDeviceRequest) {
 
+    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+    	// client
+    	if($registerDeviceRequest -> getApplication() === null) {
+
+    		// The 'application' must be set
+    		if(!isset($this -> application)) {
+
+    			throw new PushwooshException('The  \'application\' property is not set !');
+
+    		}
+
+    		$registerDeviceRequest -> setApplication($this -> application);
+
+    	}
+
     	$response = $this -> pwCall('registerDevice', $registerDeviceRequest -> toJSON());
 
     	return RegisterDeviceResponse::create($response);
@@ -259,8 +287,26 @@ class Pushwoosh implements IPushwoosh {
     /**
      * {@inheritDoc}
      */
-    public function setTags() {
-        // TODO: Auto-generated method stub
+    public function setTags(SetTagsRequest $setTagsRequest) {
+
+    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+    	// client
+    	if($setTagsRequest -> getApplication() === null) {
+
+    		// The 'application' must be set
+    		if(!isset($this -> application)) {
+
+    			throw new PushwooshException('The  \'application\' property is not set !');
+
+    		}
+
+    		$setTagsRequest -> setApplication($this -> application);
+
+    	}
+
+    	$response = $this -> pwCall('setTags', $setTagsRequest -> toJSON());
+
+    	return SetTagsResponse::create($response);
 
     }
 
@@ -268,6 +314,21 @@ class Pushwoosh implements IPushwoosh {
      * {@inheritDoc}
      */
     public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest) {
+
+    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+    	// client
+    	if($unregisterDeviceRequest -> getApplication() === null) {
+
+    		// The 'application' must be set
+    		if(!isset($this -> application)) {
+
+    			throw new PushwooshException('The  \'application\' property is not set !');
+
+    		}
+
+    		$unregisterDeviceRequest -> setApplication($this -> application);
+
+    	}
 
     	$response = $this -> pwCall('unregisterDevice', $unregisterDeviceRequest -> toJSON());
 

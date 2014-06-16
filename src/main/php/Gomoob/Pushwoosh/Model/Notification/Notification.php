@@ -332,7 +332,7 @@ class Notification {
 	public function getDevices() {
 	
 		return $this -> devices;
-	
+
 	}
 
 	/**
