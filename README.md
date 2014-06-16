@@ -144,7 +144,7 @@ if($createMessageResponse -> isOk() {
 }
 ```
 
-Define multiple notifications : 
+#### Define multiple notifications 
 ```php
 $createMessageRequest = CreateMessageRequest::create()
     -> addNotification(Notification::create() -> setContent('Hello'))
@@ -154,6 +154,24 @@ $createMessageRequest = CreateMessageRequest::create()
 $pushwoosh -> createMessage($createMessageRequest);
 ```
 
+#### Attach additional data
+```php
+$notification = Notification::create()
+	-> setDataParameter('data_parameter_1', 'data_parameter_1_value')
+	-> setDataParameter('data_parameter_2', 'data_parameter_2_value');
+
+$pushwoosh -> createMessage(CreateMessageRequest::create() -> addNotification($notification));
+```
+
+#### Send to only specific devices
+```
+$notification = Notification::create()
+	-> addDevice('DEVICE_TOKEN_1')
+	-> addDevice('DEVICE_TOKEN_2')
+	-> addDevice('DEVICE_TOEKN_3');
+
+$pushwoosh -> createMessage(CreateMessageRequest::create() -> addNotification($notification));
+```
 
 ### Method `/deleteMessage`
 
@@ -434,7 +452,11 @@ grunt generate-documentation
 ## 0.1.0-alpha2 (2014-06-13)
  * Second alpha release
  * Add a Contributing section in the README.md file
+ * Improves documentation
  * Add a develop branch to the project
+ * Add several missing methods to the `Gomoob\Pushwoosh\Model\Notification\Notification` class
+ * Add a `Gomoob\Pushwoosh\Model\Notification\NotificationTest` unit test class
+ * Prepare test cases for not implemented request objects
 
 ## 0.1.0-alpha1 (2014-05-25)
  * First alpha release which implements the following Pushwoosh REST Web Services : 

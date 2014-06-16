@@ -103,36 +103,8 @@ class Notification {
 	 */
 	private $iOS;
 
+	// TODO: DOCUMENT ME!
 	private $link;
-	
-	/**
-	 * Adds a new device Token to the list of device tokens to identify the devices to send the notification to.
-	 *
-	 * @param string $device the new device Token to add.
-	 */
-	public function addDevice($device) {
-	
-		if(!isset($this -> devices)) {
-	
-			$this -> devices[] = array();
-	
-		}
-	
-		$this -> devices[] = $device;
-	
-	}
-
-	public function getLink() {
-
-		return $this -> link;
-
-	}
-
-	public function setLink($link) {
-
-		$this -> link = $link;
-
-	}
 
 	/**
 	 * The object which contains specific Pushwoosh notification informations for Mac OS X.
@@ -159,20 +131,8 @@ class Notification {
 	 */
 	private $sendDate = 'now';
 
-	private $ignoreUserTimezone;
-
-	public function isIgnoreUserTimezone() {
-
-		return $this -> ignoreUserTimezone;
-
-	}
-
-	public function setIgnoreUserTimezone($ignoreUserTimezone) {
-
-		$this -> ignoreUserTimezone = $ignoreUserTimezone;
-
-	}
-
+	// TODO: DOCUMENT ME !
+	private $ignoreUserTimezone = true;
 
 	/**
 	 * Optional parameter, can have the following values :
@@ -195,23 +155,8 @@ class Notification {
 	 */
 	private $pageId;
 
-	/**
-	 *
-	 * @var unknown
-	 */
+	// TODO: DOCUMENT ME !
 	private $platforms;
-
-	public function getPlatforms() {
-
-		return $this -> platforms;
-
-	}
-
-	public function setPlatforms(array $platforms) {
-
-		$this -> platforms = $platforms;
-
-	}
 
 	/**
 	 * The object which contains specific Pushwoosh notification informations for WNS (Windows Notification Service).
@@ -236,6 +181,23 @@ class Notification {
 
 		return new Notification();
 
+	}
+	
+	/**
+	 * Adds a new device Token to the list of device tokens to identify the devices to send the notification to.
+	 *
+	 * @param string $device the new device Token to add.
+	 */
+	public function addDevice($device) {
+	
+		if(!isset($this -> devices)) {
+	
+			$this -> devices = array();
+	
+		}
+	
+		$this -> devices[] = $device;
+	
 	}
 
 	/**
@@ -347,6 +309,13 @@ class Notification {
 		return $this -> filter;
 
 	}
+	
+	// TODO: DOCUMENT ME !
+	public function isIgnoreUserTimezone() {
+	
+		return $this -> ignoreUserTimezone;
+	
+	}
 
 	/**
 	 * Gets the object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification
@@ -359,6 +328,13 @@ class Notification {
 
 		return $this -> iOS;
 
+	}
+	
+	// TODO: DOCUMENT ME!
+	public function getLink() {
+	
+		return $this -> link;
+	
 	}
 
 	/**
@@ -383,6 +359,13 @@ class Notification {
 
 		return $this -> pageId;
 
+	}
+	
+	// TODO: DOCUMENT ME !
+	public function getPlatforms() {
+	
+		return $this -> platforms;
+	
 	}
 
 	/**
@@ -573,6 +556,13 @@ class Notification {
 		$this -> filter = $filter;
 
 	}
+	
+	// TODO: DOCUMENT ME !
+	public function setIgnoreUserTimezone($ignoreUserTimezone) {
+	
+		$this -> ignoreUserTimezone = $ignoreUserTimezone;
+	
+	}
 
 	/**
 	 * Sets the object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification
@@ -585,6 +575,13 @@ class Notification {
 
 		$this -> iOS = $ios;
 
+	}
+	
+	// TODO: DOCUMENT ME!
+	public function setLink($link) {
+	
+		$this -> link = $link;
+	
 	}
 
 	/**
@@ -609,6 +606,13 @@ class Notification {
 
 		$this -> pageId = $pageId;
 
+	}
+	
+	// TODO: DOCUMENT ME !
+	public function setPlatforms(array $platforms) {
+	
+		$this -> platforms = $platforms;
+	
 	}
 
 	/**
@@ -685,10 +689,13 @@ class Notification {
 		$json = array();
 
 		// Mandatory parameters
+		$json['ignore_user_timezone'] = $this -> ignoreUserTimezone;
 		$json['send_date'] = is_string($this -> sendDate) ? $this -> sendDate : $this -> sendDate -> format('Y-m-d H:i');
 
 		// Optional parameters
 		isset($this -> content) ? $json['content'] = $this -> content : false;
+		isset($this -> data) ? $json['data'] = $this -> data : false;
+		isset($this -> devices) ? $json['devices'] = $this -> devices : false;
 
 		// Android Specific informations
 		if(isset($this -> android)) {
@@ -699,6 +706,13 @@ class Notification {
 
 			}
 
+		}
+		
+		// iOS Specific informations
+		if(isset($this -> iOS)) {
+			
+			// TODO
+			
 		}
 
 		return $json;
