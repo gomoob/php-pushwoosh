@@ -15,12 +15,49 @@ use Gomoob\Pushwoosh\PushwooshException;
 class Notification {
 
 	/**
+	 * An object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).
+	 *
+	 * @var \Gomoob\Pushwoosh\Model\Notification\ADM
+	 */
+	private $aDM;
+
+	/**
 	 * The object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).
 	 *
 	 * @var \Gomoob\Pushwoosh\Model\Notification\Android
 	 */
 	private $android;
 
+	/**
+	 * An array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to send
+	 * push notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition like
+	 * this:
+	 *
+	 * "conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]
+	 *
+	 * A Tag condition is an array like: [tagName, operator, operand], where
+	 *  - tagName  : string
+	 *  - operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”
+	 *  - operand  : string|integer|array
+	 *
+	 * Valid operators for String tags:
+	 *  - EQ		: tag value equals to operand. Operand must be a string.
+	 *
+	 * Valid operators for Integer tags:
+	 *  - GTE		: tag value greater then or equals to operand. Operand must be an integer;
+	 *  - LTE		: tag value less then or equals to operand. Operand must be an integer;
+	 *  - EQ		: tag value equals to operand. Operand must be an integer;
+	 *  - BETWEEN	: tag value greater then or equals to min_operand value and tag value less then or equals to max
+	 *                operand value. Operand must be an array like: [min_value, max_value].
+	 *
+	 * Valid operators for List tags:
+	 *  - IN		: Intersect user values and operand. Operand must be an array of strings like:
+	 *                ["value 1", "value 2", "value N"].
+	 *
+	 * You cannot use 'filter' and 'conditions' parameters together.
+	 *
+	 * @var array
+	 */
 	private $conditions;
 
 	/**
@@ -41,7 +78,7 @@ class Notification {
 	private $data;
 
 	/**
-	 * The list of device tokens used to identify the devices to send the notification to, this parameter is optional. 
+	 * (Optional) The list of device tokens used to identify the devices to send the notification to. 
 	 * 
 	 * Not more than 1000 tokens in an array. If set, message will only be delivered to the devices in the list. Ignored 
 	 * if the applications group is used.
@@ -50,6 +87,13 @@ class Notification {
 	 */
 	private $devices;
 
+	/**
+	 * The name of a filter used to select users to which one messages have to be sent.
+	 *
+	 * This parameter is optional.
+	 *
+	 * @var string
+	 */
 	private $filter;
 
 	/**
@@ -60,6 +104,49 @@ class Notification {
 	private $iOS;
 
 	private $link;
+	
+	/**
+	 * Adds a new device Token to the list of device tokens to identify the devices to send the notification to.
+	 *
+	 * @param string $device the new device Token to add.
+	 */
+	public function addDevice($device) {
+	
+		if(!isset($this -> devices)) {
+	
+			$this -> devices[] = array();
+	
+		}
+	
+		$this -> devices[] = $device;
+	
+	}
+
+	public function getLink() {
+
+		return $this -> link;
+
+	}
+
+	public function setLink($link) {
+
+		$this -> link = $link;
+
+	}
+
+	/**
+	 * The object which contains specific Pushwoosh notification informations for Mac OS X.
+	 *
+	 * @var \Gomoob\Pushwoosh\Model\Notification\Mac
+	 */
+	private $mac;
+
+	/**
+	 * The object which contains specific Pushwoosh notification informations for Safari.
+	 *
+	 * @var \Gomoob\Pushwoosh\Model\Notification\Safari
+	 */
+	private $safari;
 
 	/**
 	 * The date when the message has to be sent, if a string is provided it must respect the following formats :
@@ -74,6 +161,19 @@ class Notification {
 
 	private $ignoreUserTimezone;
 
+	public function isIgnoreUserTimezone() {
+
+		return $this -> ignoreUserTimezone;
+
+	}
+
+	public function setIgnoreUserTimezone($ignoreUserTimezone) {
+
+		$this -> ignoreUserTimezone = $ignoreUserTimezone;
+
+	}
+
+
 	/**
 	 * Optional parameter, can have the following values :
 	 * 	- 0 or false : not minimized
@@ -87,27 +187,69 @@ class Notification {
 	 */
 	private $minimizeLink;
 
+	/**
+	 * HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML content to
+	 * the application or omit this parameter.
+	 *
+	 * @var int
+	 */
 	private $pageId;
 
-	private $plateforms;
+	/**
+	 *
+	 * @var unknown
+	 */
+	private $platforms;
+
+	public function getPlatforms() {
+
+		return $this -> platforms;
+
+	}
+
+	public function setPlatforms(array $platforms) {
+
+		$this -> platforms = $platforms;
+
+	}
 
 	/**
-	 * Adds a new device Token to the list of device tokens to identify the devices to send the notification to.
+	 * The object which contains specific Pushwoosh notification informations for WNS (Windows Notification Service).
 	 *
-	 * @param string $device the new device Token to add.
+	 * @var \Gomoob\Pushwoosh\Model\Notification\WNS
 	 */
-	public function addDevice($device) {
-	
-		if(!isset($this -> devices)) {
-				
-			$this -> devices[] = array();
-				
-		}
-	
-		$this -> devices[] = $device;
-	
+	private $wNS;
+
+	/**
+	 * The object which contains specific Pushwoosh notification informations for WP (Windows Phone).
+	 *
+	 * @var \Gomoob\Pushwoosh\Model\Notification\WP
+	 */
+	private $wP;
+
+	/**
+	 * Utility function used to create a new notification.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification the new created notification.
+	 */
+	public static function create() {
+
+		return new Notification();
+
 	}
-	
+
+	/**
+	 * Gets the object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\ADM the object which contains specific Pushwoosh notification
+	 *         informations for ADM (Amazon Device Messaging).
+	 */
+	public function getADM() {
+
+		return $this -> aDM;
+
+	}
+
 	/**
 	 * Gets the object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).
 	 *
@@ -116,6 +258,42 @@ class Notification {
 	public function getAndroid() {
 
 		return $this -> android;
+
+	}
+
+	/**
+	 * Gets the array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to
+	 * sendpush notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition
+	 * like this:
+	 *
+	 * "conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]
+	 *
+	 * A Tag condition is an array like: [tagName, operator, operand], where
+	 *  - tagName  : string
+	 *  - operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”
+	 *  - operand  : string|integer|array
+	 *
+	 * Valid operators for String tags:
+	 *  - EQ		: tag value equals to operand. Operand must be a string.
+	 *
+	 * Valid operators for Integer tags:
+	 *  - GTE		: tag value greater then or equals to operand. Operand must be an integer;
+	 *  - LTE		: tag value less then or equals to operand. Operand must be an integer;
+	 *  - EQ		: tag value equals to operand. Operand must be an integer;
+	 *  - BETWEEN	: tag value greater then or equals to min_operand value and tag value less then or equals to max
+	 *                operand value. Operand must be an array like: [min_value, max_value].
+	 *
+	 * Valid operators for List tags:
+	 *  - IN		: Intersect user values and operand. Operand must be an array of strings like:
+	 *                ["value 1", "value 2", "value N"].
+	 *
+	 * You cannot use 'filter' and 'conditions' parameters together.
+	 *
+	 * @return array the array of tag conditions.
+	 */
+	public function getConditions() {
+
+		return $this -> conditions;
 
 	}
 
@@ -129,7 +307,7 @@ class Notification {
 		return $this -> content;
 
 	}
-	
+
 	/**
 	 * Gets additional data to attach to the notification, use this only if you want to pass custom data to the
 	 * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
@@ -158,6 +336,19 @@ class Notification {
 	}
 
 	/**
+	 * Gets the name of a filter used to select users to which one messages have to be sent.
+	 *
+	 * This parameter is optional.
+	 *
+	 * @return string the name of a filter.
+	 */
+	public function getFilter() {
+
+		return $this -> filter;
+
+	}
+
+	/**
 	 * Gets the object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification
 	 * Service).
 	 *
@@ -167,6 +358,42 @@ class Notification {
 	public function getIOS() {
 
 		return $this -> iOS;
+
+	}
+
+	/**
+	 * Gets the object which contains specific Pushwoosh notification informations for Mac OS X.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Mac the object which contains specific Pushwoosh notification
+	 *         informations for Mac OS X.
+	 */
+	public function getMac() {
+
+		return $this -> mac;
+
+	}
+
+	/**
+	 * Gets the HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML
+	 * content to the application or omit this parameter.
+	 *
+	 * @return int the HTML page id.
+	 */
+	public function getPageId() {
+
+		return $this -> pageId;
+
+	}
+
+	/**
+	 * Gets the object which contains specific Pushwoosh notification informations for Safari.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Safari the object which contains specific Pushwoosh notification
+	 *         informations for Safari.
+	 */
+	public function getSafari() {
+
+		return $this -> safari;
 
 	}
 
@@ -183,21 +410,42 @@ class Notification {
 		return $this -> sendDate;
 
 	}
-	
+
 	/**
-	 * Removes an existing additional data parameter from the additional data attached to this notification.
+	 * Gets the object which contains specific Pushwoosh notification informations for WNS (Windows Notification
+	 * Service).
 	 *
-	 * @param string $parameterName the name of the existing additional data parameter to remove, if no data parameter
-	 *        with the specified name exists the function has no effect.
+	 * @return \Gomoob\Pushwoosh\Model\Notification\WNS the object which contains specific Pushwoosh notification
+	 *         informations for WNS (Windows Notification Service).
 	 */
-	public function removeDataParameter($parameterName) {
-	
-		if(isset($this -> data) && array_key_exists($parameterName, $this -> data)) {
-	
-			unset($this -> data[$parameterName]);
-				
-		}
-	
+	public function getWNS() {
+
+		return $this -> wNS;
+
+	}
+
+	/**
+	 * Gets the object which contains specific Pushwoosh notification informations for WP (Windows Phone).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\WP the object which contains specific Pushwoosh notification
+	 *         informations for WP (Windows Phone).
+	 */
+	public function getWP() {
+
+		return $this -> wP;
+
+	}
+
+	/**
+	 * Sets the object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).
+	 *
+	 * @param \Gomoob\Pushwoosh\Model\Notification\ADM $aDM the object which contains specific Pushwoosh notification
+	 *        informations for ADM (Amazon Device Messaging).
+	 */
+	public function setADM(ADM $aDM) {
+
+		$this -> aDM = $aDM;
+
 	}
 
 	/**
@@ -205,10 +453,50 @@ class Notification {
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\Android $android the object which contains specific Pushwoosh
 	 *        notification informations for Android (Google Cloud Messaging).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
 	public function setAndroid(Android $android) {
 
 		$this -> android = $android;
+
+		return $this;
+
+	}
+
+	/**
+	 * Sets the array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to
+	 * sendpush notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition
+	 * like this:
+	 *
+	 * "conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]
+	 *
+	 * A Tag condition is an array like: [tagName, operator, operand], where
+	 *  - tagName  : string
+	 *  - operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”
+	 *  - operand  : string|integer|array
+	 *
+	 * Valid operators for String tags:
+	 *  - EQ		: tag value equals to operand. Operand must be a string.
+	 *
+	 * Valid operators for Integer tags:
+	 *  - GTE		: tag value greater then or equals to operand. Operand must be an integer;
+	 *  - LTE		: tag value less then or equals to operand. Operand must be an integer;
+	 *  - EQ		: tag value equals to operand. Operand must be an integer;
+	 *  - BETWEEN	: tag value greater then or equals to min_operand value and tag value less then or equals to max
+	 *                operand value. Operand must be an array like: [min_value, max_value].
+	 *
+	 * Valid operators for List tags:
+	 *  - IN		: Intersect user values and operand. Operand must be an array of strings like:
+	 *                ["value 1", "value 2", "value N"].
+	 *
+	 * You cannot use 'filter' and 'conditions' parameters together.
+	 *
+	 * @param array $conditions the array of tag conditions.
+	 */
+	public function setConditions($conditions) {
+
+		$this -> conditions = $conditions;
 
 	}
 
@@ -216,13 +504,17 @@ class Notification {
 	 * Sets the text push message delivered to the application.
 	 *
 	 * @param string $content the text push message delivered to the application.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
 	public function setContent($content) {
 
 		$this -> content = $content;
 
+		return $this;
+
 	}
-	
+
 	/**
 	 * Sets the additional data to attache to the notification, use this only if you want to pass custom data to the
 	 * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
@@ -270,6 +562,19 @@ class Notification {
 	}
 
 	/**
+	 * Sets the name of a filter used to select users to which one messages have to be sent.
+	 *
+	 * This parameter is optional.
+	 *
+	 * @param string $filter the name of a filter.
+	 */
+	public function setFilter($filter) {
+
+		$this -> filter = $filter;
+
+	}
+
+	/**
 	 * Sets the object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification
 	 * Service).
 	 *
@@ -279,6 +584,42 @@ class Notification {
 	public function setIOS(IOS $iOS) {
 
 		$this -> iOS = $ios;
+
+	}
+
+	/**
+	 * Sets the object which contains specific Pushwoosh notification informations for Mac OS X.
+	 *
+	 * @param \Gomoob\Pushwoosh\Model\Notification\Mac $mac the object which contains specific Pushwoosh notification
+	 *        informations for Mac OS X.
+	 */
+	public function setMac(Mac $mac) {
+
+		$this -> mac = $mac;
+
+	}
+
+	/**
+	 * Sets the HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML
+	 * content to the application or omit this parameter.
+	 *
+	 * @param int $pageId the HTML page id to set1.
+	 */
+	public function setPageId($pageId) {
+
+		$this -> pageId = $pageId;
+
+	}
+
+	/**
+	 * Sets the object which contains specific Pushwoosh notification informations for Safari.
+	 *
+	 * @param \Gomoob\Pushwoosh\Model\Notification\Safari $safari the object which contains specific Pushwoosh
+	 *        notification informations for Safari.
+	 */
+	public function setSafari(Safari $safari) {
+
+		$this -> safari = $safari;
 
 	}
 
@@ -310,6 +651,31 @@ class Notification {
 	}
 
 	/**
+	 * Sets the object which contains specific Pushwoosh notification informations for WNS (Windows Notification
+	 * Service).
+	 *
+	 * @param \Gomoob\Pushwoosh\Model\Notification\WNS $wNS the object which contains specific Pushwoosh notification
+	 *        informations for WNS (Windows Notification Service).
+	 */
+	public function setWNS($wNS) {
+
+		$this -> wNS = $wNS;
+
+	}
+
+	/**
+	 * Sets the object which contains specific Pushwoosh notification informations for WP (Windows Phone).
+	 *
+	 * @param \Gomoob\Pushwoosh\Model\Notification\WP $wP the object which contains specific Pushwoosh notification
+	 *        informations for WP (Windows Phone).
+	 */
+	public function setWP(WP $wP) {
+
+		$this -> wP = $wP;
+
+	}
+
+	/**
 	 * Creates a JSON representation of this request.
 	 *
 	 * @return array a PHP which can be passed to the 'json_encode' PHP method.
@@ -322,9 +688,18 @@ class Notification {
 		$json['send_date'] = is_string($this -> sendDate) ? $this -> sendDate : $this -> sendDate -> format('Y-m-d H:i');
 
 		// Optional parameters
-		isset($this -> content) ? $json['content'] = $this -> content : '';
-		isset($this -> data) ? $json['data'] = $this -> data : '';
-		isset($this -> devices) ? $json['devices'] = $this -> devices : '';
+		isset($this -> content) ? $json['content'] = $this -> content : false;
+
+		// Android Specific informations
+		if(isset($this -> android)) {
+
+			foreach($this -> android -> toJSON() as $key => $value) {
+
+				$json[$key] = $value;
+
+			}
+
+		}
 
 		return $json;
 
