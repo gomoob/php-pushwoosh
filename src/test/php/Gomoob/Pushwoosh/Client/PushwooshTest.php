@@ -5,6 +5,8 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
+use Gomoob\Pushwoosh\Model\Notification\IOS;
+
 use Gomoob\Pushwoosh\Client\Pushwoosh;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
@@ -99,10 +101,12 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 		$request = CreateMessageRequest::create();
 
 		$android = Android::create() -> setHeader('My Sample Application');
+		$iOS = IOS::create() -> setBadges(1);
 		$notification = Notification::create()
 			-> setContent('Hello !')
-			-> setAndroid($android);
-
+			-> setAndroid($android)
+			-> setIOS($iOS);
+		
 		$request -> addNotification($notification);
 
 		$response = $pushwoosh -> createMessage($request);

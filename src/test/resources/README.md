@@ -10,6 +10,6 @@ following informations :
 }
 ```
 
-It is advice to create an Pushwoosh application which is dedicated to the GoMoob PHP Pushwoosh library and which is not 
+It is advice to create a Pushwoosh application which is dedicated to the GoMoob PHP Pushwoosh library and which is not 
 used by an other application or project (otherwise some integration tests could fail).
  

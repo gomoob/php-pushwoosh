@@ -573,7 +573,9 @@ class Notification {
 	 */
 	public function setIOS(IOS $iOS) {
 
-		$this -> iOS = $ios;
+		$this -> iOS = $iOS;
+		
+		return $this;
 
 	}
 	
@@ -711,7 +713,11 @@ class Notification {
 		// iOS Specific informations
 		if(isset($this -> iOS)) {
 			
-			// TODO
+			foreach($this -> iOS -> toJSON() as $key => $value) {
+
+				$json[$key] = $value;
+
+			}
 			
 		}
 
