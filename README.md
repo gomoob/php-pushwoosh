@@ -451,7 +451,8 @@ grunt generate-documentation
 
 ## 0.1.0-alpha3 (2014-06-25)
  * Third alpha release
- * Complete the IOS notification implementation into `Gomoob\Pushwoosh\Model\Notification\IOS` class
+ * Complete the IOS notification implementation into the `Gomoob\Pushwoosh\Model\Notification\IOS` class
+ * Remove a duplicated method in the `Gomoob\Pushwoosh\Model\Request\UnregistereDeviceRequest` class
 
 ## 0.1.0-alpha2 (2014-06-13)
  * Second alpha release
