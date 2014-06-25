@@ -36,9 +36,9 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function setUp() {
 
- 		$this -> markTestSkipped(
- 			'Comment me to enable tests.'
- 		);
+		$this -> markTestSkipped(
+			'Comment me to enable tests.'
+		);
 
 		$testConfigurationFile = TEST_RESOURCES_DIRECTORY . '/pushwoosh-test-properties.json';
 
@@ -53,7 +53,6 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 		$this -> pushwooshTestProperties = json_decode(file_get_contents($testConfigurationFile), true);
 
 	}
-	
 
 	/**
 	 * Test method for the <tt>createMessage()</tt> function.
@@ -107,7 +106,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 			-> setContent('Hello !')
 			-> setAndroid($android)
 			-> setIOS($iOS);
-
+		
 		$request -> addNotification($notification);
 
 		$response = $pushwoosh -> createMessage($request);
