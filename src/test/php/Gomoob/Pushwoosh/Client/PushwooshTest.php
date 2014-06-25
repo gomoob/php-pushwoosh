@@ -5,6 +5,8 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
+use Gomoob\Pushwoosh\Model\Notification\IOS;
+
 use Gomoob\Pushwoosh\Client\Pushwoosh;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
@@ -34,9 +36,9 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function setUp() {
 
-		$this -> markTestSkipped(
-			'Comment me to enable tests.'
-		);
+ 		$this -> markTestSkipped(
+ 			'Comment me to enable tests.'
+ 		);
 
 		$testConfigurationFile = TEST_RESOURCES_DIRECTORY . '/pushwoosh-test-properties.json';
 
@@ -51,6 +53,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 		$this -> pushwooshTestProperties = json_decode(file_get_contents($testConfigurationFile), true);
 
 	}
+	
 
 	/**
 	 * Test method for the <tt>createMessage()</tt> function.
@@ -99,9 +102,11 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase {
 		$request = CreateMessageRequest::create();
 
 		$android = Android::create() -> setHeader('My Sample Application');
+		$iOS = IOS::create() -> setBadges(1);
 		$notification = Notification::create()
 			-> setContent('Hello !')
-			-> setAndroid($android);
+			-> setAndroid($android)
+			-> setIOS($iOS);
 
 		$request -> addNotification($notification);
 

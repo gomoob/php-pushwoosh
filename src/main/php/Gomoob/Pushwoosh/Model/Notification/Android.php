@@ -12,6 +12,20 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  */
 class Android {
 
+	private $banner;
+	
+	private $customIcon;
+	
+	private $gcmTtl;
+	
+	private $header;
+	
+	private $icon;
+	
+	private $rootParams;
+	
+	private $sound;
+	
 	/**
 	 * Utility function used to create a new Android instance.
 	 *
@@ -22,8 +36,6 @@ class Android {
 		return new Android();
 
 	}
-
-	private $banner;
 
 	public function getBanner() {
 
@@ -37,8 +49,6 @@ class Android {
 
 	}
 
-	private $customIcon;
-
 	public function getCustomIcon() {
 
 		return $this -> customIcon;
@@ -51,8 +61,6 @@ class Android {
 
 	}
 
-	private $gcmTtl;
-
 	public function getGcmTtl() {
 
 		return $this -> gcmTtl;
@@ -64,8 +72,6 @@ class Android {
 		$this -> gcmTtl = $gcmTtl;
 
 	}
-
-	private $header;
 
 	public function getHeader() {
 
@@ -81,8 +87,6 @@ class Android {
 
 	}
 
-	private $icon;
-
 	public function getIcon() {
 
 		return $this -> icon;
@@ -95,8 +99,6 @@ class Android {
 
 	}
 
-	private $rootParams;
-
 	public function getRootParams() {
 
 		return $this -> rootParams;
@@ -108,8 +110,6 @@ class Android {
 		$this -> rootParams = $rootParams;
 
 	}
-
-	private $sound;
 
 	public function getSound() {
 

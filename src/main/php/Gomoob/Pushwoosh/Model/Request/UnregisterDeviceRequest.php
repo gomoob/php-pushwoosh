@@ -40,17 +40,6 @@ class UnregisterDeviceRequest {
 	}
 
 	/**
-	 * Utility function used to create a new instance of the <tt>UnregisterDeviceRequest</tt>.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest the new created instance.
-	 */
-	public static function create() {
-
-		return new UnregisterDeviceRequest();
-
-	}
-
-	/**
 	 * Gets the Pushwoosh application ID for which one to register a new device.
 	 *
 	 * @return string the Pushwoosh application ID for which one to register a new device.

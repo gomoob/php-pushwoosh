@@ -187,6 +187,8 @@ class Notification {
 	 * Adds a new device Token to the list of device tokens to identify the devices to send the notification to.
 	 *
 	 * @param string $device the new device Token to add.
+	 * 
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
 	public function addDevice($device) {
 	
@@ -197,6 +199,8 @@ class Notification {
 		}
 	
 		$this -> devices[] = $device;
+		
+		return $this;
 	
 	}
 
@@ -573,7 +577,9 @@ class Notification {
 	 */
 	public function setIOS(IOS $iOS) {
 
-		$this -> iOS = $ios;
+		$this -> iOS = $iOS;
+		
+		return $this;
 
 	}
 	
@@ -711,7 +717,11 @@ class Notification {
 		// iOS Specific informations
 		if(isset($this -> iOS)) {
 			
-			// TODO
+			foreach($this -> iOS -> toJSON() as $key => $value) {
+
+				$json[$key] = $value;
+
+			}
 			
 		}
 
