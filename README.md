@@ -2,11 +2,24 @@
 
 > A PHP Library to easily work with the Pushwoosh REST Web Services.
 
-[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=develop)](https://travis-ci.org/mnapoli/PHP-DI)
-[![Latest Stable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
+## Library informations
+
+### `master` branch
+
 [![Total Downloads](https://poser.pugx.org/gomoob/php-pushwoosh/downloads.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
+[![Latest Stable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![Latest Unstable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/unstable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![License](https://poser.pugx.org/gomoob/php-pushwoosh/license.svg)](https://packagist.org/packages/gomoob/php-pushwoosh)
+
+[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master)](https://travis-ci.org/mnapoli/PHP-DI)
+[![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=master)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=master)
+
+### `develop` branch
+
+[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=develop)](https://travis-ci.org/mnapoli/PHP-DI)
+[![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=develop)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=develop)
+
+## Sample Push
 
 Sample code to send a Pushwoosh message with the library : 
 
