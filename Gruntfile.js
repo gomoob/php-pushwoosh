@@ -129,7 +129,7 @@ module.exports = function(grunt) {
                 pdepend : {
                     command : (function() {
                         
-                        var command = 'pdepend';
+                        var command = 'php vendor/pdepend/pdepend/src/bin/pdepend';
                         command += ' --jdepend-chart=target/reports/pdepend/jdepend-chart.svg';
                         command += ' --jdepend-xml=target/reports/pdepend/jdepend.xml';
                         command += ' --overview-pyramid=target/reports/pdepend/overview-pyramid.svg';
