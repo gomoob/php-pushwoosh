@@ -503,6 +503,7 @@ grunt generate-documentation
  * Ignore the `composer.lock` file from GIT
  * Build the project on Travis CI
  * Add Badge Poser badges in the `README.md` file
+ * Enable [Coveralls](https://coveralls.io) to report code coverage with TravisCI
 
 ## 0.1.0-alpha3 (2014-06-25)
  * Third alpha release
