@@ -6,7 +6,6 @@
 
 [![Total Downloads](https://poser.pugx.org/gomoob/php-pushwoosh/downloads.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![Latest Stable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
-[![Latest Unstable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/unstable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![License](https://poser.pugx.org/gomoob/php-pushwoosh/license.svg)](https://packagist.org/packages/gomoob/php-pushwoosh)
 
 [![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master)](https://travis-ci.org/mnapoli/PHP-DI)
