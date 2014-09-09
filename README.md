@@ -2,6 +2,12 @@
 
 > A PHP Library to easily work with the Pushwoosh REST Web Services.
 
+[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=develop)](https://travis-ci.org/mnapoli/PHP-DI)
+[![Latest Stable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
+[![Total Downloads](https://poser.pugx.org/gomoob/php-pushwoosh/downloads.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
+[![Latest Unstable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/unstable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
+[![License](https://poser.pugx.org/gomoob/php-pushwoosh/license.svg)](https://packagist.org/packages/gomoob/php-pushwoosh)
+
 Sample code to send a Pushwoosh message with the library : 
 
 ```php
@@ -496,6 +502,7 @@ grunt generate-documentation
  * Append indications for Pull Requests in the `README.md` file
  * Ignore the `composer.lock` file from GIT
  * Build the project on Travis CI
+ * Add Badge Poser badges in the `README.md` file
 
 ## 0.1.0-alpha3 (2014-06-25)
  * Third alpha release

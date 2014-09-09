@@ -2,6 +2,8 @@
     "name" : "gomoob/php-pushwoosh", 
     "description" : "A PHP Library to easily work with the Pushwoosh REST Web Services.",
     "version": "0.1.0-alpha3",
+    "license": "MIT",
+    "type": "library",
     "keywords": [
         "gomoob",
         "push",
@@ -10,7 +12,8 @@
     "authors" : [
         {
             "name" : "GoMoob",
-            "email" : "contact@gomoob.com"  
+            "email" : "contact@gomoob.com", 
+            "homepage" : "http://www.gomoob.com" 
         },
         {
             "name": "Baptiste Gaillard",
