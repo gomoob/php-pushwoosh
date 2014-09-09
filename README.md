@@ -403,7 +403,7 @@ The source code **MUST BE** compliant with the following PSRs :
 
 If you provide a Pull Request with source code which is not compliant with those 2 standards the CI build will fail. To 
 check if your code is compliant with [PSR-1](http://www.php-fig.org/psr/psr-1) and  
-[PSR-2](http://www.php-fig.org/psr/psr-2] a Grunt build command which uses 
+[PSR-2](http://www.php-fig.org/psr/psr-2) a Grunt build command which uses 
 [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) is provided with the project, ALWAYS execute it before 
 commiting your changes. 
 
@@ -495,6 +495,7 @@ grunt generate-documentation
  * Updates the coding conventions in the `README.md` file
  * Append indications for Pull Requests in the `README.md` file
  * Ignore the `composer.lock` file from GIT
+ * Build the project on Travis CI
 
 ## 0.1.0-alpha3 (2014-06-25)
  * Third alpha release

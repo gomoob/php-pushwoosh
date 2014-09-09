@@ -1,0 +1,10 @@
+language: php
+php: 
+  - 5.5
+  - 5.4
+  - 5.3
+  - hhvm
+before_install: 
+  - sudo apt-get install nodejs
+  - npm install
+  - composer install
