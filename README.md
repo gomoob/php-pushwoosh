@@ -2,24 +2,19 @@
 
 > A PHP Library to easily work with the Pushwoosh REST Web Services.
 
-## Library informations
-
-### `master` branch
+`master` branch
 
 [![Total Downloads](https://poser.pugx.org/gomoob/php-pushwoosh/downloads.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![Latest Stable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
-[![Latest Unstable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/unstable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![License](https://poser.pugx.org/gomoob/php-pushwoosh/license.svg)](https://packagist.org/packages/gomoob/php-pushwoosh)
 
 [![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master)](https://travis-ci.org/mnapoli/PHP-DI)
 [![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=master)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=master)
 
-### `develop` branch
+`develop` branch
 
 [![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=develop)](https://travis-ci.org/mnapoli/PHP-DI)
 [![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=develop)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=develop)
-
-## Sample Push
 
 Sample code to send a Pushwoosh message with the library : 
 
@@ -391,6 +386,17 @@ The `GetNearestZoneRequest` class is used to call the `getNearestZone` Pushwoosh
 ## Responses Data Model
 
 # FAQ
+
+## When will the first version be released
+At GOMOOB we are using the library in only one project for the moment ([My Good Moment](https://www.mygoodmoment.com)),
+we did not encounter any problem and it works in production. 
+
+But because the library is not complete already we can't claim to provide a stable version for now. Here are the tasks 
+we will do before releasing a first stable version : 
+
+ * Increase code coverage to at least 70%
+ * Document the Pushwoosh Web services implemented in the library
+ * Document the Pushwoosh Web services not already implemented in the library
 
 ## SSL error 
 See http://curl.haxx.se/docs/sslcerts.html
