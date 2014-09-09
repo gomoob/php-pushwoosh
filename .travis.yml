@@ -6,6 +6,7 @@ php:
   - hhvm
 before_install: 
   - sudo apt-get install nodejs
+  - npm install -g grunt-cli
 install:
   - npm install
   - composer install
