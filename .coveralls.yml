@@ -1,3 +1,3 @@
 src_dir: src/main/php
 coverage_clover: target/reports/coverage/clover/coverage.xml
-json_path: target/reports/coverage/coveralls/coveralls-upload.json
+json_path: target/reports/coverage/coveralls-upload.json
