@@ -9,11 +9,10 @@ namespace Gomoob\Pushwoosh\Model\Response;
  * Class which represents Pushwoosh '/setTags' response.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetTags
  */
-class SetTagsResponse {
-
-	/**
+class SetTagsResponse
+{
+    /**
 	 * The Pushwoosh status code, the Pushwoosh API can return the following set tags status codes :
 	 * 	- 200	: (HTTP Status Code = 200) Tags set successfully.
 	 *  - 210	: (HTTP Status Code = 200) Argument error. See statusMessage for more info.
@@ -22,33 +21,33 @@ class SetTagsResponse {
 	 *
 	 * @var int
 	 */
-	private $statusCode;
+    private $statusCode;
 
-	/**
+    /**
 	 * Gets the Pushwoosh status message.
 	 *
 	 * @var string
 	 */
-	private $statusMessage;
+    private $statusMessage;
 
-	/**
+    /**
 	 * Utility function used to create a new instance from a JSON string.
 	 *
 	 * @param array $json a PHP array which contains the result of a 'json_decode' execution.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Response\RegisterDeviceResponse the resulting instance.
 	 */
-	public static function create(array $json) {
+    public static function create(array $json)
+    {
+        $registerDeviceResponse = new RegisterDeviceResponse();
+        $registerDeviceResponse->setStatusCode($json['status_code']);
+        $registerDeviceResponse->setStatusMessage($json['status_message']);
 
-		$registerDeviceResponse = new RegisterDeviceResponse();
-		$registerDeviceResponse -> setStatusCode($json['status_code']);
-		$registerDeviceResponse -> setStatusMessage($json['status_message']);
+        return $registerDeviceResponse;
 
-		return $registerDeviceResponse;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the Pushwoosh status code, the Pushwoosh API can return the following set tags status codes :
 	 * 	- 200	: (HTTP Status Code = 200) Tags set successfully.
 	 *  - 210	: (HTTP Status Code = 200) Argument error. See statusMessage for more info.
@@ -57,35 +56,35 @@ class SetTagsResponse {
 	 *
 	 * @return int the Pushwoosh status code.
 	 */
-	public function getStatusCode() {
+    public function getStatusCode()
+    {
+        return $this->statusCode;
 
-		return $this -> statusCode;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the Pushwoosh status message.
 	 *
 	 * @return string the Pushwoosh status message.
 	 */
-	public function getStatusMessage() {
+    public function getStatusMessage()
+    {
+        return $this->statusMessage;
 
-		return $this -> statusMessage;
+    }
 
-	}
-
-	/**
+    /**
 	 * Function used to indicate if the response represents a success.
 	 *
 	 * @return boolean true if the response represents a success, false otherwise.
 	 */
-	public function isOk() {
+    public function isOk()
+    {
+        return $this->statusCode === 200;
 
-		return $this -> statusCode === 200;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the Pushwoosh status code, the Pushwoosh API can return the following set tags status codes :
 	 * 	- 200	: (HTTP Status Code = 200) Tags set successfully.
 	 *  - 210	: (HTTP Status Code = 200) Argument error. See statusMessage for more info.
@@ -94,21 +93,20 @@ class SetTagsResponse {
 	 *
 	 * @param string $statusCode the Pushwoosh status code to set.
 	 */
-	public function setStatusCode($statusCode) {
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
 
-		$this -> statusCode = $statusCode;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the Pushwoosh status message.
 	 *
 	 * @param string $statusMessage the Pushwoosh status message to set.
 	 */
-	public function setStatusMessage($statusMessage) {
+    public function setStatusMessage($statusMessage)
+    {
+        $this->statusMessage = $statusMessage;
 
-		$this -> statusMessage = $statusMessage;
-
-	}
-
+    }
 }

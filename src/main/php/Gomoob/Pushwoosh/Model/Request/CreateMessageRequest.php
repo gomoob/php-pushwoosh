@@ -13,120 +13,119 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Class which represents Pushwoosh '/createMessage' request.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create
  */
-class CreateMessageRequest {
-
-	/**
+class CreateMessageRequest
+{
+    /**
 	 * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
 	 *
 	 * @var string
 	 */
-	private $application;
+    private $application;
 
-	/**
+    /**
 	 * The Pushwoosh Application group code (cannot be used together with "application").
 	 *
 	 * @var string
 	 */
-	private $applicationsGroup;
+    private $applicationsGroup;
 
-	/**
+    /**
 	 * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
 	 *
 	 * @var string
 	 */
-	private $auth;
+    private $auth;
 
-	/**
+    /**
 	 * The Pushwoosh notifications to attach to the create message request.
 	 *
 	 * @var \Gomoob\Pushwoosh\Model\Notification\Notification[]
 	 */
-	private $notifications;
+    private $notifications;
 
-	/**
+    /**
 	 * Utility function used to create a new instance of the <tt>CreateMessageRequest</tt>.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest the new created instance.
 	 */
-	public static function create() {
+    public static function create()
+    {
+        return new CreateMessageRequest();
 
-		return new CreateMessageRequest();
+    }
 
-	}
-
-	/**
+    /**
 	 * Adds a new Pushwoosh notification to the notifications attached to this create message request.
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\Notification $notification the new notification to add.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
 	 */
-	public function addNotification(Notification $notification) {
+    public function addNotification(Notification $notification)
+    {
+        if (!isset($this->notifications)) {
 
-		if(!isset($this -> notifications)) {
+            $this->notifications = array();
 
-			$this -> notifications = array();
+        }
 
-		}
+        $this->notifications[] = $notification;
 
-		$this -> notifications[] = $notification;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup")
 	 * .
 	 *
 	 * @return string the Pushwoosh application ID where to send the message to (cannot be used together with
 	 *         "applicationsGroup").
 	 */
-	public function getApplication() {
+    public function getApplication()
+    {
+        return $this->application;
 
-		return $this -> application;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the Pushwoosh Application group code (cannot be used together with "application").
 	 *
 	 * @return string the Pushwoosh Application group code (cannot be used together with "application").
 	 */
-	public function getApplicationsGroup() {
+    public function getApplicationsGroup()
+    {
+        return $this->applicationsGroup;
 
-		return $this -> applicationsGroup;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the API access token from the Pushwoosh control panel (create this token at
 	 * https://cp.pushwoosh.com/api_access).
 	 *
 	 * @return string the API access token from the Pushwoosh control panel (create this token at
 	 *         https://cp.pushwoosh.com/api_access).
 	 */
-	public function getAuth() {
+    public function getAuth()
+    {
+        return $this->auth;
 
-		return $this -> auth;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the Pushwoosh notifications to attach to the create message request.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification[] the Pushwoosh notifications to attach to the create
 	 *         message request.
 	 */
-	public function getNotifications() {
+    public function getNotifications()
+    {
+        return $this->notifications;
 
-		return $this -> notifications;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup")
 	 * .
 	 *
@@ -135,15 +134,15 @@ class CreateMessageRequest {
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
 	 */
-	public function setApplication($application) {
+    public function setApplication($application)
+    {
+        $this->application = $application;
 
-		$this -> application = $application;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the Pushwoosh Application group code (cannot be used together with "application").
 	 *
 	 * @param string $applicationsGroup the Pushwoosh Application group code (cannot be used together with
@@ -151,15 +150,15 @@ class CreateMessageRequest {
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
 	 */
-	public function setApplicationsGroup($applicationsGroup) {
+    public function setApplicationsGroup($applicationsGroup)
+    {
+        $this->applicationsGroup = $applicationsGroup;
 
-		$this -> applicationsGroup = $applicationsGroup;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the API access token from the Pushwoosh control panel (create this token at
 	 * https://cp.pushwoosh.com/api_access).
 	 *
@@ -168,15 +167,15 @@ class CreateMessageRequest {
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
 	 */
-	public function setAuth($auth) {
+    public function setAuth($auth)
+    {
+        $this->auth = $auth;
 
-		$this -> auth = $auth;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the Pushwoosh notifications to attach to the create message request.
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\Notification[] $notifications the Pushwoosh notifications to attach to
@@ -184,64 +183,63 @@ class CreateMessageRequest {
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
 	 */
-	public function setNotifications(array $notifications) {
+    public function setNotifications(array $notifications)
+    {
+        $this->notifications = $notifications;
 
-		$this -> notifications = $notifications;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Creates a JSON representation of this request.
 	 *
 	 * @return array a PHP which can be passed to the 'json_encode' PHP method.
 	 */
-	public function toJSON() {
+    public function toJSON()
+    {
+        // One of the 'application' or 'applicationsGroup' parameter must have been defined.
+        if (!isset($this->application) && !isset($this->applicationsGroup)) {
 
-		// One of the 'application' or 'applicationsGroup' parameter must have been defined.
-		if(!isset($this -> application) && !isset($this -> applicationsGroup)) {
+            throw new PushwooshException('None of the  \'application\' or \'applicationsGroup\' properties are set !');
 
-			throw new PushwooshException('None of the  \'application\' or \'applicationsGroup\' properties are set !');
+        }
 
-		}
+        // If the 'application' or 'applicationsGroup' parameters are both set this is an error
+        if (isset($this->application) && isset($this->applicationsGroup)) {
 
-		// If the 'application' or 'applicationsGroup' parameters are both set this is an error
-		if(isset($this -> application) && isset($this -> applicationsGroup)) {
+            throw new PushwooshException('Both \'application\' and \'applicationsGroup\' properties are set !');
 
-			throw new PushwooshException('Both \'application\' and \'applicationsGroup\' properties are set !');
+        }
 
-		}
+        // The 'auth' parameter must have been set
+        if (!isset($this->auth)) {
 
-		// The 'auth' parameter must have been set
-		if(!isset($this -> auth)) {
+            throw new PushwooshException('The \'auth\' property is not set !');
 
-			throw new PushwooshException('The \'auth\' property is not set !');
+        }
 
-		}
+        $json = array(
+            'application' => $this->application,
+            'applicationsGroup' => $this->applicationsGroup,
+            'auth' => $this->auth,
+            'notifications' => array()
+        );
 
-		$json = array(
-			'application' => $this -> application,
-			'applicationsGroup' => $this -> applicationsGroup,
-			'auth' => $this -> auth,
-			'notifications' => array()
-		);
+        // Adds the notifications
+        // Please note that the Pushwoosh REST API seems to authorize calls to the 'createMessage' service with a create
+        // message request which do not define any notification. This is authorized but has no effect.
+        if (isset($this->notifications)) {
 
-		// Adds the notifications
-		// Please note that the Pushwoosh REST API seems to authorize calls to the 'createMessage' service with a create
-		// message request which do not define any notification. This is authorized but has no effect.
-		if(isset($this -> notifications)) {
+            foreach ($this->notifications as $notification) {
 
-			foreach($this -> notifications as $notification) {
+                $json['notifications'][] = $notification->toJSON();
 
-				$json['notifications'][] = $notification -> toJSON();
+            }
 
-			}
+        }
 
-		}
+        return $json;
 
-		return $json;
-
-	}
-
+    }
 }

@@ -9,18 +9,17 @@ namespace Gomoob\Pushwoosh\Model\Request;
  * Class which represents Pushwoosh '/registerDevice' request.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create
  */
-class RegisterDeviceRequest {
-
-	/**
+class RegisterDeviceRequest
+{
+    /**
 	 * The Pushwoosh application ID for which one to register a new device.
 	 *
 	 * @var string
 	 */
-	private $application;
+    private $application;
 
-	/**
+    /**
 	 * The device type, this attribute can take the following values :
 	 * 	- 1 : iPhone
 	 *  - 2 : Blackberry
@@ -31,60 +30,60 @@ class RegisterDeviceRequest {
 	 *
 	 * @var int
 	 */
-	private $deviceType;
+    private $deviceType;
 
-	/**
+    /**
 	 * The Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not allowed,
 	 * one of the alternative ways now is to use MAC address).
 	 *
 	 * @var string
 	 */
-	private $hwid;
+    private $hwid;
 
-	/**
+    /**
 	 * The language local of the device, this is a 2 letter local (for exempke "en").
 	 *
 	 * @var string
 	 */
-	private $language;
+    private $language;
 
-	/**
+    /**
 	 * The push token associated to the device.
 	 *
 	 * @var string
 	 */
-	private $pushToken;
+    private $pushToken;
 
-	/**
+    /**
 	 * A timezone offset in seconds for the device (optional).
 	 *
 	 * @var int
 	 */
-	private $timezone;
+    private $timezone;
 
-	/**
+    /**
 	 * Utility function used to create a new instance of the <tt>RegisterDeviceRequest</tt>.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest the new created instance.
 	 */
-	public static function create() {
+    public static function create()
+    {
+        return new RegisterDeviceRequest();
 
-		return new RegisterDeviceRequest();
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the Pushwoosh application ID for which one to register a new device.
 	 *
 	 * @return string the Pushwoosh application ID for which one to register a new device.
 	 */
-	public function getApplication() {
+    public function getApplication()
+    {
+        return $this->application;
 
-		return $this -> application;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the device type, this attribute can take the following values :
 	 * 	- 1 : iPhone
 	 *  - 2 : Blackberry
@@ -95,74 +94,74 @@ class RegisterDeviceRequest {
 	 *
 	 * @return int the device type.
 	 */
-	public function getDeviceType() {
+    public function getDeviceType()
+    {
+        return $this->deviceType;
 
-		return $this -> deviceType;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not
 	 * allowed, one of the alternative ways now is to use MAC address).
 	 *
 	 * @return string the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and
 	 *         not allowed, one of the alternative ways now is to use MAC address).
 	 */
-	public function getHwid() {
+    public function getHwid()
+    {
+        return $this->hwid;
 
-		return $this -> hwid;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the language local of the device, this is a 2 letter local (for exempke "en").
 	 *
 	 * @return string the language local of the device, this is a 2 letter local (for exempke "en").
 	 */
-	public function getLanguage() {
+    public function getLanguage()
+    {
+        return $this->language;
 
-		return $this -> language;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the push token associated to the device.
 	 *
 	 * @return string the push token associated to the device.
 	 */
-	public function getPushToken() {
+    public function getPushToken()
+    {
+        return $this->pushToken;
 
-		return $this -> pushToken;
+    }
 
-	}
-
-	/**
+    /**
 	 * Gets the timezone offset in seconds for the device (optional).
 	 *
 	 * @return int the timezone offset in seconds for the device (optional).
 	 */
-	public function getTimezone() {
+    public function getTimezone()
+    {
+        return $this->timezone;
 
-		return $this -> timezone;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the Pushwoosh application ID for which one to register a new device.
 	 *
 	 * @param string $application the the Pushwoosh application ID for which one to register a new device.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest this instance.
 	 */
-	public function setApplication($application) {
+    public function setApplication($application)
+    {
+        $this->application = $application;
 
-		$this -> application = $application;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the device type, this attribute can take the following values :
 	 * 	- 1 : iPhone
 	 *  - 2 : Blackberry
@@ -175,15 +174,15 @@ class RegisterDeviceRequest {
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest this instance.
 	 */
-	public function setDeviceType($deviceType) {
+    public function setDeviceType($deviceType)
+    {
+        $this->deviceType = $deviceType;
 
-		$this -> deviceType = $deviceType;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not
 	 * allowed, one of the alternative ways now is to use MAC address).
 	 *
@@ -192,77 +191,76 @@ class RegisterDeviceRequest {
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest this instance.
 	 */
-	public function setHwid($hwid) {
+    public function setHwid($hwid)
+    {
+        $this->hwid = $hwid;
 
-		$this -> hwid = $hwid;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the the language local of the device, this is a 2 letter local (for exempke "en").
 	 *
 	 * @param string $language the the language local of the device, this is a 2 letter local (for exempke "en").
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest this instance.
 	 */
-	public function setLanguage($language) {
+    public function setLanguage($language)
+    {
+        $this->language = $language;
 
-		$this -> language = $language;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the push token associated to the device.
 	 *
 	 * @param string $pushToken the push token associated to the device.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest this instance.
 	 */
-	public function setPushToken($pushToken) {
+    public function setPushToken($pushToken)
+    {
+        $this->pushToken = $pushToken;
 
-		$this -> pushToken = $pushToken;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Sets the timezone offset in seconds for the device (optional).
 	 *
 	 * @param int $timezone the timezone offset in seconds for the device (optional).
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest this instance.
 	 */
-	public function setTimezone($timezone) {
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
 
-		$this -> timezone = $timezone;
+        return $this;
 
-		return $this;
+    }
 
-	}
-
-	/**
+    /**
 	 * Creates a JSON representation of this request.
 	 *
 	 * @return array a PHP which can be passed to the 'json_encode' PHP method.
 	 */
-	public function toJSON() {
+    public function toJSON()
+    {
+        $json = array(
+            'application' => $this->application,
+            'push_token' => $this->pushToken,
+            'language' => $this->language,
+            'hwid' => $this->hwid,
+            'timezone' => $this->timezone,
+            'device_type' => $this->deviceType
+        );
 
-		$json = array(
-		    'application' => $this -> application,
-			'push_token' => $this -> pushToken,
-			'language' => $this -> language,
-			'hwid' => $this -> hwid,
-			'timezone' => $this -> timezone,
-			'device_type' => $this -> deviceType
-		);
+        return $json;
 
-		return $json;
-
-	}
-
+    }
 }

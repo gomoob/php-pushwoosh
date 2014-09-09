@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = function(grunt) {
 
     /**
@@ -42,6 +44,50 @@ module.exports = function(grunt) {
             }, /* Copy task */
             
             /**
+             * PHP CodeSniffer Task
+             */
+            phpcs : {
+                
+                library: {
+                    dir: [
+                        'src/main/php/Gomoob', 
+                        'src/test/php/Gomoob'
+                    ]
+                },
+
+                options : {
+                    bin:  'vendor/bin/phpcs',
+                    report: (function() {
+                        
+                        var report = false;
+                        
+                        if(grunt.option('checkstyle') === true) {
+                            
+                            report = 'checkstyle';
+                        }
+                        
+                        return report;
+                        
+                    })(),
+                    reportFile: (function() { 
+
+                        var reportFile = false;
+                        
+                        if(grunt.option('checkstyle') === true) {
+
+                            reportFile = 'target/reports/phpcs/phpcs.xml'; 
+                        }
+                        
+                        return reportFile;
+                        
+                    })(),
+                    standard: 'PSR2',
+                    verbose: false
+                }
+
+            },
+            
+            /**
              * PHPDocumentor Task.
              */
             phpdocumentor : {
@@ -69,16 +115,92 @@ module.exports = function(grunt) {
                 
                 options: {
                     configuration : 'phpunit.xml',
-                    
-                    // This is used to prevent PHPUnit to fail with a 'zend_mm_heap corrupted' error
-                    // see: http://stackoverflow.com/questions/14597468/how-to-diagnose-these-php-code-coverage-segmentation-and-zend-mm-heap-corrupted
-                    d: 'zend.enable_gc=0'//,
                     //group : 'PushwooshTest'
                         
                 }
                 
-            } /* PHPUnit Task */
+            }, /* PHPUnit Task */
 
+            /**
+             * Shell Task
+             */
+            shell : {
+                
+                pdepend : {
+                    command : (function() {
+                        
+                        var command = 'pdepend';
+                        command += ' --jdepend-chart=target/reports/pdepend/jdepend-chart.svg';
+                        command += ' --jdepend-xml=target/reports/pdepend/jdepend.xml';
+                        command += ' --overview-pyramid=target/reports/pdepend/overview-pyramid.svg';
+                        command += ' --summary-xml=target/reports/pdepend/summary.xml';
+                        command += ' src/main/php';
+                        
+                        return command;
+
+                    })()
+                },
+                
+                phpcpd : {
+                    command : (function() {
+                        
+                        return 'php vendor/sebastian/phpcpd/phpcpd src/main/php';
+
+                    })()
+                },
+                
+                'php-cs-fixer-main' : {
+                    command : (function() {
+                        
+                        return 'php vendor/fabpot/php-cs-fixer/php-cs-fixer fix src/main/php';
+
+                    })()
+                },
+                'php-cs-fixer-test' : {
+                    command : (function() {
+                        
+                        return 'php vendor/fabpot/php-cs-fixer/php-cs-fixer fix src/test/php';
+
+                    })()
+                }, 
+                
+                phpdocumentor : {
+                    command : (function() {
+                        return 'phpdoc --target=target/reports/phpdocumentor --directory=src/main/php';
+                    })()
+                },
+                
+                phploc : {
+                    command : (function() {
+                        
+                        return 'php vendor/phploc/phploc/phploc src/main/php';
+                        
+                    })()
+                },
+                
+                phpmd : {
+                    command : (function() {
+                        
+                        var command = 'php vendor/phpmd/phpmd/src/bin/phpmd ';
+                        command += 'src/main/php ';
+                        command += 'html ';
+                        command += 'cleancode,codesize,controversial,design,naming,unusedcode ';
+                        command += '--reportfile=target/reports/phpmd/phpmd.html';
+
+                        return command;
+
+                    })(),
+                    options : {
+                        callback : function(err, stdout, stderr, cb) {
+                            grunt.file.write('target/reports/phpmd/phpmd.html', stdout);
+                            cb();
+                            
+                        }
+                    }
+                }
+            
+            } /* Shell Task */
+            
         }
 
     ); /* Grunt initConfig call */
@@ -86,13 +208,96 @@ module.exports = function(grunt) {
     // Load the Grunt Plugins    
     grunt.loadNpmTasks('grunt-contrib-clean'); 
     grunt.loadNpmTasks('grunt-contrib-copy'); 
+    grunt.loadNpmTasks('grunt-phpcs');
     grunt.loadNpmTasks('grunt-phpdocumentor');
     grunt.loadNpmTasks('grunt-phpunit');
+    grunt.loadNpmTasks('grunt-shell');
 
+    /**
+     * Task used to create directories needed by PDepend to generate its report.
+     */
+    grunt.registerTask('before-pdepend' , 'Creating directories required by PDepend...', function() {
+
+        if(!fs.existsSync('target')) {
+            fs.mkdirSync('target');
+        }
+
+        if(!fs.existsSync('target/reports')) {
+            fs.mkdirSync('target/reports');
+        }
+
+        if(!fs.existsSync('target/reports/pdepend')) {   
+            fs.mkdirSync('target/reports/pdepend');
+        }
+
+    });
+
+    /**
+     * Task used to create directories needed by PHP_CodeSniffer to generate its report.
+     */
+    grunt.registerTask('before-phpcs', 'Creating directories required by PHP Code Sniffer...', function() {
+        
+        if(grunt.option('checkstyle') === true) {
+
+            if(!fs.existsSync('target')) {
+                fs.mkdirSync('target');
+            }
+            
+            if(!fs.existsSync('target/reports')) {
+                fs.mkdirSync('target/reports');
+            }
+
+            if(!fs.existsSync('target/reports/phpcs')) {   
+                fs.mkdirSync('target/reports/phpcs');
+            }
+
+        }
+        
+    });
+    
+    /**
+     * Task used to create directories needed by PHPMD to generate its report.
+     */
+    grunt.registerTask('before-phpmd', 'Creating directories required by PHP Mess Detector...', function() {
+       
+        if(!fs.existsSync('target')) {
+            fs.mkdirSync('target');
+        }
+
+        if(!fs.existsSync('target/reports')) {
+            fs.mkdirSync('target/reports');
+        }
+
+        if(!fs.existsSync('target/reports/phpmd')) {   
+            fs.mkdirSync('target/reports/phpmd');
+        }
+        
+    });
+
+    /**
+     * Task used to generate a PDepend report.
+     */
+    grunt.registerTask('pdepend', ['before-pdepend', 'shell:pdepend']);
+    
+    /**
+     * Task used to automatically fix PHP_CodeSniffer errors.
+     */
+    grunt.registerTask('php-cs-fixer', ['shell:php-cs-fixer-main', 'shell:php-cs-fixer-test']);
+    
+    /**
+     * Task used to generate a PHPMD report.
+     */
+    grunt.registerTask('phpmd', ['before-phpmd', 'shell:phpmd']);
+    
     /**
      * Task used to create the project documentation.
      */
-    grunt.registerTask('generate-documentation', ['phpdocumentor:generate' ]);
+    grunt.registerTask('generate-documentation', ['pdepend',
+                                                  'before-phpcs', 
+                                                  'phpcs', 
+                                                  'phpmd',
+                                                  'phpdocumentor' 
+                                                  ]);
     
     /**
      * Task used to execute the project tests.

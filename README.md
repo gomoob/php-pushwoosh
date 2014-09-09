@@ -2,8 +2,6 @@
 
 > A PHP Library to easily work with the Pushwoosh REST Web Services.
 
-**WARNING** : Do not use this library for the moment, we are currently working hard on it to release the first version. So please be patient.
-
 Sample code to send a Pushwoosh message with the library : 
 
 ```php
@@ -380,34 +378,63 @@ See http://curl.haxx.se/docs/sslcerts.html
 
 # Contributing
 
-Your are welcome to contribute to the project by simply posting issues or by providing pull resquests. Each time you 
-provide a pull request to fix bugs or propose an evolution you MUST also write a unit test to validate that your code 
-works and match our quality expectations.
+Your are welcome to contribute to the project by simply posting issues or by providing pull resquests. 
+
+Each time you provide a pull request to fix bugs or propose an evolution you **MUST** adhere to conventions and bests 
+practices described here.
+
+## Always create PRs on the `develop` branch
+
+The project is hosted on Github using 2 branches : 
+
+ * `develop` : This branch MUST BE used to create Pull Requests
+ * `master` : This branch MUST NEVER BE used directly to create Pull Requests and is maintained by GoMoob
+
+All Pull Requests created using the `master` branch will be rejected.
 
 ## Coding conventions
 
-### IDE configuration
+### Formatting
 
- * Lines length : 120 characters ;
- * Tabs are forbidden, on tab has to be replaced by 4 spaces ; 
- * Each Class, attribute and method MUST BE documented using PHPDocumentor tags.
+The source code **MUST BE** compliant with the following PSRs : 
+
+ * Basic Coding Standard [PSR-1](http://www.php-fig.org/psr/psr-1) 
+ * Coding Style Guide [PSR-2](http://www.php-fig.org/psr/psr-2)
+
+If you provide a Pull Request with source code which is not compliant with those 2 standards the CI build will fail. To 
+check if your code is compliant with [PSR-1](http://www.php-fig.org/psr/psr-1) and  
+[PSR-2](http://www.php-fig.org/psr/psr-2] a Grunt build command which uses 
+[PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) is provided with the project, ALWAYS execute it before 
+commiting your changes. 
+
+```
+grunt phpcs
+```
+
+Sometimes this command will output a lot of errors, an other Grunt command is provided to automatically fix the most 
+common errors (this command uses [PHP-CS-Fixer](https://github.com/fabpot/PHP-CS-Fixer)). 
+
+```
+grunt php-cs-fixer
+```
 
 ### Unit tests
 The unit tests of the project are executed using PHPUnit, the main code has to be placed inside the `src/main/php` 
-directory, the test code has to be placed inside the `src/test/php` directory. 
+directory, the test code has to be placed inside the `src/test/php` directory.
 
 Each class which is tested is named using a clearly defined convention, for example the class 
 `Gomoob\Pushwoosh\Model\Request\CreateMessageRequest` which is placed in the `src/main/php` directory is tested using 
 a class named `GoMoob\Pushwoosh\Model\Request\CreateMessageRequestTest` placed in the `src/test/php` directory. 
 
-A test class MUST have the same PHP namespace has the class it tests.
+A test class MUST have the same PHP namespace as the class it tests.
 
 ## Build scripts
 
 The build scripts of the project are managed using the (Grunt)[http://gruntjs.com/] build tool. 
 
 To execute the builds first install Grunt (which needs (NodeJS)[http://nodejs.org/]) and then pull the Node dependencies 
-/ Grunt plugins requireed by the `Gruntfile` build script.
+/ Grunt plugins required by the `Gruntfile` build script.
+
 ```
 $ npm install
 npm WARN package.json gomoob-php-pushwoosh@0.1.0 No repository field.
@@ -419,6 +446,7 @@ npm http GET https://registry.npmjs.org/grunt-phpunit
 Then install (Composer)[https://getcomposer.org/] and executes the following command to pull the PHP dependencies 
 required (in fact this is onlye necessary to generate the `vendor/autoload.php` file required for the PHP classes 
 autoloading).
+
 ```
 composer update
 Loading composer repositories with package information
@@ -448,6 +476,25 @@ grunt generate-documentation
 ```
 
 # Release history
+
+## 0.1.0-alpha4 (2014-09-09)
+ * Now the package is loaded using a [PSR-4](http://www.php-fig.org/psr/psr-4) autoloader instead of a 
+   [PSR-0](http://www.php-fig.org/psr/psr-0) autoloader
+ * Use [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) to ensure the code is compliant with 
+   [PSR-0](http://www.php-fig.org/psr/psr-0) and [PSR-2](http://www.php-fig.org/psr/psr-2) coding rules
+ * Upgrade Grunt dependency `grunt-phpunit`
+ * Now the code is compliant with [PSR-0](http://www.php-fig.org/psr/psr-0) and 
+   [PSR-2](http://www.php-fig.org/psr/psr-2) coding rules
+ * Reorganize attributes and functions in the `Gomoob\Pushwoosh\Model\Notification\ADM` class
+ * Reorganize attributes and functions in the `Gomoob\Pushwoosh\Model\Notification\Android` class
+ * Reorganize attributes and functions in the `Gomoob\Pushwoosh\Model\Notification\IOS` class
+ * Reorganize attributes and functions in the `Gomoob\Pushwoosh\Model\Notification\Mac` class
+ * Reorganize attributes and functions in the `Gomoob\Pushwoosh\Model\Notification\Safari` class
+ * Reorganize attributes and functions in the `Gomoob\Pushwoosh\Model\Notification\WNS` class
+ * Reorganize attributes and functions in the `Gomoob\Pushwoosh\Model\Notification\WP` class
+ * Updates the coding conventions in the `README.md` file
+ * Append indications for Pull Requests in the `README.md` file
+ * Ignore the `composer.lock` file from GIT
 
 ## 0.1.0-alpha3 (2014-06-25)
  * Third alpha release

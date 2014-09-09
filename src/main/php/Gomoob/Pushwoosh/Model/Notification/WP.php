@@ -10,76 +10,71 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class WP {
+class WP
+{
+    private $backbackground;
+    private $background;
+    private $backtitle;
+    private $count;
+    private $type;
 
-	private $backbackground;
+    public function getBackbackground()
+    {
+        return $this->backbackground;
 
-	public function getBackbackground() {
+    }
 
-		return $this -> backbackground;
+    public function getBackground()
+    {
+        return $this->background;
 
-	}
+    }
 
-	public function setBackbackground($backbackground) {
+    public function getBacktitle()
+    {
+        return $this->backtitle;
 
-		$this -> backbackground = $backbackground;
+    }
 
-	}
+    public function getCount()
+    {
+        return $this->count;
 
-	private $background;
+    }
 
-	public function getBackground() {
+    public function getType()
+    {
+        return $this->type;
 
-		return $this -> background;
+    }
 
-	}
+    public function setBackbackground($backbackground)
+    {
+        $this->backbackground = $backbackground;
 
-	public function setBackground($background) {
+    }
 
-		$this -> background = $background;
+    public function setBackground($background)
+    {
+        $this->background = $background;
 
-	}
+    }
 
-	private $backtitle;
+    public function setBacktitle($backtitle)
+    {
+        $this->backtitle = $backtitle;
 
-	public function getBacktitle() {
+    }
 
-		return $this -> backtitle;
+    public function setCount($count)
+    {
+        $this->count = $count;
 
-	}
+    }
 
-	public function setBacktitle($backtitle) {
+    public function setType($type)
+    {
+        $this->type = $type;
 
-		$this -> backtitle = $backtitle;
-
-	}
-
-	private $count;
-
-	public function getCount() {
-
-		return $this -> count;
-
-	}
-
-	public function setCount($count) {
-
-		$this -> count = $count;
-
-	}
-
-	private $type;
-
-	public function getType() {
-
-		return $this -> type;
-
-	}
-
-	public function setType($type) {
-
-		$this -> type = $type;
-
-	}
-
+    }
 }

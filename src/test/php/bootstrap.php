@@ -24,28 +24,28 @@ if (file_exists($composerAutoloadPhp)) {
     exit;
 }
 
-class TestEnvironment {
-
-    public static function getMainResourcesDirectory() {
-
+class TestEnvironment
+{
+    public static function getMainResourcesDirectory()
+    {
         return MAIN_RESOURCES_DIRECTORY;
 
     }
 
-    public static function getMainSourcesDirectory() {
-
+    public static function getMainSourcesDirectory()
+    {
         return MAIN_SOURCES_DIRECTORY;
 
     }
 
-    public static function getTestResourcesDirectory() {
-
+    public static function getTestResourcesDirectory()
+    {
         return TEST_RESOURCES_DIRECTORY;
 
     }
 
-    public static function getTestSourcesDirectory() {
-
+    public static function getTestSourcesDirectory()
+    {
         return TEST_SOURCES_DIRECTORY;
 
     }

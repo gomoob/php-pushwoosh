@@ -10,138 +10,131 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Android {
+class Android
+{
+    private $banner;
+    private $customIcon;
+    private $gcmTtl;
+    private $header;
+    private $icon;
+    private $rootParams;
+    private $sound;
 
-	private $banner;
-	
-	private $customIcon;
-	
-	private $gcmTtl;
-	
-	private $header;
-	
-	private $icon;
-	
-	private $rootParams;
-	
-	private $sound;
-	
-	/**
+    /**
 	 * Utility function used to create a new Android instance.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Notification\Android the new created instance.
 	 */
-	public static function create() {
+    public static function create()
+    {
+        return new Android();
 
-		return new Android();
+    }
 
-	}
+    public function getBanner()
+    {
+        return $this->banner;
 
-	public function getBanner() {
+    }
 
-		return $this -> banner;
+    public function getCustomIcon()
+    {
+        return $this->customIcon;
 
-	}
+    }
 
-	public function setBanner($banner) {
+    public function getGcmTtl()
+    {
+        return $this->gcmTtl;
 
-		$this -> banner = $banner;
+    }
 
-	}
+    public function getHeader()
+    {
+        return $this->header;
 
-	public function getCustomIcon() {
+    }
 
-		return $this -> customIcon;
+    public function getIcon()
+    {
+        return $this->icon;
 
-	}
+    }
 
-	public function setCustomIcon($customIcon) {
+    public function getRootParams()
+    {
+        return $this->rootParams;
 
-		$this -> customIcon = $customIcon;
+    }
 
-	}
+    public function getSound()
+    {
+        return $this->sound;
 
-	public function getGcmTtl() {
+    }
 
-		return $this -> gcmTtl;
+    public function setBanner($banner)
+    {
+        $this->banner = $banner;
 
-	}
+    }
 
-	public function setGcmTtl($gcmTtl) {
+    public function setCustomIcon($customIcon)
+    {
+        $this->customIcon = $customIcon;
 
-		$this -> gcmTtl = $gcmTtl;
+    }
 
-	}
+    public function setGcmTtl($gcmTtl)
+    {
+        $this->gcmTtl = $gcmTtl;
 
-	public function getHeader() {
+    }
 
-		return $this -> header;
+    public function setHeader($header)
+    {
+        $this->header = $header;
 
-	}
+        return $this;
 
-	public function setHeader($header) {
+    }
 
-		$this -> header = $header;
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
 
-		return $this;
+    }
 
-	}
+    public function setRootParams($rootParams)
+    {
+        $this->rootParams = $rootParams;
 
-	public function getIcon() {
+    }
 
-		return $this -> icon;
+    public function setSound($sound)
+    {
+        $this->sound = $sound;
 
-	}
+    }
 
-	public function setIcon($icon) {
-
-		$this -> icon = $icon;
-
-	}
-
-	public function getRootParams() {
-
-		return $this -> rootParams;
-
-	}
-
-	public function setRootParams($rootParams) {
-
-		$this -> rootParams = $rootParams;
-
-	}
-
-	public function getSound() {
-
-		return $this -> sound;
-
-	}
-
-	public function setSound($sound) {
-
-		$this -> sound = $sound;
-
-	}
-
-	/**
+    /**
 	 * Creates a JSON representation of this request.
 	 *
 	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
 	 */
-	public function toJSON() {
+    public function toJSON()
+    {
+        $json = array();
 
-		$json = array();
+        isset($this->rootParams) ? $json['android_root_params'] = $this->rootParams : false;
+        isset($this->sound) ? $json['android_sound'] = $this->sound : false;
+        isset($this->header) ? $json['android_header'] = $this->header : false;
+        isset($this->icon) ? $json['android_icon'] = $this->icon : false;
+        isset($this->customIcon) ? $json['android_custom_icon'] = $this->customIcon : false;
+        isset($this->banner) ? $json['android_banner'] = $this->banner : false;
+        isset($this->gcmTtl) ? $json['android_gcm_ttl'] = $this->gcmTtl : false;
 
-		isset($this -> rootParams) ? $json['android_root_params'] = $this -> rootParams : false;
-		isset($this -> sound) ? $json['android_sound'] = $this -> sound : false;
-		isset($this -> header) ? $json['android_header'] = $this -> header : false;
-		isset($this -> icon) ? $json['android_icon'] = $this -> icon : false;
-		isset($this -> customIcon) ? $json['android_custom_icon'] = $this -> customIcon : false;
-		isset($this -> banner) ? $json['android_banner'] = $this -> banner : false;
-		isset($this -> gcmTtl) ? $json['android_gcm_ttl'] = $this -> gcmTtl : false;
+        return $json;
 
-		return $json;
-
-	}
-
+    }
 }

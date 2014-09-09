@@ -23,17 +23,17 @@ use Gomoob\Pushwoosh\Model\Response\SetTagsResponse;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Pushwoosh implements IPushwoosh {
-
-	/**
+class Pushwoosh implements IPushwoosh
+{
+    /**
 	 * The the Pushwoosh application ID to be used by default by all the requests performed by the Pushwoosh client.
 	 * This identifier can be overwritten by request if needed.
 	 *
 	 * @var string
 	 */
-	private $application;
+    private $application;
 
-	/**
+    /**
 	 * The Pushwoosh applications group code to be used to defautl by all the requests performed by the Pushwoosh client
 	 * . This identifier can be overwritten by requests if needed.
 	 *
@@ -41,135 +41,136 @@ class Pushwoosh implements IPushwoosh {
 	 *
 	 * @var string
 	 */
-	private $applicationsGroup;
+    private $applicationsGroup;
 
-	/**
+    /**
 	 * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
 	 *
 	 * @var string
 	 */
-	private $auth;
+    private $auth;
 
-	private function pwCall($method, $data) {
+    private function pwCall($method, $data)
+    {
+        $url = 'https://cp.pushwoosh.com/json/1.3/' . $method;
+        $request = json_encode(array('request' => $data));
 
-		$url = 'https://cp.pushwoosh.com/json/1.3/' . $method;
-		$request = json_encode(array('request' => $data));
+        $ch = curl_init($url);
 
-		$ch = curl_init($url);
+        // FIXME: FIX THIS !!!
+        // see: http://curl.haxx.se/docs/sslcerts.html
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
-		// FIXME: FIX THIS !!!
-		// see: http://curl.haxx.se/docs/sslcerts.html
-		curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($request)
+            )
+        );
 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-		curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
-		curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'Content-Type: application/json',
-			'Content-Length: ' . strlen($request))
-		);
+        $response = curl_exec($ch);
+        $error = curl_error($ch);
 
-		$response = curl_exec($ch);
-		$error = curl_error($ch);
+        if ($error) {
 
-		if($error) {
+            $info = curl_getinfo($ch);
 
-			$info = curl_getinfo($ch);
+            // FIXME
+            var_dump($error);
+            var_dump($info);
 
-			// FIXME
-			var_dump($error);
-			var_dump($info);
+        }
 
-		}
+        curl_close($ch);
 
-		curl_close($ch);
+        return json_decode($response, true);
 
-		return json_decode($response, true);
+    }
 
-	}
-
-	/**
+    /**
 	 * Utility function used to create a new instance of the Pushwoosh client.
 	 *
 	 * @return \Gomoob\Pushwoosh\Client\Pushwoosh the new created instance.
 	 */
-	public static function create() {
+    public static function create()
+    {
+        return new Pushwoosh();
 
-		return new Pushwoosh();
+    }
 
-	}
-
-	/**
+    /**
 	 * {@inheritDoc}
 	 */
-    public function createMessage(CreateMessageRequest $createMessageRequest) {
+    public function createMessage(CreateMessageRequest $createMessageRequest)
+    {
+        // If both the 'application' and 'applicationsGroup' attribute are not set in the request we try to get a
+        // default one from the Pushwoosh client
+        if ($createMessageRequest->getApplication() === null && $createMessageRequest->getApplicationsGroup() == null) {
 
-    	// If both the 'application' and 'applicationsGroup' attribute are not set in the request we try to get a
-    	// default one from the Pushwoosh client
-    	if($createMessageRequest -> getApplication() === null && $createMessageRequest -> getApplicationsGroup() == null) {
+            // Setting both 'application' and 'applicationsGroup' is forbidden
+            if (!isset($this->application) && !isset($this->applicationsGroup)) {
 
-    		// Setting both 'application' and 'applicationsGroup' is forbidden
-    		if(!isset($this -> application) && !isset($this -> applicationsGroup)) {
+                throw new PushwooshException(
+                    'None of the  \'application\' or \'applicationsGroup\' properties are set !'
+                );
 
-    			throw new PushwooshException('None of the  \'application\' or \'applicationsGroup\' properties are set !');
+            // Setting none of the 'application' and 'applicationsGroup' parameters is an error here
+            } elseif (isset($this->application) && isset($this->applicationsGroup)) {
 
-    		}
+                throw new PushwooshException(
+                    'Both \'application\' and \'applicationsGroup\' properties are set !'
+                );
 
-    		// Setting none of the 'application' and 'applicationsGroup' parameters is an error here
-    		else if(isset($this -> application) && isset($this -> applicationsGroup)) {
+            // Sets the 'application' attribute
+            } elseif (isset($this->application)) {
 
-    			throw new PushwooshException('Both \'application\' and \'applicationsGroup\' properties are set !');
+                $createMessageRequest->setApplication($this->application);
 
-    		}
+            // Sets the 'applicationsGroup' attribute
+            } elseif (isset($this->applicationsGroup)) {
 
-    		// Sets the 'application' attribute
-    		else if(isset($this -> application)) {
+                $createMessageRequest->setApplicationsGroup($this->applicationsGroup);
 
-    			$createMessageRequest -> setApplication($this -> application);
+            }
 
-    		}
+        }
 
-    		// Sets the 'applicationsGroup' attribute
-    		else if(isset($this -> applicationsGroup)) {
+        // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
+        if ($createMessageRequest->getAuth() === null) {
 
-    			$createMessageRequest -> setApplicationsGroup($this -> applicationsGroup);
+            // The 'auth' parameter is expected here
+            if (!isset($this->auth)) {
 
-    		}
+                throw new PushwooshException('The \'auth\' parameter is not set !');
 
-    	}
+            // Use the 'auth' parameter defined in the Pushwoosh client
+            } else {
 
-    	// If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
-    	if($createMessageRequest -> getAuth() === null) {
+                $createMessageRequest->setAuth($this->auth);
 
-    		// The 'auth' parameter is expected here
-			if(!isset($this -> auth)) {
+            }
 
-				throw new PushwooshException('The \'auth\' parameter is not set !');
+        }
 
-			}
+        $response = $this->pwCall('createMessage', $createMessageRequest->toJSON());
 
-			// Use the 'auth' parameter defined in the Pushwoosh client
-			else {
-
-				$createMessageRequest -> setAuth($this -> auth);
-
-			}
-
-    	}
-
-    	$response = $this -> pwCall('createMessage', $createMessageRequest -> toJSON());
-
-    	return CreateMessageResponse::create($response);
+        return CreateMessageResponse::create($response);
 
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deleteMessage() {
+    public function deleteMessage()
+    {
         // TODO: Auto-generated method stub
 
     }
@@ -177,34 +178,35 @@ class Pushwoosh implements IPushwoosh {
     /**
      * {@inheritDoc}
      */
-    public function getApplication() {
-
-    	return $this -> application;
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getApplicationsGroup() {
-
-    	return $this -> applicationsGroup;
+    public function getApplication()
+    {
+        return $this->application;
 
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getAuth() {
-
-    	return $this -> auth;
+    public function getApplicationsGroup()
+    {
+        return $this->applicationsGroup;
 
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getNearestZone() {
+    public function getAuth()
+    {
+        return $this->auth;
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNearestZone()
+    {
         // TODO: Auto-generated method stub
 
     }
@@ -212,7 +214,8 @@ class Pushwoosh implements IPushwoosh {
     /**
      * {@inheritDoc}
      */
-    public function pushStat() {
+    public function pushStat()
+    {
         // TODO: Auto-generated method stub
 
     }
@@ -220,66 +223,67 @@ class Pushwoosh implements IPushwoosh {
     /**
      * {@inheritDoc}
      */
-    public function registerDevice(RegisterDeviceRequest $registerDeviceRequest) {
+    public function registerDevice(RegisterDeviceRequest $registerDeviceRequest)
+    {
+        // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+        // client
+        if ($registerDeviceRequest->getApplication() === null) {
 
-    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
-    	// client
-    	if($registerDeviceRequest -> getApplication() === null) {
+            // The 'application' must be set
+            if (!isset($this->application)) {
 
-    		// The 'application' must be set
-    		if(!isset($this -> application)) {
+                throw new PushwooshException('The  \'application\' property is not set !');
 
-    			throw new PushwooshException('The  \'application\' property is not set !');
+            }
 
-    		}
+            $registerDeviceRequest->setApplication($this->application);
 
-    		$registerDeviceRequest -> setApplication($this -> application);
+        }
 
-    	}
+        $response = $this->pwCall('registerDevice', $registerDeviceRequest->toJSON());
 
-    	$response = $this -> pwCall('registerDevice', $registerDeviceRequest -> toJSON());
-
-    	return RegisterDeviceResponse::create($response);
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setApplication($application) {
-
-    	$this -> application = $application;
-
-    	return $this;
+        return RegisterDeviceResponse::create($response);
 
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setApplicationsGroup($applicationsGroup) {
+    public function setApplication($application)
+    {
+        $this->application = $application;
 
-    	$this -> applicationsGroup = $applicationsGroup;
-
-    	return $this;
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setAuth($auth) {
-
-    	$this -> auth = $auth;
-
-    	return $this;
+        return $this;
 
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setBadge() {
+    public function setApplicationsGroup($applicationsGroup)
+    {
+        $this->applicationsGroup = $applicationsGroup;
+
+        return $this;
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAuth($auth)
+    {
+        $this->auth = $auth;
+
+        return $this;
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setBadge()
+    {
         // TODO: Auto-generated method stub
 
     }
@@ -287,53 +291,52 @@ class Pushwoosh implements IPushwoosh {
     /**
      * {@inheritDoc}
      */
-    public function setTags(SetTagsRequest $setTagsRequest) {
+    public function setTags(SetTagsRequest $setTagsRequest)
+    {
+        // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+        // client
+        if ($setTagsRequest->getApplication() === null) {
 
-    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
-    	// client
-    	if($setTagsRequest -> getApplication() === null) {
+            // The 'application' must be set
+            if (!isset($this->application)) {
 
-    		// The 'application' must be set
-    		if(!isset($this -> application)) {
+                throw new PushwooshException('The  \'application\' property is not set !');
 
-    			throw new PushwooshException('The  \'application\' property is not set !');
+            }
 
-    		}
+            $setTagsRequest->setApplication($this->application);
 
-    		$setTagsRequest -> setApplication($this -> application);
+        }
 
-    	}
+        $response = $this->pwCall('setTags', $setTagsRequest->toJSON());
 
-    	$response = $this -> pwCall('setTags', $setTagsRequest -> toJSON());
-
-    	return SetTagsResponse::create($response);
+        return SetTagsResponse::create($response);
 
     }
 
     /**
      * {@inheritDoc}
      */
-    public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest) {
+    public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest)
+    {
+        // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+        // client
+        if ($unregisterDeviceRequest->getApplication() === null) {
 
-    	// If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
-    	// client
-    	if($unregisterDeviceRequest -> getApplication() === null) {
+            // The 'application' must be set
+            if (!isset($this->application)) {
 
-    		// The 'application' must be set
-    		if(!isset($this -> application)) {
+                throw new PushwooshException('The  \'application\' property is not set !');
 
-    			throw new PushwooshException('The  \'application\' property is not set !');
+            }
 
-    		}
+            $unregisterDeviceRequest->setApplication($this->application);
 
-    		$unregisterDeviceRequest -> setApplication($this -> application);
+        }
 
-    	}
+        $response = $this->pwCall('unregisterDevice', $unregisterDeviceRequest->toJSON());
 
-    	$response = $this -> pwCall('unregisterDevice', $unregisterDeviceRequest -> toJSON());
-
-    	return UnregisterDeviceResponse::create($response);
+        return UnregisterDeviceResponse::create($response);
 
     }
-
 }

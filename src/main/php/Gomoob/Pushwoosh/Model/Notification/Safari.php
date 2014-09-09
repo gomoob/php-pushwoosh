@@ -10,62 +10,58 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Safari {
+class Safari
+{
+    private $action;
+    private $title;
+    private $ttl;
+    private $url;
 
-	private $action;
+    public function getAction()
+    {
+        return $this->action;
 
-	public function getAction() {
+    }
 
-		return $this -> action;
+    public function getTitle()
+    {
+        return $this->title;
 
-	}
+    }
 
-	public function setAction($action) {
+    public function getTtl()
+    {
+        return $this->ttl;
 
-		$this -> action = $action;
+    }
 
-	}
+    public function getUrl()
+    {
+        return $this->url;
 
-	private $title;
+    }
 
-	public function getTitle() {
+    public function setAction($action)
+    {
+        $this->action = $action;
 
-		return $this -> title;
+    }
 
-	}
+    public function setTitle($title)
+    {
+        $this->title = $title;
 
-	public function setTitle($title) {
+    }
 
-		$this -> title = $title;
+    public function setTtl($ttl)
+    {
+        $this->ttl = $ttl;
 
-	}
+    }
 
-	private $ttl;
+    public function setUrl($url)
+    {
+        $this->url = $url;
 
-	public function getTtl() {
-
-		return $this -> ttl;
-
-	}
-
-	public function setTtl($ttl) {
-
-		$this -> ttl = $ttl;
-
-	}
-
-	private $url;
-
-	public function getUrl() {
-
-		return $this -> url;
-
-	}
-
-	public function setUrl($url) {
-
-		$this -> url = $url;
-
-	}
-
+    }
 }

@@ -10,103 +10,96 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class ADM {
+class ADM
+{
+    private $banner;
+    private $customIcon;
+    private $header;
+    private $icon;
+    private $rootParams;
+    private $sound;
+    private $ttl;
 
-	private $banner;
+    public function getBanner()
+    {
+        return $this->banner;
 
-	public function getBanner() {
+    }
 
-		return $this -> banne;
+    public function getCustomIcon()
+    {
+        return $this->customIcon;
 
-	}
+    }
 
-	public function setBanner($banner) {
+    public function getHeader()
+    {
+        return $this->header;
 
-		$this -> banner = $banner;
+    }
 
-	}
+    public function getIcon()
+    {
+        return $this->icon;
 
-	private $customIcon;
+    }
 
-	public function getCustomIcon() {
+    public function getRootParams()
+    {
+        return $this->rootParams;
 
-		return $this -> customIcon;
+    }
 
-	}
+    public function getSound()
+    {
+        return $this->sound;
 
-	public function setCustomIcon($customIcon) {
+    }
 
-		$this -> customIcon = $customIcon;
+    public function getTtl()
+    {
+        return $this->ttl;
 
-	}
+    }
 
-	private $header;
+    public function setBanner($banner)
+    {
+        $this->banner = $banner;
 
-	public function getHeader() {
+    }
 
-		return $this -> header;
+    public function setCustomIcon($customIcon)
+    {
+        $this->customIcon = $customIcon;
 
-	}
+    }
 
-	public function setHeader($header) {
+    public function setHeader($header)
+    {
+        $this->header = $header;
 
-		$this -> header = $header;
+    }
 
-	}
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
 
-	private $icon;
+    }
 
-	public function getIcon() {
+    public function setRootParams($rootParams)
+    {
+        $this->rootParams = $rootParams;
+    }
 
-		return $this -> icon;
+    public function setSound($sound)
+    {
+        $this->sound = $sound;
 
-	}
+    }
 
-	public function setIcon($icon) {
+    public function setTtl($ttl)
+    {
+        $this->ttl = $ttl;
 
-		$this -> icon = $icon;
-
-	}
-
-	private $rootParams;
-
-	public function getRootParams() {
-
-		return $this -> rootParams;
-
-	}
-
-	public function setRootParams($rootParams) {
-
-		$this -> rootParams = $rootParams;
-	}
-
-	private $sound;
-
-	public function getSound() {
-
-		return $this -> sound;
-
-	}
-
-	public function setSound($sound) {
-
-		$this -> sound = $sound;
-
-	}
-
-	private $ttl;
-
-	public function getTtl() {
-
-		return $this -> ttl;
-
-	}
-
-	public function setTtl($ttl) {
-
-		$this -> ttl = $ttl;
-
-	}
-
+    }
 }

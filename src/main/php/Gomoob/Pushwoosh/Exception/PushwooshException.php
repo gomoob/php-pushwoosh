@@ -10,8 +10,7 @@ namespace Gomoob\Pushwoosh\Exception;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class PushwooshException extends \Exception {
-
-	// Empty
-
+class PushwooshException extends \Exception
+{
+    // Empty
 }

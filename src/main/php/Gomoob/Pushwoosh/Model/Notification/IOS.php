@@ -10,148 +10,141 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class IOS {
+class IOS
+{
+    private $aps;
+    private $apnsTrimContent;
+    private $badges;
+    private $contentAvailable;
+    private $rootParams;
+    private $sound;
+    private $ttl;
 
-	/**
+    /**
 	 * Utility function used to create a new IOS instance.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Notification\IOS the new created instance.
 	 */
-	public static function create() {
-	
-		return new IOS();
-	
-	}
-	
-	private $aps;
+    public static function create()
+    {
+        return new IOS();
 
-	public function getAps() {
+    }
 
-		return $this -> aps;
+    public function getAps()
+    {
+        return $this->aps;
 
-	}
+    }
 
-	public function setAps($aps) {
+    public function getApnsTrimContent()
+    {
+        return $this->apnsTrimContent;
 
-		$this -> aps = $aps;
+    }
 
-		return $this;
-		
-	}
+    public function getBadges()
+    {
+        return $this->badges;
 
-	private $apnsTrimContent;
+    }
 
-	public function getApnsTrimContent() {
+    public function getContentAvailable()
+    {
+        return $this->contentAvailable;
 
-		return $this -> apnsTrimContent;
+    }
 
-	}
+    public function getRootParams()
+    {
+        return $this->rootParams;
 
-	public function setApnsTrimContent($apnsTrimContent) {
+    }
 
-		$this -> apnsTrimContent = $apnsTrimContent;
-		
-		return $this;
+    public function getSound()
+    {
+        return $this->sound;
 
-	}
+    }
 
-	private $badges;
+    public function getTtl()
+    {
+        return $this->ttl;
 
-	public function getBadges() {
+    }
 
-		return $this -> badges;
+    public function setAps($aps)
+    {
+        $this->aps = $aps;
 
-	}
+        return $this;
 
-	public function setBadges($badges) {
+    }
 
-		$this -> badges = $badges;
-		
-		return $this;
+    public function setApnsTrimContent($apnsTrimContent)
+    {
+        $this->apnsTrimContent = $apnsTrimContent;
 
-	}
+        return $this;
 
-	private $contentAvailable;
+    }
 
-	public function getContentAvailable() {
+    public function setBadges($badges)
+    {
+        $this->badges = $badges;
 
-		return $this-> contentAvailable;
+        return $this;
 
-	}
+    }
 
-	public function setContentAvailable($contentAvailable) {
+    public function setContentAvailable($contentAvailable)
+    {
+        $this->contentAvailable = $contentAvailable;
 
-		$this -> contentAvailable = $contentAvailable;
+        return $this;
 
-		return $this;
-		
-	}
+    }
 
-	private $sound;
+    public function setRootParams($rootParams)
+    {
+        $this->rootParams = $rootParams;
 
-	public function getSound() {
+        return $this;
 
-		return $this -> sound;
+    }
 
-	}
+    public function setSound($sound)
+    {
+        $this->sound = $sound;
 
-	public function setSound($sound) {
+    }
 
-		$this -> sound = $sound;
+    public function setTtl($ttl)
+    {
+        $this->ttl = $ttl;
 
-	}
+        return $this;
 
-	private $rootParams;
+    }
 
-	public function getRootParams() {
-
-		return $this -> rootParams;
-
-	}
-
-	public function setRootParams($rootParams) {
-
-		$this -> rootParams = $rootParams;
-		
-		return $this;
-
-	}
-
-	private $ttl;
-
-	public function getTtl() {
-
-		return $this -> ttl;
-
-	}
-
-	public function setTtl($ttl) {
-
-		$this -> ttl = $ttl;
-		
-		return $this;
-
-	}
-
-	/**
+    /**
 	 * Creates a JSON representation of this request.
 	 *
 	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
 	 */
-	public function toJSON() {
-	
-		$json = array();
-	
-		isset($this -> aps) ? $json['ios_aps'] = $this -> aps : false;
-		isset($this -> apnsTrimContent) ? $json['apns_trim_content'] = $this -> apnsTrimContent : false;
-		isset($this -> badges) ? $json['ios_badges'] = $this -> badges : false;
-		isset($this -> contentAvailable) ? $json['ios_content_available'] = $this -> contentAvailable : false;
-		isset($this -> sound) ? $json['ios_sound'] = $this -> sound : false;
-		isset($this -> rootParams) ? $json['ios_root_params'] = $this -> rootParams : false;
-		isset($this -> ttl) ? $json['ios_ttl'] = $this -> ttl : false;
-	
-		return $json;
-	
-	}
-	
+    public function toJSON()
+    {
+        $json = array();
+
+        isset($this->aps) ? $json['ios_aps'] = $this->aps : false;
+        isset($this->apnsTrimContent) ? $json['apns_trim_content'] = $this->apnsTrimContent : false;
+        isset($this->badges) ? $json['ios_badges'] = $this->badges : false;
+        isset($this->contentAvailable) ? $json['ios_content_available'] = $this->contentAvailable : false;
+        isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
+        isset($this->rootParams) ? $json['ios_root_params'] = $this->rootParams : false;
+        isset($this->ttl) ? $json['ios_ttl'] = $this->ttl : false;
+
+        return $json;
+
+    }
 }

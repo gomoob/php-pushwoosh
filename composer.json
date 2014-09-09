@@ -1,18 +1,46 @@
 {
     "name" : "gomoob/php-pushwoosh", 
-    "description" : "GoMoob Pushwoosh PHP Library",
+    "description" : "A PHP Library to easily work with the Pushwoosh REST Web Services.",
     "version": "0.1.0-alpha3",
     "keywords": [
         "gomoob",
+        "push",
         "pushwoosh"
     ],
+    "authors" : [
+        {
+            "name" : "GoMoob",
+            "email" : "contact@gomoob.com"  
+        },
+        {
+            "name": "Baptiste Gaillard",
+            "email": "baptiste.gaillard@gomoob.com"
+        },
+        {
+            "name": "Simon Baudry",
+            "email": "simon.baudry@gomoob.com"
+        }
+    ],
     "autoload": {
-        "psr-0": {
-            "Gomoob\\": "src/main/php"
+        "psr-4": {
+            "Gomoob\\": "src/main/php/Gomoob"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gomoob\\": "src/test/php/Gomoob"   
         }
     },
     "repositories" : [],
     "require": {
         "php": ">=5.3.3"
-   }
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "~0.5",
+        "pdepend/pdepend" : ">=1.1.1",
+        "phploc/phploc": "~2.0",
+        "phpmd/phpmd": "~1.5",
+        "sebastian/phpcpd" : "~2.0",
+        "squizlabs/php_codesniffer": "~1.5"
+    }
 }

@@ -15,23 +15,24 @@ use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-interface IPushwoosh {
-
-	/**
-	 * Function used to create a Pushwoosh message.
+interface IPushwoosh
+{
+    /**
+	 * Function used to create a Pushwoosh message using a '/createMessage' request.
 	 *
-	 * @param \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest $createMessageRequest the create message request used
-	 *        to create the Pushwoosh message.
+	 * @param \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest $createMessageRequest the '/createMessage' request
+	 *        used to create the Pushwoosh message.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponse the resulting create message response.
-	 *
-	 * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create
 	 */
-	function createMessage(CreateMessageRequest $createMessageRequest);
+    public function createMessage(CreateMessageRequest $createMessageRequest);
 
-	function deleteMessage();
+    /**
+     * Function used to delete a Pushwoosh message using a '/deleteMessage' request.
+     */
+    public function deleteMessage();
 
-	/**
+    /**
 	 * Gets the Pushwoosh application ID to be used by default by all the requests performed by the Pushwoosh client.
 	 * This identifier can be overwritten by request if needed.
 	 *
@@ -40,9 +41,9 @@ interface IPushwoosh {
 	 * @return string the Pushwoosh application ID to be used by default by all the requests performed by the Pushwoosh
 	 *         client.
 	 */
-	function getApplication();
+    public function getApplication();
 
-	/**
+    /**
 	 * Gets the Pushwoosh applications group code to be used to defautl by all the requests performed by the Pushwoosh
 	 * client. This identifier can be overwritten by requests if needed.
 	 *
@@ -51,34 +52,32 @@ interface IPushwoosh {
 	 * @return string the Pushwoosh applications group code to be used to defautl by all the requests performed by the
 	 *         Pushwoosh client.
 	 */
-	function getApplicationsGroup();
+    public function getApplicationsGroup();
 
-	/**
+    /**
 	 * Gets the API access token from the Pushwoosh control panel (create this token at
 	 * https://cp.pushwoosh.com/api_access).
 	 *
 	 * @return string the API access token from the Pushwoosh control panel (create this token at
 	 *         https://cp.pushwoosh.com/api_access).
 	 */
-	function getAuth();
+    public function getAuth();
 
-	function getNearestZone();
+    public function getNearestZone();
 
-	function pushStat();
+    public function pushStat();
 
-	/**
-	 * Function used to register a device for an application.
+    /**
+	 * Function used to register a device for an application using a '/registerDevice' request.
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest $registerDeviceRequest the register device request
 	 *        used to register a device for the application.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Response\RegisterDeviceResponse the resulting register device response.
-	 *
-	 * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodRegister
 	 */
-	function registerDevice(RegisterDeviceRequest $registerDeviceRequest);
+    public function registerDevice(RegisterDeviceRequest $registerDeviceRequest);
 
-	/**
+    /**
 	 * Sets the Pushwoosh application ID to be used by default by all the requests performed by the Pushwoosh client.
 	 * This identifier can be overwritten by request if needed.
 	 *
@@ -89,9 +88,9 @@ interface IPushwoosh {
 	 *
 	 * @return \Gommob\Pushwoosh\IPushwoosh this instance.
 	 */
-	function setApplication($application);
+    public function setApplication($application);
 
-	/**
+    /**
 	 * Sets the Pushwoosh applications group code to be used to defautl by all the requests performed by the Pushwoosh
 	 * client. This identifier can be overwritten by requests if needed.
 	 *
@@ -102,9 +101,9 @@ interface IPushwoosh {
 	 *
 	 * @return \Gommob\Pushwoosh\IPushwoosh this instance.
 	 */
-	function setApplicationsGroup($applicationsGroup);
+    public function setApplicationsGroup($applicationsGroup);
 
-	/**
+    /**
 	 * Sets the API access token from the Pushwoosh control panel (create this token at
 	 * https://cp.pushwoosh.com/api_access).
 	 *
@@ -113,30 +112,25 @@ interface IPushwoosh {
 	 *
 	 * @return \Gommob\Pushwoosh\IPushwoosh this instance.
 	 */
-	function setAuth($auth);
+    public function setAuth($auth);
 
-	function setBadge();
+    public function setBadge();
 
-	/**
-	 * Function used to set tags for a device.
+    /**
+	 * Function used to set tags for a device using a '/setTags' request.
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Request\SetTagsRequest $setTagsRequest the set tags request used to set tags for a
 	 *        device.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Response\SetTagsResponse the resulting set tags response.
-	 *
-	 * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetTags
 	 */
-	function setTags(SetTagsRequest $setTagsRequest);
+    public function setTags(SetTagsRequest $setTagsRequest);
 
-	/**
-	 * Function used to remove a device from an application.
+    /**
+	 * Function used to remove a device from an application using a '/unregisterDevice' request.
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest $unregisterDeviceRequest the unergister device
 	 *        request used to unregister a device from an application.
-	 *
-	 * @see http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodUnregister
 	 */
-	function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest);
-
+    public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest);
 }

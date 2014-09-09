@@ -10,48 +10,45 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class WNS {
+class WNS
+{
+    private $content;
+    private $tag;
+    private $type;
 
-	private $content;
+    public function getContent()
+    {
+        return $this->content;
 
-	public function getContent() {
+    }
 
-		return $this -> content;
+    public function getTag()
+    {
+        return $this->tag;
 
-	}
+    }
 
-	public function setContent($content) {
+    public function getType()
+    {
+        return $this->typ;
 
-		$this -> content = $content;
+    }
 
-	}
+    public function setContent($content)
+    {
+        $this->content = $content;
 
-	private $tag;
+    }
 
-	public function getTag() {
+    public function setTag($tag)
+    {
+        $this->tags = $tag;
 
-		return $this -> tag;
+    }
 
-	}
+    public function setType($type)
+    {
+        $this->type = $type;
 
-	public function setTag($tag) {
-
-		$this -> tags = $tag;
-
-	}
-
-	private $type;
-
-	public function getType() {
-
-		return $this -> typ;
-
-	}
-
-	public function setType($type) {
-
-		$this -> type = $type;
-
-	}
-
+    }
 }
