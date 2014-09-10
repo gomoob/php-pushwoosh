@@ -37,6 +37,17 @@ class PushStatRequest
     private $hwid;
 
     /**
+     * Utility function used to create a new instance of the <tt>PushStatRequest</tt>.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\PushStatRequest the new created instance.
+     */
+    public static function create()
+    {
+        return new PushStatRequest();
+
+    }
+
+    /**
 	 * Gets the Pushwoosh application ID where you send the message to.
 	 *
 	 * @return string Pushwoosh application ID where you send the message to.

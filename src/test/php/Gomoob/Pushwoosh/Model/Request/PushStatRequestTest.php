@@ -17,6 +17,17 @@ namespace Gomoob\Pushwoosh\Model\Request;
 class PushStatRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <tt>create()</tt> function.
+	 */
+    public function testCreate()
+    {
+        $pushStatRequest = PushStatRequest::create();
+
+        $this->assertNotNull($pushStatRequest);
+
+    }
+
+    /**
 	 * Test method for the <tt>toJSON()</tt> function.
 	 */
     public function testToJSON()

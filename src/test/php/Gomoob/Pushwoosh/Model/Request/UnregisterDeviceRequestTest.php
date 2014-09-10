@@ -17,6 +17,17 @@ namespace Gomoob\Pushwoosh\Model\Request;
 class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <tt>create()</tt> function.
+	 */
+    public function testCreate()
+    {
+        $unregisterDeviceRequest = UnregisterDeviceRequest::create();
+
+        $this->assertNotNull($unregisterDeviceRequest);
+
+    }
+
+    /**
 	 * Test method for the <tt>toJSON()</tt> function.
 	 */
     public function testToJSON()

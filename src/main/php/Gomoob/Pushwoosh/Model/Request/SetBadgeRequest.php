@@ -15,4 +15,14 @@ namespace Gomoob\Pushwoosh\Model\Request;
  */
 class SetBadgeRequest
 {
+    /**
+	 * Utility function used to create a new instance of the <tt>SetBadgeRequest</tt>.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Request\SetBadgeRequest the new created instance.
+	 */
+    public static function create()
+    {
+        return new SetBadgeRequest();
+
+    }
 }

@@ -8,6 +8,8 @@
  */
 namespace Gomoob\Pushwoosh\Model\Request;
 
+use Gomoob\Pushwoosh\Exception\PushwooshException;
+
 /**
  * Class which represents Pushwoosh '/deleteMessage' request.
  *
@@ -28,6 +30,17 @@ class DeleteMessageRequest
 	 * @var string
 	 */
     private $message;
+
+    /**
+     * Utility function used to create a new instance of the <tt>DeleteMessageRequest</tt>.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest the new created instance.
+     */
+    public static function create()
+    {
+        return new DeleteMessageRequest();
+
+    }
 
     /**
 	 * Gets the API access token from the Pushwoosh control panel (create this token at
@@ -79,9 +92,37 @@ class DeleteMessageRequest
 	 */
     public function setMessage($message)
     {
-        $this->message = $messsage;
+        $this->message = $message;
 
         return $this;
+
+    }
+
+    /**
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP which can be passed to the 'json_encode' PHP method.
+     */
+    public function toJSON()
+    {
+        // The 'auth' parameter must have been set
+        if (!isset($this->auth)) {
+
+            throw new PushwooshException('The \'auth\' property is not set !');
+
+        }
+
+        // The 'message' parameter must have been set
+        if (!isset($this->message)) {
+
+            throw new PushwooshException('The \'message\' property is not set !');
+
+        }
+
+        return array(
+            'auth' => $this->auth,
+            'message' => $this->message
+        );
 
     }
 }

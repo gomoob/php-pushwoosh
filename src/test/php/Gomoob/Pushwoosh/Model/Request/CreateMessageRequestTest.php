@@ -20,6 +20,97 @@ use Gomoob\Pushwoosh\Model\Notification\Notification;
 class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <tt>create()</tt> function.
+	 */
+    public function testCreate()
+    {
+        $createMessageRequest = CreateMessageRequest::create();
+
+        $this->assertNotNull($createMessageRequest);
+
+    }
+
+    /**
+     * Test method for the <tt>getApplication()</tt> and <tt>setApplication($application)</tt>
+     * functions.
+     */
+    public function testGetSetApplication()
+    {
+        $createMessageRequest = new CreateMessageRequest();
+        $this->assertNull($createMessageRequest->getApplication());
+        $createMessageRequest->setApplication('APPLICATION');
+        $this->assertEquals('APPLICATION', $createMessageRequest->getApplication());
+
+    }
+
+    /**
+     * Test method for the <tt>getApplicationsGroup()</tt> and <tt>setApplicationsGroup($applicationsGroup)</tt>
+     * functions.
+     */
+    public function testGetSetApplicationsGroup()
+    {
+        $createMessageRequest = new CreateMessageRequest();
+        $this->assertNull($createMessageRequest->getApplicationsGroup());
+        $createMessageRequest->setApplicationsGroup('APPLICATIONS_GROUP');
+        $this->assertEquals('APPLICATIONS_GROUP', $createMessageRequest->getApplicationsGroup());
+    }
+
+    /**
+     * Test method for the <tt>getAuth()</tt> and <tt>setAuth($auth)</tt> functions.
+     */
+    public function testGetSetAuth()
+    {
+        $createMessageRequest = new CreateMessageRequest();
+        $this->assertNull($createMessageRequest->getAuth());
+        $createMessageRequest->setAuth('XXXX');
+        $this->assertEquals('XXXX', $createMessageRequest->getAuth());
+    }
+
+    /**
+     * Test method for the <tt>getNotifications()</tt> and <tt>setNotifications(array $notifications)</tt> functions.
+     */
+    public function testGetSetNotifications()
+    {
+        $createMessageRequest = new CreateMessageRequest();
+        $this->assertNull($createMessageRequest->getNotifications());
+
+        // Test with the 'addNotification' medthod
+        $notification0 = new Notification();
+        $notification1 = new Notification();
+        $notification2 = new Notification();
+
+        $createMessageRequest->addNotification($notification0);
+        $createMessageRequest->addNotification($notification1);
+        $createMessageRequest->addNotification($notification2);
+
+        $notifications = $createMessageRequest->getNotifications();
+        $this->assertCount(3, $notifications);
+        $this->assertSame($notification0, $notifications[0]);
+        $this->assertSame($notification1, $notifications[1]);
+        $this->assertSame($notification2, $notifications[2]);
+
+        // Test with the 'setNotifications' method
+        $notification3 = new Notification();
+        $notification4 = new Notification();
+        $notification5 = new Notification();
+
+        $createMessageRequest->setNotifications(
+            array(
+                $notification3,
+                $notification4,
+                $notification5
+            )
+        );
+
+        $notifications = $createMessageRequest->getNotifications();
+        $this->assertCount(3, $notifications);
+        $this->assertSame($notification3, $notifications[0]);
+        $this->assertSame($notification4, $notifications[1]);
+        $this->assertSame($notification5, $notifications[2]);
+
+    }
+
+    /**
 	 * Test method for the <tt>toJSON()</tt> function.
 	 */
     public function testToJSON()

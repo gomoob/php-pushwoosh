@@ -17,6 +17,17 @@ namespace Gomoob\Pushwoosh\Model\Request;
 class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <tt>create()</tt> function.
+	 */
+    public function testCreate()
+    {
+        $setTagsRequest = SetTagsRequest::create();
+
+        $this->assertNotNull($setTagsRequest);
+
+    }
+
+    /**
 	 * Test method for the <tt>toJSON()</tt> function.
 	 */
     public function testToJSON()

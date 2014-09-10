@@ -17,6 +17,17 @@ namespace Gomoob\Pushwoosh\Model\Request;
 class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <tt>create()</tt> function.
+	 */
+    public function testCreate()
+    {
+        $setBadgeRequest = SetBadgeRequest::create();
+
+        $this->assertNotNull($setBadgeRequest);
+
+    }
+
+    /**
 	 * Test method for the <tt>toJSON()</tt> function.
 	 */
     public function testToJSON()

@@ -17,6 +17,17 @@ namespace Gomoob\Pushwoosh\Model\Request;
 class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <tt>create()</tt> function.
+	 */
+    public function testCreate()
+    {
+        $getNearestZoneRequest = GetNearestZoneRequest::create();
+
+        $this->assertNotNull($getNearestZoneRequest);
+
+    }
+
+    /**
 	 * Test method for the <tt>toJSON()</tt> function.
 	 */
     public function testToJSON()

@@ -44,6 +44,17 @@ class GetNearestZoneRequest
     private $lng;
 
     /**
+     * Utility function used to create a new instance of the <tt>GetNearestZoneRequest</tt>.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest the new created instance.
+     */
+    public static function create()
+    {
+        return new GetNearestZoneRequest();
+
+    }
+
+    /**
 	 * Gets the Pushwoosh application ID where you send the message to.
 	 *
 	 * @return string Pushwoosh application ID where you send the message to.

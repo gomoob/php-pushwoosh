@@ -2,11 +2,11 @@
 
 > A PHP Library to easily work with the Pushwoosh REST Web Services.
 
-`master` branch
-
 [![Total Downloads](https://poser.pugx.org/gomoob/php-pushwoosh/downloads.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![Latest Stable Version](https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![License](https://poser.pugx.org/gomoob/php-pushwoosh/license.svg)](https://packagist.org/packages/gomoob/php-pushwoosh)
+
+`master` branch
 
 [![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master)](https://travis-ci.org/mnapoli/PHP-DI)
 [![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=master)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=master)
@@ -501,6 +501,10 @@ grunt generate-documentation
 ```
 
 # Release history
+
+## 0.1.0-alpha5 (yyyy-mm-dd)
+ * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\CreateMessageRequest` class
+ * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest` class
 
 ## 0.1.0-alpha4 (2014-09-09)
  * Now the package is loaded using a [PSR-4](http://www.php-fig.org/psr/psr-4) autoloader instead of a 
