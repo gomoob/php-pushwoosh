@@ -8,6 +8,8 @@
  */
 namespace Gomoob\Pushwoosh\Model\Request;
 
+use Gomoob\Pushwoosh\Exception\PushwooshException;
+
 /**
  * Class which represents Pushwoosh '/registerDevice' request.
  *
@@ -254,6 +256,37 @@ class RegisterDeviceRequest
 	 */
     public function toJSON()
     {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+
+            throw new PushwooshException('The \'application\' property is not set !');
+
+        }
+
+        // The 'deviceType' parameter must have been defined and must be valid.
+        $this->checkDeviceType();
+
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+
+            throw new PushwooshException('The \'hwid\' property is not set !');
+
+        }
+
+        // The 'pushToken' parameter must have been defined.
+        if (!isset($this->pushToken)) {
+
+            throw new PushwooshException('The  \'pushToken\' property is not set !');
+
+        }
+
+        // The 'timezone' parameter must have been defined.
+        if (!isset($this->timezone)) {
+
+            throw new PushwooshException('The  \'timezone\' property is not set !');
+
+        }
+
         $json = array(
             'application' => $this->application,
             'push_token' => $this->pushToken,
@@ -264,6 +297,73 @@ class RegisterDeviceRequest
         );
 
         return $json;
+
+    }
+
+    /**
+     * Function used to check if the device type is configured and is valid.
+     *
+     * @throws \Gomoob\Pushwoosh\Exception\PushwooshException if the device type is not configured or is not valid.
+     */
+    private function checkDeviceType()
+    {
+
+        // The 'deviceType' parameter must have been defined.
+        if (!isset($this->deviceType)) {
+
+            throw new PushwooshException('The  \'application\' property is not set !');
+
+        }
+
+        // The 'deviceType' must be valid
+        switch ($this->deviceType) {
+
+            // 1 - iOS
+            case 1:
+                break;
+
+            // 2 - BlackBerry
+            case 2:
+                break;
+
+            // 3 - Android
+            case 3:
+                break;
+
+            // 4 - Nokia ASHA
+            case 4:
+                break;
+
+            // 5 - Windows Phone
+            case 5:
+                break;
+
+            // 6 - Error (not documented in the Pushwoosh documentation)
+            case 6:
+                throw new PushwooshException('The \'deviceType\' value \'' . $this->deviceType . '\' is invalid !');
+                break;
+
+            // 7 - Mac OS X
+            case 7:
+                break;
+
+            // 8 - Windows 8
+            case 8:
+                break;
+
+            // 9 - Amazon
+            case 9:
+                break;
+
+            // 10 - Safari
+            case 10:
+                break;
+
+            // Invalid device type value
+            default:
+                throw new PushwooshException('The \'deviceType\' value \'' . $this->deviceType . '\' is invalid !');
+                break;
+        }
 
     }
 }

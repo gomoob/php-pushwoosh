@@ -204,7 +204,7 @@ class CreateMessageRequest
         // One of the 'application' or 'applicationsGroup' parameter must have been defined.
         if (!isset($this->application) && !isset($this->applicationsGroup)) {
 
-            throw new PushwooshException('None of the  \'application\' or \'applicationsGroup\' properties are set !');
+            throw new PushwooshException('None of the \'application\' or \'applicationsGroup\' properties are set !');
 
         }
 

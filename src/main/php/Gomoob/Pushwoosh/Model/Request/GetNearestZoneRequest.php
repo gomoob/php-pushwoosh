@@ -170,7 +170,7 @@ class GetNearestZoneRequest
         // The 'application' parameter must have been defined.
         if (!isset($this->application)) {
 
-            throw new PushwooshException('The  \'application\' property is not set !');
+            throw new PushwooshException('The \'application\' property is not set !');
 
         }
 
