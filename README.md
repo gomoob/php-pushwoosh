@@ -8,12 +8,12 @@
 
 `master` branch
 
-[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master)](https://travis-ci.org/mnapoli/PHP-DI)
+[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master)](https://travis-ci.org/gomoob/php-pushwoosh)
 [![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=master)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=master)
 
 `develop` branch
 
-[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=develop)](https://travis-ci.org/mnapoli/PHP-DI)
+[![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=develop)](https://travis-ci.org/gomoob/php-pushwoosh)
 [![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=develop)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=develop)
 
 Sample code to send a Pushwoosh message with the library : 
