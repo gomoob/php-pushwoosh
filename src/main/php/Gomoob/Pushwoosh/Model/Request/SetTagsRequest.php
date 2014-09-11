@@ -8,6 +8,8 @@
  */
 namespace Gomoob\Pushwoosh\Model\Request;
 
+use Gomoob\Pushwoosh\Exception\PushwooshException;
+
 /**
  * Class which represents Pushwoosh '/setTags' request.
  *
@@ -51,16 +53,29 @@ class SetTagsRequest
     /**
 	 * Add a new tag to the Pushwoosh tags.
 	 *
-	 * <p>WARNING: If this function is called with a tag name wich already exists its value will be overwridden.</p>
+	 * <p>NOTE: This function cannot be used to overwrite an existing tag, use the '#setTag($tagName, $tagValue)'
+	 *          function if you want to overwrite a tag.</p>
 	 *
 	 * @param string $tagName the name of the tag to add or update.
 	 * @param mixed $tagValue the value of the tag to set.
+	 *
+	 * @throws \Gomoob\Pushwoosh\Exception\PushwooshException if a tag having the specified name has already been added.
 	 */
     public function addTag($tagName, $tagValue)
     {
         if (!isset($this->tags)) {
 
             $this->tags = array();
+
+        }
+
+        // The same tag cannot be added 2 times
+        if (array_key_exists($tagName, $this->tags)) {
+
+            throw new PushwooshException(
+                'The tag \'' . $tagName .
+                '\' has already been added, use the \'setTag\' method if you want to overwrite its value !'
+            );
 
         }
 
@@ -104,6 +119,34 @@ class SetTagsRequest
     }
 
     /**
+     * Function used to check if a tag having a specified name exists.
+     *
+     * @param string $tagName the name of the tag.
+     *
+     * @return boolean true if a tag having a name equal to <tt>$tagName</tt> exists, false otherwise.
+     */
+    public function hasTag($tagName)
+    {
+        return $this->tags !== null && array_key_exists($tagName, $this->tags);
+    }
+
+    /**
+     * Function used to remove a tag from the Pushwoosh tags.
+     *
+     * <p>NOTE: If you try to remove a tag which does not exists the function has not effect.</p>
+     *
+     * @param string $tagName the name of the tag to remove.
+     */
+    public function removeTag($tagName)
+    {
+        if ($this->tags !== null && array_key_exists($tagName, $this->tags)) {
+
+            unset($this->tags[$tagName]);
+
+        }
+    }
+
+    /**
 	 * Sets the Pushwoosh application ID for which one to set tags.
 	 *
 	 * @param string $application the the Pushwoosh application ID for which one to set tags.
@@ -136,6 +179,23 @@ class SetTagsRequest
     }
 
     /**
+     * Add a new tag to the Pushwoosh tags or overwrites the value of an existing tag.
+     *
+     * @param string $tagName  the name of the tag to add or update.
+     * @param mixed  $tagValue the value of the tag to set.
+     */
+    public function setTag($tagName, $tagValue)
+    {
+        if (!isset($this->tags)) {
+
+            $this->tags = array();
+
+        }
+
+        $this->tags[$tagName] = $tagValue;
+    }
+
+    /**
 	 * Sets the Pushwoosh tags.
 	 *
 	 * @param array $tags the Pushwoosh tags.
@@ -157,6 +217,27 @@ class SetTagsRequest
 	 */
     public function toJSON()
     {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+
+            throw new PushwooshException('The \'application\' property is not set !');
+
+        }
+
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+
+            throw new PushwooshException('The \'hwid\' property is not set !');
+
+        }
+
+        // The 'tags' parameter must have been defined.
+        if (!isset($this->tags)) {
+
+            throw new PushwooshException('The \'tags\' property is not set !');
+
+        }
+
         $json = array(
             'application' => $this->application,
             'hwid' => $this->hwid,
