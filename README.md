@@ -508,6 +508,7 @@ grunt generate-documentation
  * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest` class
  * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\PushStateRequest` class
  * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest` class
+ * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\SetBadgeRequest` class
 
 ## 0.1.0-alpha4 (2014-09-09)
  * Now the package is loaded using a [PSR-4](http://www.php-fig.org/psr/psr-4) autoloader instead of a 
