@@ -8,6 +8,8 @@
  */
 namespace Gomoob\Pushwoosh\Model\Request;
 
+use Gomoob\Pushwoosh\Exception\PushwooshException;
+
 /**
  * Class which represents Pushwoosh '/unregisterDevice' request.
  *
@@ -104,6 +106,20 @@ class UnregisterDeviceRequest
 	 */
     public function toJSON()
     {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+
+            throw new PushwooshException('The \'application\' property is not set !');
+
+        }
+
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+
+            throw new PushwooshException('The \'hwid\' property is not set !');
+
+        }
+
         $json = array(
             'application' => $this->application,
             'hwid' => $this->hwid
