@@ -13,6 +13,6 @@ namespace Gomoob\Pushwoosh\Model\Response;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class SetBadgeResponse
+class SetBadgeResponse extends AbstractResponse
 {
 }

@@ -504,7 +504,8 @@ grunt generate-documentation
 
 ## 0.1.0-alpha5 (yyyy-mm-dd)
  * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request` package
- * Add missing class `Gomoob\Pushwoosh\Model\Request\GetTagsRequest` class
+ * Add missing `Gomoob\Pushwoosh\Model\Request\GetTagsRequest` class
+ * Add an abstract `Gomoob\Pushwoosh\Model\Response\AbstractResponse` class common to all response objects
 
 ## 0.1.0-alpha4 (2014-09-09)
  * Now the package is loaded using a [PSR-4](http://www.php-fig.org/psr/psr-4) autoloader instead of a 

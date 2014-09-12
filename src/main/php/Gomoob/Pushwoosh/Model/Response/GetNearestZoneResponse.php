@@ -13,6 +13,6 @@ namespace Gomoob\Pushwoosh\Model\Response;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class GetNearestZoneResponse
+class GetNearestZoneResponse extends AbstractResponse
 {
 }
