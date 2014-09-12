@@ -21,6 +21,15 @@ class SetTagsResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
-        //TODO
+        $setTagsResponse = SetTagsResponse::create(
+            array(
+                'status_code' => 200,
+                'status_message' => 'OK'
+            )
+        );
+
+        $this->assertTrue($setTagsResponse->isOk());
+        $this->assertEquals(200, $setTagsResponse->getStatusCode());
+        $this->assertEquals('OK', $setTagsResponse->getStatusMessage());
     }
 }

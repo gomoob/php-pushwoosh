@@ -21,6 +21,15 @@ class RegisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
-        //TODO
+        $registerDeviceResponse = RegisterDeviceResponse::create(
+            array(
+                'status_code' => 200,
+                'status_message' => 'OK'
+            )
+        );
+
+        $this->assertTrue($registerDeviceResponse->isOk());
+        $this->assertEquals(200, $registerDeviceResponse->getStatusCode());
+        $this->assertEquals('OK', $registerDeviceResponse->getStatusMessage());
     }
 }

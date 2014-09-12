@@ -15,4 +15,19 @@ namespace Gomoob\Pushwoosh\Model\Response;
  */
 class SetBadgeResponse extends AbstractResponse
 {
+    /**
+	 * Utility function used to create a new instance from a JSON string.
+	 *
+	 * @param array $json a PHP array which contains the result of a 'json_decode' execution.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Response\SetBadgeResponse the resulting instance.
+	 */
+    public static function create(array $json)
+    {
+        $setBadgeResponse = new SetBadgeResponse();
+        $setBadgeResponse->setStatusCode($json['status_code']);
+        $setBadgeResponse->setStatusMessage($json['status_message']);
+
+        return $setBadgeResponse;
+    }
 }

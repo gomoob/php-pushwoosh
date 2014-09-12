@@ -21,6 +21,15 @@ class SetBadgeResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
-        //TODO
+        $setBadgeResponse = SetBadgeResponse::create(
+            array(
+                'status_code' => 200,
+                'status_message' => 'OK'
+            )
+        );
+
+        $this->assertTrue($setBadgeResponse->isOk());
+        $this->assertEquals(200, $setBadgeResponse->getStatusCode());
+        $this->assertEquals('OK', $setBadgeResponse->getStatusMessage());
     }
 }

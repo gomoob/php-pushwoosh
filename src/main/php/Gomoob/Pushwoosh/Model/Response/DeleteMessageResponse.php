@@ -29,6 +29,5 @@ class DeleteMessageResponse extends AbstractResponse
         $deleteMessageResponse->setStatusMessage($json['status_message']);
 
         return $deleteMessageResponse;
-
     }
 }

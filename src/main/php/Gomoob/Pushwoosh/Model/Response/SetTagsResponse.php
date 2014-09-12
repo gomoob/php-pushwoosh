@@ -20,15 +20,14 @@ class SetTagsResponse extends AbstractResponse
 	 *
 	 * @param array $json a PHP array which contains the result of a 'json_decode' execution.
 	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\RegisterDeviceResponse the resulting instance.
+	 * @return \Gomoob\Pushwoosh\Model\Response\SetTagsResponse the resulting instance.
 	 */
     public static function create(array $json)
     {
-        $registerDeviceResponse = new RegisterDeviceResponse();
-        $registerDeviceResponse->setStatusCode($json['status_code']);
-        $registerDeviceResponse->setStatusMessage($json['status_message']);
+        $setTagsResponse = new SetTagsResponse();
+        $setTagsResponse->setStatusCode($json['status_code']);
+        $setTagsResponse->setStatusMessage($json['status_message']);
 
-        return $registerDeviceResponse;
-
+        return $setTagsResponse;
     }
 }

@@ -40,7 +40,6 @@ class CreateMessageResponse extends AbstractResponse
         $createMessageResponse->setResponse($createMessageResponseResponse);
 
         return $createMessageResponse;
-
     }
 
     /**

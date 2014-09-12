@@ -504,6 +504,7 @@ grunt generate-documentation
 
 ## 0.1.0-alpha5 (yyyy-mm-dd)
  * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request` package
+ * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Response` package
  * Add missing `Gomoob\Pushwoosh\Model\Request\GetTagsRequest` class
  * Add an abstract `Gomoob\Pushwoosh\Model\Response\AbstractResponse` class common to all response objects
 

@@ -21,6 +21,15 @@ class UnregisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
-        //TODO
+        $unregisterDeviceResponse = UnregisterDeviceResponse::create(
+            array(
+                'status_code' => 200,
+                'status_message' => 'OK'
+            )
+        );
+
+        $this->assertTrue($unregisterDeviceResponse->isOk());
+        $this->assertEquals(200, $unregisterDeviceResponse->getStatusCode());
+        $this->assertEquals('OK', $unregisterDeviceResponse->getStatusMessage());
     }
 }

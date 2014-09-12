@@ -29,6 +29,5 @@ class RegisterDeviceResponse extends AbstractResponse
         $registerDeviceResponse->setStatusMessage($json['status_message']);
 
         return $registerDeviceResponse;
-
     }
 }
