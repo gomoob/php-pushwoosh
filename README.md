@@ -503,14 +503,7 @@ grunt generate-documentation
 # Release history
 
 ## 0.1.0-alpha5 (yyyy-mm-dd)
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\CreateMessageRequest` class
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest` class
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest` class
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\PushStateRequest` class
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest` class
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\SetBadgeRequest` class
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\SetTagsRequest` class
- * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest` class
+ * Code coverage is now 100% on the `Gomoob\Pushwoosh\Model\Request` package
  * Add missing class `Gomoob\Pushwoosh\Model\Request\GetTagsRequest` class
 
 ## 0.1.0-alpha4 (2014-09-09)
