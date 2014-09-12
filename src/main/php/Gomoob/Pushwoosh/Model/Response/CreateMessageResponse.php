@@ -16,7 +16,7 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class CreateMessageResponse extends AbstractResponse
 {
     /**
-	 * Gets the Pushwoosh response.
+	 * Gets the Pushwoosh '/createMessage' response response.
 	 *
 	 * @var \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse
 	 */
@@ -44,24 +44,24 @@ class CreateMessageResponse extends AbstractResponse
     }
 
     /**
-	 * Gets the Pushwoosh response.
+	 * Gets the Pushwoosh '/createMessage' response response.
 	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse the Pushwoosh response.
+	 * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse the Pushwoosh '/createMessage' response
+	 *         response.
 	 */
     public function getResponse()
     {
         return $this->response;
-
     }
 
     /**
-	 * Sets the Pushwoosh response.
+	 * Sets the Pushwoosh '/createMessage' response response.
 	 *
-	 * @param \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse $response the Pushwoosh response.
+	 * @param \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse $response the Pushwoosh '/createMessage'
+	 *        response response.
 	 */
-    public function setResponse($response)
+    public function setResponse(CreateMessageResponseResponse $response)
     {
         $this->response = $response;
-
     }
 }

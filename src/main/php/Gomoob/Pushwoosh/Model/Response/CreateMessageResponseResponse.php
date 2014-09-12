@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Response;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class CreateMessageResponseResponse extends AbstractResponse
+class CreateMessageResponseResponse
 {
     /**
 	 * The Pushwoosh messages sent in response to a Create Message request.

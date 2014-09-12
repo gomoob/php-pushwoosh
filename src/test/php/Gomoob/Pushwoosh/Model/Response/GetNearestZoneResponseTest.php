@@ -21,6 +21,31 @@ class GetNearestZoneResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
-        //TODO
+        $getNearestZoneResponse = GetNearestZoneResponse::create(
+            array(
+                'status_code' => 200,
+                'status_message' => 'OK',
+                'response' => array(
+                    'name' => 'zoneName',
+                    'lat' => 42,
+                    'lng' => 13,
+                    'range' => 100,
+                    'distance' => 4715784
+                )
+            )
+        );
+
+        $this->assertTrue($getNearestZoneResponse->isOk());
+        $this->assertEquals(200, $getNearestZoneResponse->getStatusCode());
+        $this->assertEquals('OK', $getNearestZoneResponse->getStatusMessage());
+
+        $getNearestZoneResponseResponse = $getNearestZoneResponse->getResponse();
+        $this->assertNotNull($getNearestZoneResponseResponse);
+        $this->assertEquals('zoneName', $getNearestZoneResponseResponse->getName());
+        $this->assertEquals(42, $getNearestZoneResponseResponse->getLat());
+        $this->assertEquals(13, $getNearestZoneResponseResponse->getLng());
+        $this->assertEquals(100, $getNearestZoneResponseResponse->getRange());
+        $this->assertEquals(4715784, $getNearestZoneResponseResponse->getDistance());
+
     }
 }
