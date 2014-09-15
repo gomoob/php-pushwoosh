@@ -32,12 +32,6 @@ class Mac
 
     }
 
-    public function setBadges($badges)
-    {
-        $this->badges = $badges;
-
-    }
-
     public function getSound()
     {
         return $this->sound;
@@ -50,21 +44,46 @@ class Mac
 
     }
 
+    public function setBadges($badges)
+    {
+        $this->badges = $badges;
+
+        return $this;
+    }
+
     public function setRootParams($rootParams)
     {
         $this->rootParams = $rootParams;
 
+        return $this;
     }
 
     public function setSound($sound)
     {
         $this->sound = $sound;
 
+        return $this;
     }
 
     public function setTtl($ttl)
     {
         $this->ttl = $ttl;
+
+        return $this;
+    }
+
+    /**
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
+    public function toJSON()
+    {
+    	$json = array();
+
+    	// TODO
+
+    	return $json;
 
     }
 }

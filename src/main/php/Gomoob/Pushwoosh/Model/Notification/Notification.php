@@ -778,7 +778,18 @@ class Notification
         isset($this->data) ? $json['data'] = $this->data : false;
         isset($this->devices) ? $json['devices'] = $this->devices : false;
 
-        // Android Specific informations
+        // Amazon Device Messaging specific informations
+        if (isset($this->aDM)) {
+
+        	foreach ($this->aDM->toJSON() as $key => $value) {
+
+        		$json[$key] = $value;
+
+        	}
+
+        }
+
+        // Android specific informations
         if (isset($this->android)) {
 
             foreach ($this->android->toJSON() as $key => $value) {
@@ -789,7 +800,7 @@ class Notification
 
         }
 
-        // iOS Specific informations
+        // iOS specific informations
         if (isset($this->iOS)) {
 
             foreach ($this->iOS->toJSON() as $key => $value) {
@@ -799,6 +810,50 @@ class Notification
             }
 
         }
+
+        // Mac specific informations
+        if (isset($this->mac)) {
+
+        	foreach ($this->mac->toJSON() as $key => $value) {
+
+        		$json[$key] = $value;
+
+        	}
+
+        }
+
+        // Safari specific informations
+        if (isset($this->safari)) {
+
+        	foreach ($this->safari->toJSON() as $key => $value) {
+
+        		$json[$key] = $value;
+
+        	}
+
+        }
+
+        // Windows Notification Service specific informations
+        if (isset($this->wNS)) {
+
+        	foreach ($this->wNS->toJSON() as $key => $value) {
+
+        		$json[$key] = $value;
+
+        	}
+
+        }
+
+        // Windows Phone specific informations
+		if (isset($this->wP)) {
+
+			foreach ($this->wP->toJSON() as $key => $value) {
+
+				$json[$key] = $value;
+
+			}
+
+		}
 
         return $json;
 

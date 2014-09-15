@@ -55,18 +55,21 @@ class WP
     {
         $this->backbackground = $backbackground;
 
+        return $this;
     }
 
     public function setBackground($background)
     {
         $this->background = $background;
 
+        return $this;
     }
 
     public function setBacktitle($backtitle)
     {
         $this->backtitle = $backtitle;
 
+        return $this;
     }
 
     public function setCount($count)
@@ -78,6 +81,22 @@ class WP
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
+    public function toJSON()
+    {
+    	$json = array();
+
+    	// TODO
+
+    	return $json;
 
     }
 }

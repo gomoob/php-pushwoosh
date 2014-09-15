@@ -48,23 +48,42 @@ class Safari
     {
         $this->action = $action;
 
+        return $this;
     }
 
     public function setTitle($title)
     {
         $this->title = $title;
 
+        return $this;
     }
 
     public function setTtl($ttl)
     {
         $this->ttl = $ttl;
 
+        return $this;
     }
 
     public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
+    public function toJSON()
+    {
+    	$json = array();
+
+    	// TODO
+
+    	return $json;
 
     }
 }

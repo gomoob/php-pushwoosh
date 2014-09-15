@@ -95,12 +95,14 @@ class Android
     {
         $this->banner = $banner;
 
+        return $this;
     }
 
     public function setCustomIcon($customIcon)
     {
         $this->customIcon = $customIcon;
 
+        return $this;
     }
 
     /**
@@ -114,6 +116,7 @@ class Android
     {
         $this->gcmTtl = $gcmTtl;
 
+        return $this;
     }
 
     public function setHeader($header)
@@ -128,18 +131,21 @@ class Android
     {
         $this->icon = $icon;
 
+        return $this;
     }
 
     public function setRootParams($rootParams)
     {
         $this->rootParams = $rootParams;
 
+        return $this;
     }
 
     public function setSound($sound)
     {
         $this->sound = $sound;
 
+        return $this;
     }
 
     /**

@@ -70,40 +70,63 @@ class ADM
     {
         $this->banner = $banner;
 
+        return $this;
     }
 
     public function setCustomIcon($customIcon)
     {
         $this->customIcon = $customIcon;
 
+        return $this;
     }
 
     public function setHeader($header)
     {
         $this->header = $header;
 
+        return $this;
     }
 
     public function setIcon($icon)
     {
         $this->icon = $icon;
 
+        return $this;
     }
 
     public function setRootParams($rootParams)
     {
         $this->rootParams = $rootParams;
+
+        return $this;
     }
 
     public function setSound($sound)
     {
         $this->sound = $sound;
 
+        return $this;
     }
 
     public function setTtl($ttl)
     {
         $this->ttl = $ttl;
+
+        return $this;
+    }
+
+    /**
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
+    public function toJSON()
+    {
+    	$json = array();
+
+    	// TODO
+
+    	return $json;
 
     }
 }

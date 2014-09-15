@@ -184,6 +184,11 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetWNS()
     {
+        $notification = new Notification();
+        $this->assertNull($notification->getWNS());
+        $wNS = new WNS();
+        $this->assertSame($notification, $notification->setWNS($wNS));
+        $this->assertSame($wNS, $notification->getWNS());
     }
 
     /**
@@ -191,6 +196,11 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetWP()
     {
+        $notification = new Notification();
+        $this->assertNull($notification->getWP());
+        $wP = new WP();
+        $this->assertSame($notification, $notification->setWP($wP));
+        $this->assertSame($wP, $notification->getWP());
     }
 
     /**
@@ -198,6 +208,10 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testIsSetIgnoreUserTimezone()
     {
+        $notification = new Notification();
+        $this->assertTrue($notification->isIgnoreUserTimezone());
+        $this->assertSame($notification, $notification->setIgnoreUserTimezone(false));
+        $this->assertFalse($notification->isIgnoreUserTimezone());
     }
 
     /**

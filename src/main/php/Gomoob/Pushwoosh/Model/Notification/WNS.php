@@ -41,17 +41,35 @@ class WNS
     {
         $this->content = $content;
 
+        return $this;
     }
 
     public function setTag($tag)
     {
         $this->tags = $tag;
 
+        return $this;
     }
 
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
+    public function toJSON()
+    {
+    	$json = array();
+
+    	// TODO
+
+    	return $json;
 
     }
 }

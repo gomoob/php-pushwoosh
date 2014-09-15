@@ -120,6 +120,7 @@ class IOS
     {
         $this->sound = $sound;
 
+        return $this;
     }
 
     public function setTtl($ttl)
