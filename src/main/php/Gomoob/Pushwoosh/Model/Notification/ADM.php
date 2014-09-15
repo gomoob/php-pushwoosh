@@ -12,6 +12,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Class which represents specific Pushwoosh notification informations for Amazon Device Messaging.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
+ * @see https://developer.amazon.com/appsandservices/apis/engage/device-messaging
  */
 class ADM
 {

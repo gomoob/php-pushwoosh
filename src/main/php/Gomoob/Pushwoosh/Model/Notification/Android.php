@@ -12,11 +12,19 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Class which represents specific Pushwoosh notification informations for Android (Google Cloud Messaging).
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
+ * @see https://developer.android.com/google/gcm/index.html
  */
 class Android
 {
     private $banner;
     private $customIcon;
+
+    /**
+     * The Google Cloud Messaging Time To Live, this indicates how long (in seconds) the message should be kept on GCM
+     * storage if the device is offline. Optional (default time-to-live is 4 weeks, and must be set as a JSON number).
+     *
+     * @var int
+     */
     private $gcmTtl;
     private $header;
     private $icon;
@@ -46,6 +54,13 @@ class Android
 
     }
 
+    /**
+     * Gets the Google Cloud Messaging Time To Live, this indicates how long (in seconds) the message should be kept on
+     * GCM storage if the device is offline. Optional (default time-to-live is 4 weeks, and must be set as a JSON
+     * number).
+     *
+     * @return int the Google Cloud Messaging Time To Live.
+     */
     public function getGcmTtl()
     {
         return $this->gcmTtl;
@@ -88,6 +103,13 @@ class Android
 
     }
 
+    /**
+     * Sets the Google Cloud Messaging Time To Live, this indicates how long (in seconds) the message should be kept on
+     * GCM storage if the device is offline. Optional (default time-to-live is 4 weeks, and must be set as a JSON
+     * number).
+     *
+     * @param int $gcmTtl the Google Cloud Messaging Time To Live.
+     */
     public function setGcmTtl($gcmTtl)
     {
         $this->gcmTtl = $gcmTtl;

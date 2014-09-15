@@ -158,7 +158,21 @@ class Notification
 	 */
     private $pageId;
 
-    // TODO: DOCUMENT ME !
+    /**
+     * Sets the platforms to which ones to send messages, this attribute is an array of integer which can take the
+     * following values :
+     *  - 1 : iOS
+     *  - 2 : BlackBerry
+     *  - 3 : Android
+     *  - 4 : Nokia ASHA
+     *  - 5 : Windows Phone 7
+     *  - 7 : Mac OS X
+     *  - 8 : Windows 8
+     *  - 9 : Amazon
+     *  - 10: Safari
+     *
+     * @var array
+     */
     private $platforms;
 
     /**
@@ -216,7 +230,6 @@ class Notification
     public function getADM()
     {
         return $this->aDM;
-
     }
 
     /**
@@ -227,7 +240,6 @@ class Notification
     public function getAndroid()
     {
         return $this->android;
-
     }
 
     /**
@@ -263,7 +275,6 @@ class Notification
     public function getConditions()
     {
         return $this->conditions;
-
     }
 
     /**
@@ -274,7 +285,6 @@ class Notification
     public function getContent()
     {
         return $this->content;
-
     }
 
     /**
@@ -288,7 +298,6 @@ class Notification
     public function getData()
     {
         return $this->data;
-
     }
 
     /**
@@ -301,7 +310,6 @@ class Notification
     public function getDevices()
     {
         return $this->devices;
-
     }
 
     /**
@@ -321,7 +329,6 @@ class Notification
     public function isIgnoreUserTimezone()
     {
         return $this->ignoreUserTimezone;
-
     }
 
     /**
@@ -334,7 +341,6 @@ class Notification
     public function getIOS()
     {
         return $this->iOS;
-
     }
 
     // TODO: DOCUMENT ME!
@@ -368,7 +374,21 @@ class Notification
 
     }
 
-    // TODO: DOCUMENT ME !
+    /**
+	 * Gets the platforms to which ones to send messages, this attribute is an array of integer which can take the
+     * following values :
+     *  - 1 : iOS
+     *  - 2 : BlackBerry
+     *  - 3 : Android
+     *  - 4 : Nokia ASHA
+     *  - 5 : Windows Phone 7
+     *  - 7 : Mac OS X
+     *  - 8 : Windows 8
+     *  - 9 : Amazon
+     *  - 10: Safari
+     *
+	 * @return array the platforms where to send push notifications.
+	 */
     public function getPlatforms()
     {
         return $this->platforms;
@@ -423,7 +443,6 @@ class Notification
     public function getWP()
     {
         return $this->wP;
-
     }
 
     /**
@@ -431,11 +450,14 @@ class Notification
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\ADM $aDM the object which contains specific Pushwoosh notification
 	 *        informations for ADM (Amazon Device Messaging).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setADM(ADM $aDM)
     {
         $this->aDM = $aDM;
 
+        return $this;
     }
 
     /**
@@ -451,7 +473,6 @@ class Notification
         $this->android = $android;
 
         return $this;
-
     }
 
     /**
@@ -483,11 +504,14 @@ class Notification
 	 * You cannot use 'filter' and 'conditions' parameters together.
 	 *
 	 * @param array $conditions the array of tag conditions.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setConditions($conditions)
     {
         $this->conditions = $conditions;
 
+        return $this;
     }
 
     /**
@@ -502,21 +526,23 @@ class Notification
         $this->content = $content;
 
         return $this;
-
     }
 
     /**
-	 * Sets the additional data to attache to the notification, use this only if you want to pass custom data to the
+	 * Sets the additional data to attach to the notification, use this only if you want to pass custom data to the
 	 * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
 	 *
 	 * This will be passed as a "u" parameter in the payload.
 	 *
 	 * @param array $data the additional data to be passed to the notification.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setData(array $data)
     {
         $this->data = $data;
 
+        return $this;
     }
 
     /**
@@ -525,6 +551,8 @@ class Notification
 	 * @param string $parameterName the name of the additional data parameter to set.
 	 * @param mixed $parameterValue the value of the additional data parameter to set. This parameter must be compliant
 	 *        with JSON primitive types or must be an array.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setDataParameter($parameterName, $parameterValue)
     {
@@ -536,6 +564,7 @@ class Notification
 
         $this->data[$parameterName] = $parameterValue;
 
+        return $this;
     }
 
     /**
@@ -544,11 +573,14 @@ class Notification
 	 *
 	 * @param string[] $devices the list of device tokens used to identify the devices to send the notification to, this
 	 *        parameter is optional.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setDevices(array $devices)
     {
         $this->devices = $devices;
 
+        return $this;
     }
 
     /**
@@ -557,11 +589,14 @@ class Notification
 	 * This parameter is optional.
 	 *
 	 * @param string $filter the name of a filter.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setFilter($filter)
     {
         $this->filter = $filter;
 
+        return $this;
     }
 
     // TODO: DOCUMENT ME !
@@ -569,6 +604,7 @@ class Notification
     {
         $this->ignoreUserTimezone = $ignoreUserTimezone;
 
+        return $this;
     }
 
     /**
@@ -577,6 +613,8 @@ class Notification
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\IOS $iOS the object which contains specific Pushwoosh notification
 	 *        informations for IOS (Apple Push Notification Service).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setIOS(IOS $iOS)
     {
@@ -591,6 +629,7 @@ class Notification
     {
         $this->link = $link;
 
+        return $this;
     }
 
     /**
@@ -598,11 +637,14 @@ class Notification
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\Mac $mac the object which contains specific Pushwoosh notification
 	 *        informations for Mac OS X.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setMac(Mac $mac)
     {
         $this->mac = $mac;
 
+        return $this;
     }
 
     /**
@@ -610,18 +652,38 @@ class Notification
 	 * content to the application or omit this parameter.
 	 *
 	 * @param int $pageId the HTML page id to set1.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setPageId($pageId)
     {
         $this->pageId = $pageId;
 
+        return $this;
     }
 
-    // TODO: DOCUMENT ME !
+    /**
+     * Sets the platforms to which ones to send messages, this attribute is an array of integer which can take the
+     * following values :
+     *  - 1 : iOS
+     *  - 2 : BlackBerry
+     *  - 3 : Android
+     *  - 4 : Nokia ASHA
+     *  - 5 : Windows Phone 7
+     *  - 7 : Mac OS X
+     *  - 8 : Windows 8
+     *  - 9 : Amazon
+     *  - 10: Safari
+     *
+     * @param array $platforms the platforms where to send the push notifications.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
     public function setPlatforms(array $platforms)
     {
         $this->platforms = $platforms;
 
+        return $this;
     }
 
     /**
@@ -629,11 +691,14 @@ class Notification
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\Safari $safari the object which contains specific Pushwoosh
 	 *        notification informations for Safari.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setSafari(Safari $safari)
     {
         $this->safari = $safari;
 
+        return $this;
     }
 
     /**
@@ -642,6 +707,8 @@ class Notification
 	 *  - 'YYYY-MM-DD HH:mm	: Specify your own send date.
 	 *
 	 * @param \DateTime | string $sendDate the date when the message has to be sent.
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setSendDate(/* \DateTime */ $sendDate)
     {
@@ -659,6 +726,7 @@ class Notification
 
         throw new PushwooshException('Invalid send date provided !');
 
+        return $this;
     }
 
     /**
@@ -667,11 +735,14 @@ class Notification
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\WNS $wNS the object which contains specific Pushwoosh notification
 	 *        informations for WNS (Windows Notification Service).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setWNS($wNS)
     {
         $this->wNS = $wNS;
 
+        return $this;
     }
 
     /**
@@ -679,11 +750,14 @@ class Notification
 	 *
 	 * @param \Gomoob\Pushwoosh\Model\Notification\WP $wP the object which contains specific Pushwoosh notification
 	 *        informations for WP (Windows Phone).
+	 *
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
     public function setWP(WP $wP)
     {
         $this->wP = $wP;
 
+        return $this;
     }
 
     /**
