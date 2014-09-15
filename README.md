@@ -59,11 +59,14 @@ Then run a `composer update` command to pull the library and insert it inside yo
 
 The GoMoob Pushwoosh PHP Library is written to be almost identic to the standard Pushwoosh REST API.
 
-Calls to the Pushwoosh REST Web Services are done using a Pushwoosh client class. Then you call a method by using a request object and receive a response object with a success message or the detail of an error.
+Calls to the Pushwoosh REST Web Services are done using a Pushwoosh client class. Then you call a method by using a 
+request object and receive a response object with a success message or the detail of an error.
 
-Each request sent to the Pushwoob REST Web Services is represented by a `xxxRequest` object / class defined in the `Gomoob\Pushwoosh\Model\Request` namespace. 
+Each request sent to the Pushwoob REST Web Services is represented by a `xxxRequest` object / class defined in the 
+`Gomoob\Pushwoosh\Model\Request` namespace. 
 
-Each response returned by the Pushwoosh REST Web Services is represented by a `xxxResponse` object / class defined in the `Gomoob\Pushwoosh\Model\Response` namespace.
+Each response returned by the Pushwoosh REST Web Services is represented by a `xxxResponse` object / class defined in 
+the `Gomoob\Pushwoosh\Model\Response` namespace.
 
 ## Pushwoosh clients
 
@@ -128,160 +131,13 @@ The Mock Pushwoosh client can be used exactly the same way as the standard Pushw
 ## Pushwoosh clients methods
 
 ### Method `/createMessage`
-
-Offical documentation : [Method /createMessage](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
-
-How to use it :
- * Create a `CreateMessageRequest` object and configure it
- * Call the `createMessage` method with your `CreateMessageRequest` object
- * Check if everything is good using the returned `CreateMessageResponse` object
-
-Sample code : 
-```php
-$createMessageRequest = CreateMessageRequest::create()
-    -> addNotification(Notification::create() -> setContent('Hello World'!));
-    
-$createMessageResponse = $pushwoosh -> createMessage($createMessageRequest);
-
-if($createMessageResponse -> isOk() {
-
-    print 'Great, message sent !';
-
-} else {
-
-    print 'It is not working :-(';
-    print 'Status code : ' . $createMessageResponse -> getStatusCode();
-    print 'Status message : ' . $createMessageResponse -> getStatusMessage();
-
-}
-```
-
-#### Define multiple notifications 
-```php
-$createMessageRequest = CreateMessageRequest::create()
-    -> addNotification(Notification::create() -> setContent('Hello'))
-    -> addNotification(Notification::create() -> setContent('World'))
-    -> addNotification(Notification::create() -> setContent('!'));
-
-$pushwoosh -> createMessage($createMessageRequest);
-```
-
-#### Attach additional data
-```php
-$notification = Notification::create()
-	-> setDataParameter('data_parameter_1', 'data_parameter_1_value')
-	-> setDataParameter('data_parameter_2', 'data_parameter_2_value');
-
-$pushwoosh -> createMessage(CreateMessageRequest::create() -> addNotification($notification));
-```
-
-#### Send to only specific devices
-```
-$notification = Notification::create()
-	-> addDevice('DEVICE_TOKEN_1')
-	-> addDevice('DEVICE_TOKEN_2')
-	-> addDevice('DEVICE_TOEKN_3');
-
-$pushwoosh -> createMessage(CreateMessageRequest::create() -> addNotification($notification));
-```
-
 ### Method `/deleteMessage`
-
-Offical documentation : [Method /deleteMessage](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-delete)
-
-How to use it :
- * Create a `DeleteMessageRequest` object and configure it
- * Call the `deleteMessage` method with your `DeleteMessageRequest` object
- * Check if everything is good using the returned `DeleteMessageResponse` object
-
-Sample code : 
-```php
-
-```
-
 ### Method `/registerDevice`
-
-Offical documentation : [Method /registerDevice](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodRegister)
-
-How to use it :
- * Create a `RegisterDeviceRequest` object and configure it
- * Call the `registerDevice` method with your `RegisterDeviceRequest` object
- * Check if everything is good using the returned `RegisterDeviceResponse` object
-
-Sample code : 
-```php
-
-```
-
 ### Method `/unregisterDevice`
-
-Offical documentation : [Method /unregisterDevice](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodUnregister)
-
-How to use it :
- * Create a `UnregisterDeviceRequest` object and configure it
- * Call the `unregisterDevice` method with your `UnregisterDeviceRequest` object
- * Check if everything is good using the returned `UnregisterDeviceResponse` object
-
-Sample code : 
-```php
-
-```
-
 ### Method `/setTags`
-
-Offical documentation : [Method /setTags](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetTags)
-
-How to use it :
- * Create a `SetTagsRequest` object and configure it
- * Call the `setTags` method with your `SetTagsRequest` object
- * Check if everything is good using the returned `SetTagsResponse` object
-
-Sample code : 
-```php
-
-```
-
 ### Method `/setBadge`
-
-Offical documentation : [Method /setBadge](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodSetBadge)
-
-How to use it :
- * Create a `SetBadgeRequest` object and configure it
- * Call the `setBadge` method with your `SetBadgeRequest` object
- * Check if everything is good using the returned `SetBadgeResponse` object
-
-Sample code : 
-```php
-
-```
-
 ### Method `/pushStat`
-
-Offical documentation : [Method /pushStat](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodPushStat)
-
-How to use it :
- * Create a `PushStatRequest` object and configure it
- * Call the `pushStat` method with your `PushStatRequest` object
- * Check if everything is good using the returned `PushStatResponse` object
-
-Sample code : 
-```php
-
-```
-
 ### Method `/getNearestZone`
-
-Offical documentation : [Method /getNearestZone](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-MethodGetNearestZone)
-
-How to use it :
- * Create a `GetNearestZoneRequest` object and configure it
- * Call the `getNearestZone` method with your `GetNearestZoneRequest` object
- * Check if everything is good using the returned `GetNearestZoneResponse` object
-
-Sample code : 
-```php
-
-```
 
 ## Requests Data Model 
 
