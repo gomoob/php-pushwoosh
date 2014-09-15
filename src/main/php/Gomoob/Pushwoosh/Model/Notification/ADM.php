@@ -122,11 +122,10 @@ class ADM
      */
     public function toJSON()
     {
-    	$json = array();
+        $json = array();
 
-    	// TODO
-
-    	return $json;
+        // TODO
+        return $json;
 
     }
 }
