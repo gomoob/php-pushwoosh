@@ -1,0 +1,278 @@
+---
+layout: default
+title: General Concepts
+---
+
+<h1>General concepts</h1>
+
+<p>
+    The GoMoob Pushwoosh PHP Library is written to be almost identic to the standard Pushwoosh REST API.
+</p>
+
+<p>Calls to the Pushwoosh REST Web Services are done using a Pushwoosh client class.</p> 
+
+<p>
+    All calls are done the same way :
+</p>
+    <ul>
+        <li>Create a Request object.</li>
+        <li>Call a method on the Pushwoosh client and receive a Response object.</li>
+        <li>Check if the call is successful with the <code>isOk()</code> method of the received Response object.</li>
+    </ul>
+<p>
+
+{% highlight php %}
+<?php 
+// Pushwoosh sample resquest / response with the '/createMessage' Web Service
+$request = CreateMessageRequest::create()->addNotification(...);
+$response = $pushwoosh->createMessage($request);
+
+if($response->isOk()) {
+    // Successful call
+} else {
+    // In error call
+}
+?>
+{% endhighlight %}
+
+
+<h2>Pushoosh clients</h2>
+
+<p>
+    The API provides 2 Pushwoosh clients which redeclare the methods described in the official 
+    <a href="https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/">
+        Pushwoosh Remote API guide
+    </a>.
+</p>
+
+<ul>
+    <li>A standard Pushwoosh client defined by the <code>Gomoob\Pushwoosh\Client\Pushwoosh</code> class</li>
+    <li>A mock Pushwoosh client defined by the <code>Gomoob\Pushwoosh\Client\PushwooshMock</code> class</li>
+</ul>
+
+<p>
+    Those two classes implement the <code>Gomoob\Pushwoosh\IPushwoosh</code> interface where you'll find a copy of the 
+    documentation of each method described in the 
+    <a href="https://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/">
+        Pushwoosh Remote API guide
+    </a>.
+</p>
+
+<h3>The <code>Pushwoosh</code> class</h3>
+
+<p>
+    The <code>Gomoob\Pushwoosh\Client\Pushwoosh</code> class represents a concrete Pushwoosh client which calls the 
+    Pushwoosh Remote API Web Services. 
+</p>
+
+<h4>Configuration</h4>
+
+<p>
+    Before using your Pushwoosh client you first have to configure it, in most cases you configure your client in one 
+    place in a project, then you use it where you want.
+</p>
+
+<p>
+    The configuration properties to configure are the following : 
+</p>
+<ul>
+    <li>
+        <code>application</code> : The Pushwoosh application ID to be used by default by all the requests performed by 
+        the Pushwoosh client. This identifier can be overwritten by request if needed. If the 
+        <code>applicationGroups</code> parameter is defined then the <code>application</code> parameter must not be 
+        defined.
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>applicationsGroup</code> : The Pushwoosh applications group code to be used to defautl by all the requests 
+        performed by the Pushwoosh client. This identifier can be overwritten by requests if needed. If the 
+        <code>application</code> parameter is defined then the <code>applicationsGroups</code> parameter must not be 
+        defined.
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>auth</code> : The API access token taken from the Pushwoosh control panel 
+        (create this token at https://cp.pushwoosh.com/api_access).
+        <br/>
+        <br/>
+    </li>
+</ul>
+
+{% highlight php %}
+<?php 
+// Pushwoosh client configuration sample
+$pushwoosh = Pushwoosh::create();
+$pushwoosh->setApplication('XXXXX-XXXXX')
+$pushwoosh->setAuth('xxxxxxxx');
+?>
+{% endhighlight %}
+
+<p>
+    Once a Pushwoosh client is configured the <code>application</code> (or <code>applicationsGroup</code>) and 
+    <code>auth</code> parameters will be automatically injected in the JSON payloads sent to the Pushwoosh servers.
+</p> 
+<p> 
+    This is much more quick and easy than providing your Pushwoosh creadentials each time you make a request (although 
+    proving specific credentials for each request is also possible).
+</p>
+
+
+<h4>Web Service methods</h4>
+
+<p>
+    The Pushwoosh clients define one method for each Web Service endpoint of the Pushwoosh Remote API.
+</p>
+<p>
+    You'll find documentation and several samples about each method by following those links.
+</p>
+<ul>
+    <li><a href="create-message.html">/createMessage</a></li>
+    <li><a href="delete-message.html">/deleteMessage</a></li>
+    <li><a href="get-nearest-zone.html">/getNearestZone</a></li>
+    <li><a href="push-stat.html">/pushStat</a></li>
+    <li><a href="register-device.html">/registerDevice</a></li>
+    <li><a href="set-badge.html">/setBadge</a></li>
+    <li><a href="set-tags.html">/setTags</a></li>
+    <li><a href="unregister-device.html">/unregisterDevice</a></li>
+</ul>
+
+
+<h3>The <code>PushwooshMock</code> class</h3>
+
+<p>
+    The <code>PushwooshMock</code> class represents a mock Pushwoosh client, it defines the same methods as the 
+    <code>Pushwoosh</code> class but it do not call the Pushwoosh Remote API Web Services.
+</p>
+<p>
+    Instead this class works in memory and simulates the Pushwoosh servers. This class is convenient when you want to 
+    write unit tests.
+</p>
+
+
+<h2>Requests</h2>
+
+<p>
+    Each request sent to the Pushwoob REST Web Services is represented by a <code>xxxRequest</code> request object / 
+    class defined in the <code>Gomoob\Pushwoosh\Model\Request namespace</code>.
+</p>
+
+<h3>Request classes</h3>
+<p>
+    The request objects are passed to Pushwoosh client methods to request the Pushwoosh Web Services. Their is one 
+    request class for each available Pushwoosh Web Service endpoint.
+</p>
+<ul>
+    <li><code>/createMessage</code> => <code>CreateMessageRequest</code></li>
+    <li><code>/deleteMessage</code> => <code>DeleteMessageRequest</code></li>
+    <li><code>/getNearestZone</code> => <code>GetNearestZoneRequest</code></li>
+    <li><code>/pushStat</code> => <code>PushStatRequest</code></li>
+    <li><code>/registerDevice</code> => <code>RegisterDeviceRequest</code></li>
+    <li><code>/setBadge</code> => <code>SetBadgeRequest</code></li>
+    <li><code>/setTags</code> => <code>SetTagsRequest</code></li>
+    <li><code>/unregisterDevice</code> => <code>UnregisterDeviceRequest</code></li>
+</ul>
+
+
+<h3>Overwriting credentials using requests</h3>
+
+<p>
+   In general you configure the <code>application</code>, <code>applicationsGroup</code> and <code>auth</code> 
+   parameters at one place on your Pushwoosh client. 
+</p>
+<p>
+    But, in some cases you'll want to use specific credentials at request time, it's possible to overwrite the 
+    credentials parameters configured in your Pushwoosh client for only one particular request.
+</p>
+{% highlight php %}
+<?php 
+$request = CreateMessageRequest::create();
+$request->setApplication('XXXXX-XXXXX')
+$request->setAuth('xxxxxxxx');
+
+// Here the credentials used are those configured in the request object
+// and not the ones configured in the Pushwoosh client
+$response = $pushwoosh->createMessage($request);
+?>
+{% endhighlight %}
+
+
+<h2>Responses</h2>
+
+<p>
+    Each response received from the Pushwoob REST Web Services is represented by a <code>xxxResponse</code> response 
+    object / class defined in the <code>Gomoob\Pushwoosh\Model\Response namespace</code>.
+</p>
+
+Then you call a method by using a request object and receive a response object with a success message or the detail of an error.
+
+<h3>Response classes</h3>
+
+<p>
+    The available response objects returned from the Pushwoosh client methods are the followings.
+</p>
+<ul>
+    <li><code>/createMessage</code> => <code>CreateMessageResponse</code></li>
+    <li><code>/deleteMessage</code> => <code>DeleteMessageResponse</code></li>
+    <li><code>/getNearestZone</code> => <code>GetNearestZoneResponse</code></li>
+    <li><code>/pushStat</code> => <code>PushStatResponse</code></li>
+    <li><code>/registerDevice</code> => <code>RegisterDeviceResponse</code></li>
+    <li><code>/setBadge</code> => <code>SetBadgeResponse</code></li>
+    <li><code>/setTags</code> => <code>SetTagsResponse</code></li>
+    <li><code>/unregisterDevice</code> => <code>UnregisterDeviceResponse</code></li>
+</ul>
+
+<h2>API design</h2>
+
+<h3>Creation methods</h3>
+
+<p>
+    All the concrete classes provided by the Data Model layer (Request, Response and Notification classes) can be 
+    instantiated using the <code>new</code> operator or a static <code>create</code> method.
+</p>
+<p>
+    For example the 2 following code are equivalent.
+</p>
+
+{% highlight php %}
+<?php 
+$request = CreateMessageRequest::create();
+?>
+{% endhighlight %}
+
+{% highlight php %}
+<?php 
+$request = new CreateMessageRequest();
+?>
+{% endhighlight %}
+
+<h3>Setters</h3>
+
+<p>
+    All the setters provided by the Data Model classes (Request, Response and Notification classes) return the instance 
+    associated to the object where the call has been done. 
+</p>
+<p>
+    For example the 2 following codes are equivalent.
+</p>
+
+{% highlight php %}
+<?php 
+$request = CreateMessageRequest::create()
+    ->setApplication('XXXXX-XXXXX')
+    ->setAuth('xxxxxxxx')
+    ->addNotification($notification0)
+    ->addNotification($notification1);
+?>
+{% endhighlight %}
+
+{% highlight php %}
+<?php 
+$request = CreateMessageRequest::create();
+$request->setApplication('XXXXX-XXXXX');
+$request->setAuth('xxxxxxxx')
+$request->addNotification($notification0)
+$request->addNotification($notification1);
+?>
+{% endhighlight %}

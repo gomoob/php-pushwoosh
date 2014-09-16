@@ -1,0 +1,76 @@
+---
+layout: default
+title: /createMessage
+---
+
+<h1>/createMessage</h1>
+
+<h2>Offical documentation</h2>
+
+[Method /createMessage](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
+
+<h2>How to use it</h2>
+
+ * Create a `CreateMessageRequest` object and configure it
+ * Call the `createMessage` Pushwoosh client method with your `CreateMessageRequest` object
+ * Check if everything is good using the returned `CreateMessageResponse` object
+
+<h2>Samples</h2>
+
+<h3>Hello World</h3>
+
+{% highlight php %}
+
+use \Gomoob\Pushwoosh\Model\Notification\Notification;
+use \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+
+$createMessageRequest = CreateMessageRequest::create()
+    ->addNotification(Notification::create()->setContent('Hello World'!));
+
+$createMessageResponse = $pushwooshClient->createMessage($createMessageRequest);
+
+if($createMessageResponse->isOk() {
+
+    print 'Great, message sent !';
+
+} else {
+
+    print 'It is not working :-(';
+    print 'Status code : ' . $createMessageResponse->getStatusCode();
+    print 'Status message : ' . $createMessageResponse->getStatusMessage();
+
+}
+{% endhighlight %}
+
+<h3>Define multiple notifications</h3>
+
+{% highlight php %}
+$createMessageRequest = CreateMessageRequest::create()
+    -> addNotification(Notification::create()->setContent('Hello'))
+    -> addNotification(Notification::create()->setContent('World'))
+    -> addNotification(Notification::create()->setContent('!'));
+
+$pushwooshClient->createMessage($createMessageRequest);
+{% endhighlight %}
+
+<h3>Attach additional data</h3>
+
+{% highlight php %}
+
+$notification = Notification::create()
+    ->setDataParameter('data_parameter_1', 'data_parameter_1_value')
+    ->setDataParameter('data_parameter_2', 'data_parameter_2_value');
+
+$pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
+{% endhighlight %}
+
+<h3>Send to only specific devices</h3>
+
+{% highlight php %}
+$notification = Notification::create()
+    ->addDevice('DEVICE_TOKEN_1')
+    ->addDevice('DEVICE_TOKEN_2')
+    ->addDevice('DEVICE_TOEKN_3');
+
+$pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
+{% endhighlight %}

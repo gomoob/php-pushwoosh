@@ -1,133 +1,133 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+title: GoMoob Pushwoosh PHP Library
+---
 
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv="X-UA-Compatible" content="chrome=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+<h1>
+    <a name="gomoob-pushwoosh-php-library" 
+       class="anchor" 
+       href="#gomoob-pushwoosh-php-library">
+        <span class="octicon octicon-link"></span>
+    </a>
+    GoMoob Pushwoosh PHP Library
+</h1>
 
-        <!--[if lt IE 9]>
-        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+<blockquote>
+    <p>A PHP Library to easily work with the Pushwoosh REST Web Services.</p>
+</blockquote>
 
-        <title>php-pushwoosh by gomoob</title>
-    </head>
+<p>
+    <a href="https://packagist.org/packages/gomoob/php-pushwoosh">
+        <img src="https://poser.pugx.org/gomoob/php-pushwoosh/downloads.svg" 
+             alt="Total Downloads">
+    </a> 
+    <a href="https://packagist.org/packages/gomoob/php-pushwoosh">
+        <img src="https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg" 
+             alt="Latest Stable Version">
+    </a> 
+    <a href="https://packagist.org/packages/gomoob/php-pushwoosh">
+        <img src="https://poser.pugx.org/gomoob/php-pushwoosh/license.svg" 
+             alt="License">
+    </a>
+    <a href="https://travis-ci.org/gomoob/php-pushwoosh">
+        <img src="https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master" 
+             alt="Build Status">
+    </a>
+    <a href="https://coveralls.io/r/gomoob/php-pushwoosh?branch=master">
+        <img src="https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=master" 
+             alt="Coverage Status">
+    </a>
+</p>
 
-    <body>
-        <header>
-            <div class="inner">
-            <h1>php-pushwoosh</h1>
-            <h2>A PHP Library to easily work with the Pushwoosh REST Web Services.</h2>
-                <a href="https://github.com/gomoob/php-pushwoosh" 
-                   class="button">
-                    <small>View project on</small>GitHub
-                </a>
-            </div>
-        </header>
+<h2>First sample, creating a Pushwoosh message</h2>
 
-        <div id="content-wrapper">
-            <div class="inner clearfix">
+{% highlight php %}
+<?php 
+// Create a Pushwoosh client
+$pushwoosh = Pushwoosh::create()
+    ->setApplication('XXXX-XXX')
+    ->setAuth('xxxxxxxx');
 
-                <section id="main-content">
-                    <h1>
-                        <a name="gomoob-pushwoosh-php-library" 
-                           class="anchor" 
-                           href="#gomoob-pushwoosh-php-library">
-                            <span class="octicon octicon-link"></span>
-                        </a>
-                        GoMoob Pushwoosh PHP Library
-                    </h1>
+// Create a request for the '/createMessage' Web Service
+$request = CreateMessageRequest::create()
+    ->addNotification(Notification::create()->setContent('Hello Jean !'));
 
-                    <blockquote>
-                        <p>A PHP Library to easily work with the Pushwoosh REST Web Services.</p>
-                    </blockquote>
+// Call the REST Web Service
+$response = $pushwoosh->createMessage($request);
 
-                    <p>
-                        <a href="https://packagist.org/packages/gomoob/php-pushwoosh">
-                            <img src="https://poser.pugx.org/gomoob/php-pushwoosh/downloads.svg" 
-                                 alt="Total Downloads">
-                        </a> 
-                        <a href="https://packagist.org/packages/gomoob/php-pushwoosh">
-                            <img src="https://poser.pugx.org/gomoob/php-pushwoosh/v/stable.svg" 
-                                 alt="Latest Stable Version">
-                        </a> 
-                        <a href="https://packagist.org/packages/gomoob/php-pushwoosh">
-                            <img src="https://poser.pugx.org/gomoob/php-pushwoosh/license.svg" 
-                                 alt="License">
-                        </a>
-                        <a href="https://travis-ci.org/gomoob/php-pushwoosh">
-                            <img src="https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master" 
-                                 alt="Build Status">
-                        </a>
-                        <a href="https://coveralls.io/r/gomoob/php-pushwoosh?branch=master">
-                            <img src="https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=master" 
-                                 alt="Coverage Status">
-                        </a>
-                    </p>
-                    
-                    <h2>Installation</h2>
+// Check if its ok
+if($response->isOk()) {
+    print 'Great, my message has been sent !';
+} else {
+    print 'Oups, the sent failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}
 
-                    <p>
-                        The easiest way to install the library is to use 
-                        <a href="https://getcomposer.org/" target="_blank">composer</a> and define the following 
-                        dependency inside your composer.json file :
-                    </p>
-                    
-                    <p>
-                        {% highlight php %}
-                        {
-						    "require": {
-						        "gomoob/php-pushwoosh": "~0.1.0"
-						    },
-						}
-						{% endhighlight %}
-                    </p>
+Easy, isn't it ?
 
-                </section> <!-- #main-content -->
+<br/>
+<br/>
 
-                <aside id="sidebar">
-                    <a href="https://github.com/gomoob/php-pushwoosh/zipball/master" 
-                       class="button">
-                        <small>Download</small>
-                        .zip file
-                    </a>
-                    <a href="https://github.com/gomoob/php-pushwoosh/tarball/master" 
-                       class="button">
-                        <small>Download</small>
-                        .tar.gz file
-                    </a>
+<h2>Installation</h2>
 
-                    <p class="repo-owner">
-                        <a href="https://github.com/gomoob/php-pushwoosh"></a> is maintained by 
-                        <a href="https://github.com/gomoob">gomoob</a>.
-                    </p>
+<p>
+    The easiest way to install the library is to use 
+    <a href="https://getcomposer.org/" target="_blank">composer</a> and define the following 
+    dependency inside your composer.json file :
+</p>
 
-                    <p>
-                        This page was generated by <a href="https://pages.github.com">GitHub Pages</a> 
-                        using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-                    </p>
-                </aside>
-            
-            </div>
-            
-        </div>
+<p>
+{% highlight json %}
+{
+    "require": {
+        "gomoob/php-pushwoosh": "~0.1.0"
+    }
+}
+{% endhighlight %}
+</p>
 
-        <script type="text/javascript">
-        
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-        
-        </script>
-        
-        <script type="text/javascript">
-            try {
-                 var pageTracker = _gat._getTracker("UA-30020783-2");
-                 pageTracker._trackPageview();
-            } catch(err) {}
-        </script>
-    </body>
-</html>
+<h2>Documentation</h2>
+
+<ul>
+    <li>
+        <a href="general-concepts.html">General concepts</a>
+    </li>
+    <li>
+        Pushwoosh client methods
+        <ul>
+            <li>
+                <a href="create-message.html">/createMessage</a>
+            </li>
+            <li>
+                <a href="delete-message.html">/deleteMessage</a>
+            </li>
+            <li>
+                <a href="get-nearest-zone.html">/getNearestZone</a>
+            </li>
+            <li>
+                <a href="push-stat.html">/pushStat</a>
+            </li>
+            <li>
+                <a href="register-device.html">/registerDevice</a>
+            </li>
+            <li>
+                <a href="set-badge.html">/setBadge</a>
+            </li>
+            <li>
+                <a href="set-tags.html">/setTags</a>
+            </li>
+            <li>
+                <a href="unregister-device.html">/unregisterDevice</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="best-practices.html">Best practices</a>
+    </li>
+    <li>
+        <a href="api-reference.html">API Reference</a>
+    </li>
+</ul>
