@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Gomoob.html">\Gomoob</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">165</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">31</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-700117471"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-700117471" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-628136641"></a>
+                                <a href="../namespaces/Gomoob.html" style="margin-left: 30px; padding-left: 0">Gomoob</a>
+            </div>
+            <div id="namespace-628136641" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-213574669"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.html" style="margin-left: 30px; padding-left: 0">Pushwoosh</a>
+            </div>
+            <div id="namespace-213574669" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-91470301"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Client.html" style="margin-left: 30px; padding-left: 0">Client</a>
+            </div>
+            <div id="namespace-91470301" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Client.Pushwoosh.html">Pushwoosh</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Client.PushwooshMock.html">PushwooshMock</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1943844177"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1943844177" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Exception.PushwooshException.html">PushwooshException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1382116426"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-1382116426" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1170529575"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.Notification.html" style="margin-left: 30px; padding-left: 0">Notification</a>
+            </div>
+            <div id="namespace-1170529575" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.ADM.html">ADM</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Android.html">Android</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.IOS.html">IOS</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Mac.html">Mac</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">Notification</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Safari.html">Safari</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.WNS.html">WNS</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.WP.html">WP</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-354898943"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-354898943" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.CreateMessageRequest.html">CreateMessageRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.DeleteMessageRequest.html">DeleteMessageRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.GetNearestZoneRequest.html">GetNearestZoneRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.GetTagsRequest.html">GetTagsRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.PushStatRequest.html">PushStatRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.RegisterDeviceRequest.html">RegisterDeviceRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.SetBadgeRequest.html">SetBadgeRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.SetTagsRequest.html">SetTagsRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.UnregisterDeviceRequest.html">UnregisterDeviceRequest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-503855249"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-503855249" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.AbstractResponse.html">AbstractResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.CreateMessageResponse.html">CreateMessageResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.CreateMessageResponseResponse.html">CreateMessageResponseResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.DeleteMessageResponse.html">DeleteMessageResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.GetNearestZoneResponse.html">GetNearestZoneResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.GetNearestZoneResponseResponse.html">GetNearestZoneResponseResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.PushStatResponse.html">PushStatResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.RegisterDeviceResponse.html">RegisterDeviceResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.SetBadgeResponse.html">SetBadgeResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.SetTagsResponse.html">SetTagsResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.UnregisterDeviceResponse.html">UnregisterDeviceResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Gomoob.Pushwoosh.IPushwoosh.html">IPushwoosh</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small></small>SetBadgeRequest.php</h1>
+                    <p><em>gomoob/php-pushwoosh</em></p>
+                    
+
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/Gomoob.Pushwoosh.Model.Request.SetBadgeRequest.html">SetBadgeRequest</a></td>
+                            <td><em>Class which represents Pushwoosh &#039;/setBadge&#039; request.</em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr>
+                                <th>
+                                    copyright
+                                </th>
+                                <td>
+                                                                            <p>Copyright (c) 2014, GOMOOB SARL (<a href="http://gomoob.com">http://gomoob.com</a>)</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    license
+                                </th>
+                                <td>
+                                                                            <p><a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a> MIT (see the LICENSE.md file)</p>
+                                                                    </td>
+                            </tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Model\Request\SetBadgeRequest.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Gomoob.html">\Gomoob</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 15th, 2014 at 17:23.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

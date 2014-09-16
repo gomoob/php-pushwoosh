@@ -1,0 +1,2679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Gomoob.html">\Gomoob</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">165</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">31</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1994787793"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1994787793" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1654278467"></a>
+                                <a href="../namespaces/Gomoob.html" style="margin-left: 30px; padding-left: 0">Gomoob</a>
+            </div>
+            <div id="namespace-1654278467" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1542042618"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.html" style="margin-left: 30px; padding-left: 0">Pushwoosh</a>
+            </div>
+            <div id="namespace-1542042618" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-509476014"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Client.html" style="margin-left: 30px; padding-left: 0">Client</a>
+            </div>
+            <div id="namespace-509476014" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Client.Pushwoosh.html">Pushwoosh</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Client.PushwooshMock.html">PushwooshMock</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-484912605"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-484912605" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Exception.PushwooshException.html">PushwooshException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1873213602"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-1873213602" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-417124882"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.Notification.html" style="margin-left: 30px; padding-left: 0">Notification</a>
+            </div>
+            <div id="namespace-417124882" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.ADM.html">ADM</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Android.html">Android</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.IOS.html">IOS</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Mac.html">Mac</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">Notification</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Safari.html">Safari</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.WNS.html">WNS</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Notification.WP.html">WP</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1226630274"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.Request.html" style="margin-left: 30px; padding-left: 0">Request</a>
+            </div>
+            <div id="namespace-1226630274" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.CreateMessageRequest.html">CreateMessageRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.DeleteMessageRequest.html">DeleteMessageRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.GetNearestZoneRequest.html">GetNearestZoneRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.GetTagsRequest.html">GetTagsRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.PushStatRequest.html">PushStatRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.RegisterDeviceRequest.html">RegisterDeviceRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.SetBadgeRequest.html">SetBadgeRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.SetTagsRequest.html">SetTagsRequest</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Request.UnregisterDeviceRequest.html">UnregisterDeviceRequest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1031248606"></a>
+                                <a href="../namespaces/Gomoob.Pushwoosh.Model.Response.html" style="margin-left: 30px; padding-left: 0">Response</a>
+            </div>
+            <div id="namespace-1031248606" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.AbstractResponse.html">AbstractResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.CreateMessageResponse.html">CreateMessageResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.CreateMessageResponseResponse.html">CreateMessageResponseResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.DeleteMessageResponse.html">DeleteMessageResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.GetNearestZoneResponse.html">GetNearestZoneResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.GetNearestZoneResponseResponse.html">GetNearestZoneResponseResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.PushStatResponse.html">PushStatResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.RegisterDeviceResponse.html">RegisterDeviceResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.SetBadgeResponse.html">SetBadgeResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.SetTagsResponse.html">SetTagsResponse</a></li>
+                                                    <li class="class"><a href="../classes/Gomoob.Pushwoosh.Model.Response.UnregisterDeviceResponse.html">UnregisterDeviceResponse</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Gomoob.Pushwoosh.IPushwoosh.html">IPushwoosh</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Gomoob.Pushwoosh.Model.Notification.html">\Gomoob\Pushwoosh\Model\Notification</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Gomoob\Pushwoosh\Model\Notification</small>Notification</h1>
+                    <p><em>Class which represents a Pushwoosh notification.</em></p>
+                    
+
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_create" class="">create()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_addDevice" class="">addDevice()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getADM" class="">getADM()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getAndroid" class="">getAndroid()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getConditions" class="">getConditions()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getContent" class="">getContent()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getData" class="">getData()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getDevices" class="">getDevices()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getFilter" class="">getFilter()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_isIgnoreUserTimezone" class="">isIgnoreUserTimezone()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getIOS" class="">getIOS()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getLink" class="">getLink()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getMac" class="">getMac()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getPageId" class="">getPageId()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getPlatforms" class="">getPlatforms()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getSafari" class="">getSafari()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getSendDate" class="">getSendDate()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getWNS" class="">getWNS()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_getWP" class="">getWP()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setADM" class="">setADM()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setAndroid" class="">setAndroid()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setConditions" class="">setConditions()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setContent" class="">setContent()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setData" class="">setData()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setDataParameter" class="">setDataParameter()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setDevices" class="">setDevices()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setFilter" class="">setFilter()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setIgnoreUserTimezone" class="">setIgnoreUserTimezone()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setIOS" class="">setIOS()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setLink" class="">setLink()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setMac" class="">setMac()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setPageId" class="">setPageId()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setPlatforms" class="">setPlatforms()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setSafari" class="">setSafari()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setSendDate" class="">setSendDate()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setWNS" class="">setWNS()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_setWP" class="">setWP()</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#method_toJSON" class="">toJSON()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_aDM" class="">$aDM</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_android" class="">$android</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_conditions" class="">$conditions</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_content" class="">$content</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_data" class="">$data</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_devices" class="">$devices</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_filter" class="">$filter</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_iOS" class="">$iOS</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_link" class="">$link</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_mac" class="">$mac</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_safari" class="">$safari</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_sendDate" class="">$sendDate</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_ignoreUserTimezone" class="">$ignoreUserTimezone</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_minimizeLink" class="">$minimizeLink</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_pageId" class="">$pageId</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_platforms" class="">$platforms</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_wNS" class="">$wNS</a><br />
+                                                                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html#property_wP" class="">$wP</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Model.Notification.Notification.php.html"><div class="path-wrapper">Model\Notification\Notification.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Gomoob\Pushwoosh\Model\Notification\Notification</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Baptiste GAILLARD (baptiste.gaillard@gomoob.com)</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_aDM" name="property_aDM" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$aDM</h3>
+                <pre class="signature">$aDM : \Gomoob\Pushwoosh\Model\Notification\ADM</pre>
+                <p><em>An object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Gomoob.Pushwoosh.Model.Notification.ADM.html">\Gomoob\Pushwoosh\Model\Notification\ADM</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_android" name="property_android" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$android</h3>
+                <pre class="signature">$android : \Gomoob\Pushwoosh\Model\Notification\Android</pre>
+                <p><em>The object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Android.html">\Gomoob\Pushwoosh\Model\Notification\Android</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_conditions" name="property_conditions" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$conditions</h3>
+                <pre class="signature">$conditions : array</pre>
+                <p><em>An array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to send
+push notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition like
+this:</em></p>
+                <p>"conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]</p>
+<p>A Tag condition is an array like: [tagName, operator, operand], where</p>
+<ul>
+<li>tagName  : string</li>
+<li>operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”</li>
+<li>operand  : string|integer|array</li>
+</ul>
+<p>Valid operators for String tags:</p>
+<ul>
+<li>EQ        : tag value equals to operand. Operand must be a string.</li>
+</ul>
+<p>Valid operators for Integer tags:</p>
+<ul>
+<li>GTE        : tag value greater then or equals to operand. Operand must be an integer;</li>
+<li>LTE        : tag value less then or equals to operand. Operand must be an integer;</li>
+<li>EQ        : tag value equals to operand. Operand must be an integer;</li>
+<li>BETWEEN    : tag value greater then or equals to min_operand value and tag value less then or equals to max<pre><code>       operand value. Operand must be an array like: [min_value, max_value].</code></pre>
+</li>
+</ul>
+<p>Valid operators for List tags:</p>
+<ul>
+<li>IN        : Intersect user values and operand. Operand must be an array of strings like:<pre><code>       ["value 1", "value 2", "value N"].</code></pre>
+</li>
+</ul>
+<p>You cannot use 'filter' and 'conditions' parameters together.</p>
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_content" name="property_content" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$content</h3>
+                <pre class="signature">$content : string</pre>
+                <p><em>The text push message delivered to the application.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_data" name="property_data" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$data</h3>
+                <pre class="signature">$data : array</pre>
+                <p><em>Use this only if you want to pass custom data to the application (JSON format) or omit this parameter. Please
+note that iOS push is limited to 256 bytes.</em></p>
+                <p>This will be passed as a "u" parameter in the payload.</p>
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_devices" name="property_devices" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$devices</h3>
+                <pre class="signature">$devices : string[]</pre>
+                <p><em>(Optional) The list of device tokens used to identify the devices to send the notification to.</em></p>
+                <p>Not more than 1000 tokens in an array. If set, message will only be delivered to the devices in the list. Ignored
+if the applications group is used.</p>
+
+                                <h4>Type</h4>
+                string[]
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_filter" name="property_filter" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$filter</h3>
+                <pre class="signature">$filter : string</pre>
+                <p><em>The name of a filter used to select users to which one messages have to be sent.</em></p>
+                <p>This parameter is optional.</p>
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_iOS" name="property_iOS" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$iOS</h3>
+                <pre class="signature">$iOS : \Gomoob\Pushwoosh\Model\Notification\IOS</pre>
+                <p><em>The object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification Service).</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Gomoob.Pushwoosh.Model.Notification.IOS.html">\Gomoob\Pushwoosh\Model\Notification\IOS</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_link" name="property_link" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$link</h3>
+                <pre class="signature">$link</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mac" name="property_mac" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$mac</h3>
+                <pre class="signature">$mac : \Gomoob\Pushwoosh\Model\Notification\Mac</pre>
+                <p><em>The object which contains specific Pushwoosh notification informations for Mac OS X.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Mac.html">\Gomoob\Pushwoosh\Model\Notification\Mac</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_safari" name="property_safari" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$safari</h3>
+                <pre class="signature">$safari : \Gomoob\Pushwoosh\Model\Notification\Safari</pre>
+                <p><em>The object which contains specific Pushwoosh notification informations for Safari.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Safari.html">\Gomoob\Pushwoosh\Model\Notification\Safari</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sendDate" name="property_sendDate" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$sendDate</h3>
+                <pre class="signature">$sendDate : \DateTime</pre>
+                <p><em>The date when the message has to be sent, if a string is provided it must respect the following formats :
+	- &#039;now&#039;				: To indicate the message has to be sent when &quot;now&quot;.</em></p>
+                <ul>
+<li>'YYYY-MM-DD HH:mm    : Specify your own send date.</li>
+</ul>
+<p>The value of this property is "now" by default.</p>
+
+                                <h4>Type</h4>
+                \DateTime
+                &mdash; | string                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_ignoreUserTimezone" name="property_ignoreUserTimezone" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$ignoreUserTimezone</h3>
+                <pre class="signature">$ignoreUserTimezone</pre>
+                <p><em></em></p>
+                
+
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_minimizeLink" name="property_minimizeLink" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$minimizeLink</h3>
+                <pre class="signature">$minimizeLink : int</pre>
+                <p><em>Optional parameter, can have the following values :
+	- 0 or false : not minimized
+ - 1 		 : Google
+ - 2 		 : Bitly
+ - 3			 : Baidu (China)</em></p>
+                <p>Default is 1.</p>
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pageId" name="property_pageId" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$pageId</h3>
+                <pre class="signature">$pageId : int</pre>
+                <p><em>HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML content to
+the application or omit this parameter.</em></p>
+                
+
+                                <h4>Type</h4>
+                int
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_platforms" name="property_platforms" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$platforms</h3>
+                <pre class="signature">$platforms : array</pre>
+                <p><em>Sets the platforms to which ones to send messages, this attribute is an array of integer which can take the
+following values :
+ - 1 : iOS
+ - 2 : BlackBerry
+ - 3 : Android
+ - 4 : Nokia ASHA
+ - 5 : Windows Phone 7
+ - 7 : Mac OS X
+ - 8 : Windows 8
+ - 9 : Amazon
+ - 10: Safari</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_wNS" name="property_wNS" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$wNS</h3>
+                <pre class="signature">$wNS : \Gomoob\Pushwoosh\Model\Notification\WNS</pre>
+                <p><em>The object which contains specific Pushwoosh notification informations for WNS (Windows Notification Service).</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Gomoob.Pushwoosh.Model.Notification.WNS.html">\Gomoob\Pushwoosh\Model\Notification\WNS</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_wP" name="property_wP" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$wP</h3>
+                <pre class="signature">$wP : \Gomoob\Pushwoosh\Model\Notification\WP</pre>
+                <p><em>The object which contains specific Pushwoosh notification informations for WP (Windows Phone).</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Gomoob.Pushwoosh.Model.Notification.WP.html">\Gomoob\Pushwoosh\Model\Notification\WP</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_create" name="method_create" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">create()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">create() : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Utility function used to create a new notification.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>the new created notification.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addDevice" name="method_addDevice" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addDevice()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addDevice(string <span class="argument">$device</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Adds a new device Token to the list of device tokens to identify the devices to send the notification to.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$device</td>
+                                <td><p>the new device Token to add.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getADM" name="method_getADM" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getADM()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getADM() : \Gomoob\Pushwoosh\Model\Notification\ADM</pre>
+                <p><em>Gets the object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.ADM.html">\Gomoob\Pushwoosh\Model\Notification\ADM</a>
+                                            &mdash; <p>the object which contains specific Pushwoosh notification</p>
+<pre><code>    informations for ADM (Amazon Device Messaging).</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAndroid" name="method_getAndroid" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getAndroid()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAndroid() : \Gomoob\Pushwoosh\Model\Notification\Android</pre>
+                <p><em>Gets the object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Android.html">\Gomoob\Pushwoosh\Model\Notification\Android</a>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConditions" name="method_getConditions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConditions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConditions() : array</pre>
+                <p><em>Gets the array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to
+sendpush notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition
+like this:</em></p>
+                <p>"conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]</p>
+<p>A Tag condition is an array like: [tagName, operator, operand], where</p>
+<ul>
+<li>tagName  : string</li>
+<li>operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”</li>
+<li>operand  : string|integer|array</li>
+</ul>
+<p>Valid operators for String tags:</p>
+<ul>
+<li>EQ        : tag value equals to operand. Operand must be a string.</li>
+</ul>
+<p>Valid operators for Integer tags:</p>
+<ul>
+<li>GTE        : tag value greater then or equals to operand. Operand must be an integer;</li>
+<li>LTE        : tag value less then or equals to operand. Operand must be an integer;</li>
+<li>EQ        : tag value equals to operand. Operand must be an integer;</li>
+<li>BETWEEN    : tag value greater then or equals to min_operand value and tag value less then or equals to max<pre><code>       operand value. Operand must be an array like: [min_value, max_value].</code></pre>
+</li>
+</ul>
+<p>Valid operators for List tags:</p>
+<ul>
+<li>IN        : Intersect user values and operand. Operand must be an array of strings like:<pre><code>       ["value 1", "value 2", "value N"].</code></pre>
+</li>
+</ul>
+<p>You cannot use 'filter' and 'conditions' parameters together.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>the array of tag conditions.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getContent" name="method_getContent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getContent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getContent() : string</pre>
+                <p><em>Gets the text push message delivered to the application.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the test push message delivered to the application.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getData" name="method_getData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getData() : array</pre>
+                <p><em>Gets additional data to attach to the notification, use this only if you want to pass custom data to the
+application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.</em></p>
+                <p>This will be passed as a "u" parameter in the payload.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>an array which represents a JSON object.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDevices" name="method_getDevices" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDevices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDevices() : string[]</pre>
+                <p><em>Gets the list of device tokens used to identify the devices to send the notification to, this parameter is
+optional.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string[]
+                                            &mdash; <p>the list of device tokens used to identify the devices to send the notification to, this</p>
+<pre><code>    parameter is optional.</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getFilter" name="method_getFilter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getFilter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getFilter() : string</pre>
+                <p><em>Gets the name of a filter used to select users to which one messages have to be sent.</em></p>
+                <p>This parameter is optional.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the name of a filter.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isIgnoreUserTimezone" name="method_isIgnoreUserTimezone" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isIgnoreUserTimezone()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isIgnoreUserTimezone()</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getIOS" name="method_getIOS" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getIOS()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getIOS() : \Gomoob\Pushwoosh\Model\Notification\IOS</pre>
+                <p><em>Gets the object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification
+Service).</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.IOS.html">\Gomoob\Pushwoosh\Model\Notification\IOS</a>
+                                            &mdash; <p>the object which contains specific Pushwoosh notification</p>
+<pre><code>    informations for IOS (Apple Push Notification Service).</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLink" name="method_getLink" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLink()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLink()</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMac" name="method_getMac" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMac()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMac() : \Gomoob\Pushwoosh\Model\Notification\Mac</pre>
+                <p><em>Gets the object which contains specific Pushwoosh notification informations for Mac OS X.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Mac.html">\Gomoob\Pushwoosh\Model\Notification\Mac</a>
+                                            &mdash; <p>the object which contains specific Pushwoosh notification</p>
+<pre><code>    informations for Mac OS X.</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPageId" name="method_getPageId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPageId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPageId() : int</pre>
+                <p><em>Gets the HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML
+content to the application or omit this parameter.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                            &mdash; <p>the HTML page id.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPlatforms" name="method_getPlatforms" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPlatforms()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPlatforms() : array</pre>
+                <p><em>Gets the platforms to which ones to send messages, this attribute is an array of integer which can take the
+following values :
+ - 1 : iOS
+ - 2 : BlackBerry
+ - 3 : Android
+ - 4 : Nokia ASHA
+ - 5 : Windows Phone 7
+ - 7 : Mac OS X
+ - 8 : Windows 8
+ - 9 : Amazon
+ - 10: Safari</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>the platforms where to send push notifications.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSafari" name="method_getSafari" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSafari()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSafari() : \Gomoob\Pushwoosh\Model\Notification\Safari</pre>
+                <p><em>Gets the object which contains specific Pushwoosh notification informations for Safari.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Safari.html">\Gomoob\Pushwoosh\Model\Notification\Safari</a>
+                                            &mdash; <p>the object which contains specific Pushwoosh notification</p>
+<pre><code>    informations for Safari.</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getSendDate" name="method_getSendDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getSendDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getSendDate() : \DateTime</pre>
+                <p><em>Gets the date when the message has to be sent, if a string is provided it must respect the following formats :
+	- &#039;now&#039;				: To indicate the message has to be sent when &quot;now&quot;.</em></p>
+                <ul>
+<li>'YYYY-MM-DD HH:mm    : Specify your own send date.</li>
+</ul>
+
+                
+                
+                                    <h4>Returns</h4>
+                    \DateTime
+                                            &mdash; <p>| string the date when the message has to be sent, the returned value is a PHP DateTime or the</p>
+<pre><code>    string "now".</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getWNS" name="method_getWNS" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getWNS()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getWNS() : \Gomoob\Pushwoosh\Model\Notification\WNS</pre>
+                <p><em>Gets the object which contains specific Pushwoosh notification informations for WNS (Windows Notification
+Service).</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.WNS.html">\Gomoob\Pushwoosh\Model\Notification\WNS</a>
+                                            &mdash; <p>the object which contains specific Pushwoosh notification</p>
+<pre><code>    informations for WNS (Windows Notification Service).</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getWP" name="method_getWP" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getWP()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getWP() : \Gomoob\Pushwoosh\Model\Notification\WP</pre>
+                <p><em>Gets the object which contains specific Pushwoosh notification informations for WP (Windows Phone).</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.WP.html">\Gomoob\Pushwoosh\Model\Notification\WP</a>
+                                            &mdash; <p>the object which contains specific Pushwoosh notification</p>
+<pre><code>    informations for WP (Windows Phone).</code></pre>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setADM" name="method_setADM" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setADM()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setADM(\Gomoob\Pushwoosh\Model\Notification\ADM <span class="argument">$aDM</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Gomoob.Pushwoosh.Model.Notification.ADM.html">\Gomoob\Pushwoosh\Model\Notification\ADM</a></td>
+                                <td>$aDM</td>
+                                <td><p>the object which contains specific Pushwoosh notification</p>
+<pre><code>   informations for ADM (Amazon Device Messaging).</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAndroid" name="method_setAndroid" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAndroid()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setAndroid(\Gomoob\Pushwoosh\Model\Notification\Android <span class="argument">$android</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the object which contains specific Pushwoosh notification informations for Android (Google Cloud Messaging).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Android.html">\Gomoob\Pushwoosh\Model\Notification\Android</a></td>
+                                <td>$android</td>
+                                <td><p>the object which contains specific Pushwoosh</p>
+<pre><code>   notification informations for Android (Google Cloud Messaging).</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConditions" name="method_setConditions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConditions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setConditions(array <span class="argument">$conditions</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to
+sendpush notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition
+like this:</em></p>
+                <p>"conditions": [["Country", "EQ", "BR"],["Language", "EQ", "pt"]]</p>
+<p>A Tag condition is an array like: [tagName, operator, operand], where</p>
+<ul>
+<li>tagName  : string</li>
+<li>operator : “LTE”|”GTE”|”EQ”|”BETWEEN”|”IN”</li>
+<li>operand  : string|integer|array</li>
+</ul>
+<p>Valid operators for String tags:</p>
+<ul>
+<li>EQ        : tag value equals to operand. Operand must be a string.</li>
+</ul>
+<p>Valid operators for Integer tags:</p>
+<ul>
+<li>GTE        : tag value greater then or equals to operand. Operand must be an integer;</li>
+<li>LTE        : tag value less then or equals to operand. Operand must be an integer;</li>
+<li>EQ        : tag value equals to operand. Operand must be an integer;</li>
+<li>BETWEEN    : tag value greater then or equals to min_operand value and tag value less then or equals to max<pre><code>       operand value. Operand must be an array like: [min_value, max_value].</code></pre>
+</li>
+</ul>
+<p>Valid operators for List tags:</p>
+<ul>
+<li>IN        : Intersect user values and operand. Operand must be an array of strings like:<pre><code>       ["value 1", "value 2", "value N"].</code></pre>
+</li>
+</ul>
+<p>You cannot use 'filter' and 'conditions' parameters together.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$conditions</td>
+                                <td><p>the array of tag conditions.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setContent" name="method_setContent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setContent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setContent(string <span class="argument">$content</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the text push message delivered to the application.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$content</td>
+                                <td><p>the text push message delivered to the application.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setData" name="method_setData" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setData(array <span class="argument">$data</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the additional data to attach to the notification, use this only if you want to pass custom data to the
+application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.</em></p>
+                <p>This will be passed as a "u" parameter in the payload.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data</td>
+                                <td><p>the additional data to be passed to the notification.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDataParameter" name="method_setDataParameter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDataParameter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDataParameter(string <span class="argument">$parameterName</span>, mixed <span class="argument">$parameterValue</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets an additional data parameter or overwrites an existing one.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$parameterName</td>
+                                <td><p>the name of the additional data parameter to set.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$parameterValue</td>
+                                <td><p>the value of the additional data parameter to set. This parameter must be compliant</p>
+<pre><code>   with JSON primitive types or must be an array.</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDevices" name="method_setDevices" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDevices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDevices(string[] <span class="argument">$devices</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the list of device tokens used to identify the devices to send the notification to, this parameter is
+optional.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string[]</td>
+                                <td>$devices</td>
+                                <td><p>the list of device tokens used to identify the devices to send the notification to, this</p>
+<pre><code>   parameter is optional.</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFilter" name="method_setFilter" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFilter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFilter(string <span class="argument">$filter</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the name of a filter used to select users to which one messages have to be sent.</em></p>
+                <p>This parameter is optional.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$filter</td>
+                                <td><p>the name of a filter.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIgnoreUserTimezone" name="method_setIgnoreUserTimezone" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIgnoreUserTimezone()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setIgnoreUserTimezone( <span class="argument">$ignoreUserTimezone</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$ignoreUserTimezone</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIOS" name="method_setIOS" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIOS()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setIOS(\Gomoob\Pushwoosh\Model\Notification\IOS <span class="argument">$iOS</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification
+Service).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Gomoob.Pushwoosh.Model.Notification.IOS.html">\Gomoob\Pushwoosh\Model\Notification\IOS</a></td>
+                                <td>$iOS</td>
+                                <td><p>the object which contains specific Pushwoosh notification</p>
+<pre><code>   informations for IOS (Apple Push Notification Service).</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLink" name="method_setLink" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLink()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLink( <span class="argument">$link</span>)</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$link</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMac" name="method_setMac" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setMac()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setMac(\Gomoob\Pushwoosh\Model\Notification\Mac <span class="argument">$mac</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the object which contains specific Pushwoosh notification informations for Mac OS X.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Mac.html">\Gomoob\Pushwoosh\Model\Notification\Mac</a></td>
+                                <td>$mac</td>
+                                <td><p>the object which contains specific Pushwoosh notification</p>
+<pre><code>   informations for Mac OS X.</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPageId" name="method_setPageId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPageId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPageId(int <span class="argument">$pageId</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML
+content to the application or omit this parameter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$pageId</td>
+                                <td><p>the HTML page id to set1.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPlatforms" name="method_setPlatforms" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPlatforms()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPlatforms(array <span class="argument">$platforms</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the platforms to which ones to send messages, this attribute is an array of integer which can take the
+following values :
+ - 1 : iOS
+ - 2 : BlackBerry
+ - 3 : Android
+ - 4 : Nokia ASHA
+ - 5 : Windows Phone 7
+ - 7 : Mac OS X
+ - 8 : Windows 8
+ - 9 : Amazon
+ - 10: Safari</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$platforms</td>
+                                <td><p>the platforms where to send the push notifications.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSafari" name="method_setSafari" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSafari()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setSafari(\Gomoob\Pushwoosh\Model\Notification\Safari <span class="argument">$safari</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the object which contains specific Pushwoosh notification informations for Safari.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Gomoob.Pushwoosh.Model.Notification.Safari.html">\Gomoob\Pushwoosh\Model\Notification\Safari</a></td>
+                                <td>$safari</td>
+                                <td><p>the object which contains specific Pushwoosh</p>
+<pre><code>   notification informations for Safari.</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setSendDate" name="method_setSendDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setSendDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setSendDate( <span class="argument">$sendDate</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the date when the message has to be sent, if a string is provided it must respect the following formats :
+	- &#039;now&#039;				: To indicate the message has to be sent when &quot;now&quot;.</em></p>
+                <ul>
+<li>'YYYY-MM-DD HH:mm    : Specify your own send date.</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$sendDate</td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setWNS" name="method_setWNS" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setWNS()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setWNS(\Gomoob\Pushwoosh\Model\Notification\WNS <span class="argument">$wNS</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the object which contains specific Pushwoosh notification informations for WNS (Windows Notification
+Service).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Gomoob.Pushwoosh.Model.Notification.WNS.html">\Gomoob\Pushwoosh\Model\Notification\WNS</a></td>
+                                <td>$wNS</td>
+                                <td><p>the object which contains specific Pushwoosh notification</p>
+<pre><code>   informations for WNS (Windows Notification Service).</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setWP" name="method_setWP" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setWP()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setWP(\Gomoob\Pushwoosh\Model\Notification\WP <span class="argument">$wP</span>) : \Gomoob\Pushwoosh\Model\Notification\Notification</pre>
+                <p><em>Sets the object which contains specific Pushwoosh notification informations for WP (Windows Phone).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Gomoob.Pushwoosh.Model.Notification.WP.html">\Gomoob\Pushwoosh\Model\Notification\WP</a></td>
+                                <td>$wP</td>
+                                <td><p>the object which contains specific Pushwoosh notification</p>
+<pre><code>   informations for WP (Windows Phone).</code></pre></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Gomoob.Pushwoosh.Model.Notification.Notification.html">\Gomoob\Pushwoosh\Model\Notification\Notification</a>
+                                            &mdash; <p>this instance.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toJSON" name="method_toJSON" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toJSON()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toJSON() : array</pre>
+                <p><em>Creates a JSON representation of this request.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>a PHP which can be passed to the 'json_encode' PHP method.</p>
+                                                </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Notification.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Model\Notification\Notification.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Gomoob.html">\Gomoob</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 15th, 2014 at 17:23.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
