@@ -15,20 +15,23 @@
 ### Hello World
 
 ```php
-$createMessageRequest = CreateMessageRequest::create()
-    -> addNotification(Notification::create() -> setContent('Hello World'!));
-    
-$createMessageResponse = $pushwoosh -> createMessage($createMessageRequest);
+use \Gomoob\Pushwoosh\Model\Notification\Notification;
+use \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 
-if($createMessageResponse -> isOk() {
+$createMessageRequest = CreateMessageRequest::create()
+    ->addNotification(Notification::create()->setContent('Hello World'!));
+
+$createMessageResponse = $pushwooshClient->createMessage($createMessageRequest);
+
+if($createMessageResponse->isOk() {
 
     print 'Great, message sent !';
 
 } else {
 
     print 'It is not working :-(';
-    print 'Status code : ' . $createMessageResponse -> getStatusCode();
-    print 'Status message : ' . $createMessageResponse -> getStatusMessage();
+    print 'Status code : ' . $createMessageResponse->getStatusCode();
+    print 'Status message : ' . $createMessageResponse->getStatusMessage();
 
 }
 ```
@@ -37,30 +40,30 @@ if($createMessageResponse -> isOk() {
 
 ```php
 $createMessageRequest = CreateMessageRequest::create()
-    -> addNotification(Notification::create() -> setContent('Hello'))
-    -> addNotification(Notification::create() -> setContent('World'))
-    -> addNotification(Notification::create() -> setContent('!'));
+    -> addNotification(Notification::create()->setContent('Hello'))
+    -> addNotification(Notification::create()->setContent('World'))
+    -> addNotification(Notification::create()->setContent('!'));
 
-$pushwoosh -> createMessage($createMessageRequest);
+$pushwooshClient->createMessage($createMessageRequest);
 ```
 
 ### Attach additional data
 
 ```php
 $notification = Notification::create()
-    -> setDataParameter('data_parameter_1', 'data_parameter_1_value')
-    -> setDataParameter('data_parameter_2', 'data_parameter_2_value');
+    ->setDataParameter('data_parameter_1', 'data_parameter_1_value')
+    ->setDataParameter('data_parameter_2', 'data_parameter_2_value');
 
-$pushwoosh -> createMessage(CreateMessageRequest::create() -> addNotification($notification));
+$pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
 ```
 
 ### Send to only specific devices
 
-```
+```php
 $notification = Notification::create()
-    -> addDevice('DEVICE_TOKEN_1')
-    -> addDevice('DEVICE_TOKEN_2')
-    -> addDevice('DEVICE_TOEKN_3');
+    ->addDevice('DEVICE_TOKEN_1')
+    ->addDevice('DEVICE_TOKEN_2')
+    ->addDevice('DEVICE_TOEKN_3');
 
-$pushwoosh -> createMessage(CreateMessageRequest::create() -> addNotification($notification));
+$pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
 ```
