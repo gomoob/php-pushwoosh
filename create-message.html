@@ -5,72 +5,226 @@ title: /createMessage
 
 <h1>/createMessage</h1>
 
-<h2>Offical documentation</h2>
+<p>
+    <b style="font-weight: bold;">Remote API Guide link</b> 
+    <br/>
+    <a href="http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create">
+        Method /createMessage
+    </a>
+</p>
+<p>
+    <b style="font-weight: bold;">Signature</b>
+    <br/>
+    <code>CreateMessageResponse createMessage(CreateMessageRequest $createMessageRequest)</code>
+</p>
 
-[Method /createMessage](http://www.pushwoosh.com/programming-push-notification/pushwoosh-push-notification-remote-api/#PushserviceAPI-Method-messages-create)
+<h2>CreateMessageRequest class</h2>
 
-<h2>How to use it</h2>
-
- * Create a `CreateMessageRequest` object and configure it
- * Call the `createMessage` Pushwoosh client method with your `CreateMessageRequest` object
- * Check if everything is good using the returned `CreateMessageResponse` object
-
-<h2>Samples</h2>
-
-<h3>Hello World</h3>
-
+<p>
+    <b style="font-weight: bold;">Full name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Request\CreateMessageRequest</code>
+</p>
+<p>
+    The <code>CreateMessageRequest</code> class is principally used to define a list of <code>Notification</code> 
+    objects where each object defines a Pushwoosh push notification to send to a set of devices.
+</p>
+<p>
+    You can manipulate the <code>Notification</code> objects linked to a <code>CreateMessageRequest</code> object by 
+    using the <code>addNotification($notification)</code>, <code>getNotifications()</code> and 
+    <code>setNotifications()</code> methods.
+</p>
 {% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Notification\Notification;
+use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 
-use \Gomoob\Pushwoosh\Model\Notification\Notification;
-use \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+// Adding notifications using the 'addNotification($notification)' method
+$request0 = CreateMessageRequest::create()
+    ->addNotification(Notification::create()->setContent('Hello'))
+    ->addNotification(Notification::create()->setContent('World'))
+    ->addNotification(Notification::create()->setContent('!'));
 
-$createMessageRequest = CreateMessageRequest::create()
-    ->addNotification(Notification::create()->setContent('Hello World'!));
-
-$createMessageResponse = $pushwooshClient->createMessage($createMessageRequest);
-
-if($createMessageResponse->isOk() {
-
-    print 'Great, message sent !';
-
-} else {
-
-    print 'It is not working :-(';
-    print 'Status code : ' . $createMessageResponse->getStatusCode();
-    print 'Status message : ' . $createMessageResponse->getStatusMessage();
-
-}
+// Adding notifications using the 'setNotifications($notifications)' method
+$request1 = CreateMessageRequest::create()->setNotifications(
+    array(
+        Notification::create()->setContent('Hello'),
+        Notification::create()->setContent('World'),
+        Notification::create()->setContent('!'),
+    )
+); 
+?>
 {% endhighlight %}
 
-<h3>Define multiple notifications</h3>
+<h3>Notification class</h3>
 
-{% highlight php %}
-$createMessageRequest = CreateMessageRequest::create()
-    -> addNotification(Notification::create()->setContent('Hello'))
-    -> addNotification(Notification::create()->setContent('World'))
-    -> addNotification(Notification::create()->setContent('!'));
+<p>
+    <b style="font-weight: bold;">Full name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\Notification</code>
+</p>
+<p>
+    The <code>Notification</code> class allow to describe the content of a Push Notification to be sent to one or 
+    multiple devices. 
+</p>
 
-$pushwooshClient->createMessage($createMessageRequest);
-{% endhighlight %}
+<h4>General settings</h4>
+
+<br/>
+
+<p>
+	<code style="font-weight: bold;">
+	    conditions
+	</code>
+	<br/>
+	<font style="font-weight: bold">Methods</font>
+	<br/>
+	<code>addCondition($condition)</code>, <code>getConditions()</code>, <code>setConditions($conditions)</code>
+	<br/>
+	<font style="font-weight: bold">Samples</font>
+	<br/>
+	{% highlight php %}
+	<?php
+// Setting conditions with the 'addCondition' method
+$notification = Notification::create();
+$notification->addCondition(StringCondition::create('stringCondition')->eq('toto'));
+$notification->addCondition(InCondition::create('intCondition')->lte(15));
+$notification->addCondition(ListCondition::create('listCondition')->in('value 1', 'value 2', 'value 3'));
+
+// Setting conditions with the 'setConditions' method
+$notification = Notification::create()->setConditions(
+    array(
+        StringCondition::create('stringCondition')->eq('toto'),
+        IntCondition::create('intCondition')->lte(15),
+        ListCondition::create('listCondition')->in('value 1', 'value 2', 'value 3'));
+    )
+);
+	?>
+	{% endhighlight %}
+</p>
+
+<ul>
+    <li>
+        <code>content</code>
+        <br/>
+        Methods
+        <br/>
+        <code>getContent()</code>, <code>setContent($content)</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>data</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>devices</code>
+        <br/>
+        Methods
+        <br/>
+        <code>addDevice($device)</code>, <code>getDevices()</code>, <code>setDevices($devices)</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>filter</code>
+        <br/>
+        Methods
+        <br/>
+        <code>getFilter()</code>, <code>setFilter($filter)</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>ignoreUserTimezone</code>
+        <br/>
+        Methods
+        <br/>
+        <code>isIgnoreUserTimezone()</code>, <code>setIgnoreUserTimezone($ignoreUserTimezone)</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>link</code>
+        <br/>
+        Methods
+        <br/>
+        <code>getLink()</code>, <code>setLink($link)</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>minimizeLink</code>
+        <br/>
+        Methods
+        <br/>
+        <code>getMinimizeLink()</code>, <code>setMinimizeLink($minimizeLink)</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>pageId</code>
+        <br/>
+        Methods
+        <br/>
+        <code>getPageId()</code>, <code>setPageId($pageId)</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>platforms</code>
+        <br/>
+        <br/>
+    </li>
+    <li>
+        <code>sendDate</code>
+        <br/>
+        <br/>
+    </li>
+</ul>
+
+<h4>Specific platform settings</h4>
+
+<h5>Amazon</h5>
+
+<h5>Android</h5>
+
+<h5>BlackBerry</h5>
+
+<h5>iOS</h5>
+
+<h5>Mac OS X</h5>
+
+<h5>Safari</h5>
+
+<h5>Windows Notification Service</h5>
+
+<h5>Windows Phone</h5>
+
+<h2><code>CreateMessageResponse</code> class</h2>
 
 <h3>Attach additional data</h3>
 
 {% highlight php %}
-
+<?php
 $notification = Notification::create()
     ->setDataParameter('data_parameter_1', 'data_parameter_1_value')
     ->setDataParameter('data_parameter_2', 'data_parameter_2_value');
 
 $pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
+?>
 {% endhighlight %}
 
 <h3>Send to only specific devices</h3>
 
 {% highlight php %}
+<?php
 $notification = Notification::create()
     ->addDevice('DEVICE_TOKEN_1')
     ->addDevice('DEVICE_TOKEN_2')
     ->addDevice('DEVICE_TOEKN_3');
 
 $pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
+?>
 {% endhighlight %}
