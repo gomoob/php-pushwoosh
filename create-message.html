@@ -72,6 +72,7 @@ $request1 = CreateMessageRequest::create()->setNotifications(
 
 <br/>
 
+<!-- 'conditions' -->
 <p>
 	<code style="font-weight: bold;">
 	    conditions
@@ -102,6 +103,7 @@ $notification = Notification::create()->setConditions(
 	{% endhighlight %}
 </p>
 
+<!-- 'content -->
 <p>
     <code style="font-weight: bold;">content</code>
     <br/>
@@ -128,16 +130,23 @@ $notification = Notification::create()
     {% endhighlight %}
 </p>
 
+<!-- 'data' -->
 <p>
     <code style="font-weight: bold;">data</code>
     <br/>
     <font style="font-weight: bold">Methods</font>
     <br/>
-    <code>getContent()</code>, <code>setContent($content)</code>
+    <code>getData()</code>, <code>setData($data)</code>
     <br/>
     <font style="font-weight: bold">Sample</font>
     {% highlight php %}
 <?php
+$notification = Notification::create()->setData(
+    array(
+        'data_parameter_1' => 'data_parameter_1_value',
+        'data_parameter_2', 'data_parameter_2_value'
+    )
+);
 ?>
     {% endhighlight %}
 </p>
@@ -470,15 +479,3 @@ Notification::create()->setWP(
 </p>
 
 <h2><code>CreateMessageResponse</code> class</h2>
-
-<h3>Attach additional data</h3>
-
-{% highlight php %}
-<?php
-$notification = Notification::create()
-    ->setDataParameter('data_parameter_1', 'data_parameter_1_value')
-    ->setDataParameter('data_parameter_2', 'data_parameter_2_value');
-
-$pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
-?>
-{% endhighlight %}
