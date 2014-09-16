@@ -81,15 +81,14 @@ $request1 = CreateMessageRequest::create()->setNotifications(
 	<br/>
 	<code>addCondition($condition)</code>, <code>getConditions()</code>, <code>setConditions($conditions)</code>
 	<br/>
-	<font style="font-weight: bold">Samples</font>
-	<br/>
+	<font style="font-weight: bold">Sample</font>
 	{% highlight php %}
-	<?php
+<?php
 // Setting conditions with the 'addCondition' method
-$notification = Notification::create();
-$notification->addCondition(StringCondition::create('stringCondition')->eq('toto'));
-$notification->addCondition(InCondition::create('intCondition')->lte(15));
-$notification->addCondition(ListCondition::create('listCondition')->in('value 1', 'value 2', 'value 3'));
+$notification = Notification::create()
+    ->addCondition(StringCondition::create('stringCondition')->eq('toto'));
+    ->addCondition(InCondition::create('intCondition')->lte(15));
+    ->addCondition(ListCondition::create('listCondition')->in('value 1', 'value 2', 'value 3'));
 
 // Setting conditions with the 'setConditions' method
 $notification = Notification::create()->setConditions(
@@ -99,108 +98,376 @@ $notification = Notification::create()->setConditions(
         ListCondition::create('listCondition')->in('value 1', 'value 2', 'value 3'));
     )
 );
-	?>
+?>
 	{% endhighlight %}
 </p>
 
-<ul>
-    <li>
-        <code>content</code>
-        <br/>
-        Methods
-        <br/>
-        <code>getContent()</code>, <code>setContent($content)</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>data</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>devices</code>
-        <br/>
-        Methods
-        <br/>
-        <code>addDevice($device)</code>, <code>getDevices()</code>, <code>setDevices($devices)</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>filter</code>
-        <br/>
-        Methods
-        <br/>
-        <code>getFilter()</code>, <code>setFilter($filter)</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>ignoreUserTimezone</code>
-        <br/>
-        Methods
-        <br/>
-        <code>isIgnoreUserTimezone()</code>, <code>setIgnoreUserTimezone($ignoreUserTimezone)</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>link</code>
-        <br/>
-        Methods
-        <br/>
-        <code>getLink()</code>, <code>setLink($link)</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>minimizeLink</code>
-        <br/>
-        Methods
-        <br/>
-        <code>getMinimizeLink()</code>, <code>setMinimizeLink($minimizeLink)</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>pageId</code>
-        <br/>
-        Methods
-        <br/>
-        <code>getPageId()</code>, <code>setPageId($pageId)</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>platforms</code>
-        <br/>
-        <br/>
-    </li>
-    <li>
-        <code>sendDate</code>
-        <br/>
-        <br/>
-    </li>
-</ul>
+<p>
+    <code style="font-weight: bold;">content</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getContent()</code>, <code>setContent($content)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+// Setting the same content for all languages
+$notification = Notification::create()->setContent('Hello World !');
+
+// Setting different contents depending on the language
+$notification = Notification::create()
+    ->setContent(
+        array(
+            'fr' => 'Bonjour !',
+            'en' => 'Hello !',
+            'es' => 'Buenos Dias !'
+        )
+    );
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">data</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getContent()</code>, <code>setContent($content)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">devices</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>addDevice($device)</code>, <code>getDevices()</code>, <code>setDevices($devices)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+// Setting devices with the 'addDevice' method
+$notification = Notification::create()
+    ->addDevice('Device 0')
+    ->addDevice('Device 1')
+    ->addDevice('Device 2');
+
+// Setting devices with the 'setDevices' method
+$notification = Notification::create()
+    ->setDevices(
+        array(
+            'Device 0',
+            'Device 1',
+            'Device 2'
+        )
+    );
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">filter</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getFilter()</code>, <code>setFilter($filter)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+$notification = Notification::create()->setFilter('FILTER_NAME');
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">ignoreUserTimezone</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>isIgnoreUserTimezone()</code>, <code>setIgnoreUserTimezone($ignoreUserTimezone)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setIgnoreUserTimezone(false);
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">link</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getLink()</code>, <code>setLink($link)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setLink('http://www.gomoob.com');
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">minimizeLink</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getMinimizeLink()</code>, <code>setMinimizeLink($minimizeLink)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setMinimizeLink(1);
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">pageId</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getPageId()</code>, <code>setPageId($pageId)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setPageId(39);
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">platforms</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>addPlatform($platform)</code>, <code>getPlatforms()</code>, <code>setPlatforms($platforms)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+// Setting platforms with the 'addPlatform' function
+Notification::create()
+    ->addPlatform(Platform::ios())
+    ->addPlatform(Platform::android())
+    ->addPlatform(Platform::blackBerry());
+
+// Setting platforms with the 'setPlatforms' function
+Notification::create()->setPlatforms(
+    array(
+        Platform::ios(),
+        Platform::android(),
+        Platform::blackBerry()
+    )
+)
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">sendDate</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getSendDate()</code>, <code>setSendDate($sendDate)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+// Set a specific date
+Notification::create()->setSendDate($dateTime);
+
+// Or simply set 'now'
+Notification::create()->setSendDate('now');
+?>
+    {% endhighlight %}
+</p>
 
 <h4>Specific platform settings</h4>
 
-<h5>Amazon</h5>
+<p>
+    In addition to generic notification settings its possible to specify specific settings depending on the platform where 
+    the Push notifications are sent.
+</p>
+<p>
+    Each specific platform setting is defined using an additional setting object, the classes used to create those 
+    settings objects are described in the following sections.
+</p>
+
+<h5>Amazon Device Messaging</h5>
+
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\ADM</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setADM(
+    ADM::create()->setBanner($banner)
+                 ->setCustomIcon($customIcon)
+                 ->setHeader($header)
+                 ->setIcon($icon)
+                 ->setRootParams($rootParams)
+                 ->setSound($sound)
+                 ->setTtl($ttl)
+);
+?>
+    {% endhighlight %}
+</p>
 
 <h5>Android</h5>
+
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\Android</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setAndroid(
+    ADM::create()->setBanner($banner)
+                 ->setCustomIcon($customIcon)
+                 ->setGcmTtl(3600)
+                 ->setHeader($header)
+                 ->setIcon($icon)
+                 ->setRootParams($rootParams)
+                 ->setSound($sound)
+);
+?>
+    {% endhighlight %}
+</p>
 
 <h5>BlackBerry</h5>
 
 <h5>iOS</h5>
 
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\IOS</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setIOS(
+    IOS::create()->setAps($apsr)
+                 ->setApnsTrimContent($apnsTrimContent)
+                 ->setBadges($badges)
+                 ->setContentAvailable($contentAvailable)
+                 ->setRootParams($rootParams)
+                 ->setSound($sound)
+                 ->setTtl($ttl)
+);
+?>
+    {% endhighlight %}
+</p>
+
 <h5>Mac OS X</h5>
+
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\Mac</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setMac(
+    Mac::create()->setBadges($badges)
+                 ->setRootParams($rootParams)
+                 ->setSound($sound)
+                 ->setTtl($ttl)
+);
+?>
+    {% endhighlight %}
+</p>
 
 <h5>Safari</h5>
 
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\Safari</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setSafari(
+    Safari::create()->setAction($action)
+                    ->setTitle($title)
+                    ->setTtl($ttl)
+                    ->setUrl($url)
+);
+?>
+    {% endhighlight %}
+</p>
+
 <h5>Windows Notification Service</h5>
 
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\WNS</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setWNS(
+    WNS::create()->setContent($content)
+                 ->setTag($tag)
+                 ->setType($type)
+);
+?>
+    {% endhighlight %}
+</p>
+
 <h5>Windows Phone</h5>
+
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\WP</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setWP(
+    WP::create()->setBackbackground($backbackgroud)
+                ->setBackground($background)
+                ->setBacktitle($backtitle)
+                ->setCount($count)
+                ->setType($type)
+);
+?>
+    {% endhighlight %}
+</p>
 
 <h2><code>CreateMessageResponse</code> class</h2>
 
@@ -211,19 +478,6 @@ $notification = Notification::create()->setConditions(
 $notification = Notification::create()
     ->setDataParameter('data_parameter_1', 'data_parameter_1_value')
     ->setDataParameter('data_parameter_2', 'data_parameter_2_value');
-
-$pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
-?>
-{% endhighlight %}
-
-<h3>Send to only specific devices</h3>
-
-{% highlight php %}
-<?php
-$notification = Notification::create()
-    ->addDevice('DEVICE_TOKEN_1')
-    ->addDevice('DEVICE_TOKEN_2')
-    ->addDevice('DEVICE_TOEKN_3');
 
 $pushwooshClient->createMessage(CreateMessageRequest::create()->addNotification($notification));
 ?>
