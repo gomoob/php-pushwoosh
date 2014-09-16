@@ -19,10 +19,22 @@ title: /deleteMessage
     <code>DeleteMessageResponse deleteMessage(DeleteMessageRequest $deleteMessageRequest)</code>
 </p>
 
-<h2>DeleteMessageRequest class</h2>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 
-<p>
-    <b style="font-weight: bold;">Full name</b>
-    <br/>
-    <code>Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest</code>
-</p>
+// Creates the request instance
+$request = DeleteMessageRequest::create()->setMessage('MESSAGE_CODE');
+
+// Call the '/deleteMessage' Web Service
+$response = $pushwoosh->deleteMessage($request);
+
+if($response->isOk()) {
+    print 'Great, my message has been deleted !';
+} else {
+    print 'Oups, the deletion failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}

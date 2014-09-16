@@ -54,6 +54,11 @@ $request1 = CreateMessageRequest::create()->setNotifications(
         Notification::create()->setContent('!'),
     )
 ); 
+
+// Call the '/createMessage' Web Service
+$pushwoosh->createMessage($request0);
+$pushwoosh->createMessage($request1);
+
 ?>
 {% endhighlight %}
 
