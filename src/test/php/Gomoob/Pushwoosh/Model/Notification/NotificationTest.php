@@ -405,6 +405,10 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setRootParams(array('key' => 'value'))
                     ->setSound('push.mp3')
             )
+            ->setBlackBerry(
+                BlackBerry::create()
+                    ->setHeader('header')
+            )
             ->setIOS(
                 IOS::create()
                     ->setApnsTrimContent(true)
@@ -451,7 +455,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(48, $array);
+        $this->assertCount(49, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -507,6 +511,9 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('icon', $array['android_icon']);
         $this->assertEquals(array('key' => 'value'), $array['android_root_params']);
         $this->assertEquals('push.mp3', $array['android_sound']);
+
+        // Test BlackBerry parameters
+        $this->assertEquals('header', $array['blackberry_header']);
 
         // Test IOS parameters
         $this->assertEquals(1, $array['apns_trim_content']);

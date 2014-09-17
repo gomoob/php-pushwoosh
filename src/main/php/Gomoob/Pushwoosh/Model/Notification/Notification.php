@@ -33,6 +33,13 @@ class Notification
     private $android;
 
     /**
+	 * The object which contains specific Pushwoosh notification informations for BlackBerry.
+	 *
+	 * @var \Gomoob\Pushwoosh\Model\Notification\BlackBerry
+	 */
+    private $blackBerry;
+
+    /**
 	 * An array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to send
 	 * push notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition like
 	 * this:
@@ -266,6 +273,16 @@ class Notification
     }
 
     /**
+     * Gets the object which contains specific Pushwoosh notification informations for BlackBerry.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\BlackBerry
+     */
+    public function getBlackBerry()
+    {
+        return $this->blackBerry;
+    }
+
+    /**
 	 * Gets the array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to
 	 * sendpush notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition
 	 * like this:
@@ -496,6 +513,21 @@ class Notification
     public function setAndroid(Android $android)
     {
         $this->android = $android;
+
+        return $this;
+    }
+
+    /**
+     * Sets the object which contains specific Pushwoosh notification informations for BlackBerry.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Notification\BlackBerry $blackBerry the object which contains specific Pushwoosh
+     *                                                                    notification informations for BlackBerry.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setBlackBerry(BlackBerry $blackBerry)
+    {
+        $this->blackBerry = $blackBerry;
 
         return $this;
     }
@@ -847,6 +879,17 @@ class Notification
         if (isset($this->android)) {
 
             foreach ($this->android->toJSON() as $key => $value) {
+
+                $json[$key] = $value;
+
+            }
+
+        }
+
+        // BlackBerry specific informations
+        if (isset($this->blackBerry)) {
+
+            foreach ($this->blackBerry->toJSON() as $key => $value) {
 
                 $json[$key] = $value;
 
