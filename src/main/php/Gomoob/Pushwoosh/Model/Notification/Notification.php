@@ -128,6 +128,21 @@ class Notification
     private $minimizeLink;
 
     /**
+     * HTML page id (created from Application's HTML Pages). Use this if you want to deliver additional HTML content to
+     * the application or omit this parameter.
+     *
+     * @var int
+     */
+    private $pageId;
+
+    /**
+     * Sets the platforms to which ones to send messages.
+     *
+     * @var \Gomoob\Pushwoosh\Model\Notification\Platform
+     */
+    private $platforms;
+
+    /**
 	 * The object which contains specific Pushwoosh notification informations for Safari.
 	 *
 	 * @var \Gomoob\Pushwoosh\Model\Notification\Safari
@@ -144,31 +159,6 @@ class Notification
 	 * @var \DateTime | string
 	 */
     private $sendDate = 'now';
-
-    /**
-	 * HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML content to
-	 * the application or omit this parameter.
-	 *
-	 * @var int
-	 */
-    private $pageId;
-
-    /**
-     * Sets the platforms to which ones to send messages, this attribute is an array of integer which can take the
-     * following values :
-     *  - 1 : iOS
-     *  - 2 : BlackBerry
-     *  - 3 : Android
-     *  - 4 : Nokia ASHA
-     *  - 5 : Windows Phone 7
-     *  - 7 : Mac OS X
-     *  - 8 : Windows 8
-     *  - 9 : Amazon
-     *  - 10: Safari
-     *
-     * @var array
-     */
-    private $platforms;
 
     /**
 	 * The object which contains specific Pushwoosh notification informations for WNS (Windows Notification Service).
@@ -202,7 +192,7 @@ class Notification
      */
     public function addCondition(ICondition $condition)
     {
-        if ($this->conditions === null) {
+        if (!isset($this->conditions)) {
 
             $this->conditions = array();
 
@@ -228,6 +218,27 @@ class Notification
         }
 
         $this->devices[] = $device;
+
+        return $this;
+
+    }
+
+    /**
+     * Add a new platform to the list of platforms where to send push notification.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Notification\Platform $platform the new platform to add.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function addPlatform(Platform $platform)
+    {
+        if (!isset($this->platforms)) {
+
+            $this->platforms = array();
+
+        }
+
+        $this->platforms[] = $platform;
 
         return $this;
 
@@ -399,19 +410,9 @@ class Notification
     }
 
     /**
-	 * Gets the platforms to which ones to send messages, this attribute is an array of integer which can take the
-     * following values :
-     *  - 1 : iOS
-     *  - 2 : BlackBerry
-     *  - 3 : Android
-     *  - 4 : Nokia ASHA
-     *  - 5 : Windows Phone 7
-     *  - 7 : Mac OS X
-     *  - 8 : Windows 8
-     *  - 9 : Amazon
-     *  - 10: Safari
+	 * Gets the platforms to which ones to send messages.
      *
-	 * @return array the platforms where to send push notifications.
+	 * @return \Gomoob\Pushwoosh\Model\Notification\Platform[] the platforms where to send push notifications.
 	 */
     public function getPlatforms()
     {
@@ -680,19 +681,10 @@ class Notification
     }
 
     /**
-     * Sets the platforms to which ones to send messages, this attribute is an array of integer which can take the
-     * following values :
-     *  - 1 : iOS
-     *  - 2 : BlackBerry
-     *  - 3 : Android
-     *  - 4 : Nokia ASHA
-     *  - 5 : Windows Phone 7
-     *  - 7 : Mac OS X
-     *  - 8 : Windows 8
-     *  - 9 : Amazon
-     *  - 10: Safari
+     * Sets the platforms to which ones to send messages.
      *
-     * @param array $platforms the platforms where to send the push notifications.
+     * @param \Gomoob\Pushwoosh\Model\Notification\Platform[] $platforms the platforms where to send the push
+     *                                                                   notifications.
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
      */

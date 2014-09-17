@@ -87,6 +87,40 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test method for the <tt>addPlatform($platform)</tt>, <tt>getPlatforms()</tt> and
+     * <tt>setPlatforms($platforms)</tt> functions.
+     */
+    public function testGetSetPlatforms()
+    {
+        $platform0 = Platform::amazon();
+        $platform1 = Platform::android();
+        $platform2 = Platform::blackBerry();
+
+        // Test for the 'addPlatform' method
+        $notification = new Notification();
+        $this->assertNull($notification->getPlatforms());
+        $this->assertSame($notification, $notification->setPlatforms(array($platform0, $platform1, $platform2)));
+        $platforms = $notification->getPlatforms();
+        $this->assertCount(3, $platforms);
+        $this->assertSame($platform0, $platforms[0]);
+        $this->assertSame($platform1, $platforms[1]);
+        $this->assertSame($platform2, $platforms[2]);
+
+        // Test for the 'setPlatforms' method
+        $notification = new Notification();
+        $this->assertNull($notification->getPlatforms());
+        $this->assertSame($notification, $notification->addPlatform($platform0));
+        $this->assertSame($notification, $notification->addPlatform($platform1));
+        $this->assertSame($notification, $notification->addPlatform($platform2));
+        $platforms = $notification->getPlatforms();
+        $this->assertCount(3, $platforms);
+        $this->assertSame($platform0, $platforms[0]);
+        $this->assertSame($platform1, $platforms[1]);
+        $this->assertSame($platform2, $platforms[2]);
+
+    }
+
+    /**
      * Test method for the <tt>getADM()</tt> and <tt>setADM($aDM)</tt> functions.
      */
     public function testGetSetADM()
@@ -203,19 +237,6 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($notification->getPageId());
         $this->assertSame($notification, $notification->setPageId(15));
         $this->assertEquals(15, $notification->getPageId());
-    }
-
-    /**
-	 * Test method for the <tt>getPlatforms()</tt> and <tt>setPlatforms($platforms)</tt> functions.
-	 */
-    public function testGetSetPlatforms()
-    {
-        $notification = new Notification();
-        $this->assertNull($notification->getPlatforms());
-        $this->assertSame($notification, $notification->setPlatforms(array(1, 2)));
-        $this->assertCount(2, $notification->getPlatforms());
-        $this->assertTrue(in_array(1, $notification->getPlatforms()));
-        $this->assertTrue(in_array(2, $notification->getPlatforms()));
     }
 
     /**
