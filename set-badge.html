@@ -19,10 +19,24 @@ title: /setBadge
     <code>SetBadgeResponse setBadge(SetBadgeRequest $setBadgeRequest)</code>
 </p>
 
-<h2>SetBadgeRequest class</h2>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
 
-<p>
-    <b style="font-weight: bold;">Full name</b>
-    <br/>
-    <code>Gomoob\Pushwoosh\Model\Request\SetBadgeRequest</code>
-</p>
+// Creates the request instance
+$request = RegisterDeviceRequest::create()
+    ->setBadge(5)
+    ->setHwid('HWID');
+
+// Call the '/setBadge' Web Service
+$response = $pushwoosh->setBadge($request);
+
+if($response->isOk()) {
+    print 'Ok, operation successful.';
+} else {
+    print 'Oups, the operation failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}

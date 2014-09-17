@@ -19,10 +19,29 @@ title: /getNearestZone
     <code>GetNearestZoneResponse getNearestZone(GetNearestZoneRequest $getNearestZoneRequest)</code>
 </p>
 
-<h2>GetNearestZoneRequest class</h2>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
 
-<p>
-    <b style="font-weight: bold;">Full name</b>
-    <br/>
-    <code>Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest</code>
-</p>
+// Creates the request instance
+$request = GetNearestZoneRequest::create()
+    ->setHwid('HWID')
+    ->setLat(10.12345)
+    ->setLng(28.12345);
+
+// Call the '/getNearestZone' Web Service
+$response = $pushwoosh->getNearestZone($request);
+
+if($response->isOk()) {
+    print 'Zone name : ' . $response->getResponse()->getName();
+    print 'Latitude : ' . $response->getResponse()->getLat();
+    print 'Longitude : ' . $response->getResponse()->getLng();
+    print 'Range : ' . $response->getResponse()->getRange();
+    print 'Distance : ' . $response->getResponse()->getDistance();
+} else {
+    print 'Oups, the operation failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}

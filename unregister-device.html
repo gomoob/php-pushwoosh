@@ -19,10 +19,22 @@ title: /unregisterDevice
     <code>UnregisterDeviceResponse unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest)</code>
 </p>
 
-<h2>UnregisterDeviceRequest class</h2>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
-<p>
-    <b style="font-weight: bold;">Full name</b>
-    <br/>
-    <code>Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest</code>
-</p>
+// Creates the request instance
+$request = UnregisterDeviceRequest::create()->setHwid('HWID');
+
+// Call the '/unregisterDevice' Web Service
+$response = $pushwoosh->unregisterDevice($request);
+
+if($response->isOk()) {
+    print 'Ok, operation successful.';
+} else {
+    print 'Oups, the operation failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}

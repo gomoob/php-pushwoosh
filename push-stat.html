@@ -19,10 +19,24 @@ title: /pushStat
     <code>PushStatResponse pushStat(PushStatRequest $pushStatRequest)</code>
 </p>
 
-<h2>PushStatRequest class</h2>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
 
-<p>
-    <b style="font-weight: bold;">Full name</b>
-    <br/>
-    <code>Gomoob\Pushwoosh\Model\Request\PushStatRequest</code>
-</p>
+// Creates the request instance
+$request = PushStatRequest::create()
+    ->setHash('hash')
+    ->setHwid('HWID');
+
+// Call the '/pushStat' Web Service
+$response = $pushwoosh->pushStat($request);
+
+if($response->isOk()) {
+    print 'Ok, operation successful.';
+} else {
+    print 'Oups, the operation failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}

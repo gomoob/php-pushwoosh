@@ -19,10 +19,30 @@ title: /setTags
     <code>SetTagsResponse setTags(SetTagsRequest $setTagsRequest)</code>
 </p>
 
-<h2>SetTagsRequest class</h2>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 
-<p>
-    <b style="font-weight: bold;">Full name</b>
-    <br/>
-    <code>Gomoob\Pushwoosh\Model\Request\SetTagsRequest</code>
-</p>
+// Creates the request instance
+$request = SetTagsRequest::create()
+    ->setTags(
+        array(
+            'StringTag' => 'string value',
+            'IntegerTag' => 'integer value',
+            'ListTag' => ['string1', 'string2']
+        )
+    )
+    ->setHwid('HWID');
+
+// Call the '/setTags' Web Service
+$response = $pushwoosh->setTags($request);
+
+if($response->isOk()) {
+    print 'Ok, operation successful.';
+} else {
+    print 'Oups, the operation failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}

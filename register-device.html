@@ -19,10 +19,28 @@ title: /registerDevice
     <code>RegisterDeviceResponse registerDevice(RegisterDeviceRequest $registerDeviceRequest)</code>
 </p>
 
-<h2>RegisterDeviceRequest class</h2>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 
-<p>
-    <b style="font-weight: bold;">Full name</b>
-    <br/>
-    <code>Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest</code>
-</p>
+// Creates the request instance
+$request = RegisterDeviceRequest::create()
+    ->setDeviceType(DeviceType::iOS())
+    ->setHwid('HWID')
+    ->setLanguage('fr')
+    ->setPushToken('xxxxxxxx')
+    ->setTimezone(3600);
+
+// Call the '/registerDevice' Web Service
+$response = $pushwoosh->registerDevice($request);
+
+if($response->isOk()) {
+    print 'Ok, operation successful.';
+} else {
+    print 'Oups, the operation failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+?>
+{% endhighlight %}
+
