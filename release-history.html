@@ -1,0 +1,70 @@
+---
+layout: default
+title: Release History
+---
+
+<h1>Release history</h1>
+
+<h2>0.1.0-alpha5 (2014-09-17)</h2>
+<ul>
+    <li>Code coverage is now 100% on the <code>Gomoob\Pushwoosh\Model\Request</code> package</li>
+    <li>Code coverage is now 100% on the <code>Gomoob\Pushwoosh\Model\Response</code> package</li>
+    <li>Add missing <code>Gomoob\Pushwoosh\Model\Request\GetTagsRequest</code> class</li>
+    <li>Add an abstract <code>Gomoob\Pushwoosh\Model\Response\AbstractResponse</code> class common to all response objects</li>
+    <li>Now the documentation is on Github Pages</li>
+</ul>
+
+<h2>0.1.0-alpha4 (2014-09-09)</h2>
+<ul>
+    <li>Now the package is loaded using a <a href="http://www.php-fig.org/psr/psr-4">PSR-4</a> autoloader instead of a 
+        <a href="http://www.php-fig.org/psr/psr-0">PSR-0</a> autoloader</li>
+    <li>Use <a href="https://github.com/squizlabs/PHP_CodeSniffer">PHP_CodeSniffer</a> to ensure the code is compliant 
+        with <a href="http://www.php-fig.org/psr/psr-0">PSR-0</a> and 
+        <a href="http://www.php-fig.org/psr/psr-2">PSR-2</a> coding rules</li>
+    <li>Upgrade Grunt dependency <code>grunt-phpunit</code></li>
+    <li>Now the code is compliant with <a href="http://www.php-fig.org/psr/psr-0">PSR-0</a> and 
+        <a href="http://www.php-fig.org/psr/psr-2">PSR-2</a> coding rules</li>
+    <li>Reorganize attributes and functions in the <code>Gomoob\Pushwoosh\Model\Notification\ADM</code> class</li>
+    <li>Reorganize attributes and functions in the <code>Gomoob\Pushwoosh\Model\Notification\Android</code> class</li>
+    <li>Reorganize attributes and functions in the <code>Gomoob\Pushwoosh\Model\Notification\IOS</code> class</li>
+    <li>Reorganize attributes and functions in the <code>Gomoob\Pushwoosh\Model\Notification\Mac</code> class</li>
+    <li>Reorganize attributes and functions in the <code>Gomoob\Pushwoosh\Model\Notification\Safari</code> class</li>
+    <li>Reorganize attributes and functions in the <code>Gomoob\Pushwoosh\Model\Notification\WNS</code> class</li>
+    <li>Reorganize attributes and functions in the <code>Gomoob\Pushwoosh\Model\Notification\WP</code> class</li>
+    <li>Updates the coding conventions in the <code>README.md</code> file</li>
+    <li>Append indications for Pull Requests in the <code>README.md</code> file</li>
+    <li>Ignore the <code>composer.lock</code> file from GIT</li>
+    <li>Build the project on Travis CI</li>
+    <li>Add Badge Poser badges in the <code>README.md</code> file</li>
+    <li>Enable <a href="https://coveralls.io">Coveralls</a> to report code coverage with TravisCI</li>
+</ul>
+
+<h2>0.1.0-alpha3 (2014-06-25)</h2>
+<ul>
+    <li>Third alpha release</li>
+    <li>Complete the IOS notification implementation into the <code>Gomoob\Pushwoosh\Model\Notification\IOS</code> class</li>
+    <li>Remove a duplicated method in the <code>Gomoob\Pushwoosh\Model\Request\UnregistereDeviceRequest</code> class</li>
+</ul>
+
+<h2>0.1.0-alpha2 (2014-06-13)</h2>
+<ul>
+    <li>Second alpha release</li>
+    <li>Add a Contributing section in the README.md file</li>
+    <li>Improves documentation</li>
+    <li>Add a develop branch to the project</li>
+    <li>Add several missing methods to the <code>Gomoob\Pushwoosh\Model\Notification\Notification</code> class</li>
+    <li>Add a <code>Gomoob\Pushwoosh\Model\Notification\NotificationTest</code> unit test class</li>
+    <li>Prepare test cases for not implemented request objects</li>
+</ul>
+
+<h2>0.1.0-alpha1 (2014-05-25)</h2>
+<ul>
+    <li>First alpha release which implements the following Pushwoosh REST Web Services : 
+        <ul>
+            <li><code>/createMessage</code></li>
+            <li><code>/registerDevice</code></li>
+            <li><code>/setTags</code></li>
+            <li><code>/unregisterDevice</code></li>
+        </ul>
+    </li>
+</ul>
