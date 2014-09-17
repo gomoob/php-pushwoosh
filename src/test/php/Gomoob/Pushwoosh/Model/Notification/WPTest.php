@@ -17,6 +17,15 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 class WPTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <code>#create()</code> function;
+	 */
+    public function testCreate()
+    {
+        $this->assertNotNull(WP::create());
+
+    }
+
+    /**
 	 * Test method for the <code>#getBackbackground()</code> and <code>#setBackbackground($backbackground)</code>
 	 * functions.
 	 */
@@ -49,6 +58,13 @@ class WPTest extends \PHPUnit_Framework_TestCase
 	 * Test method for the <code>#getType()</code> and <code>#setType()</code> functions.
 	 */
     public function testGetSetType()
+    {
+    }
+
+    /**
+     * Test method for the <code>#toJSON()</code> function.
+     */
+    public function testToJSON()
     {
     }
 }

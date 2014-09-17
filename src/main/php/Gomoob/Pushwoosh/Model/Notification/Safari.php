@@ -20,6 +20,17 @@ class Safari
     private $ttl;
     private $url;
 
+    /**
+     * Utility function used to create a new Safari instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Mac the new created instance.
+     */
+    public static function create()
+    {
+        return new Safari();
+
+    }
+
     public function getAction()
     {
         return $this->action;

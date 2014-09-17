@@ -385,10 +385,20 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ListCondition::create('listTag')->in(array('value0', 'value1', 'value2'))
                 )
             )
+            ->setADM(
+                ADM::create()
+                    ->setBanner('http://example.com/banner.png')
+                    ->setCustomIcon('http://example.com/image.png')
+                    ->setHeader('Header')
+                    ->setIcon('icon')
+                    ->setRootParams(array('key' => 'value'))
+                    ->setSound('push.mp3')
+                    ->setTtl(3600)
+            )
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(11, $array);
+        $this->assertCount(18, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -427,5 +437,13 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('value1', $array['conditions'][2][2][1]);
         $this->assertEquals('value2', $array['conditions'][2][2][2]);
 
+        // Test the ADM parameters
+        $this->assertEquals('http://example.com/banner.png', $array['adm_banner']);
+        $this->assertEquals('http://example.com/image.png', $array['adm_custom_icon']);
+        $this->assertEquals('Header', $array['adm_header']);
+        $this->assertEquals('icon', $array['adm_icon']);
+        $this->assertEquals(array('key' => 'value'), $array['adm_root_params']);
+        $this->assertEquals('push.mp3', $array['adm_sound']);
+        $this->assertEquals(3600, $array['adm_ttl']);
     }
 }

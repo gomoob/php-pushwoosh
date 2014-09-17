@@ -18,6 +18,15 @@ class MacTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
+	 * Test method for the <code>#create()</code> function;
+	 */
+    public function testCreate()
+    {
+        $this->assertNotNull(Mac::create());
+
+    }
+
+    /**
 	 * Test method for the <code>#getBadges()</code> and <code>#setBadges($badges)</code> functions.
 	 */
     public function testGetSetBadges()
@@ -42,6 +51,13 @@ class MacTest extends \PHPUnit_Framework_TestCase
 	 * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
 	 */
     public function testGetSetTtl()
+    {
+    }
+
+    /**
+     * Test method for the <code>#toJSON()</code> function.
+     */
+    public function testToJSON()
     {
     }
 }

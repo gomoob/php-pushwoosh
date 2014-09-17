@@ -20,6 +20,17 @@ class Mac
     private $sound;
     private $ttl;
 
+    /**
+     * Utility function used to create a new Mac instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Mac the new created instance.
+     */
+    public static function create()
+    {
+        return new Mac();
+
+    }
+
     public function getBadges()
     {
         return $this->badges;

@@ -18,6 +18,15 @@ class SafariTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
+	 * Test method for the <code>#create()</code> function;
+	 */
+    public function testCreate()
+    {
+        $this->assertNotNull(Safari::create());
+
+    }
+
+    /**
 	 * Test method for the <code>#getAction()</code> and <code>#setAction($action)</code> functions.
 	 */
     public function testGetSetAction()
@@ -42,6 +51,13 @@ class SafariTest extends \PHPUnit_Framework_TestCase
 	 * Test method for the <code>#getUrl()</code> and <code>#setUrl($url)</code> functions.
 	 */
     public function testGetSetUrl()
+    {
+    }
+
+    /**
+     * Test method for the <code>#toJSON()</code> function.
+     */
+    public function testToJSON()
     {
     }
 }

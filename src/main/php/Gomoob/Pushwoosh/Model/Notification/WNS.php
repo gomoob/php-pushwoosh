@@ -19,6 +19,17 @@ class WNS
     private $tag;
     private $type;
 
+    /**
+     * Utility function used to create a new WNS instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Mac the new created instance.
+     */
+    public static function create()
+    {
+        return new WNS();
+
+    }
+
     public function getContent()
     {
         return $this->content;

@@ -16,6 +16,14 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  */
 class AndroidTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+	 * Test method for the <code>#create()</code> function;
+	 */
+    public function testCreate()
+    {
+        $this->assertNotNull(Android::create());
+
+    }
 
     /**
 	 * Test method for the <code>#getBanner()</code> and <code>setBanner($banner)</code> functions.
@@ -63,6 +71,13 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 * Test method for the <code>#getSound()</code> and <code>#setSound($sound)</code> functions.
 	 */
     public function testGetSetSound()
+    {
+    }
+
+    /**
+     * Test method for the <code>#toJSON()</code> function.
+     */
+    public function testToJSON()
     {
     }
 }

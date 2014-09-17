@@ -24,6 +24,17 @@ class ADM
     private $sound;
     private $ttl;
 
+    /**
+     * Utility function used to create a new ADM instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\ADM the new created instance.
+     */
+    public static function create()
+    {
+        return new ADM();
+
+    }
+
     public function getBanner()
     {
         return $this->banner;
@@ -124,7 +135,14 @@ class ADM
     {
         $json = array();
 
-        // TODO
+        isset($this->banner) ? $json['adm_banner'] = $this->banner : false;
+        isset($this->customIcon) ? $json['adm_custom_icon'] = $this->customIcon : false;
+        isset($this->header) ? $json['adm_header'] = $this->header : false;
+        isset($this->icon) ? $json['adm_icon'] = $this->icon : false;
+        isset($this->rootParams) ? $json['adm_root_params'] = $this->rootParams : false;
+        isset($this->sound) ? $json['adm_sound'] = $this->sound : false;
+        isset($this->ttl) ? $json['adm_ttl'] = $this->ttl : false;
+
         return $json;
 
     }

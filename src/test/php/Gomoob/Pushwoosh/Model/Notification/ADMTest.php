@@ -17,6 +17,15 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 class ADMTest extends \PHPUnit_Framework_TestCase
 {
     /**
+	 * Test method for the <code>#create()</code> function;
+	 */
+    public function testCreate()
+    {
+        $this->assertNotNull(ADM::create());
+
+    }
+
+    /**
 	 * Test method for the <code>#getBanner()</code> and <code>#setBanner($banner)</code> functions.
 	 */
     public function testGetSetBanner()
@@ -84,5 +93,31 @@ class ADMTest extends \PHPUnit_Framework_TestCase
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setTtl(3600));
         $this->assertEquals(3600, $aDM->getTtl());
+    }
+
+    /**
+     * Test method for the <code>#toJSON()</code> function.
+     */
+    public function testToJSON()
+    {
+        $array = ADM::create()
+            ->setBanner('http://example.com/banner.png')
+            ->setCustomIcon('http://example.com/image.png')
+            ->setHeader('Header')
+            ->setIcon('icon')
+            ->setRootParams(array('key' => 'value'))
+            ->setSound('push.mp3')
+            ->setTtl(3600)
+            ->toJSON();
+
+        $this->assertCount(7, $array);
+        $this->assertEquals('http://example.com/banner.png', $array['adm_banner']);
+        $this->assertEquals('http://example.com/image.png', $array['adm_custom_icon']);
+        $this->assertEquals('Header', $array['adm_header']);
+        $this->assertEquals('icon', $array['adm_icon']);
+        $this->assertEquals(array('key' => 'value'), $array['adm_root_params']);
+        $this->assertEquals('push.mp3', $array['adm_sound']);
+        $this->assertEquals(3600, $array['adm_ttl']);
+
     }
 }

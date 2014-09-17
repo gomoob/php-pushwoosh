@@ -21,6 +21,17 @@ class WP
     private $count;
     private $type;
 
+    /**
+     * Utility function used to create a new WP instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\WP the new created instance.
+     */
+    public static function create()
+    {
+        return new WP();
+
+    }
+
     public function getBackbackground()
     {
         return $this->backbackground;

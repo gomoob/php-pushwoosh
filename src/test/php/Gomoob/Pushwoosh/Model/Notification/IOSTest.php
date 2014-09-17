@@ -18,6 +18,15 @@ class IOSTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
+	 * Test method for the <code>#create()</code> function;
+	 */
+    public function testCreate()
+    {
+        $this->assertNotNull(IOS::create());
+
+    }
+
+    /**
 	 * Test method for the <code>#getAps()</code> and <code>#setAps($aps)</code> functions.
 	 */
     public function testGetSetAps()
@@ -65,6 +74,13 @@ class IOSTest extends \PHPUnit_Framework_TestCase
 	 * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
 	 */
     public function testGetSetTtl()
+    {
+    }
+
+    /**
+     * Test method for the <code>#toJSON()</code> function.
+     */
+    public function testToJSON()
     {
     }
 }
