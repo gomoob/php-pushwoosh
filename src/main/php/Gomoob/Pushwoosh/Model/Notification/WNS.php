@@ -44,7 +44,7 @@ class WNS
 
     public function getType()
     {
-        return $this->typ;
+        return $this->type;
 
     }
 
@@ -57,7 +57,7 @@ class WNS
 
     public function setTag($tag)
     {
-        $this->tags = $tag;
+        $this->tag = $tag;
 
         return $this;
     }
@@ -78,7 +78,10 @@ class WNS
     {
         $json = array();
 
-        // TODO
+        isset($this->content) ? $json['wns_content'] = $this->content : false;
+        isset($this->tag) ? $json['wns_tag'] = $this->tag : false;
+        isset($this->type) ? $json['wns_type'] = $this->type : false;
+
         return $json;
 
     }

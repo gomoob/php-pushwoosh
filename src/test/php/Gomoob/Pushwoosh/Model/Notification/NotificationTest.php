@@ -428,10 +428,21 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setTtl(3600)
                     ->setUrlArgs(array('firstArgument', 'secondArgument'))
             )
+            ->setWNS(
+                WNS::create()
+                    ->setContent(
+                        array(
+                            'en' => 'ENENENEN',
+                            'de' => 'DEDEDEDE'
+                        )
+                    )
+                    ->setTag('myTag')
+                    ->setType('Badge')
+            )
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(39, $array);
+        $this->assertCount(42, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -508,5 +519,15 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3600, $array['safari_ttl']);
         $this->assertEquals(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
 
+        // Test WNS parameters
+        $this->assertEquals(
+            array(
+                'en' => 'ENENENEN',
+                'de' => 'DEDEDEDE'
+            ),
+            $array['wns_content']
+        );
+        $this->assertEquals('myTag', $array['wns_tag']);
+        $this->assertEquals('Badge', $array['wns_type']);
     }
 }
