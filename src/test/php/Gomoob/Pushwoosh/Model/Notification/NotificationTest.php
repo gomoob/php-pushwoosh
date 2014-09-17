@@ -439,10 +439,19 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setTag('myTag')
                     ->setType('Badge')
             )
+            ->setWP(
+                WP::create()
+                    ->setBackbackground('/Resources/Green.jpg')
+                    ->setBackcontent('back content')
+                    ->setBackground('/Resources/Red.jpg')
+                    ->setBacktitle('back title')
+                    ->setCount(3)
+                    ->setType('Tile')
+            )
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(42, $array);
+        $this->assertCount(48, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -529,5 +538,14 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals('myTag', $array['wns_tag']);
         $this->assertEquals('Badge', $array['wns_type']);
+
+        // Test WP parameters
+        $this->assertEquals('/Resources/Green.jpg', $array['wp_backbackground']);
+        $this->assertEquals('back content', $array['wp_backcontent']);
+        $this->assertEquals('/Resources/Red.jpg', $array['wp_background']);
+        $this->assertEquals('back title', $array['wp_backtitle']);
+        $this->assertEquals(3, $array['wp_count']);
+        $this->assertEquals('Tile', $array['wp_type']);
+
     }
 }

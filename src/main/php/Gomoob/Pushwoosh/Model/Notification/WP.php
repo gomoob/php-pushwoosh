@@ -16,6 +16,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 class WP
 {
     private $backbackground;
+    private $backcontent;
     private $background;
     private $backtitle;
     private $count;
@@ -35,6 +36,12 @@ class WP
     public function getBackbackground()
     {
         return $this->backbackground;
+
+    }
+
+    public function getBackcontent()
+    {
+        return $this->backcontent;
 
     }
 
@@ -69,6 +76,13 @@ class WP
         return $this;
     }
 
+    public function setBackcontent($backcontent)
+    {
+        $this->backcontent = $backcontent;
+
+        return $this;
+    }
+
     public function setBackground($background)
     {
         $this->background = $background;
@@ -87,6 +101,7 @@ class WP
     {
         $this->count = $count;
 
+        return $this;
     }
 
     public function setType($type)
@@ -105,7 +120,13 @@ class WP
     {
         $json = array();
 
-        // TODO
+        isset($this->backbackground) ? $json['wp_backbackground'] = $this->backbackground : false;
+        isset($this->backcontent) ? $json['wp_backcontent'] = $this->backcontent : false;
+        isset($this->background) ? $json['wp_background'] = $this->background : false;
+        isset($this->backtitle) ? $json['wp_backtitle'] = $this->backtitle : false;
+        isset($this->count) ? $json['wp_count'] = $this->count : false;
+        isset($this->type) ? $json['wp_type'] = $this->type : false;
+
         return $json;
 
     }
