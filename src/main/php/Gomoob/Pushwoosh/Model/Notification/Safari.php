@@ -18,7 +18,7 @@ class Safari
     private $action;
     private $title;
     private $ttl;
-    private $url;
+    private $urlArgs;
 
     /**
      * Utility function used to create a new Safari instance.
@@ -49,9 +49,9 @@ class Safari
 
     }
 
-    public function getUrl()
+    public function getUrlArgs()
     {
-        return $this->url;
+        return $this->urlArgs;
 
     }
 
@@ -76,9 +76,9 @@ class Safari
         return $this;
     }
 
-    public function setUrl($url)
+    public function setUrlArgs(array $urlArgs)
     {
-        $this->url = $url;
+        $this->urlArgs = $urlArgs;
 
         return $this;
     }
@@ -92,7 +92,11 @@ class Safari
     {
         $json = array();
 
-        // TODO
+        isset($this->action) ? $json['safari_action'] = $this->action : false;
+        isset($this->title) ? $json['safari_title'] = $this->title : false;
+        isset($this->ttl) ? $json['safari_ttl'] = $this->ttl : false;
+        isset($this->urlArgs) ? $json['safari_url_args'] = $this->urlArgs : false;
+
         return $json;
 
     }

@@ -31,6 +31,9 @@ class SafariTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetAction()
     {
+        $safari = new Safari();
+        $this->assertSame($safari, $safari->setAction('Click here'));
+        $this->assertEquals('Click here', $safari->getAction());
     }
 
     /**
@@ -38,6 +41,9 @@ class SafariTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetTitle()
     {
+        $safari = new Safari();
+        $this->assertSame($safari, $safari->setTitle('Title'));
+        $this->assertEquals('Title', $safari->getTitle());
     }
 
     /**
@@ -45,13 +51,19 @@ class SafariTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetTtl()
     {
+        $safari = new Safari();
+        $this->assertSame($safari, $safari->setTtl(3600));
+        $this->assertEquals(3600, $safari->getTtl());
     }
 
     /**
-	 * Test method for the <code>#getUrl()</code> and <code>#setUrl($url)</code> functions.
+	 * Test method for the <code>#getUrlArgs()</code> and <code>#setUrlArgs($urlArgs)</code> functions.
 	 */
-    public function testGetSetUrl()
+    public function testGetSetUrlArgs()
     {
+        $safari = new Safari();
+        $this->assertSame($safari, $safari->setUrlArgs(array('firstArgument', 'secondArgument')));
+        $this->assertEquals(array('firstArgument', 'secondArgument'), $safari->getUrlArgs());
     }
 
     /**
@@ -59,5 +71,18 @@ class SafariTest extends \PHPUnit_Framework_TestCase
      */
     public function testToJSON()
     {
+        $array = Safari::create()
+            ->setAction('Click here')
+            ->setTitle('Title')
+            ->setTtl(3600)
+            ->setUrlArgs(array('firstArgument', 'secondArgument'))
+            ->toJSON();
+
+        $this->assertCount(4, $array);
+        $this->assertEquals('Click here', $array['safari_action']);
+        $this->assertEquals('Title', $array['safari_title']);
+        $this->assertEquals(3600, $array['safari_ttl']);
+        $this->assertEquals(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
+
     }
 }

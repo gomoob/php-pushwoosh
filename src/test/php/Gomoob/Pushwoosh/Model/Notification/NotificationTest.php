@@ -421,10 +421,17 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setSound('sound.caf')
                     ->setTtl(3600)
             )
+            ->setSafari(
+                Safari::create()
+                    ->setAction('Click here')
+                    ->setTitle('Title')
+                    ->setTtl(3600)
+                    ->setUrlArgs(array('firstArgument', 'secondArgument'))
+            )
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(35, $array);
+        $this->assertCount(39, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -494,6 +501,12 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('content-available' => '1'), $array['mac_root_params']);
         $this->assertEquals('sound.caf', $array['mac_sound']);
         $this->assertEquals(3600, $array['mac_ttl']);
+
+        // Test Safari parameters
+        $this->assertEquals('Click here', $array['safari_action']);
+        $this->assertEquals('Title', $array['safari_title']);
+        $this->assertEquals(3600, $array['safari_ttl']);
+        $this->assertEquals(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
 
     }
 }
