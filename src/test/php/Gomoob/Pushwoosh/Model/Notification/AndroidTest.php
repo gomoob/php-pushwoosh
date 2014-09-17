@@ -30,6 +30,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetBanner()
     {
+        $android = new Android();
+        $this->assertSame($android, $android->setBanner('http://example.com/banner.png'));
+        $this->assertEquals('http://example.com/banner.png', $android->getBanner());
     }
 
     /**
@@ -37,6 +40,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetCustomIcon()
     {
+        $android = new Android();
+        $this->assertSame($android, $android->setCustomIcon('http://example.com/image.png'));
+        $this->assertEquals('http://example.com/image.png', $android->getCustomIcon());
     }
 
     /**
@@ -44,6 +50,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetGcmTtl()
     {
+        $android = new Android();
+        $this->assertSame($android, $android->setGcmTtl(3600));
+        $this->assertEquals(3600, $android->getGcmTtl());
     }
 
     /**
@@ -51,6 +60,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetHeader()
     {
+        $android = new Android();
+        $this->assertSame($android, $android->setHeader('Header'));
+        $this->assertEquals('Header', $android->getHeader());
     }
 
     /**
@@ -58,6 +70,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetIcon()
     {
+        $android = new Android();
+        $this->assertSame($android, $android->setIcon('icon'));
+        $this->assertEquals('icon', $android->getIcon());
     }
 
     /**
@@ -65,6 +80,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetRootParams()
     {
+        $android = new Android();
+        $this->assertSame($android, $android->setRootParams(array('key' => 'value')));
+        $this->assertEquals(array('key' => 'value'), $android->getRootParams());
     }
 
     /**
@@ -72,6 +90,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetSound()
     {
+        $android = new Android();
+        $this->assertSame($android, $android->setSound('push.mp3'));
+        $this->assertEquals('push.mp3', $android->getSound());
     }
 
     /**
@@ -79,5 +100,24 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
      */
     public function testToJSON()
     {
+        $array = Android::create()
+            ->setBanner('http://example.com/banner.png')
+            ->setCustomIcon('http://example.com/image.png')
+            ->setGcmTtl(3600)
+            ->setHeader('Header')
+            ->setIcon('icon')
+            ->setRootParams(array('key' => 'value'))
+            ->setSound('push.mp3')
+            ->toJSON();
+
+        $this->assertCount(7, $array);
+        $this->assertEquals('http://example.com/banner.png', $array['android_banner']);
+        $this->assertEquals('http://example.com/image.png', $array['android_custom_icon']);
+        $this->assertEquals(3600, $array['android_gcm_ttl']);
+        $this->assertEquals('Header', $array['android_header']);
+        $this->assertEquals('icon', $array['android_icon']);
+        $this->assertEquals(array('key' => 'value'), $array['android_root_params']);
+        $this->assertEquals('push.mp3', $array['android_sound']);
+
     }
 }

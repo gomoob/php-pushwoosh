@@ -395,10 +395,20 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setSound('push.mp3')
                     ->setTtl(3600)
             )
+            ->setAndroid(
+                Android::create()
+                    ->setBanner('http://example.com/banner.png')
+                    ->setCustomIcon('http://example.com/image.png')
+                    ->setGcmTtl(3600)
+                    ->setHeader('Header')
+                    ->setIcon('icon')
+                    ->setRootParams(array('key' => 'value'))
+                    ->setSound('push.mp3')
+            )
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(18, $array);
+        $this->assertCount(25, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -445,5 +455,15 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('key' => 'value'), $array['adm_root_params']);
         $this->assertEquals('push.mp3', $array['adm_sound']);
         $this->assertEquals(3600, $array['adm_ttl']);
+
+        // Test Android parameters
+        $this->assertEquals('http://example.com/banner.png', $array['android_banner']);
+        $this->assertEquals('http://example.com/image.png', $array['android_custom_icon']);
+        $this->assertEquals(3600, $array['android_gcm_ttl']);
+        $this->assertEquals('Header', $array['android_header']);
+        $this->assertEquals('icon', $array['android_icon']);
+        $this->assertEquals(array('key' => 'value'), $array['android_root_params']);
+        $this->assertEquals('push.mp3', $array['android_sound']);
+
     }
 }
