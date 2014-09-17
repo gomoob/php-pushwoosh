@@ -92,7 +92,11 @@ class Mac
     {
         $json = array();
 
-        // TODO
+        isset($this->badges) ? $json['mac_badges'] = $this->badges : false;
+        isset($this->rootParams) ? $json['mac_root_params'] = $this->rootParams : false;
+        isset($this->sound) ? $json['mac_sound'] = $this->sound : false;
+        isset($this->ttl) ? $json['mac_ttl'] = $this->ttl : false;
+
         return $json;
 
     }

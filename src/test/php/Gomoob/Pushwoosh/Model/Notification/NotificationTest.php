@@ -414,10 +414,17 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setTtl(3600)
                     ->setTrimContent(true)
             )
+            ->setMac(
+                Mac::create()
+                    ->setBadges(3)
+                    ->setRootParams(array('content-available' => '1'))
+                    ->setSound('sound.caf')
+                    ->setTtl(3600)
+            )
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(31, $array);
+        $this->assertCount(35, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -481,6 +488,12 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sound file.wav', $array['ios_sound']);
         $this->assertEquals(3600, $array['ios_ttl']);
         $this->assertEquals(1, $array['ios_trim_content']);
+
+        // Test Mac parameters
+        $this->assertEquals(3, $array['mac_badges']);
+        $this->assertEquals(array('content-available' => '1'), $array['mac_root_params']);
+        $this->assertEquals('sound.caf', $array['mac_sound']);
+        $this->assertEquals(3600, $array['mac_ttl']);
 
     }
 }
