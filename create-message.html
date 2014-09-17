@@ -241,7 +241,17 @@ Notification::create()->setLink('http://www.gomoob.com');
     <font style="font-weight: bold">Sample</font>
     {% highlight php %}
 <?php
-Notification::create()->setMinimizeLink(1);
+// No minimization
+Notification::create()->setMinimizeLink(MinimizeLink::none());
+
+// Google minimization
+Notification::create()->setMinimizeLink(MinimizeLink::google());
+
+// Bitly minimization
+Notification::create()->setMinimizeLink(MinimizeLink::bitly());
+
+// Baidu (china) minimization
+Notification::create()->setMinimizeLink(MinimizeLink::baiduChina());
 ?>
     {% endhighlight %}
 </p>
