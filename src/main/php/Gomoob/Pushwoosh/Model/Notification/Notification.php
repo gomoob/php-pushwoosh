@@ -60,7 +60,7 @@ class Notification
 	 *
 	 * You cannot use 'filter' and 'conditions' parameters together.
 	 *
-	 * @var \Gomoob\Pushwoosh\Model\Condition\ICondition
+	 * @var \Gomoob\Pushwoosh\Model\Condition\ICondition[]
 	 */
     private $conditions;
 
@@ -138,7 +138,7 @@ class Notification
     /**
      * Sets the platforms to which ones to send messages.
      *
-     * @var \Gomoob\Pushwoosh\Model\Notification\Platform
+     * @var \Gomoob\Pushwoosh\Model\Notification\Platform[]
      */
     private $platforms;
 
@@ -799,6 +799,38 @@ class Notification
         isset($this->content) ? $json['content'] = $this->content : false;
         isset($this->data) ? $json['data'] = $this->data : false;
         isset($this->devices) ? $json['devices'] = $this->devices : false;
+        isset($this->filter) ? $json['filter'] = $this->filter : false;
+        isset($this->link) ? $json['link'] = $this->link : false;
+        isset($this->minimizeLink) ? $json['minimize_link'] = $this->minimizeLink->getValue() : false;
+        isset($this->pageId) ? $json['page_id'] = $this->pageId : false;
+
+        if (isset($this->conditions)) {
+
+            $conditionsArray = array();
+
+            foreach ($this->conditions as $condition) {
+
+                $conditionsArray[] = $condition->toJSON();
+
+            }
+
+            $json['conditions'] = $conditionsArray;
+
+        }
+
+        if (isset($this->platforms)) {
+
+            $platformsArray = array();
+
+            foreach ($this->platforms as $platform) {
+
+                $platformsArray[] = $platform->getValue();
+
+            }
+
+            $json['platforms'] = $platformsArray;
+
+        }
 
         // Amazon Device Messaging specific informations
         if (isset($this->aDM)) {

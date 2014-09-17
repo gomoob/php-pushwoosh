@@ -341,10 +341,94 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testToJSON()
     {
-        /*
+        $array = Notification::create()
+            ->setSendDate('now')
+            ->setIgnoreUserTimezone(true)
+            ->setContent(
+                array(
+                    'en' => 'English',
+                    'ru' => 'Русский',
+                    'de' => 'Deutsch'
+                )
+            )
+            ->setPageId(39)
+            ->setLink('http://google.com')
+            ->setMinimizeLink(MinimizeLink::none())
+            ->setData(
+                array(
+                   'custom' => 'json data'
+                )
+            )
+            ->setPlatforms(
+                array(
+                    Platform::iOS(),
+                    Platform::blackBerry(),
+                    Platform::android(),
+                    Platform::nokia(),
+                    Platform::windowsPhone7(),
+                    Platform::maxOSX(),
+                    Platform::windows8(),
+                    Platform::amazon(),
+                    Platform::safari()
+                )
+            )
+            ->setDevices(
+                array(
+                    'dec301908b9ba8df85e57a58e40f96f523f4c2068674f5fe2ba25cdc250a2a41'
+                )
+            )
+            ->setFilter('FILTER_NAME')
+            ->setConditions(
+                array(
+                    IntCondition::create('intTag')->gte(10),
+                    StringCondition::create('stringTag')->eq('stringValue'),
+                    ListCondition::create('listTag')->in(array('value0', 'value1', 'value2'))
+                )
+            )
+            ->toJSON();
+
+        // Test the generic properties
+        $this->assertCount(11, $array);
+        $this->assertEquals('now', $array['send_date']);
+        $this->assertTrue($array['ignore_user_timezone']);
+        $this->assertCount(3, $array['content']);
+        $this->assertEquals('English', $array['content']['en']);
+        $this->assertEquals('Русский', $array['content']['ru']);
+        $this->assertEquals('Deutsch', $array['content']['de']);
+        $this->assertEquals(39, $array['page_id']);
+        $this->assertEquals('http://google.com', $array['link']);
+        $this->assertEquals(0, $array['minimize_link']);
+        $this->assertCount(1, $array['data']);
+        $this->assertEquals('json data', $array['data']['custom']);
+        $this->assertCount(9, $array['platforms']);
+        $this->assertEquals(1, $array['platforms'][0]);
+        $this->assertEquals(2, $array['platforms'][1]);
+        $this->assertEquals(3, $array['platforms'][2]);
+        $this->assertEquals(4, $array['platforms'][3]);
+        $this->assertEquals(5, $array['platforms'][4]);
+        $this->assertEquals(7, $array['platforms'][5]);
+        $this->assertEquals(8, $array['platforms'][6]);
+        $this->assertEquals(9, $array['platforms'][7]);
+        $this->assertEquals(10, $array['platforms'][8]);
+        $this->assertCount(1, $array['devices']);
+        $this->assertEquals('dec301908b9ba8df85e57a58e40f96f523f4c2068674f5fe2ba25cdc250a2a41', $array['devices'][0]);
+        $this->assertEquals('FILTER_NAME', $array['filter']);
+        $this->assertCount(3, $array['conditions']);
+        $this->assertEquals('intTag', $array['conditions'][0][0]);
+        $this->assertEquals('GTE', $array['conditions'][0][1]);
+        $this->assertEquals(10, $array['conditions'][0][2]);
+        $this->assertEquals('stringTag', $array['conditions'][1][0]);
+        $this->assertEquals('EQ', $array['conditions'][1][1]);
+        $this->assertEquals('stringValue', $array['conditions'][1][2]);
+        $this->assertEquals('listTag', $array['conditions'][2][0]);
+        $this->assertEquals('IN', $array['conditions'][2][1]);
+        $this->assertCount(3, $array['conditions'][2][2]);
+        $this->assertEquals('value0', $array['conditions'][2][2][0]);
+        $this->assertEquals('value1', $array['conditions'][2][2][1]);
+        $this->assertEquals('value2', $array['conditions'][2][2][2]);
 
         // Test with a sigle content
-        $notification = Notification::create();
+        /*$notification = Notification::create();
         $notification->setContent('CONTENT');
 
         $json = $notification->toJSON();
