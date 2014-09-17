@@ -2,3 +2,5 @@
 /vendor
 /target
 /composer.lock
+/_site/
+/Gemfile.lock

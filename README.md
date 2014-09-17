@@ -8,11 +8,6 @@
 [![Build Status](https://travis-ci.org/gomoob/php-pushwoosh.svg?branch=master)](https://travis-ci.org/gomoob/php-pushwoosh)
 [![Coverage Status](https://coveralls.io/repos/gomoob/php-pushwoosh/badge.png?branch=master)](https://coveralls.io/r/gomoob/php-pushwoosh?branch=master)
 
-## About php-pushwoosh
-
-php-pushwoosh is a PHP library used to easily work with the Pushwoosh REST Web Services. The APIs have been designed to 
-be almost identic to the official Pushwoosh Remote API to not reinvent the wheel and facilitate its use. 
-
 ## Documentation
 
 The documentation can be found at http://gomoob.github.io/php-pushwoosh.
