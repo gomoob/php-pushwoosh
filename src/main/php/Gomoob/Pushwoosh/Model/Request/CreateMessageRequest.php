@@ -197,7 +197,7 @@ class CreateMessageRequest
     /**
 	 * Creates a JSON representation of this request.
 	 *
-	 * @return array a PHP which can be passed to the 'json_encode' PHP method.
+	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
 	 */
     public function toJSON()
     {

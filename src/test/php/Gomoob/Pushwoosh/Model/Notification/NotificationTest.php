@@ -26,7 +26,6 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $aDM = new ADM();
         $this->assertSame($notification, $notification->setADM($aDM));
         $this->assertSame($aDM, $notification->getADM());
-
     }
 
     /**
