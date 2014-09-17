@@ -15,13 +15,18 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  */
 class IOS
 {
-    private $aps;
+    /**
+	 * //TODO: TO BE DOCUMENTED !
+	 *
+	 * @var boolean
+	 */
     private $apnsTrimContent;
+
     private $badges;
-    private $contentAvailable;
     private $rootParams;
     private $sound;
     private $ttl;
+    private $trimContent;
 
     /**
 	 * Utility function used to create a new IOS instance.
@@ -34,27 +39,9 @@ class IOS
 
     }
 
-    public function getAps()
-    {
-        return $this->aps;
-
-    }
-
-    public function getApnsTrimContent()
-    {
-        return $this->apnsTrimContent;
-
-    }
-
     public function getBadges()
     {
         return $this->badges;
-
-    }
-
-    public function getContentAvailable()
-    {
-        return $this->contentAvailable;
 
     }
 
@@ -76,14 +63,30 @@ class IOS
 
     }
 
-    public function setAps($aps)
+    /**
+     * TODO: TO BE DOCUMENTED !
+     *
+     * @return boolean
+     */
+    public function isApnsTrimContent()
     {
-        $this->aps = $aps;
-
-        return $this;
+        return $this->apnsTrimContent;
 
     }
 
+    public function isTrimContent()
+    {
+        return $this->trimContent;
+
+    }
+
+    /**
+     * TODO: TO BE DOCUMENTED !
+     *
+     * @param boolean $apnsTrimContent
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\IOS this instance.
+     */
     public function setApnsTrimContent($apnsTrimContent)
     {
         $this->apnsTrimContent = $apnsTrimContent;
@@ -95,14 +98,6 @@ class IOS
     public function setBadges($badges)
     {
         $this->badges = $badges;
-
-        return $this;
-
-    }
-
-    public function setContentAvailable($contentAvailable)
-    {
-        $this->contentAvailable = $contentAvailable;
 
         return $this;
 
@@ -131,6 +126,13 @@ class IOS
 
     }
 
+    public function setTrimContent($trimContent)
+    {
+        $this->trimContent = $trimContent;
+
+        return $this;
+    }
+
     /**
 	 * Creates a JSON representation of this request.
 	 *
@@ -140,13 +142,12 @@ class IOS
     {
         $json = array();
 
-        isset($this->aps) ? $json['ios_aps'] = $this->aps : false;
-        isset($this->apnsTrimContent) ? $json['apns_trim_content'] = $this->apnsTrimContent : false;
+        isset($this->apnsTrimContent) ? $json['apns_trim_content'] = intval($this->apnsTrimContent) : false;
         isset($this->badges) ? $json['ios_badges'] = $this->badges : false;
-        isset($this->contentAvailable) ? $json['ios_content_available'] = $this->contentAvailable : false;
-        isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
         isset($this->rootParams) ? $json['ios_root_params'] = $this->rootParams : false;
+        isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
         isset($this->ttl) ? $json['ios_ttl'] = $this->ttl : false;
+        isset($this->trimContent) ? $json['ios_trim_content'] = intval($this->trimContent) : false;
 
         return $json;
 

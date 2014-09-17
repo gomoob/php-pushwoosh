@@ -405,10 +405,19 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setRootParams(array('key' => 'value'))
                     ->setSound('push.mp3')
             )
+            ->setIOS(
+                IOS::create()
+                    ->setApnsTrimContent(true)
+                    ->setBadges(5)
+                    ->setRootParams(array('aps' => array('content-available' => '1')))
+                    ->setSound('sound file.wav')
+                    ->setTtl(3600)
+                    ->setTrimContent(true)
+            )
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(25, $array);
+        $this->assertCount(31, $array);
         $this->assertEquals('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -464,6 +473,14 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('icon', $array['android_icon']);
         $this->assertEquals(array('key' => 'value'), $array['android_root_params']);
         $this->assertEquals('push.mp3', $array['android_sound']);
+
+        // Test IOS parameters
+        $this->assertEquals(1, $array['apns_trim_content']);
+        $this->assertEquals(5, $array['ios_badges']);
+        $this->assertEquals(array('aps' => array('content-available' => '1')), $array['ios_root_params']);
+        $this->assertEquals('sound file.wav', $array['ios_sound']);
+        $this->assertEquals(3600, $array['ios_ttl']);
+        $this->assertEquals(1, $array['ios_trim_content']);
 
     }
 }
