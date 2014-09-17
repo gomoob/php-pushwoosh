@@ -11,6 +11,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 use Gomoob\Pushwoosh\Model\Condition\IntCondition;
 use Gomoob\Pushwoosh\Model\Condition\ListCondition;
 use Gomoob\Pushwoosh\Model\Condition\StringCondition;
+use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 /**
  * Test case used to test the <code>Notification</code> class.
@@ -256,6 +257,48 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testGetSetSendDate()
     {
+        $notification = new Notification();
+
+        // Test with an invalid send date string
+        try {
+
+            $notification->setSendDate('aaa');
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with a send date which is neither a \DateTime neither a string
+        try {
+
+            $notification->setSendDate(654);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with 'now'
+        $this->assertSame($notification, $notification->setSendDate('now'));
+        $this->assertEquals('now', $notification->getSendDate());
+
+        // Test with a valid string date provided
+        $this->assertSame($notification, $notification->setSendDate('2014-01-01 10:06'));
+        $this->assertEquals(
+            \DateTime::createFromFormat('Y-m-d H:i', '2014-01-01 10:06')->getTimestamp(),
+            $notification->getSendDate()->getTimestamp()
+        );
+
+        // Test with a \DateTime
+        $dateTime = \DateTime::createFromFormat('Y-m-d H:i', '2014-01-01 10:06');
+        $this->assertSame($notification, $notification->setSendDate($dateTime));
+        $this->assertSame($dateTime, $notification->getSendDate());
+
     }
 
     /**

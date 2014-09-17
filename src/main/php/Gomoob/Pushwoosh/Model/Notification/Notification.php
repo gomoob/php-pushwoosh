@@ -8,7 +8,7 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
-use Gomoob\Pushwoosh\PushwooshException;
+use Gomoob\Pushwoosh\Exception\PushwooshException;
 use Gomoob\Pushwoosh\Model\Condition\ICondition;
 
 /**
@@ -722,20 +722,33 @@ class Notification
     public function setSendDate(/* \DateTime */ $sendDate)
     {
         // Try to parse a string date
-        if (is_string($dateTime) && $dateTime !== 'now') {
+        if (is_string($sendDate) && $sendDate !== 'now') {
 
-            $this->sendDate = \DateTime::createFromFormat('Y-m-d H:i', $sendDate);
+            $newSendDate = \DateTime::createFromFormat('Y-m-d H:i', $sendDate);
+
+            // The provided send date string is invalid
+            if ($newSendDate === false) {
+
+                throw new PushwooshException('Invalid send date provided !');
+
+            }
+
+            $this->sendDate = $newSendDate;
 
         // If the date is equal to 'now' or a DateTime its ok
         } elseif ($sendDate === 'now' || $sendDate instanceof \DateTime) {
 
             $this->sendDate = $sendDate;
 
+        // Invalid send date provided
+        } else {
+
+            throw new PushwooshException('Invalid send date provided !');
+
         }
 
-        throw new PushwooshException('Invalid send date provided !');
-
         return $this;
+
     }
 
     /**
