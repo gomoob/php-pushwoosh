@@ -146,6 +146,18 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test method for the <tt>getBlackBerry()</tt> and <tt>setBlackBerry($blackBerry)</tt> functions.
+     */
+    public function testGetSetBlackBerry()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getBlackBerry());
+        $blackBerry = new BlackBerry();
+        $this->assertSame($notification, $notification->setBlackBerry($blackBerry));
+        $this->assertSame($blackBerry, $notification->getBlackBerry());
+    }
+
+    /**
 	 * Test method for the <tt>getContent()</tt> and <tt>setContent($aDM)</tt> functions.
 	 */
     public function testGetSetContent()
