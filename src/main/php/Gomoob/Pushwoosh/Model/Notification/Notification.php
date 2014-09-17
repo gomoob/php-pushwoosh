@@ -9,6 +9,7 @@
 namespace Gomoob\Pushwoosh\Model\Notification;
 
 use Gomoob\Pushwoosh\PushwooshException;
+use Gomoob\Pushwoosh\Model\Condition\ICondition;
 
 /**
  * Class which represents a Pushwoosh notification.
@@ -59,7 +60,7 @@ class Notification
 	 *
 	 * You cannot use 'filter' and 'conditions' parameters together.
 	 *
-	 * @var array
+	 * @var \Gomoob\Pushwoosh\Model\Condition\ICondition
 	 */
     private $conditions;
 
@@ -99,6 +100,9 @@ class Notification
 	 */
     private $filter;
 
+    // TODO: DOCUMENT ME !
+    private $ignoreUserTimezone = true;
+
     /**
 	 * The object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification Service).
 	 *
@@ -117,6 +121,13 @@ class Notification
     private $mac;
 
     /**
+     * Parameter used to indicate if the link must be minimized and how to minimize it.
+     *
+     * @var \Gomoob\Pushwoosh\Model\Notification\MinimizeLink
+     */
+    private $minimizeLink;
+
+    /**
 	 * The object which contains specific Pushwoosh notification informations for Safari.
 	 *
 	 * @var \Gomoob\Pushwoosh\Model\Notification\Safari
@@ -133,22 +144,6 @@ class Notification
 	 * @var \DateTime | string
 	 */
     private $sendDate = 'now';
-
-    // TODO: DOCUMENT ME !
-    private $ignoreUserTimezone = true;
-
-    /**
-	 * Optional parameter, can have the following values :
-	 * 	- 0 or false : not minimized
-	 *  - 1 		 : Google
-	 *  - 2 		 : Bitly
-	 *  - 3			 : Baidu (China)
-	 *
-	 *  Default is 1.
-	 *
-	 * @var int
-	 */
-    private $minimizeLink;
 
     /**
 	 * HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML content to
@@ -197,6 +192,23 @@ class Notification
     public static function create()
     {
         return new Notification();
+
+    }
+
+    /**
+     * Add a new conditions to the conditions associated to this notification.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Condition\ICondition $condition the new condition to add.
+     */
+    public function addCondition(ICondition $condition)
+    {
+        if ($this->conditions === null) {
+
+            $this->conditions = array();
+
+        }
+
+        $this->conditions[] = $condition;
 
     }
 
@@ -270,7 +282,7 @@ class Notification
 	 *
 	 * You cannot use 'filter' and 'conditions' parameters together.
 	 *
-	 * @return array the array of tag conditions.
+	 * @return \Gomoob\Pushwoosh\Model\Condition\ICondition the array of tag conditions.
 	 */
     public function getConditions()
     {
@@ -359,6 +371,18 @@ class Notification
     public function getMac()
     {
         return $this->mac;
+
+    }
+
+    /**
+     * Gets the parameter used to indicate if the link must be minimized and how to minimize it.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\MinimizeLink the parameter used to indicate if the link must be
+     *                                                           minimized and how to minimize it.
+     */
+    public function getMinimizeLink()
+    {
+        return $this->minimizeLink;
 
     }
 
@@ -503,7 +527,7 @@ class Notification
 	 *
 	 * You cannot use 'filter' and 'conditions' parameters together.
 	 *
-	 * @param array $conditions the array of tag conditions.
+	 * @param \Gomoob\Pushwoosh\Model\Condition\ICondition $conditions the array of tag conditions.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
 	 */
@@ -541,28 +565,6 @@ class Notification
     public function setData(array $data)
     {
         $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-	 * Sets an additional data parameter or overwrites an existing one.
-	 *
-	 * @param string $parameterName the name of the additional data parameter to set.
-	 * @param mixed $parameterValue the value of the additional data parameter to set. This parameter must be compliant
-	 *        with JSON primitive types or must be an array.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
-	 */
-    public function setDataParameter($parameterName, $parameterValue)
-    {
-        if (!isset($this->data)) {
-
-            $this->data = array();
-
-        }
-
-        $this->data[$parameterName] = $parameterValue;
 
         return $this;
     }
@@ -643,6 +645,21 @@ class Notification
     public function setMac(Mac $mac)
     {
         $this->mac = $mac;
+
+        return $this;
+    }
+
+    /**
+     * Sets the parameter used to indicate if the link must be minimized and how to minimize it.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Notification\MinimizeLink the parameter used to indicate if the link must be
+     *         minimized and how to minimize it.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setMinimizeLink(MinimizeLink $minimizeLink)
+    {
+        $this->minimizeLink = $minimizeLink;
 
         return $this;
     }

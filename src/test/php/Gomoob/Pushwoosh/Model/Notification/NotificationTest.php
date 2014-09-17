@@ -8,6 +8,10 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use Gomoob\Pushwoosh\Model\Condition\IntCondition;
+use Gomoob\Pushwoosh\Model\Condition\ListCondition;
+use Gomoob\Pushwoosh\Model\Condition\StringCondition;
+
 /**
  * Test case used to test the <code>Notification</code> class.
  *
@@ -16,6 +20,72 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  */
 class NotificationTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+	 * Test method for the <tt>addCondition($condition)</tt>, <tt>getConditions()</tt> and
+	 * <tt>setConditions($conditions)</tt> functions.
+	 */
+    public function testAddGetSetConditions()
+    {
+        // Test for 'addCondition'
+        $notification = new Notification();
+        $condition0 = IntCondition::create('intTag')->eq(10);
+        $condition1 = ListCondition::create('listTag')->in(array('value1', 'value2', 'value3'));
+        $condition2 = StringCondition::create('stringTag')->eq('stringValue');
+
+        $this->assertNull($notification->getConditions());
+        $notification->addCondition($condition0);
+        $notification->addCondition($condition1);
+        $notification->addCondition($condition2);
+
+        $conditions = $notification->getConditions();
+        $this->assertCount(3, $conditions);
+        $this->assertSame($condition0, $conditions[0]);
+        $this->assertSame($condition1, $conditions[1]);
+        $this->assertSame($condition2, $conditions[2]);
+
+        // Test for 'setConditions'
+        $notification = new Notification();
+        $this->assertNull($notification->getConditions());
+        $notification->setConditions(array($condition0, $condition1, $condition2));
+
+        $conditions = $notification->getConditions();
+        $this->assertCount(3, $conditions);
+        $this->assertSame($condition0, $conditions[0]);
+        $this->assertSame($condition1, $conditions[1]);
+        $this->assertSame($condition2, $conditions[2]);
+
+    }
+
+    /**
+	 * Test method for the <tt>addDevice($device)</tt>, <tt>getDevices()</tt> and <tt>setDevices($devices)</tt>
+	 * functions.
+	 */
+    public function testAddGetSetDevices()
+    {
+        // Test for 'addDevice'
+        $notification = new Notification();
+        $this->assertNull($notification->getDevices());
+        $this->assertSame($notification, $notification->addDevice('device0'));
+        $this->assertSame($notification, $notification->addDevice('device1'));
+        $this->assertSame($notification, $notification->addDevice('device2'));
+        $devices = $notification->getDevices();
+        $this->assertCount(3, $devices);
+        $this->assertTrue(in_array('device0', $devices));
+        $this->assertTrue(in_array('device1', $devices));
+        $this->assertTrue(in_array('device2', $devices));
+
+        // Test for 'setDevices'
+        $notification = new Notification();
+        $this->assertNull($notification->getDevices());
+        $devices = array('device0', 'device1', 'device2');
+        $this->assertSame($notification, $notification->setDevices($devices));
+        $devices = $notification->getDevices();
+        $this->assertCount(3, $devices);
+        $this->assertTrue(in_array('device0', $devices));
+        $this->assertTrue(in_array('device1', $devices));
+        $this->assertTrue(in_array('device2', $devices));
+    }
+
     /**
      * Test method for the <tt>getADM()</tt> and <tt>setADM($aDM)</tt> functions.
      */
@@ -38,13 +108,6 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $android = new Android();
         $this->assertSame($notification, $notification->setAndroid($android));
         $this->assertSame($android, $notification->getAndroid());
-    }
-
-    /**
-	 * Test method for the <tt>getConditions()</tt> and <tt>setConditions($conditions)</tt> functions.
-	 */
-    public function testGetSetConditions()
-    {
     }
 
     /**
@@ -71,22 +134,6 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $data);
         $this->assertEquals('field0_value', $data['field0']);
         $this->assertEquals('field1_value', $data['field1']);
-    }
-
-    /**
-	 * Test method for the <tt>getDevices()</tt> and <tt>setDevices($devices)</tt> functions.
-	 */
-    public function testGetSetDevices()
-    {
-        $notification = new Notification();
-        $this->assertNull($notification->getDevices());
-        $devices = array('device0', 'device1', 'device2');
-        $this->assertSame($notification, $notification->setDevices($devices));
-        $devices = $notification->getDevices();
-        $this->assertCount(3, $devices);
-        $this->assertTrue(in_array('device0', $devices));
-        $this->assertTrue(in_array('device1', $devices));
-        $this->assertTrue(in_array('device2', $devices));
     }
 
     /**
@@ -133,6 +180,18 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $mac = new Mac();
         $this->assertSame($notification, $notification->setMac($mac));
         $this->assertSame($mac, $notification->getMac());
+    }
+
+    /**
+     * Test method for the <tt>getMinimizeLink()</tt> and <tt>setMinimizeLink($minimizeLink)</tt> functions.
+     */
+    public function testGetSetMinimizeLink()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getMinimizeLink());
+        $minimizeLink = MinimizeLink::bitly();
+        $this->assertSame($notification, $notification->setMinimizeLink($minimizeLink));
+        $this->assertSame($minimizeLink, $notification->getMinimizeLink());
     }
 
     /**
@@ -218,6 +277,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testToJSON()
     {
+        /*
+
         // Test with a sigle content
         $notification = Notification::create();
         $notification->setContent('CONTENT');
@@ -270,6 +331,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('TOKEN_DEVICE_1', $json['devices'][0]);
         $this->assertEquals('TOKEN_DEVICE_2', $json['devices'][1]);
         $this->assertEquals('TOKEN_DEVICE_3', $json['devices'][2]);
+        */
 
     }
 }

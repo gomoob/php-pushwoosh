@@ -193,9 +193,13 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('CONTENT', $json['notifications'][0]['content']);
 
         // Test with one notification having additional data
-        $notification->setDataParameter('DATA_PARAMETER_1', 'DATA_PARAMETER_1_VALUE');
-        $notification->setDataParameter('DATA_PARAMETER_2', 'DATA_PARAMETER_2_VALUE');
-        $notification->setDataParameter('DATA_PARAMETER_3', 'DATA_PARAMETER_3_VALUE');
+        $notification->setData(
+            array(
+                'DATA_PARAMETER_1' => 'DATA_PARAMETER_1_VALUE',
+                'DATA_PARAMETER_2' => 'DATA_PARAMETER_2_VALUE',
+                'DATA_PARAMETER_3' => 'DATA_PARAMETER_3_VALUE'
+            )
+        );
 
         $json = $createMessageRequest->toJSON();
         $this->assertCount(4, $json);
