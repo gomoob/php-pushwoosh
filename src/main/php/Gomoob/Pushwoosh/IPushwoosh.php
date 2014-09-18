@@ -9,7 +9,11 @@
 namespace Gomoob\Pushwoosh;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
+use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
 use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
@@ -26,14 +30,20 @@ interface IPushwoosh
 	 * @param \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest $createMessageRequest the '/createMessage' request
 	 *        used to create the Pushwoosh message.
 	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponse the resulting create message response.
+	 * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponse the resulting '/createMessage' response.
 	 */
     public function createMessage(CreateMessageRequest $createMessageRequest);
 
     /**
      * Function used to delete a Pushwoosh message using a '/deleteMessage' request.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Request\DeletMessageRequest $deleteMessageRequest the '/deleteMessage' request
+     *                                                                                  used to delete a Pushwoosh
+     *                                                                                  message.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\DeleteMessageResponse the resulting '/deleteMessage' response.
      */
-    public function deleteMessage();
+    public function deleteMessage(DeleteMessageRequest $deleteMessageRequest);
 
     /**
 	 * Gets the Pushwoosh application ID to be used by default by all the requests performed by the Pushwoosh client.
@@ -66,9 +76,27 @@ interface IPushwoosh
 	 */
     public function getAuth();
 
-    public function getNearestZone();
+    /**
+     * Function used to record a device location for Geographical Push Notification using a '/getNearestZone' request.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest $getNearestZoneRequest the '/getNearestZone' request
+     *                                                                                     used to record a device
+     *                                                                                     location for Georgraphical
+     *                                                                                     Push Notification.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse the resulting '/getNearestZone' response.
+     */
+    public function getNearestZone(GetNearestZoneRequest $getNearestZoneRequest);
 
-    public function pushStat();
+    /**
+     * Function used to register a device for Push Open events using the '/pushStat' request.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Request\PushStatRequest $pushStatRequest the '/pushStat' request used to register
+     *                                                                         a device for Push Open events.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\PushStatResponse the resulting '/pushStat' response.
+     */
+    public function pushStat(PushStatRequest $pushStatRequest);
 
     /**
 	 * Function used to register a device for an application using a '/registerDevice' request.
@@ -117,12 +145,22 @@ interface IPushwoosh
 	 */
     public function setAuth($auth);
 
-    public function setBadge();
+    /**
+     * Function used to set the current badge for a device to let auto-incrementing badges work properly using the
+     * '/setBadge' request.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Request\SetBadgeRequest $setBadgeRequest the '/setBadge' request used to set the
+     *                                                                         current badge for a device to let
+     *                                                                         auto-incrementing badges work properly.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\SetBadgeResponse the resulting '/setBadge' response.
+     */
+    public function setBadge(SetBadgeRequest $setBadgeRequest);
 
     /**
 	 * Function used to set tags for a device using a '/setTags' request.
 	 *
-	 * @param \Gomoob\Pushwoosh\Model\Request\SetTagsRequest $setTagsRequest the set tags request used to set tags for a
+	 * @param \Gomoob\Pushwoosh\Model\Request\SetTagsRequest $setTagsRequest the '/setTags' request used to set tags for a
 	 *        device.
 	 *
 	 * @return \Gomoob\Pushwoosh\Model\Response\SetTagsResponse the resulting set tags response.
@@ -132,7 +170,7 @@ interface IPushwoosh
     /**
 	 * Function used to remove a device from an application using a '/unregisterDevice' request.
 	 *
-	 * @param \Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest $unregisterDeviceRequest the unergister device
+	 * @param \Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest $unregisterDeviceRequest the '/unregisterDevice'
 	 *        request used to unregister a device from an application.
 	 */
     public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest);

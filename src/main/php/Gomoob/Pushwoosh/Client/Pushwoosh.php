@@ -8,18 +8,27 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
+use Gomoob\Pushwoosh\ICURLClient;
 use Gomoob\Pushwoosh\IPushwoosh;
-use Gomoob\Pushwoosh\PushwooshException;
+use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
+use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
 use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 use Gomoob\Pushwoosh\Model\Response\CreateMessageResponse;
+use Gomoob\Pushwoosh\Model\Response\DeleteMessageResponse;
+use Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse;
+use Gomoob\Pushwoosh\Model\Response\PushStatResponse;
 use Gomoob\Pushwoosh\Model\Response\RegisterDeviceResponse;
-use Gomoob\Pushwoosh\Model\Response\UnregisterDeviceResponse;
+use Gomoob\Pushwoosh\Model\Response\SetBadgeResponse;
 use Gomoob\Pushwoosh\Model\Response\SetTagsResponse;
+use Gomoob\Pushwoosh\Model\Response\UnregisterDeviceResponse;
 
 /**
  * Class which defines a Pushwoosh client.
@@ -53,48 +62,19 @@ class Pushwoosh implements IPushwoosh
 	 */
     private $auth;
 
-    private function pwCall($method, $data)
+    /**
+     * A CURL client used to request the Pushwoosh Web Services.
+     *
+     * @var \Gomoob\Pushwoosh\ICURLClient
+     */
+    private $cURLClient;
+
+    /**
+     * Create a new instance of the Pushwoosh client.
+     */
+    public function __construct()
     {
-        $url = 'https://cp.pushwoosh.com/json/1.3/' . $method;
-        $request = json_encode(array('request' => $data));
-
-        $ch = curl_init($url);
-
-        // FIXME: FIX THIS !!!
-        // see: http://curl.haxx.se/docs/sslcerts.html
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-        curl_setopt(
-            $ch,
-            CURLOPT_HTTPHEADER,
-            array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($request)
-            )
-        );
-
-        $response = curl_exec($ch);
-        $error = curl_error($ch);
-
-        if ($error) {
-
-            $info = curl_getinfo($ch);
-
-            // FIXME
-            var_dump($error);
-            var_dump($info);
-
-        }
-
-        curl_close($ch);
-
-        return json_decode($response, true);
+        $this->cURLClient = new CURLClient();
 
     }
 
@@ -125,7 +105,7 @@ class Pushwoosh implements IPushwoosh
                     'None of the  \'application\' or \'applicationsGroup\' properties are set !'
                 );
 
-            // Setting none of the 'application' and 'applicationsGroup' parameters is an error here
+            // Setting both the 'application' and 'applicationsGroup' parameters is an error here
             } elseif (isset($this->application) && isset($this->applicationsGroup)) {
 
                 throw new PushwooshException(
@@ -163,7 +143,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->pwCall('createMessage', $createMessageRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('createMessage', $createMessageRequest->toJSON());
 
         return CreateMessageResponse::create($response);
 
@@ -172,9 +152,28 @@ class Pushwoosh implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function deleteMessage()
+    public function deleteMessage(DeleteMessageRequest $deleteMessageRequest)
     {
-        // TODO: Auto-generated method stub
+        // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
+        if ($deleteMessageRequest->getAuth() === null) {
+
+            // The 'auth' parameter is expected here
+            if (!isset($this->auth)) {
+
+                throw new PushwooshException('The \'auth\' parameter is not set !');
+
+                // Use the 'auth' parameter defined in the Pushwoosh client
+            } else {
+
+                $deleteMessageRequest->setAuth($this->auth);
+
+            }
+
+        }
+
+        $response = $this->cURLClient->pushwooshCall('deleteMessage', $deleteMessageRequest->toJSON());
+
+        return DeleteMessageResponse::create($response);
 
     }
 
@@ -206,20 +205,67 @@ class Pushwoosh implements IPushwoosh
     }
 
     /**
-     * {@inheritDoc}
+     * Gets the CURL client used to request the Pushwoosh Web Services.
+     *
+     * @return \Gomoob\Pushwoosh\ICURLClient the CURL client used to request the Pushwoosh Web Services.
      */
-    public function getNearestZone()
+    public function getCURLClient()
     {
-        // TODO: Auto-generated method stub
+        return $this->cURLClient;
 
     }
 
     /**
      * {@inheritDoc}
      */
-    public function pushStat()
+    public function getNearestZone(GetNearestZoneRequest $getNearestZoneRequest)
     {
-        // TODO: Auto-generated method stub
+
+        // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+        // client
+        if ($getNearestZoneRequest->getApplication() === null) {
+
+            // The 'application' must be set
+            if (!isset($this->application)) {
+
+                throw new PushwooshException('The  \'application\' property is not set !');
+
+            }
+
+            $getNearestZoneRequest->setApplication($this->application);
+
+        }
+
+        $response = $this->cURLClient->pushwooshCall('getNearestZone', $getNearestZoneRequest->toJSON());
+
+        return GetNearestZoneResponse::create($response);
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function pushStat(PushStatRequest $pushStatRequest)
+    {
+
+        // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+        // client
+        if ($pushStatRequest->getApplication() === null) {
+
+            // The 'application' must be set
+            if (!isset($this->application)) {
+
+                throw new PushwooshException('The  \'application\' property is not set !');
+
+            }
+
+            $pushStatRequest->setApplication($this->application);
+
+        }
+
+        $response = $this->cURLClient->pushwooshCall('pushState', $pushStatRequest->toJSON());
+
+        return PushStatResponse::create($response);
 
     }
 
@@ -243,7 +289,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->pwCall('registerDevice', $registerDeviceRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('registerDevice', $registerDeviceRequest->toJSON());
 
         return RegisterDeviceResponse::create($response);
 
@@ -285,9 +331,40 @@ class Pushwoosh implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function setBadge()
+    public function setBadge(SetBadgeRequest $setBadgeRequest)
     {
-        // TODO: Auto-generated method stub
+
+        // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+        // client
+        if ($setBadgeRequest->getApplication() === null) {
+
+            // The 'application' must be set
+            if (!isset($this->application)) {
+
+                throw new PushwooshException('The  \'application\' property is not set !');
+
+            }
+
+            $setBadgeRequest->setApplication($this->application);
+
+        }
+
+        $response = $this->cURLClient->pushwooshCall('setBadge', $setBadgeRequest->toJSON());
+
+        return SetBadgeResponse::create($response);
+
+    }
+
+    /**
+     * Sets the CURL client used to request the Pushwoosh Web Services.
+     *
+     * @param \Gomoob\Pushwoosh\ICURLClient $cURLClient the CURL client used to request the Pushwoosh Web Services.
+     *
+     * @return \Gommob\Pushwoosh\IPushwoosh this instance.
+     */
+    public function setCURLClient(ICURLClient $cURLClient)
+    {
+        $this->cURLClient = $cURLClient;
 
     }
 
@@ -296,6 +373,7 @@ class Pushwoosh implements IPushwoosh
      */
     public function setTags(SetTagsRequest $setTagsRequest)
     {
+
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($setTagsRequest->getApplication() === null) {
@@ -311,7 +389,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->pwCall('setTags', $setTagsRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('setTags', $setTagsRequest->toJSON());
 
         return SetTagsResponse::create($response);
 
@@ -337,7 +415,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->pwCall('unregisterDevice', $unregisterDeviceRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('unregisterDevice', $unregisterDeviceRequest->toJSON());
 
         return UnregisterDeviceResponse::create($response);
 
