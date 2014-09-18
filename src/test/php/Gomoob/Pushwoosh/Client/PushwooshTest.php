@@ -13,6 +13,7 @@ use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
+use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
@@ -236,6 +237,64 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
      */
     public function testDeleteMessage()
     {
+        // Create a fake CURL client
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 200,
+                    'status_message' => 'OK'
+                )
+            )
+        );
+
+        $pushwoosh = new Pushwoosh();
+        $pushwoosh->setCURLClient($cURLClient);
+        $deleteMessageRequest = DeleteMessageRequest::create()
+            ->setMessage('MESSAGE');
+
+        // Test with the 'auth' parameter not defined
+        try {
+
+            $pushwoosh->deleteMessage($deleteMessageRequest);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with the 'auth' parameter defined in the Pushwoosh client
+        $pushwoosh->setAuth('AUTH');
+        $deleteMessageRequest->setAuth(null);
+        $pushwoosh->deleteMessage($deleteMessageRequest);
+
+        // Test with the 'auth' parameter definied in the request
+        $pushwoosh->setAuth(null);
+        $deleteMessageRequest->setAuth('AUTH');
+        $deleteMessageResponse = $pushwoosh->deleteMessage($deleteMessageRequest);
+
+        $this->assertTrue($deleteMessageResponse->isOk());
+        $this->assertEquals(200, $deleteMessageResponse->getStatusCode());
+        $this->assertEquals('OK', $deleteMessageResponse->getStatusMessage());
+
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $deleteMessageResponse = $pushwoosh->deleteMessage($deleteMessageRequest);
+        $this->assertFalse($deleteMessageResponse->isOk());
+        $this->assertEquals(400, $deleteMessageResponse->getStatusCode());
+        $this->assertEquals('KO', $deleteMessageResponse->getStatusMessage());
+
     }
 
     /**
@@ -243,6 +302,40 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNearestZone()
     {
+    }
+
+    /**
+     * Test method for the <tt>getApplication()</tt> and <tt>setApplication($application)</tt> functions.
+     */
+    public function testGetSetApplication()
+    {
+        $pushwoosh = new Pushwoosh();
+        $this->assertNull($pushwoosh->getApplication());
+        $this->assertSame($pushwoosh, $pushwoosh->setApplication('APPLICATION'));
+        $this->assertEquals('APPLICATION', $pushwoosh->getApplication());
+    }
+
+    /**
+     * Test method for the <tt>getApplicationsGroup()</tt> and <tt>setApplicationsGroup($applicationsGroup)</tt>
+     * functions.
+     */
+    public function testGetSetApplicationsGroup()
+    {
+        $pushwoosh = new Pushwoosh();
+        $this->assertNull($pushwoosh->getApplicationsGroup());
+        $this->assertSame($pushwoosh, $pushwoosh->setApplicationsGroup('APPLICATIONS_GROUP'));
+        $this->assertEquals('APPLICATIONS_GROUP', $pushwoosh->getApplicationsGroup());
+    }
+
+    /**
+     * Test method for the <tt>getAuth()</tt> and <tt>setAuth($auth)</tt> functions.
+     */
+    public function testGetSetAuth()
+    {
+        $pushwoosh = new Pushwoosh();
+        $this->assertNull($pushwoosh->getAuth());
+        $this->assertSame($pushwoosh, $pushwoosh->setAuth('AUTH'));
+        $this->assertEquals('AUTH', $pushwoosh->getAuth());
     }
 
     /**
