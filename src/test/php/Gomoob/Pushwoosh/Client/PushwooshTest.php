@@ -14,6 +14,7 @@ use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
 
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
@@ -302,6 +303,66 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNearestZone()
     {
+        // Create a fake CURL client
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 200,
+                    'status_message' => 'OK'
+                )
+            )
+        );
+
+        $pushwoosh = new Pushwoosh();
+        $pushwoosh->setCURLClient($cURLClient);
+        $getNearestZoneRequest = GetNearestZoneRequest::create()
+            ->setHwid('HWID')
+            ->setLat(1.0)
+            ->setLng(2.0);
+
+        // Test with the 'application' parameter not defined
+        try {
+
+            $pushwoosh->getNearestZone($getNearestZoneRequest);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with the 'application' parameter defined in the Pushwoosh client
+        $pushwoosh->setApplication('APPLICATION');
+        $getNearestZoneRequest->setApplication(null);
+        $pushwoosh->getNearestZone($getNearestZoneRequest);
+
+        // Test with the 'application' parameter definied in the request
+        $pushwoosh->setApplication(null);
+        $getNearestZoneRequest->setApplication('APPLICATION');
+        $getNearestZoneResponse = $pushwoosh->getNearestZone($getNearestZoneRequest);
+
+        $this->assertTrue($getNearestZoneResponse->isOk());
+        $this->assertEquals(200, $getNearestZoneResponse->getStatusCode());
+        $this->assertEquals('OK', $getNearestZoneResponse->getStatusMessage());
+
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $getNearestZoneResponse = $pushwoosh->getNearestZone($getNearestZoneRequest);
+        $this->assertFalse($getNearestZoneResponse->isOk());
+        $this->assertEquals(400, $getNearestZoneResponse->getStatusCode());
+        $this->assertEquals('KO', $getNearestZoneResponse->getStatusMessage());
+
     }
 
     /**

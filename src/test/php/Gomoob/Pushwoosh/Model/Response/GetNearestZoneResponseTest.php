@@ -21,6 +21,7 @@ class GetNearestZoneResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
+        // Test with a success response
         $getNearestZoneResponse = GetNearestZoneResponse::create(
             array(
                 'status_code' => 200,
@@ -46,6 +47,18 @@ class GetNearestZoneResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(13, $getNearestZoneResponseResponse->getLng());
         $this->assertEquals(100, $getNearestZoneResponseResponse->getRange());
         $this->assertEquals(4715784, $getNearestZoneResponseResponse->getDistance());
+
+        // Test with an error response
+        $getNearestZoneResponse = GetNearestZoneResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO',
+            )
+        );
+
+        $this->assertFalse($getNearestZoneResponse->isOk());
+        $this->assertEquals(400, $getNearestZoneResponse->getStatusCode());
+        $this->assertEquals('KO', $getNearestZoneResponse->getStatusMessage());
 
     }
 }

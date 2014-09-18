@@ -35,13 +35,18 @@ class GetNearestZoneResponse extends AbstractResponse
         $getNearestZoneResponse->setStatusCode($json['status_code']);
         $getNearestZoneResponse->setStatusMessage($json['status_message']);
 
-        $getNearestZoneResponseResponse = new GetNearestZoneResponseResponse();
-        $getNearestZoneResponseResponse->setDistance($json['response']['distance']);
-        $getNearestZoneResponseResponse->setLat($json['response']['lat']);
-        $getNearestZoneResponseResponse->setLng($json['response']['lng']);
-        $getNearestZoneResponseResponse->setName($json['response']['name']);
-        $getNearestZoneResponseResponse->setRange($json['response']['range']);
-        $getNearestZoneResponse->setResponse($getNearestZoneResponseResponse);
+        // If a 'response' is provided
+        if (array_key_exists('response', $json)) {
+
+            $getNearestZoneResponseResponse = new GetNearestZoneResponseResponse();
+            $getNearestZoneResponseResponse->setDistance($json['response']['distance']);
+            $getNearestZoneResponseResponse->setLat($json['response']['lat']);
+            $getNearestZoneResponseResponse->setLng($json['response']['lng']);
+            $getNearestZoneResponseResponse->setName($json['response']['name']);
+            $getNearestZoneResponseResponse->setRange($json['response']['range']);
+            $getNearestZoneResponse->setResponse($getNearestZoneResponseResponse);
+
+        }
 
         return $getNearestZoneResponse;
     }
