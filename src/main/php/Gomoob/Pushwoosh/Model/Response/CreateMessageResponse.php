@@ -35,9 +35,21 @@ class CreateMessageResponse extends AbstractResponse
         $createMessageResponse->setStatusCode($json['status_code']);
         $createMessageResponse->setStatusMessage($json['status_message']);
 
-        $createMessageResponseResponse = new CreateMessageResponseResponse();
-        $createMessageResponseResponse->setMessages($json['response']['Messages']);
-        $createMessageResponse->setResponse($createMessageResponseResponse);
+        // If a 'response' is provided
+        if (array_key_exists('response', $json)) {
+
+            $createMessageResponseResponse = new CreateMessageResponseResponse();
+
+            // If 'Messages' are provided
+            if (array_key_exists('Messages', $json['response'])) {
+
+                $createMessageResponseResponse->setMessages($json['response']['Messages']);
+
+            }
+
+            $createMessageResponse->setResponse($createMessageResponseResponse);
+
+        }
 
         return $createMessageResponse;
     }

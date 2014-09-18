@@ -21,6 +21,7 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
+        // Test with a successful response
         $createMessageResponse = CreateMessageResponse::create(
             array(
                 'status_code' => 200,
@@ -46,6 +47,20 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($createMessageResponse->isOk());
         $this->assertEquals(200, $createMessageResponse->getStatusCode());
         $this->assertEquals('OK', $createMessageResponse->getStatusMessage());
+
+        // Test with an error response
+        $createMessageResponse = CreateMessageResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO'
+            )
+        );
+
+        $createMessageResponseResponse = $createMessageResponse->getResponse();
+        $this->assertNull($createMessageResponseResponse);
+        $this->assertFalse($createMessageResponse->isOk());
+        $this->assertEquals(400, $createMessageResponse->getStatusCode());
+        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
 
     }
 }

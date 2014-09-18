@@ -8,11 +8,7 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
-use Gomoob\Pushwoosh\Model\Notification\IOS;
-
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
-use Gomoob\Pushwoosh\Model\Notification\Notification;
-use Gomoob\Pushwoosh\Model\Notification\Android;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
@@ -52,6 +48,18 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->pushwooshTestProperties = json_decode(file_get_contents($testConfigurationFile), true);
 		*/
 
+    }
+
+    /**
+     * Test method for the <tt>create()</tt> function.
+     *
+     * @group PushwooshTest.create
+     */
+    public function testCreate()
+    {
+        $pushwoosh = Pushwoosh::create();
+        $this->assertNotNull($pushwoosh);
+        $this->assertNotNull($pushwoosh->getCURLClient());
     }
 
     /**
@@ -177,56 +185,47 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest->setApplication(null);
         $createMessageRequest->setApplicationsGroup('APPLICATIONS_GROUP');
         $createMessageRequest->setAuth(null);
-        $pushwoosh->createMessage($createMessageRequest);
+        $createMessageResponse = $pushwoosh->createMessage($createMessageRequest);
 
-        /*
-        $request->setApplication($this->pushwooshTestProperties['application']);
-        $request->setAuth($this->pushwooshTestProperties['auth']);
+        $this->assertEquals(200, $createMessageResponse->getStatusCode());
+        $this->assertEquals('OK', $createMessageResponse->getStatusMessage());
+        $this->assertNotNull($createMessageResponse->getResponse());
+        $this->assertCount(0, $createMessageResponse->getResponse()->getMessages());
 
-        $notification = new Notification();
-        $request->setNotifications(array($notification));
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO',
+                    'response' => array('Messages' => array())
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $createMessageResponse = $pushwoosh->createMessage($createMessageRequest);
+        $this->assertEquals(400, $createMessageResponse->getStatusCode());
+        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
+        $this->assertNotNull($createMessageResponse->getResponse());
+        $this->assertCount(0, $createMessageResponse->getResponse()->getMessages());
 
-        // Test with a CreateMessageRequest with an empty notification
-        $response = $pushwoosh->createMessage($request);
-        $this->assertNotNull($response);
-        $this->assertTrue($response->isOk());
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('OK', $response->getStatusMessage());
-        $this->assertNotNull($response->getResponse());
-        $this->assertCount(1, $response->getResponse()->getMessages());
-
-        // Test with credentials set on the Pushwoosh client
-        $pushwoosh = Pushwoosh::create()
-            ->setApplication($this->pushwooshTestProperties['application'])
-            ->setAuth($this->pushwooshTestProperties['auth']);
-
-        $request = CreateMessageRequest::create()->addNotification(new Notification());
-        $response = $pushwoosh->createMessage($request);
-        $this->assertNotNull($response);
-        $this->assertTrue($response->isOk());
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('OK', $response->getStatusMessage());
-        $this->assertNotNull($response->getResponse());
-        $this->assertCount(1, $response->getResponse()->getMessages());
-
-        // Test with a message having one notification
-        $pushwoosh = Pushwoosh::create()
-            ->setApplication($this->pushwooshTestProperties['application'])
-            ->setAuth($this->pushwooshTestProperties['auth']);
-
-        $request = CreateMessageRequest::create();
-
-        $android = Android::create()->setHeader('My Sample Application');
-        $iOS = IOS::create()->setBadges(1);
-        $notification = Notification::create()
-            ->setContent('Hello !')
-            ->setAndroid($android)
-            ->setIOS($iOS);
-
-        $request->addNotification($notification);
-
-        $response = $pushwoosh->createMessage($request);
-        */
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $createMessageResponse = $pushwoosh->createMessage($createMessageRequest);
+        $this->assertFalse($createMessageResponse->isOk());
+        $this->assertEquals(400, $createMessageResponse->getStatusCode());
+        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
+        $this->assertNull($createMessageResponse->getResponse());
 
     }
 
