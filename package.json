@@ -1,6 +1,6 @@
 {
   "name": "gomoob-php-pushwoosh",
-  "version": "0.1.0-alpha5",
+  "version": "0.1.0",
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",
