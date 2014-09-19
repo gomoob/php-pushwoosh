@@ -21,15 +21,28 @@ class PushStatResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
-        $pushStateResponse = PushStatResponse::create(
+        // Test with a success response
+        $pushStatResponse = PushStatResponse::create(
             array(
                 'status_code' => 200,
                 'status_message' => 'OK'
             )
         );
 
-        $this->assertTrue($pushStateResponse->isOk());
-        $this->assertEquals(200, $pushStateResponse->getStatusCode());
-        $this->assertEquals('OK', $pushStateResponse->getStatusMessage());
+        $this->assertTrue($pushStatResponse->isOk());
+        $this->assertEquals(200, $pushStatResponse->getStatusCode());
+        $this->assertEquals('OK', $pushStatResponse->getStatusMessage());
+
+        // Test with an error response
+        $pushStatResponse = PushStatResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO'
+            )
+        );
+
+        $this->assertFalse($pushStatResponse->isOk());
+        $this->assertEquals(400, $pushStatResponse->getStatusCode());
+        $this->assertEquals('KO', $pushStatResponse->getStatusMessage());
     }
 }

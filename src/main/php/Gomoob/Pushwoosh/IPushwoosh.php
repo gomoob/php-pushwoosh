@@ -11,6 +11,7 @@ namespace Gomoob\Pushwoosh;
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
+use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
@@ -87,6 +88,16 @@ interface IPushwoosh
      * @return \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse the resulting '/getNearestZone' response.
      */
     public function getNearestZone(GetNearestZoneRequest $getNearestZoneRequest);
+
+    /**
+     * Function used to get the tags associated to a device using a '/getTags' request.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Request\GetTagsRequest $getTagsRequest the '/getTags' request used to get the tags
+     *                                                                       associated to a specified device.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\GetTagsResponse the resulting '/getTags' response.
+     */
+    public function getTags(GetTagsRequest $getTagsRequest);
 
     /**
      * Function used to register a device for Push Open events using the '/pushStat' request.

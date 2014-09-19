@@ -15,6 +15,8 @@ use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
+use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
+use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
 
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
@@ -400,10 +402,189 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test method for the <tt>getTags($getTagsRequest)</tt> function.
+     */
+    public function testGetTags()
+    {
+        // Create a fake CURL client
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 200,
+                    'status_message' => 'OK',
+                    'response' => array(
+                        'result' => array(
+                            'tag0' => 'tag0Value',
+                            'tag1' => 'tag1Value',
+                            'tag2' => 'tag2Value'
+                        )
+                    )
+                )
+            )
+        );
+
+        $pushwoosh = new Pushwoosh();
+        $pushwoosh->setCURLClient($cURLClient);
+
+        $getTagsRequest = GetTagsRequest::create()->setHwid('HWID');
+
+        // Test with the 'application' parameter not defined
+        try {
+
+            $pushwoosh->getTags($getTagsRequest);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with the 'auth' parameter not defined
+        $pushwoosh->setApplication('APPLICATION');
+        try {
+
+            $pushwoosh->getTags($getTagsRequest);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with the 'application' and 'auth' parameters definied in the Pushwoosh client
+        $pushwoosh->setApplication('APPLICATION');
+        $pushwoosh->setAuth('AUTH');
+        $getTagsRequest->setApplication(null);
+        $getTagsRequest->setAuth(null);
+        $pushwoosh->getTags($getTagsRequest);
+
+        // Test with the 'application' and 'auth' parameters definied in the request
+        $pushwoosh->setApplication(null);
+        $pushwoosh->setAuth(null);
+        $getTagsRequest->setApplication('APPLICATION');
+        $getTagsRequest->setAuth('AUTH');
+        $pushwoosh->getTags($getTagsRequest);
+
+        // Test with the 'application' defined in the Pushwoosh client and the 'auth' parameter defined in the request
+        $pushwoosh->setApplication('APPLICATION');
+        $pushwoosh->setAuth(null);
+        $getTagsRequest->setApplication(null);
+        $getTagsRequest->setAuth('AUTH');
+        $pushwoosh->getTags($getTagsRequest);
+
+        // Test with the 'application' defined in the request and the 'auth' parameter defined in the Pushwoosh client
+        $pushwoosh->setApplication(null);
+        $pushwoosh->setAuth('AUTH');
+        $getTagsRequest->setApplication('APPLICATION');
+        $getTagsRequest->setAuth(null);
+        $getTagsResponse = $pushwoosh->getTags($getTagsRequest);
+
+        $getTagsResponseResponse = $getTagsResponse->getResponse();
+        $this->assertNotNull($getTagsResponseResponse);
+
+        $result = $getTagsResponseResponse->getResult();
+        $this->assertCount(3, $result);
+        $this->assertEquals('tag0Value', $result['tag0']);
+        $this->assertEquals('tag1Value', $result['tag1']);
+        $this->assertEquals('tag2Value', $result['tag2']);
+
+        $tags = $getTagsResponseResponse->getTags();
+        $this->assertCount(3, $tags);
+        $this->assertEquals('tag0Value', $tags['tag0']);
+        $this->assertEquals('tag1Value', $tags['tag1']);
+        $this->assertEquals('tag2Value', $tags['tag2']);
+
+        $this->assertTrue($getTagsResponseResponse->hasTag('tag0'));
+        $this->assertTrue($getTagsResponseResponse->hasTag('tag1'));
+        $this->assertTrue($getTagsResponseResponse->hasTag('tag2'));
+
+        $this->assertTrue($getTagsResponse->isOk());
+        $this->assertEquals(200, $getTagsResponse->getStatusCode());
+        $this->assertEquals('OK', $getTagsResponse->getStatusMessage());
+
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $getTagsResponse = $pushwoosh->getTags($getTagsRequest);
+        $this->assertFalse($getTagsResponse->isOk());
+        $this->assertEquals(400, $getTagsResponse->getStatusCode());
+        $this->assertEquals('KO', $getTagsResponse->getStatusMessage());
+    }
+
+    /**
      * Test method for the <tt>pushStat($pushStatRequest)</tt> function.
      */
     public function testPushStat()
     {
+        // Create a fake CURL client
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 200,
+                    'status_message' => 'OK'
+                )
+            )
+        );
+
+        $pushwoosh = new Pushwoosh();
+        $pushwoosh->setCURLClient($cURLClient);
+        $pushStatRequest = PushStatRequest::create()
+            ->setHwid('HWID')
+            ->setHash('hash');
+
+        // Test with the 'application' parameter not defined
+        try {
+
+            $pushwoosh->pushStat($pushStatRequest);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with the 'application' parameter defined in the Pushwoosh client
+        $pushwoosh->setApplication('APPLICATION');
+        $pushStatRequest->setApplication(null);
+        $pushwoosh->pushStat($pushStatRequest);
+
+        // Test with the 'application' parameter definied in the request
+        $pushwoosh->setApplication(null);
+        $pushStatRequest->setApplication('APPLICATION');
+        $pushStatResponse = $pushwoosh->pushStat($pushStatRequest);
+
+        $this->assertTrue($pushStatResponse->isOk());
+        $this->assertEquals(200, $pushStatResponse->getStatusCode());
+        $this->assertEquals('OK', $pushStatResponse->getStatusMessage());
+
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $pushStatResponse = $pushwoosh->pushStat($pushStatRequest);
+        $this->assertFalse($pushStatResponse->isOk());
+        $this->assertEquals(400, $pushStatResponse->getStatusCode());
+        $this->assertEquals('KO', $pushStatResponse->getStatusMessage());
     }
 
     /**
