@@ -21,6 +21,7 @@ class UnregisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
+        // Test with a success response
         $unregisterDeviceResponse = UnregisterDeviceResponse::create(
             array(
                 'status_code' => 200,
@@ -31,5 +32,17 @@ class UnregisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($unregisterDeviceResponse->isOk());
         $this->assertEquals(200, $unregisterDeviceResponse->getStatusCode());
         $this->assertEquals('OK', $unregisterDeviceResponse->getStatusMessage());
+
+        // Test with an error response
+        $unregisterDeviceResponse = UnregisterDeviceResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO'
+            )
+        );
+
+        $this->assertFalse($unregisterDeviceResponse->isOk());
+        $this->assertEquals(400, $unregisterDeviceResponse->getStatusCode());
+        $this->assertEquals('KO', $unregisterDeviceResponse->getStatusMessage());
     }
 }

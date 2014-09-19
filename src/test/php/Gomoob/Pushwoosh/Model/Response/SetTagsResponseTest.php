@@ -21,6 +21,7 @@ class SetTagsResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
+        // Test with a success response
         $setTagsResponse = SetTagsResponse::create(
             array(
                 'status_code' => 200,
@@ -31,5 +32,17 @@ class SetTagsResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($setTagsResponse->isOk());
         $this->assertEquals(200, $setTagsResponse->getStatusCode());
         $this->assertEquals('OK', $setTagsResponse->getStatusMessage());
+
+        // Test with an error response
+        $setTagsResponse = SetTagsResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO'
+            )
+        );
+
+        $this->assertFalse($setTagsResponse->isOk());
+        $this->assertEquals(400, $setTagsResponse->getStatusCode());
+        $this->assertEquals('KO', $setTagsResponse->getStatusMessage());
     }
 }

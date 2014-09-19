@@ -183,6 +183,8 @@ class SetTagsRequest
      *
      * @param string $tagName  the name of the tag to add or update.
      * @param mixed  $tagValue the value of the tag to set.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest this instance.
      */
     public function setTag($tagName, $tagValue)
     {
@@ -193,6 +195,9 @@ class SetTagsRequest
         }
 
         $this->tags[$tagName] = $tagValue;
+
+        return $this;
+
     }
 
     /**
