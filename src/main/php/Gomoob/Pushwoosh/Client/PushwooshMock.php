@@ -9,7 +9,15 @@
 namespace Gomoob\Pushwoosh\Client;
 
 use Gomoob\Pushwoosh\IPushwoosh;
+
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
+use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
+use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
+use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
+use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 /**
  * Class which defines a Pushwoosh client mock.
@@ -30,7 +38,7 @@ class PushwooshMock implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function deleteMessage()
+    public function deleteMessage(DeleteMessageRequest $deleteMessageRequest)
     {
         // TODO: Auto-generated method stub
 
@@ -75,7 +83,7 @@ class PushwooshMock implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function pushStat()
+    public function getTags(GetTagsRequest $getTagsRequest)
     {
         // TODO: Auto-generated method stub
 
@@ -84,7 +92,16 @@ class PushwooshMock implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function registerDevice()
+    public function pushStat(PushStatRequest $pushStatRequest)
+    {
+        // TODO: Auto-generated method stub
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function registerDevice(RegisterDeviceRequest $registerDeviceRequest)
     {
         // TODO: Auto-generated method stub
 
@@ -120,7 +137,7 @@ class PushwooshMock implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function setBadge()
+    public function setBadge(SetBadgeRequest $setBadgeRequest)
     {
         // TODO: Auto-generated method stub
 
@@ -129,7 +146,7 @@ class PushwooshMock implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function setTags()
+    public function setTags(SetTagsRequest $setTagsRequest)
     {
         // TODO: Auto-generated method stub
 
@@ -138,7 +155,7 @@ class PushwooshMock implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function unregisterDevice()
+    public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest)
     {
         // TODO: Auto-generated method stub
 
