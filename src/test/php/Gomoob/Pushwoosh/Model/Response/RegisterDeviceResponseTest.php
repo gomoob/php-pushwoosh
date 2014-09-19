@@ -21,6 +21,7 @@ class RegisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testCreate()
     {
+        // Test with a success response
         $registerDeviceResponse = RegisterDeviceResponse::create(
             array(
                 'status_code' => 200,
@@ -31,5 +32,17 @@ class RegisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($registerDeviceResponse->isOk());
         $this->assertEquals(200, $registerDeviceResponse->getStatusCode());
         $this->assertEquals('OK', $registerDeviceResponse->getStatusMessage());
+
+        // Test with an error response
+        $registerDeviceResponse = RegisterDeviceResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO'
+            )
+        );
+
+        $this->assertFalse($registerDeviceResponse->isOk());
+        $this->assertEquals(400, $registerDeviceResponse->getStatusCode());
+        $this->assertEquals('KO', $registerDeviceResponse->getStatusMessage());
     }
 }

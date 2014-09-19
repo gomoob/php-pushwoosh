@@ -8,15 +8,17 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
+use Gomoob\Pushwoosh\Exception\PushwooshException;
+
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
-use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
-use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
-use Gomoob\Pushwoosh\Exception\PushwooshException;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
-use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
 use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
+use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
+use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
+use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
+use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
@@ -594,25 +596,67 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 	 */
     public function testRegisterDevice()
     {
-        $this->markTestSkipped(
-            'Comment me to enable tests.'
+        // Create a fake CURL client
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 200,
+                    'status_message' => 'OK'
+                )
+            )
         );
 
-        $pushwoosh = Pushwoosh::create()
-            ->setApplication($this->pushwooshTestProperties['application'])
-            ->setAuth($this->pushwooshTestProperties['auth']);
+        $pushwoosh = new Pushwoosh();
+        $pushwoosh->setCURLClient($cURLClient);
+        $registerDeviceRequest = RegisterDeviceRequest::create()
+            ->setPushToken('PUSH_TOKEN')
+            ->setLanguage('en')
+            ->setHwid('hwid')
+            ->setTimezone(3600)
+            ->setDeviceType(1);
 
-        $request = RegisterDeviceRequest::create()
-            ->setApplication($this->pushwooshTestProperties['application'])
-            ->setDeviceType(3)
-            ->setHwid('48df748567e3b130')
-            ->setLanguage('fr')
-            ->setPushToken(
-                'APA91bFIFfTSUQJknA3atnY2ioN2M2VttHnhrdWZQu9wk03LC5QVHkUV4fcaXBnYOnGa0zLwMuGibHQDzrBke3MAC-' .
-                'zq5r6EqLsMyQ-nyLA7mIpCSI5Q2Sg0FRrM9mXXwKxkvYGDZgRWN4X16MzAHPrskk69F0V0aPvLwUBeTW_VCHcO0oZ0GOc'
-            );
+        // Test with the 'application' parameter not defined
+        try {
 
-        $response = $pushwoosh->registerDevice($request);
+            $pushwoosh->registerDevice($registerDeviceRequest);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with the 'application' parameter defined in the Pushwoosh client
+        $pushwoosh->setApplication('APPLICATION');
+        $registerDeviceRequest->setApplication(null);
+        $pushwoosh->registerDevice($registerDeviceRequest);
+
+        // Test with the 'application' parameter definied in the request
+        $pushwoosh->setApplication(null);
+        $registerDeviceRequest->setApplication('APPLICATION');
+        $registerDeviceResponse = $pushwoosh->registerDevice($registerDeviceRequest);
+
+        $this->assertTrue($registerDeviceResponse->isOk());
+        $this->assertEquals(200, $registerDeviceResponse->getStatusCode());
+        $this->assertEquals('OK', $registerDeviceResponse->getStatusMessage());
+
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $registerDeviceResponse = $pushwoosh->registerDevice($registerDeviceRequest);
+        $this->assertFalse($registerDeviceResponse->isOk());
+        $this->assertEquals(400, $registerDeviceResponse->getStatusCode());
+        $this->assertEquals('KO', $registerDeviceResponse->getStatusMessage());
 
     }
 
@@ -623,6 +667,64 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetBadge()
     {
+        // Create a fake CURL client
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 200,
+                    'status_message' => 'OK'
+                )
+            )
+        );
+
+        $pushwoosh = new Pushwoosh();
+        $pushwoosh->setCURLClient($cURLClient);
+        $setBadgeRequest = SetBadgeRequest::create()
+            ->setBadge(5)
+            ->setHwid('hwid');
+
+        // Test with the 'application' parameter not defined
+        try {
+
+            $pushwoosh->setBadge($setBadgeRequest);
+            $this->fail('Must have thrown a PushwooshException !');
+
+        } catch (PushwooshException $pe) {
+
+            // Expected
+
+        }
+
+        // Test with the 'application' parameter defined in the Pushwoosh client
+        $pushwoosh->setApplication('APPLICATION');
+        $setBadgeRequest->setApplication(null);
+        $pushwoosh->setBadge($setBadgeRequest);
+
+        // Test with the 'application' parameter definied in the request
+        $pushwoosh->setApplication(null);
+        $setBadgeRequest->setApplication('APPLICATION');
+        $setBadgeResponse = $pushwoosh->setBadge($setBadgeRequest);
+
+        $this->assertTrue($setBadgeResponse->isOk());
+        $this->assertEquals(200, $setBadgeResponse->getStatusCode());
+        $this->assertEquals('OK', $setBadgeResponse->getStatusMessage());
+
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                array(
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                )
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        $setBadgeResponse = $pushwoosh->setBadge($setBadgeRequest);
+        $this->assertFalse($setBadgeResponse->isOk());
+        $this->assertEquals(400, $setBadgeResponse->getStatusCode());
+        $this->assertEquals('KO', $setBadgeResponse->getStatusMessage());
     }
 
     /**
