@@ -111,7 +111,7 @@ module.exports = function(grunt) {
                         }
 
                         command += ' src/main/php';
-                        command += ' src/test/php/GoMoob';
+                        command += ' src/test/php/Gomoob';
 
                         return command;
                         
