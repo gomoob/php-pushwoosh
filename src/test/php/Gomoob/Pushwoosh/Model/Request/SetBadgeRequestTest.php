@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>SetBadgeRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group SetBadgeRequestTest
+ * @group  SetBadgeRequestTest
  */
 class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $setBadgeRequest = SetBadgeRequest::create();
@@ -63,20 +63,18 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $setBadgeRequest = new SetBadgeRequest();
 
         // Test without the 'application' parameter set
         try {
-
             $setBadgeRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -84,12 +82,10 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'badge' parameter set
         $setBadgeRequest->setApplication('APPLICATION');
         try {
-
             $setBadgeRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -97,12 +93,10 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $setBadgeRequest->setBadge(5);
         try {
-
             $setBadgeRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

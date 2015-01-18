@@ -21,30 +21,30 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 interface ICondition
 {
     /**
-	 * Gets the operand.
-	 *
-	 * @return mixed the operand.
-	 */
+     * Gets the operand.
+     *
+     * @return mixed the operand.
+     */
     public function getOperand();
 
     /**
-	 * Gets the operator.
-	 *
-	 * @return string the operator.
-	 */
+     * Gets the operator.
+     *
+     * @return string the operator.
+     */
     public function getOperator();
 
     /**
-	 * Gets the name of the tag.
-	 *
-	 * @return string the name of the tag.
-	 */
+     * Gets the name of the tag.
+     *
+     * @return string the name of the tag.
+     */
     public function getTagName();
 
     /**
-	 * Creates a JSON representation of this condition.
-	 *
-	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-	 */
+     * Creates a JSON representation of this condition.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
     public function toJSON();
 }

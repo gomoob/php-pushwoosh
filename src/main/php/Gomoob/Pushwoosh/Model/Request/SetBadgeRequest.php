@@ -18,31 +18,31 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class SetBadgeRequest
 {
     /**
-	 * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
-	 *
-	 * @var string
-	 */
+     * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
+     *
+     * @var string
+     */
     private $application;
 
     /**
-	 * The current badge on the application to use with auto-incrementing badges.
-	 *
-	 * @var int
-	 */
+     * The current badge on the application to use with auto-incrementing badges.
+     *
+     * @var int
+     */
     private $badge;
 
     /**
-	 * The hardware device id used in registerDevice function call.
-	 *
-	 * @var string
-	 */
+     * The hardware device id used in registerDevice function call.
+     *
+     * @var string
+     */
     private $hwid;
 
     /**
-	 * Utility function used to create a new instance of the <tt>SetBadgeRequest</tt>.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\SetBadgeRequest the new created instance.
-	 */
+     * Utility function used to create a new instance of the <tt>SetBadgeRequest</tt>.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\SetBadgeRequest the new created instance.
+     */
     public static function create()
     {
         return new SetBadgeRequest();
@@ -50,10 +50,10 @@ class SetBadgeRequest
     }
 
     /**
-	 * Gets the Pushwoosh application ID where you send the message to.
-	 *
-	 * @return string Pushwoosh application ID where you send the message to.
-	 */
+     * Gets the Pushwoosh application ID where you send the message to.
+     *
+     * @return string Pushwoosh application ID where you send the message to.
+     */
     public function getApplication()
     {
         return $this->application;
@@ -61,20 +61,20 @@ class SetBadgeRequest
     }
 
     /**
-	 * Gets the current badge on the application to use with auto-incrementing badges.
-	 *
-	 * @return int the current badge on the application to use with auto-incrementing badges.
-	 */
+     * Gets the current badge on the application to use with auto-incrementing badges.
+     *
+     * @return int the current badge on the application to use with auto-incrementing badges.
+     */
     public function getBadge()
     {
         return $this->badge;
     }
 
     /**
-	 * Gets the hardware device id used in registerDevice function call.
-	 *
-	 * @return string the hardware device id used in registerDevice function call.
-	 */
+     * Gets the hardware device id used in registerDevice function call.
+     *
+     * @return string the hardware device id used in registerDevice function call.
+     */
     public function getHwid()
     {
         return $this->hwid;
@@ -132,21 +132,18 @@ class SetBadgeRequest
     {
         // The 'application' parameter must have been defined.
         if (!isset($this->application)) {
-
             throw new PushwooshException('The \'application\' property is not set !');
 
         }
 
         // The 'badge' parameter must have been defined
         if (!isset($this->badge)) {
-
             throw new PushwooshException('The \'badge\' property is not set !');
 
         }
 
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
-
             throw new PushwooshException('The \'hwid\' property is not set !');
 
         }

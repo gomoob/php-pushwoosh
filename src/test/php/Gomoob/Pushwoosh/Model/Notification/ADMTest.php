@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Test case used to test the <code>ADM</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group ADMTest
+ * @group  ADMTest
  */
 class ADMTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <code>#create()</code> function;
-	 */
+     * Test method for the <code>#create()</code> function;
+     */
     public function testCreate()
     {
         $this->assertNotNull(ADM::create());
@@ -26,8 +26,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getBanner()</code> and <code>#setBanner($banner)</code> functions.
-	 */
+     * Test method for the <code>#getBanner()</code> and <code>#setBanner($banner)</code> functions.
+     */
     public function testGetSetBanner()
     {
         $aDM = new ADM();
@@ -36,8 +36,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getCustomIcon()</code> and <code>#setCustomIcon($customIcon)</code> functions.
-	 */
+     * Test method for the <code>#getCustomIcon()</code> and <code>#setCustomIcon($customIcon)</code> functions.
+     */
     public function testGetSetCustomIcon()
     {
         $aDM = new ADM();
@@ -46,8 +46,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getHeader()</code> and <code>#setHeader($header)</code> functions.
-	 */
+     * Test method for the <code>#getHeader()</code> and <code>#setHeader($header)</code> functions.
+     */
     public function testGetSetHeader()
     {
         $aDM = new ADM();
@@ -56,8 +56,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getIcon()</code> and <code>#setIcon($icon)</code> functions.
-	 */
+     * Test method for the <code>#getIcon()</code> and <code>#setIcon($icon)</code> functions.
+     */
     public function testGetSetIcon()
     {
         $aDM = new ADM();
@@ -66,8 +66,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
-	 */
+     * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
+     */
     public function testGetSetRootParams()
     {
         $aDM = new ADM();
@@ -76,8 +76,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getSound()</code> and <code>#setSound($sound)</code> functions.
-	 */
+     * Test method for the <code>#getSound()</code> and <code>#setSound($sound)</code> functions.
+     */
     public function testGetSetSound()
     {
         $aDM = new ADM();
@@ -86,8 +86,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
-	 */
+     * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
+     */
     public function testGetSetTtl()
     {
         $aDM = new ADM();

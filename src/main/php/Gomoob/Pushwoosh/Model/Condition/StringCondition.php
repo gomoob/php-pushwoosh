@@ -16,8 +16,8 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 class StringCondition extends AbstractCondition
 {
     /**
-	 * Create a new <code>StringCondition</code> instance.
-	 */
+     * Create a new <code>StringCondition</code> instance.
+     */
     private function __construct($tagName)
     {
         $this->tagName = $tagName;
@@ -36,12 +36,12 @@ class StringCondition extends AbstractCondition
     }
 
     /**
-	 * Apply an equals operator to a specified operand value.
-	 *
-	 * @param string $value the string value to compare with.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Condition\StringCondition this instance.
-	 */
+     * Apply an equals operator to a specified operand value.
+     *
+     * @param string $value the string value to compare with.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\StringCondition this instance.
+     */
     public function eq($value)
     {
         $this->operator = 'EQ';

@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>SetTagsRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group SetTagsRequestTest
+ * @group  SetTagsRequestTest
  */
 class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>addTag($tagName, $tagValue)</tt> function.
-	 */
+     * Test method for the <tt>addTag($tagName, $tagValue)</tt> function.
+     */
     public function testAddTag()
     {
         $setTagsRequest = new SetTagsRequest();
@@ -39,20 +39,18 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
 
         // Adding the same tag 2 times is forbidden
         try {
-
             $setTagsRequest->addTag('tag0', 'tag0_value');
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
     }
 
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $setTagsRequest = SetTagsRequest::create();
@@ -202,20 +200,18 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $setTagsRequest = new SetTagsRequest();
 
         // Test without the 'application' parameter set
         try {
-
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -223,12 +219,10 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $setTagsRequest->setApplication('APPLICATION');
         try {
-
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -236,12 +230,10 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'tags' parameter set
         $setTagsRequest->setHwid('HWID');
         try {
-
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

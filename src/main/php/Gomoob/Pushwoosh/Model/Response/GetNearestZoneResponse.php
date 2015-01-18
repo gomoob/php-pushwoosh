@@ -16,19 +16,19 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class GetNearestZoneResponse extends AbstractResponse
 {
     /**
-	 * Gets the Pushwoosh '/getNearestZone' response response.
-	 *
-	 * @var \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponseResponse
-	 */
+     * Gets the Pushwoosh '/getNearestZone' response response.
+     *
+     * @var \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponseResponse
+     */
     private $response;
 
     /**
-	 * Utility function used to create a new instance from a JSON string.
-	 *
-	 * @param array $json a PHP array which contains the result of a 'json_decode' execution.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse the resulting instance.
-	 */
+     * Utility function used to create a new instance from a JSON string.
+     *
+     * @param array $json a PHP array which contains the result of a 'json_decode' execution.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse the resulting instance.
+     */
     public static function create(array $json)
     {
         $getNearestZoneResponse = new GetNearestZoneResponse();
@@ -37,7 +37,6 @@ class GetNearestZoneResponse extends AbstractResponse
 
         // If a 'response' is provided
         if (array_key_exists('response', $json)) {
-
             $getNearestZoneResponseResponse = new GetNearestZoneResponseResponse();
             $getNearestZoneResponseResponse->setDistance($json['response']['distance']);
             $getNearestZoneResponseResponse->setLat($json['response']['lat']);
@@ -52,22 +51,22 @@ class GetNearestZoneResponse extends AbstractResponse
     }
 
     /**
-	 * Gets the Pushwoosh '/getNearestZone' response response.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponseResponse the Pushwoosh'/getNearestZone' response
-	 *         response.
-	 */
+     * Gets the Pushwoosh '/getNearestZone' response response.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponseResponse the Pushwoosh'/getNearestZone' response
+     *         response.
+     */
     public function getResponse()
     {
         return $this->response;
     }
 
     /**
-	 * Sets the Pushwoosh'/getNearestZone' response response.
-	 *
-	 * @param \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponseResponse $response the Pushwoosh '/getNearestZone'
-	 *        response response.
-	 */
+     * Sets the Pushwoosh'/getNearestZone' response response.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponseResponse $response the Pushwoosh '/getNearestZone'
+     *        response response.
+     */
     public function setResponse(GetNearestZoneResponseResponse $response)
     {
         $this->response = $response;

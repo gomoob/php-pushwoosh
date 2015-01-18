@@ -18,10 +18,10 @@ class BlackBerry
     private $header;
 
     /**
-	 * Utility function used to create a new BlackBerry instance.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Notification\BlackBerry the new created instance.
-	 */
+     * Utility function used to create a new BlackBerry instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\BlackBerry the new created instance.
+     */
     public static function create()
     {
         return new BlackBerry();
@@ -42,10 +42,10 @@ class BlackBerry
     }
 
     /**
-	 * Creates a JSON representation of this request.
-	 *
-	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-	 */
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
     public function toJSON()
     {
         $json = array();

@@ -42,51 +42,7 @@ module.exports = function(grunt) {
                 }
                 
             }, /* Copy task */
-            
-            /**
-             * PHP CodeSniffer Task
-             */
-            phpcs : {
-                
-                library: {
-                    dir: [
-                        'src/main/php/Gomoob', 
-                        'src/test/php/Gomoob'
-                    ]
-                },
 
-                options : {
-                    bin:  'vendor/bin/phpcs',
-                    report: (function() {
-                        
-                        var report = false;
-                        
-                        if(grunt.option('checkstyle') === true) {
-                            
-                            report = 'checkstyle';
-                        }
-                        
-                        return report;
-                        
-                    })(),
-                    reportFile: (function() { 
-
-                        var reportFile = false;
-                        
-                        if(grunt.option('checkstyle') === true) {
-
-                            reportFile = 'target/reports/phpcs/phpcs.xml'; 
-                        }
-                        
-                        return reportFile;
-                        
-                    })(),
-                    standard: 'PSR2',
-                    verbose: false
-                }
-
-            },
-            
             /**
              * PHPDocumentor Task.
              */
@@ -127,7 +83,7 @@ module.exports = function(grunt) {
             shell : {
                 
                 pdepend : {
-                    command : (function() {
+                    command : function() {
                         
                         var command = 'php vendor/pdepend/pdepend/src/bin/pdepend';
                         command += ' --jdepend-chart=target/reports/pdepend/jdepend-chart.svg';
@@ -138,48 +94,69 @@ module.exports = function(grunt) {
                         
                         return command;
 
-                    })()
+                    }
+                },
+                
+                phpcs : {
+                    command : function() {
+                        
+                        var command = 'php ./vendor/squizlabs/php_codesniffer/scripts/phpcs';
+                        command += ' --standard=PSR2';
+                        command += ' -v';
+                        
+                        if(grunt.option('checkstyle') === true) {
+                            
+                            command += ' --report=checkstyle';
+                            command += ' --report-file=target/reports/phpcs/phpcs.xml'; 
+                        }
+
+                        command += ' src/main/php';
+                        command += ' src/test/php/GoMoob';
+
+                        return command;
+                        
+                    }
+                },
+                
+                phpcbf : {
+                    command : function() {
+                        
+                        var command = 'php ./vendor/squizlabs/php_codesniffer/scripts/phpcbf';
+                        command += ' --standard=PSR2';
+                        command += ' --no-patch';
+                        command += ' src/main/php';
+                        command += ' src/test/php';
+                        
+                        
+                        return command;
+                        
+                    }
                 },
                 
                 phpcpd : {
-                    command : (function() {
+                    command : function() {
                         
                         return 'php vendor/sebastian/phpcpd/phpcpd src/main/php';
 
-                    })()
+                    }
                 },
-                
-                'php-cs-fixer-main' : {
-                    command : (function() {
-                        
-                        return 'php vendor/fabpot/php-cs-fixer/php-cs-fixer fix src/main/php';
-
-                    })()
-                },
-                'php-cs-fixer-test' : {
-                    command : (function() {
-                        
-                        return 'php vendor/fabpot/php-cs-fixer/php-cs-fixer fix src/test/php';
-
-                    })()
-                }, 
                 
                 phpdocumentor : {
-                    command : (function() {
+                    command : function() {
                         return 'phpdoc --target=target/reports/phpdocumentor --directory=src/main/php';
-                    })()
+                    }
                 },
                 
                 phploc : {
-                    command : (function() {
+                    command : function() {
                         
                         return 'php vendor/phploc/phploc/phploc src/main/php';
                         
-                    })()
+                    }
                 },
                 
                 phpmd : {
-                    command : (function() {
+                    command : function() {
                         
                         var command = 'php vendor/phpmd/phpmd/src/bin/phpmd ';
                         command += 'src/main/php ';
@@ -189,7 +166,7 @@ module.exports = function(grunt) {
 
                         return command;
 
-                    })(),
+                    },
                     options : {
                         callback : function(err, stdout, stderr, cb) {
                             grunt.file.write('target/reports/phpmd/phpmd.html', stdout);
@@ -206,12 +183,7 @@ module.exports = function(grunt) {
     ); /* Grunt initConfig call */
 
     // Load the Grunt Plugins    
-    grunt.loadNpmTasks('grunt-contrib-clean'); 
-    grunt.loadNpmTasks('grunt-contrib-copy'); 
-    grunt.loadNpmTasks('grunt-phpcs');
-    grunt.loadNpmTasks('grunt-phpdocumentor');
-    grunt.loadNpmTasks('grunt-phpunit');
-    grunt.loadNpmTasks('grunt-shell');
+    require('load-grunt-tasks')(grunt);
 
     /**
      * Task used to create directories needed by PDepend to generate its report.
@@ -282,7 +254,7 @@ module.exports = function(grunt) {
     /**
      * Task used to automatically fix PHP_CodeSniffer errors.
      */
-    grunt.registerTask('php-cs-fixer', ['shell:php-cs-fixer-main', 'shell:php-cs-fixer-test']);
+    grunt.registerTask('phpcbf', ['shell:phpcbf']);
     
     /**
      * Task used to generate a PHPMD report.
@@ -294,7 +266,7 @@ module.exports = function(grunt) {
      */
     grunt.registerTask('generate-documentation', ['pdepend',
                                                   'before-phpcs', 
-                                                  'phpcs', 
+                                                  'shell:phpcs', 
                                                   'phpmd',
                                                   'phpdocumentor' 
                                                   ]);

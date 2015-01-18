@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>GetTagsRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group GetTagsRequestTest
+ * @group  GetTagsRequestTest
  */
 class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $getTagsRequest = GetTagsRequest::create();
@@ -63,20 +63,18 @@ class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $getTagsRequest = new GetTagsRequest();
 
         // Test without the 'application' parameter set
         try {
-
             $getTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -84,12 +82,10 @@ class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'auth' parameter set
         $getTagsRequest->setApplication('APPLICATION');
         try {
-
             $getTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -97,12 +93,10 @@ class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $getTagsRequest->setAuth('XXXXXXXX');
         try {
-
             $getTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

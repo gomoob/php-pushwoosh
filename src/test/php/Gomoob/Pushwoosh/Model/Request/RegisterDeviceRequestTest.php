@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>RegisterDeviceRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group RegisterDeviceRequestTest
+ * @group  RegisterDeviceRequestTest
  */
 class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $registerDeviceRequest = RegisterDeviceRequest::create();
@@ -96,20 +96,18 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $registerDeviceRequest = new RegisterDeviceRequest();
 
         // Test without the 'application' parameter set
         try {
-
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -117,12 +115,10 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'deviceType' parameter set
         $registerDeviceRequest->setApplication('APPLICATION');
         try {
-
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -130,12 +126,10 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test with a bad 'deviceType' parameter set (special value 6)
         $registerDeviceRequest->setDeviceType(6);
         try {
-
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -143,12 +137,10 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test with a bad 'deviceType' parameter set
         $registerDeviceRequest->setDeviceType(100);
         try {
-
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -156,12 +148,10 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $registerDeviceRequest->setDeviceType(1);
         try {
-
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -169,12 +159,10 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'pushToken' parameter set
         $registerDeviceRequest->setHwid('HWID');
         try {
-
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -182,12 +170,10 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'timezone' parameter set
         $registerDeviceRequest->setPushToken('PUSH_TOKEN');
         try {
-
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

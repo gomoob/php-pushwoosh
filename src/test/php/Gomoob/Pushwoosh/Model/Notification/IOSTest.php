@@ -12,14 +12,14 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Test case used to test the <code>IOS</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group IOSTest
+ * @group  IOSTest
  */
 class IOSTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-	 * Test method for the <code>#create()</code> function;
-	 */
+     * Test method for the <code>#create()</code> function;
+     */
     public function testCreate()
     {
         $this->assertNotNull(IOS::create());
@@ -27,8 +27,8 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getBadges()</code> and <code>#setBadges($badges)</code> functions.
-	 */
+     * Test method for the <code>#getBadges()</code> and <code>#setBadges($badges)</code> functions.
+     */
     public function testGetSetBadges()
     {
         $iOS = new IOS();
@@ -37,8 +37,8 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
-	 */
+     * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
+     */
     public function testGetSetRootParams()
     {
         $iOS = new IOS();
@@ -47,8 +47,8 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getSound()</code> and <code>#setSound($sound)</code> functions.
-	 */
+     * Test method for the <code>#getSound()</code> and <code>#setSound($sound)</code> functions.
+     */
     public function testGetSetSound()
     {
         $iOS = new IOS();
@@ -57,8 +57,8 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
-	 */
+     * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
+     */
     public function testGetSetTtl()
     {
         $iOS = new IOS();

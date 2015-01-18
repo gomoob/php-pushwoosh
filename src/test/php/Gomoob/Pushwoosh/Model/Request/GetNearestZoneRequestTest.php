@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>GetNearestZoneRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group GetNearestZoneRequestTest
+ * @group  GetNearestZoneRequestTest
  */
 class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $getNearestZoneRequest = GetNearestZoneRequest::create();
@@ -74,20 +74,18 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $getNearestZoneRequest = new GetNearestZoneRequest();
 
         // Test without the 'application' parameter set
         try {
-
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -95,12 +93,10 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $getNearestZoneRequest->setApplication('APPLICATION');
         try {
-
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -108,12 +104,10 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'lat' parameter set
         $getNearestZoneRequest->setHwid('HWID');
         try {
-
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -121,12 +115,10 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'lng' parameter set
         $getNearestZoneRequest->setLat(10.12345);
         try {
-
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

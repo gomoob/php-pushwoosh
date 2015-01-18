@@ -24,20 +24,20 @@ use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
  * Test case used to test the <code>Pushwoosh</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group PushwooshTest
+ * @group  PushwooshTest
  */
 class PushwooshTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * An array which contains test configuration properties.
-	 *
-	 * @var array
-	 */
+     * An array which contains test configuration properties.
+     *
+     * @var array
+     */
     private $pushwooshTestProperties;
 
     /**
-	 * Function called before each test execution.
-	 */
+     * Function called before each test execution.
+     */
     public function setUp()
     {
         /*
@@ -52,7 +52,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Read the test configuration
         $this->pushwooshTestProperties = json_decode(file_get_contents($testConfigurationFile), true);
-		*/
+        */
 
     }
 
@@ -69,10 +69,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>createMessage($createMessageRequest)</tt> function.
-	 *
-	 * @group PushwooshTest.testCreateMessage
-	 */
+     * Test method for the <tt>createMessage($createMessageRequest)</tt> function.
+     *
+     * @group PushwooshTest.testCreateMessage
+     */
     public function testCreateMessage()
     {
         // Create a fake CURL client
@@ -93,12 +93,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with none of the 'application' or 'applicationGroup' parameters set
         try {
-
             $pushwoosh->createMessage($createMessageRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -107,12 +105,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setApplication('APPLICATION');
         $pushwoosh->setApplicationsGroup('APPLICATIONS_GROUP');
         try {
-
             $pushwoosh->createMessage($createMessageRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -120,12 +116,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         // Test with the 'auth' parameter provided
         $pushwoosh->setApplicationsGroup(null);
         try {
-
             $pushwoosh->createMessage($createMessageRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -260,12 +254,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'auth' parameter not defined
         try {
-
             $pushwoosh->deleteMessage($deleteMessageRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -327,12 +319,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'application' parameter not defined
         try {
-
             $pushwoosh->getNearestZone($getNearestZoneRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -433,12 +423,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'application' parameter not defined
         try {
-
             $pushwoosh->getTags($getTagsRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -446,12 +434,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         // Test with the 'auth' parameter not defined
         $pushwoosh->setApplication('APPLICATION');
         try {
-
             $pushwoosh->getTags($getTagsRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -548,12 +534,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'application' parameter not defined
         try {
-
             $pushwoosh->pushStat($pushStatRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -590,10 +574,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>registerDevice($registerDevice)</tt> function.
-	 *
-	 * @group PushwooshTest.testRegisterDevice
-	 */
+     * Test method for the <tt>registerDevice($registerDevice)</tt> function.
+     *
+     * @group PushwooshTest.testRegisterDevice
+     */
     public function testRegisterDevice()
     {
         // Create a fake CURL client
@@ -618,12 +602,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'application' parameter not defined
         try {
-
             $pushwoosh->registerDevice($registerDeviceRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -686,12 +668,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'application' parameter not defined
         try {
-
             $pushwoosh->setBadge($setBadgeRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -728,10 +708,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>setTags($setTagsRequest)</tt> function.
-	 *
-	 * @group PushwooshTest.setTags
-	 */
+     * Test method for the <tt>setTags($setTagsRequest)</tt> function.
+     *
+     * @group PushwooshTest.setTags
+     */
     public function testSetTags()
     {
         // Create a fake CURL client
@@ -754,12 +734,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'application' parameter not defined
         try {
-
             $pushwoosh->setTags($setTagsRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -797,10 +775,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>unregisterDevice($unregisterDeviceRequest)</tt> function.
-	 *
-	 * @group PushwooshTest.testUnregisterDevice
-	 */
+     * Test method for the <tt>unregisterDevice($unregisterDeviceRequest)</tt> function.
+     *
+     * @group PushwooshTest.testUnregisterDevice
+     */
     public function testUnregisterDevice()
     {
         // Create a fake CURL client
@@ -820,12 +798,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         // Test with the 'application' parameter not defined
         try {
-
             $pushwoosh->unregisterDevice($unregisterDeviceRequest);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Test case used to test the <code>Android</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group AndroidTest
+ * @group  AndroidTest
  */
 class AndroidTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <code>#create()</code> function;
-	 */
+     * Test method for the <code>#create()</code> function;
+     */
     public function testCreate()
     {
         $this->assertNotNull(Android::create());
@@ -26,8 +26,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getBanner()</code> and <code>setBanner($banner)</code> functions.
-	 */
+     * Test method for the <code>#getBanner()</code> and <code>setBanner($banner)</code> functions.
+     */
     public function testGetSetBanner()
     {
         $android = new Android();
@@ -36,8 +36,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getCustomIcon()</code> and <code>#setCustomIcon($icon)</code> functions.
-	 */
+     * Test method for the <code>#getCustomIcon()</code> and <code>#setCustomIcon($icon)</code> functions.
+     */
     public function testGetSetCustomIcon()
     {
         $android = new Android();
@@ -46,8 +46,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getGcmTtl()</code> and <code>#setGcmTtl($gcmTtl)</code> functions.
-	 */
+     * Test method for the <code>#getGcmTtl()</code> and <code>#setGcmTtl($gcmTtl)</code> functions.
+     */
     public function testGetSetGcmTtl()
     {
         $android = new Android();
@@ -56,8 +56,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getHeader()</code> and <code>#setHeader($header)</code> functions.
-	 */
+     * Test method for the <code>#getHeader()</code> and <code>#setHeader($header)</code> functions.
+     */
     public function testGetSetHeader()
     {
         $android = new Android();
@@ -66,8 +66,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getIcon()</code> and <code>#setIcon($icon)</code> functions.
-	 */
+     * Test method for the <code>#getIcon()</code> and <code>#setIcon($icon)</code> functions.
+     */
     public function testGetSetIcon()
     {
         $android = new Android();
@@ -76,8 +76,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
-	 */
+     * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
+     */
     public function testGetSetRootParams()
     {
         $android = new Android();
@@ -86,8 +86,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getSound()</code> and <code>#setSound($sound)</code> functions.
-	 */
+     * Test method for the <code>#getSound()</code> and <code>#setSound($sound)</code> functions.
+     */
     public function testGetSetSound()
     {
         $android = new Android();

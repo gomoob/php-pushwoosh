@@ -16,17 +16,17 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class GetTagsResponseResponse
 {
     /**
-	 * The result sent in response to a Get Tags request.
-	 *
-	 * @var array
-	 */
+     * The result sent in response to a Get Tags request.
+     *
+     * @var array
+     */
     private $result;
 
     /**
-	 * Gets the Pushwoosh tags sent in response to a Get Tags request.
-	 *
-	 * @return array the Pushwoosh tags.
-	 */
+     * Gets the Pushwoosh tags sent in response to a Get Tags request.
+     *
+     * @return array the Pushwoosh tags.
+     */
     public function getTags()
     {
         return $this->result;

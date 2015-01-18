@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Response;
  * Test case used to test the <code>CreateMessageResponse</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group CreateMessageResponseTest
+ * @group  CreateMessageResponseTest
  */
 class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create(array $json)</tt> function.
-	 */
+     * Test method for the <tt>create(array $json)</tt> function.
+     */
     public function testCreate()
     {
         // Test with a successful response

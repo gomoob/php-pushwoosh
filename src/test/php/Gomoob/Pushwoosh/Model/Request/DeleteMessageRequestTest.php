@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>DeleteMessageRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group DeleteMessageRequestTest
+ * @group  DeleteMessageRequestTest
  */
 class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $deleteMessageRequest = DeleteMessageRequest::create();
@@ -52,20 +52,18 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $deleteMessageRequest = new DeleteMessageRequest();
 
         // Test without the 'auth' parameter set
         try {
-
             $deleteMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -74,12 +72,10 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         $deleteMessageRequest->setAuth('XXXX');
 
         try {
-
             $deleteMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

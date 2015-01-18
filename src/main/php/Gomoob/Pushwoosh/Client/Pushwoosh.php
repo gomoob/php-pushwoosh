@@ -100,29 +100,24 @@ class Pushwoosh implements IPushwoosh
     {
         // If both the 'application' and 'applicationsGroup' attribute are not set in the request we try to get a
         // default one from the Pushwoosh client
-        if ($createMessageRequest->getApplication() === null && $createMessageRequest->getApplicationsGroup()
-                        == null) {
-
+        if ($createMessageRequest->getApplication() === null && $createMessageRequest->getApplicationsGroup()== null
+        ) {
             // Setting both 'application' and 'applicationsGroup' is forbidden
             if (!isset($this->application) && !isset($this->applicationsGroup)) {
-
                 throw new PushwooshException(
                     'None of the  \'application\' or \'applicationsGroup\' properties are set !'
                 );
 
-            // Setting both the 'application' and 'applicationsGroup' parameters is an error here
+                // Setting both the 'application' and 'applicationsGroup' parameters is an error here
             } elseif (isset($this->application) && isset($this->applicationsGroup)) {
-
                 throw new PushwooshException('Both \'application\' and \'applicationsGroup\' properties are set !');
 
-            // Sets the 'application' attribute
+                // Sets the 'application' attribute
             } elseif (isset($this->application)) {
-
                 $createMessageRequest->setApplication($this->application);
 
-            // Sets the 'applicationsGroup' attribute
+                // Sets the 'applicationsGroup' attribute
             } elseif (isset($this->applicationsGroup)) {
-
                 $createMessageRequest->setApplicationsGroup($this->applicationsGroup);
 
             }
@@ -131,15 +126,12 @@ class Pushwoosh implements IPushwoosh
 
         // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
         if ($createMessageRequest->getAuth() === null) {
-
             // The 'auth' parameter is expected here
             if (!isset($this->auth)) {
-
                 throw new PushwooshException('The \'auth\' parameter is not set !');
 
-            // Use the 'auth' parameter defined in the Pushwoosh client
+                // Use the 'auth' parameter defined in the Pushwoosh client
             } else {
-
                 $createMessageRequest->setAuth($this->auth);
 
             }
@@ -160,15 +152,12 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
         if ($deleteMessageRequest->getAuth() === null) {
-
             // The 'auth' parameter is expected here
             if (!isset($this->auth)) {
-
                 throw new PushwooshException('The \'auth\' parameter is not set !');
 
-            // Use the 'auth' parameter defined in the Pushwoosh client
+                // Use the 'auth' parameter defined in the Pushwoosh client
             } else {
-
                 $deleteMessageRequest->setAuth($this->auth);
 
             }
@@ -229,10 +218,8 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($getNearestZoneRequest->getApplication() === null) {
-
             // The 'application' must be set
             if (!isset($this->application)) {
-
                 throw new PushwooshException('The  \'application\' property is not set !');
 
             }
@@ -255,10 +242,8 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($getTagsRequest->getApplication() === null) {
-
             // The 'application' must be set
             if (!isset($this->application)) {
-
                 throw new PushwooshException('The  \'application\' property is not set !');
 
             }
@@ -269,15 +254,12 @@ class Pushwoosh implements IPushwoosh
 
         // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
         if ($getTagsRequest->getAuth() === null) {
-
             // The 'auth' parameter is expected here
             if (!isset($this->auth)) {
-
                 throw new PushwooshException('The \'auth\' parameter is not set !');
 
                 // Use the 'auth' parameter defined in the Pushwoosh client
             } else {
-
                 $getTagsRequest->setAuth($this->auth);
 
             }
@@ -298,10 +280,8 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($pushStatRequest->getApplication() === null) {
-
             // The 'application' must be set
             if (!isset($this->application)) {
-
                 throw new PushwooshException('The  \'application\' property is not set !');
 
             }
@@ -324,10 +304,8 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($registerDeviceRequest->getApplication() === null) {
-
             // The 'application' must be set
             if (!isset($this->application)) {
-
                 throw new PushwooshException('The  \'application\' property is not set !');
 
             }
@@ -383,10 +361,8 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($setBadgeRequest->getApplication() === null) {
-
             // The 'application' must be set
             if (!isset($this->application)) {
-
                 throw new PushwooshException('The  \'application\' property is not set !');
 
             }
@@ -422,10 +398,8 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($setTagsRequest->getApplication() === null) {
-
             // The 'application' must be set
             if (!isset($this->application)) {
-
                 throw new PushwooshException('The  \'application\' property is not set !');
 
             }
@@ -448,10 +422,8 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($unregisterDeviceRequest->getApplication() === null) {
-
             // The 'application' must be set
             if (!isset($this->application)) {
-
                 throw new PushwooshException('The  \'application\' property is not set !');
 
             }

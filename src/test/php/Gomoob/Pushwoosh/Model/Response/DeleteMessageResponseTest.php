@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Response;
  * Test case used to test the <code>DeleteMessageResponse</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group DeleteMessageResponseTest
+ * @group  DeleteMessageResponseTest
  */
 class DeleteMessageResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create(array $json)</tt> function.
-	 */
+     * Test method for the <tt>create(array $json)</tt> function.
+     */
     public function testCreate()
     {
         // Test with a successful response

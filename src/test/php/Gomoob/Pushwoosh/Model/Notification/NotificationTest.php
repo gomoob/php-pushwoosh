@@ -17,14 +17,14 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>Notification</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group NotificationTest
+ * @group  NotificationTest
  */
 class NotificationTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>addCondition($condition)</tt>, <tt>getConditions()</tt> and
-	 * <tt>setConditions($conditions)</tt> functions.
-	 */
+     * Test method for the <tt>addCondition($condition)</tt>, <tt>getConditions()</tt> and
+     * <tt>setConditions($conditions)</tt> functions.
+     */
     public function testAddGetSetConditions()
     {
         // Test for 'addCondition'
@@ -58,9 +58,9 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>addDevice($device)</tt>, <tt>getDevices()</tt> and <tt>setDevices($devices)</tt>
-	 * functions.
-	 */
+     * Test method for the <tt>addDevice($device)</tt>, <tt>getDevices()</tt> and <tt>setDevices($devices)</tt>
+     * functions.
+     */
     public function testAddGetSetDevices()
     {
         // Test for 'addDevice'
@@ -134,8 +134,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getAndroid()</tt> and <tt>setAndroid($android)</tt> functions.
-	 */
+     * Test method for the <tt>getAndroid()</tt> and <tt>setAndroid($android)</tt> functions.
+     */
     public function testGetSetAndroid()
     {
         $notification = new Notification();
@@ -158,8 +158,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getContent()</tt> and <tt>setContent($aDM)</tt> functions.
-	 */
+     * Test method for the <tt>getContent()</tt> and <tt>setContent($aDM)</tt> functions.
+     */
     public function testGetSetContent()
     {
         $notification = new Notification();
@@ -169,8 +169,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getData()</tt> and <tt>setData($data)</tt> functions.
-	 */
+     * Test method for the <tt>getData()</tt> and <tt>setData($data)</tt> functions.
+     */
     public function testGetSetData()
     {
         $notification = new Notification();
@@ -184,8 +184,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getFilter()</tt> and <tt>setFilter($filter)</tt> functions.
-	 */
+     * Test method for the <tt>getFilter()</tt> and <tt>setFilter($filter)</tt> functions.
+     */
     public function testGetSetFilter()
     {
         $notification = new Notification();
@@ -195,8 +195,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getIOS()</tt> and <tt>setIOS($iOS)</tt> functions.
-	 */
+     * Test method for the <tt>getIOS()</tt> and <tt>setIOS($iOS)</tt> functions.
+     */
     public function testGetSetIOS()
     {
         $notification = new Notification();
@@ -207,8 +207,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getLink()</tt> and <tt>setLink($link)</tt> functions.
-	 */
+     * Test method for the <tt>getLink()</tt> and <tt>setLink($link)</tt> functions.
+     */
     public function testGetSetLink()
     {
         $notification = new Notification();
@@ -218,8 +218,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getMac()</tt> and <tt>setMac($mac)</tt> functions.
-	 */
+     * Test method for the <tt>getMac()</tt> and <tt>setMac($mac)</tt> functions.
+     */
     public function testGetSetMac()
     {
         $notification = new Notification();
@@ -242,8 +242,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getPageId()</tt> and <tt>setPageId($pageId)</tt> functions.
-	 */
+     * Test method for the <tt>getPageId()</tt> and <tt>setPageId($pageId)</tt> functions.
+     */
     public function testGetSetPageId()
     {
         $notification = new Notification();
@@ -253,8 +253,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getSafari()</tt> and <tt>setSafari($safari)</tt> functions.
-	 */
+     * Test method for the <tt>getSafari()</tt> and <tt>setSafari($safari)</tt> functions.
+     */
     public function testGetSetSafari()
     {
         $notification = new Notification();
@@ -265,32 +265,28 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getSendDate</tt> and <tt>setSendDate($sendDate)</tt> functions.
-	 */
+     * Test method for the <tt>getSendDate</tt> and <tt>setSendDate($sendDate)</tt> functions.
+     */
     public function testGetSetSendDate()
     {
         $notification = new Notification();
 
         // Test with an invalid send date string
         try {
-
             $notification->setSendDate('aaa');
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
 
         // Test with a send date which is neither a \DateTime neither a string
         try {
-
             $notification->setSendDate(654);
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -314,8 +310,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getWNS()</tt> and <tt>setWNS($wNS)</tt> functions.
-	 */
+     * Test method for the <tt>getWNS()</tt> and <tt>setWNS($wNS)</tt> functions.
+     */
     public function testGetSetWNS()
     {
         $notification = new Notification();
@@ -326,8 +322,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>getWP()</tt> and <tt>setWP($wP)</tt> functions.
-	 */
+     * Test method for the <tt>getWP()</tt> and <tt>setWP($wP)</tt> functions.
+     */
     public function testGetSetWP()
     {
         $notification = new Notification();
@@ -338,8 +334,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>isIgnoreUserTimezone()</tt> and <tt>setIgnoreUserTimezone()</tt> functions.
-	 */
+     * Test method for the <tt>isIgnoreUserTimezone()</tt> and <tt>setIgnoreUserTimezone()</tt> functions.
+     */
     public function testIsSetIgnoreUserTimezone()
     {
         $notification = new Notification();
@@ -349,8 +345,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $array = Notification::create()

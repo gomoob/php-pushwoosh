@@ -16,12 +16,12 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class PushStatResponse extends AbstractResponse
 {
     /**
-	 * Utility function used to create a new instance from a JSON string.
-	 *
-	 * @param array $json a PHP array which contains the result of a 'json_decode' execution.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\PushStatResponse the resulting instance.
-	 */
+     * Utility function used to create a new instance from a JSON string.
+     *
+     * @param array $json a PHP array which contains the result of a 'json_decode' execution.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\PushStatResponse the resulting instance.
+     */
     public static function create(array $json)
     {
         $pushStatResponse = new PushStatResponse();

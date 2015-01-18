@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Condition;
  * Test case used to test the <code>ListCondition</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group ListConditionTest
+ * @group  ListConditionTest
  */
 class ListConditionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <code>#in(array $values)</code> function.
-	 */
+     * Test method for the <code>#in(array $values)</code> function.
+     */
     public function testIn()
     {
         $listCondition = ListCondition::create('A_TAG')->in(array('value1', 'value2', 'value3'));

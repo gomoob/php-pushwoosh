@@ -12,14 +12,14 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Test case used to test the <code>WNS</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group WNSTest
+ * @group  WNSTest
  */
 class WNSTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-	 * Test method for the <code>#create()</code> function;
-	 */
+     * Test method for the <code>#create()</code> function;
+     */
     public function testCreate()
     {
         $this->assertNotNull(WNS::create());
@@ -27,8 +27,8 @@ class WNSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getContent()</code> and <code>#setContent($content)</code> functions.
-	 */
+     * Test method for the <code>#getContent()</code> and <code>#setContent($content)</code> functions.
+     */
     public function testGetSetContent()
     {
         $wNS = new WNS();
@@ -51,8 +51,8 @@ class WNSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getTag()</code> and <code>#setTag($tag)</code> functions.
-	 */
+     * Test method for the <code>#getTag()</code> and <code>#setTag($tag)</code> functions.
+     */
     public function testGetSetTag()
     {
         $wNS = new WNS();
@@ -61,8 +61,8 @@ class WNSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getType()</code> and <code>#setType($type)</code> functions.
-	 */
+     * Test method for the <code>#getType()</code> and <code>#setType($type)</code> functions.
+     */
     public function testGetSetType()
     {
         $wNS = new WNS();

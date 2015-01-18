@@ -12,7 +12,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Class which represents specific Pushwoosh notification informations for Android (Google Cloud Messaging).
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @see https://developer.android.com/google/gcm/index.html
+ * @see    https://developer.android.com/google/gcm/index.html
  */
 class Android
 {
@@ -32,10 +32,10 @@ class Android
     private $sound;
 
     /**
-	 * Utility function used to create a new Android instance.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Notification\Android the new created instance.
-	 */
+     * Utility function used to create a new Android instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Android the new created instance.
+     */
     public static function create()
     {
         return new Android();
@@ -149,10 +149,10 @@ class Android
     }
 
     /**
-	 * Creates a JSON representation of this request.
-	 *
-	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-	 */
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
     public function toJSON()
     {
         $json = array();

@@ -18,31 +18,31 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class GetNearestZoneRequest
 {
     /**
-	 * The Pushwoosh application ID where you send the message to.
-	 *
-	 * @var string
-	 */
+     * The Pushwoosh application ID where you send the message to.
+     *
+     * @var string
+     */
     private $application;
 
     /**
-	 * The hardware device id used in registerDevice function call.
-	 *
-	 * @var string
-	 */
+     * The hardware device id used in registerDevice function call.
+     *
+     * @var string
+     */
     private $hwid;
 
     /**
-	 * The latitude of the device.
-	 *
-	 * @var float
-	 */
+     * The latitude of the device.
+     *
+     * @var float
+     */
     private $lat;
 
     /**
-	 * The longitude of the device.
-	 *
-	 * @var float
-	 */
+     * The longitude of the device.
+     *
+     * @var float
+     */
     private $lng;
 
     /**
@@ -57,10 +57,10 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Gets the Pushwoosh application ID where you send the message to.
-	 *
-	 * @return string Pushwoosh application ID where you send the message to.
-	 */
+     * Gets the Pushwoosh application ID where you send the message to.
+     *
+     * @return string Pushwoosh application ID where you send the message to.
+     */
     public function getApplication()
     {
         return $this->application;
@@ -68,10 +68,10 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Gets the hardware device id used in registerDevice function call.
-	 *
-	 * @return string the hardware device id used in registerDevice function call.
-	 */
+     * Gets the hardware device id used in registerDevice function call.
+     *
+     * @return string the hardware device id used in registerDevice function call.
+     */
     public function getHwid()
     {
         return $this->hwid;
@@ -79,10 +79,10 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Gets the latitude of the device.
-	 *
-	 * @return float the latitude of the device.
-	 */
+     * Gets the latitude of the device.
+     *
+     * @return float the latitude of the device.
+     */
     public function getLat()
     {
         return $this->lat;
@@ -90,10 +90,10 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Gets the longitude of the device.
-	 *
-	 * @return float the longitude of the device.
-	 */
+     * Gets the longitude of the device.
+     *
+     * @return float the longitude of the device.
+     */
     public function getLng()
     {
         return $this->lng;
@@ -101,12 +101,12 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Sets the Pushwoosh application ID where you send the message to.
-	 *
-	 * @param string $application Pushwoosh application ID where you send the message to.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
-	 */
+     * Sets the Pushwoosh application ID where you send the message to.
+     *
+     * @param string $application Pushwoosh application ID where you send the message to.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
+     */
     public function setApplication($application)
     {
         $this->application = $application;
@@ -116,12 +116,12 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Sets the hardware device id used in registerDevice function call.
-	 *
-	 * @param string $hwid the the hardware device id used in registerDevice function call.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
-	 */
+     * Sets the hardware device id used in registerDevice function call.
+     *
+     * @param string $hwid the the hardware device id used in registerDevice function call.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
+     */
     public function setHwid($hwid)
     {
         $this->hwid = $hwid;
@@ -131,12 +131,12 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Sets the latitude of the device.
-	 *
-	 * @param float $lat the latitude of the device.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
-	 */
+     * Sets the latitude of the device.
+     *
+     * @param float $lat the latitude of the device.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
+     */
     public function setLat($lat)
     {
         $this->lat = $lat;
@@ -146,12 +146,12 @@ class GetNearestZoneRequest
     }
 
     /**
-	 * Sets the longitude of the device.
-	 *
-	 * @param float $lng the longitude of the device.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
-	 */
+     * Sets the longitude of the device.
+     *
+     * @param float $lng the longitude of the device.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
+     */
     public function setLng($lng)
     {
         $this->lng = $lng;
@@ -169,28 +169,24 @@ class GetNearestZoneRequest
     {
         // The 'application' parameter must have been defined.
         if (!isset($this->application)) {
-
             throw new PushwooshException('The \'application\' property is not set !');
 
         }
 
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
-
             throw new PushwooshException('The \'hwid\' property is not set !');
 
         }
 
         // The 'lat' parameter must have been defined
         if (!isset($this->lat)) {
-
             throw new PushwooshException('The \'lat\' property is not set !');
 
         }
 
         // The 'lng' parameter must have been defined
         if (!isset($this->lng)) {
-
             throw new PushwooshException('The \'lng\' property is not set !');
 
         }

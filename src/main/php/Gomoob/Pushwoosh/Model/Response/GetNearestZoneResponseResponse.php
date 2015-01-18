@@ -20,45 +20,45 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class GetNearestZoneResponseResponse
 {
     /**
-	 * The distance of the device from the nearest zone in meters.
-	 *
-	 * @var int
-	 */
+     * The distance of the device from the nearest zone in meters.
+     *
+     * @var int
+     */
     private $distance;
 
     /**
-	 * The latitude of the nearest zone.
-	 *
-	 * @var float
-	 */
+     * The latitude of the nearest zone.
+     *
+     * @var float
+     */
     private $lat;
 
     /**
-	 * The longitude of the nearest zone.
-	 *
-	 * @var float
-	 */
+     * The longitude of the nearest zone.
+     *
+     * @var float
+     */
     private $lng;
 
     /**
-	 * The name of the nearest zone.
-	 *
-	 * @var string
-	 */
+     * The name of the nearest zone.
+     *
+     * @var string
+     */
     private $name;
 
     /**
-	 * The range of the nearest zone in meters.
-	 *
-	 * @var int
-	 */
+     * The range of the nearest zone in meters.
+     *
+     * @var int
+     */
     private $range;
 
     /**
-	 * Gets the distance of the device from the nearest zone in meters.
-	 *
-	 * @return int distance of the device from the nearest zone in meters.
-	 */
+     * Gets the distance of the device from the nearest zone in meters.
+     *
+     * @return int distance of the device from the nearest zone in meters.
+     */
     public function getDistance()
     {
         return $this->distance;
@@ -66,10 +66,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Gets the latitude of the nearest zone.
-	 *
-	 * @return float the latitude of the nearest zone.
-	 */
+     * Gets the latitude of the nearest zone.
+     *
+     * @return float the latitude of the nearest zone.
+     */
     public function getLat()
     {
         return $this->lat;
@@ -77,10 +77,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Gets the longitude of the nearest zone.
-	 *
-	 * @return float the longitude of the nearest zone.
-	 */
+     * Gets the longitude of the nearest zone.
+     *
+     * @return float the longitude of the nearest zone.
+     */
     public function getLng()
     {
         return $this->lng;
@@ -88,10 +88,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Gets the name of the nearest zone.
-	 *
-	 * @return string the name of the nearest zone.
-	 */
+     * Gets the name of the nearest zone.
+     *
+     * @return string the name of the nearest zone.
+     */
     public function getName()
     {
         return $this->name;
@@ -99,10 +99,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Gets the range of the nearest zone in meters.
-	 *
-	 * @return int the range of the nearest zone in meters.
-	 */
+     * Gets the range of the nearest zone in meters.
+     *
+     * @return int the range of the nearest zone in meters.
+     */
     public function getRange()
     {
         return $this->range;
@@ -110,10 +110,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Sets the distance of the device from the nearest zone in meters.
-	 *
-	 * @param int $distance the distance of the device from the nearest zone in meters.
-	 */
+     * Sets the distance of the device from the nearest zone in meters.
+     *
+     * @param int $distance the distance of the device from the nearest zone in meters.
+     */
     public function setDistance($distance)
     {
         $this->distance = $distance;
@@ -121,10 +121,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Sets the latitude of the nearest zone.
-	 *
-	 * @param float $lat the latitude of the nearest zone.
-	 */
+     * Sets the latitude of the nearest zone.
+     *
+     * @param float $lat the latitude of the nearest zone.
+     */
     public function setLat($lat)
     {
         $this->lat = $lat;
@@ -132,10 +132,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Sets the longitude of the nearest zone.
-	 *
-	 * @param float $lng the longitude of the nearest zone.
-	 */
+     * Sets the longitude of the nearest zone.
+     *
+     * @param float $lng the longitude of the nearest zone.
+     */
     public function setLng($lng)
     {
         $this->lng = $lng;
@@ -143,10 +143,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Sets the name of the nearest zone.
-	 *
-	 * @param string $name the name of the nearest zone.
-	 */
+     * Sets the name of the nearest zone.
+     *
+     * @param string $name the name of the nearest zone.
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -154,10 +154,10 @@ class GetNearestZoneResponseResponse
     }
 
     /**
-	 * Sets the range of the nearest zone in meters.
-	 *
-	 * @param int $range the range of the nearest zone in meters.
-	 */
+     * Sets the range of the nearest zone in meters.
+     *
+     * @param int $range the range of the nearest zone in meters.
+     */
     public function setRange($range)
     {
         $this->range = $range;

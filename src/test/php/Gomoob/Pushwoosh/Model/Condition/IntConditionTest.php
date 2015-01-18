@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Condition;
  * Test case used to test the <code>IntCondition</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group IntConditionTest
+ * @group  IntConditionTest
  */
 class IntConditionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <code>#between($minValue, $maxValue)</code> function.
-	 */
+     * Test method for the <code>#between($minValue, $maxValue)</code> function.
+     */
     public function testBetween()
     {
         $intCondition = IntCondition::create('A_TAG')->between(10, 100);
@@ -44,8 +44,8 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#eq($value)</code> function.
-	 */
+     * Test method for the <code>#eq($value)</code> function.
+     */
     public function testEq()
     {
         $intCondition = IntCondition::create('A_TAG')->eq(10);
@@ -64,8 +64,8 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#gte($value)</code> function.
-	 */
+     * Test method for the <code>#gte($value)</code> function.
+     */
     public function testGte()
     {
         $intCondition = IntCondition::create('A_TAG')->gte(10);
@@ -84,8 +84,8 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#lte($value)</code> function.
-	 */
+     * Test method for the <code>#lte($value)</code> function.
+     */
     public function testLte()
     {
         $intCondition = IntCondition::create('A_TAG')->lte(10);

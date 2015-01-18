@@ -15,13 +15,13 @@ use Gomoob\Pushwoosh\Model\Notification\Notification;
  * Test case used to test the <code>CreateMessageRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group CreateMessageRequestTest
+ * @group  CreateMessageRequestTest
  */
 class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $createMessageRequest = CreateMessageRequest::create();
@@ -111,20 +111,18 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $createMessageRequest = new CreateMessageRequest();
 
         // Test without the 'application' and 'applicationsGroup' parameters
         try {
-
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -134,12 +132,10 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest->setApplicationsGroup('XXXX-XXXX');
 
         try {
-
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -148,12 +144,10 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest->setApplicationsGroup(null);
 
         try {
-
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

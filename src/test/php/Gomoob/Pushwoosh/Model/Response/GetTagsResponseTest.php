@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Response;
  * Test case used to test the <code>GetTagsResponse</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group GetTagsResponseTest
+ * @group  GetTagsResponseTest
  */
 class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create(array $json)</tt> function.
-	 */
+     * Test method for the <tt>create(array $json)</tt> function.
+     */
     public function testCreate()
     {
         // Test with a successful response

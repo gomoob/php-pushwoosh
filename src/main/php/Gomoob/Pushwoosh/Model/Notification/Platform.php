@@ -16,8 +16,8 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 class Platform
 {
     /**
-	 * The value of the platform, this can be equal to :
-     * 	- 1 : iOS
+     * The value of the platform, this can be equal to :
+     *     - 1 : iOS
      *  - 2 : BlackBerry
      *  - 3 : Android
      *  - 4 : Nokia ASHA
@@ -27,8 +27,8 @@ class Platform
      *  - 9 : Amazon
      *  - 10: Safari
      *
-	 * @var int
-	 */
+     * @var int
+     */
     private $value;
 
     /**
@@ -143,7 +143,7 @@ class Platform
 
     /**
      * Gets the value of the plateform, this can be equal to :
-     * 	- 1 : iOS
+     *     - 1 : iOS
      *  - 2 : BlackBerry
      *  - 3 : Android
      *  - 4 : Nokia ASHA

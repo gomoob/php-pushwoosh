@@ -18,32 +18,32 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class SetTagsRequest
 {
     /**
-	 * The Pushwoosh application ID for which one to set tags.
-	 *
-	 * @var string
-	 */
+     * The Pushwoosh application ID for which one to set tags.
+     *
+     * @var string
+     */
     private $application;
 
     /**
-	 * The Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not allowed,
-	 * one of the alternative ways now is to use MAC address).
-	 *
-	 * @var string
-	 */
+     * The Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not allowed,
+     * one of the alternative ways now is to use MAC address).
+     *
+     * @var string
+     */
     private $hwid;
 
     /**
-	 * The Pushwoosh tags.
-	 *
-	 * @var array
-	 */
+     * The Pushwoosh tags.
+     *
+     * @var array
+     */
     private $tags;
 
     /**
-	 * Utility function used to create a new instance of the <tt>SetTagsRequest</tt>.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest the new created instance.
-	 */
+     * Utility function used to create a new instance of the <tt>SetTagsRequest</tt>.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest the new created instance.
+     */
     public static function create()
     {
         return new SetTagsRequest();
@@ -51,27 +51,25 @@ class SetTagsRequest
     }
 
     /**
-	 * Add a new tag to the Pushwoosh tags.
-	 *
-	 * <p>NOTE: This function cannot be used to overwrite an existing tag, use the '#setTag($tagName, $tagValue)'
-	 *          function if you want to overwrite a tag.</p>
-	 *
-	 * @param string $tagName the name of the tag to add or update.
-	 * @param mixed $tagValue the value of the tag to set.
-	 *
-	 * @throws \Gomoob\Pushwoosh\Exception\PushwooshException if a tag having the specified name has already been added.
-	 */
+     * Add a new tag to the Pushwoosh tags.
+     *
+     * <p>NOTE: This function cannot be used to overwrite an existing tag, use the '#setTag($tagName, $tagValue)'
+     *          function if you want to overwrite a tag.</p>
+     *
+     * @param string $tagName  the name of the tag to add or update.
+     * @param mixed  $tagValue the value of the tag to set.
+     *
+     * @throws \Gomoob\Pushwoosh\Exception\PushwooshException if a tag having the specified name has already been added.
+     */
     public function addTag($tagName, $tagValue)
     {
         if (!isset($this->tags)) {
-
             $this->tags = array();
 
         }
 
         // The same tag cannot be added 2 times
         if (array_key_exists($tagName, $this->tags)) {
-
             throw new PushwooshException(
                 'The tag \'' . $tagName .
                 '\' has already been added, use the \'setTag\' method if you want to overwrite its value !'
@@ -84,10 +82,10 @@ class SetTagsRequest
     }
 
     /**
-	 * Gets the Pushwoosh application ID for which one to set tags.
-	 *
-	 * @return string the Pushwoosh application ID for which one to set tags.
-	 */
+     * Gets the Pushwoosh application ID for which one to set tags.
+     *
+     * @return string the Pushwoosh application ID for which one to set tags.
+     */
     public function getApplication()
     {
         return $this->application;
@@ -95,12 +93,12 @@ class SetTagsRequest
     }
 
     /**
-	 * Gets the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not
-	 * allowed, one of the alternative ways now is to use MAC address).
-	 *
-	 * @return string the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and
-	 *         not allowed, one of the alternative ways now is to use MAC address).
-	 */
+     * Gets the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not
+     * allowed, one of the alternative ways now is to use MAC address).
+     *
+     * @return string the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and
+     *         not allowed, one of the alternative ways now is to use MAC address).
+     */
     public function getHwid()
     {
         return $this->hwid;
@@ -108,10 +106,10 @@ class SetTagsRequest
     }
 
     /**
-	 * Gets the Pushwoosh tags.
-	 *
-	 * @return array the Pushwoosh tags.
-	 */
+     * Gets the Pushwoosh tags.
+     *
+     * @return array the Pushwoosh tags.
+     */
     public function getTags()
     {
         return $this->tags;
@@ -140,19 +138,18 @@ class SetTagsRequest
     public function removeTag($tagName)
     {
         if ($this->tags !== null && array_key_exists($tagName, $this->tags)) {
-
             unset($this->tags[$tagName]);
 
         }
     }
 
     /**
-	 * Sets the Pushwoosh application ID for which one to set tags.
-	 *
-	 * @param string $application the the Pushwoosh application ID for which one to set tags.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest this instance.
-	 */
+     * Sets the Pushwoosh application ID for which one to set tags.
+     *
+     * @param string $application the the Pushwoosh application ID for which one to set tags.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest this instance.
+     */
     public function setApplication($application)
     {
         $this->application = $application;
@@ -162,14 +159,14 @@ class SetTagsRequest
     }
 
     /**
-	 * Sets the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not
-	 * allowed, one of the alternative ways now is to use MAC address).
-	 *
-	 * @param string $hwid the Unique string to identify the device (Please note that accessing UDID on iOS is
-	 *        deprecated and not allowed, one of the alternative ways now is to use MAC address).
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest this instance.
-	 */
+     * Sets the Unique string to identify the device (Please note that accessing UDID on iOS is deprecated and not
+     * allowed, one of the alternative ways now is to use MAC address).
+     *
+     * @param string $hwid the Unique string to identify the device (Please note that accessing UDID on iOS is
+     *        deprecated and not allowed, one of the alternative ways now is to use MAC address).
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest this instance.
+     */
     public function setHwid($hwid)
     {
         $this->hwid = $hwid;
@@ -189,7 +186,6 @@ class SetTagsRequest
     public function setTag($tagName, $tagValue)
     {
         if (!isset($this->tags)) {
-
             $this->tags = array();
 
         }
@@ -201,12 +197,12 @@ class SetTagsRequest
     }
 
     /**
-	 * Sets the Pushwoosh tags.
-	 *
-	 * @param array $tags the Pushwoosh tags.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest this instance.
-	 */
+     * Sets the Pushwoosh tags.
+     *
+     * @param array $tags the Pushwoosh tags.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\SetTagsRequest this instance.
+     */
     public function setTags(array $tags)
     {
         $this->tags = $tags;
@@ -216,29 +212,26 @@ class SetTagsRequest
     }
 
     /**
-	 * Creates a JSON representation of this request.
-	 *
-	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-	 */
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
     public function toJSON()
     {
         // The 'application' parameter must have been defined.
         if (!isset($this->application)) {
-
             throw new PushwooshException('The \'application\' property is not set !');
 
         }
 
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
-
             throw new PushwooshException('The \'hwid\' property is not set !');
 
         }
 
         // The 'tags' parameter must have been defined.
         if (!isset($this->tags)) {
-
             throw new PushwooshException('The \'tags\' property is not set !');
 
         }

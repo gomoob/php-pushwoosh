@@ -18,24 +18,24 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class GetTagsRequest
 {
     /**
-	 * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
-	 *
-	 * @var string
-	 */
+     * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
+     *
+     * @var string
+     */
     private $application;
 
     /**
-	 * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
-	 *
-	 * @var string
-	 */
+     * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
+     *
+     * @var string
+     */
     private $auth;
 
     /**
-	 * The hardware device id used in registerDevice function call.
-	 *
-	 * @var string
-	 */
+     * The hardware device id used in registerDevice function call.
+     *
+     * @var string
+     */
     private $hwid;
 
     /**
@@ -50,10 +50,10 @@ class GetTagsRequest
     }
 
     /**
-	 * Gets the Pushwoosh application ID where to send the message to.
-	 *
-	 * @return string the Pushwoosh application ID where to send the message to.
-	 */
+     * Gets the Pushwoosh application ID where to send the message to.
+     *
+     * @return string the Pushwoosh application ID where to send the message to.
+     */
     public function getApplication()
     {
         return $this->application;
@@ -61,12 +61,12 @@ class GetTagsRequest
     }
 
     /**
-	 * Gets the API access token from the Pushwoosh control panel (create this token at
-	 * https://cp.pushwoosh.com/api_access).
-	 *
-	 * @return string the API access token from the Pushwoosh control panel (create this token at
-	 *         https://cp.pushwoosh.com/api_access).
-	 */
+     * Gets the API access token from the Pushwoosh control panel (create this token at
+     * https://cp.pushwoosh.com/api_access).
+     *
+     * @return string the API access token from the Pushwoosh control panel (create this token at
+     *         https://cp.pushwoosh.com/api_access).
+     */
     public function getAuth()
     {
         return $this->auth;
@@ -74,10 +74,10 @@ class GetTagsRequest
     }
 
     /**
-	 * Gets the hardware device id used in registerDevice function call.
-	 *
-	 * @return string the hardware device id used in registerDevice function call.
-	 */
+     * Gets the hardware device id used in registerDevice function call.
+     *
+     * @return string the hardware device id used in registerDevice function call.
+     */
     public function getHwid()
     {
         return $this->hwid;
@@ -85,12 +85,12 @@ class GetTagsRequest
     }
 
     /**
-	 * Sets the Pushwoosh application ID where to send the message to.
-	 *
-	 * @param string $application the Pushwoosh application ID where to send the message to.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
-	 */
+     * Sets the Pushwoosh application ID where to send the message to.
+     *
+     * @param string $application the Pushwoosh application ID where to send the message to.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
+     */
     public function setApplication($application)
     {
         $this->application = $application;
@@ -100,14 +100,14 @@ class GetTagsRequest
     }
 
     /**
-	 * Sets the API access token from the Pushwoosh control panel (create this token at
-	 * https://cp.pushwoosh.com/api_access).
-	 *
-	 * @param string $auth the API access token from the Pushwoosh control panel (create this token at
-	 *        https://cp.pushwoosh.com/api_access).
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
-	 */
+     * Sets the API access token from the Pushwoosh control panel (create this token at
+     * https://cp.pushwoosh.com/api_access).
+     *
+     * @param string $auth the API access token from the Pushwoosh control panel (create this token at
+     *        https://cp.pushwoosh.com/api_access).
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
+     */
     public function setAuth($auth)
     {
         $this->auth = $auth;
@@ -117,12 +117,12 @@ class GetTagsRequest
     }
 
     /**
-	 * Sets the hardware device id used in registerDevice function call.
-	 *
-	 * @param string $hwid the the hardware device id used in registerDevice function call.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
-	 */
+     * Sets the hardware device id used in registerDevice function call.
+     *
+     * @param string $hwid the the hardware device id used in registerDevice function call.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest this instance.
+     */
     public function setHwid($hwid)
     {
         $this->hwid = $hwid;
@@ -132,29 +132,26 @@ class GetTagsRequest
     }
 
     /**
-	 * Creates a JSON representation of this request.
-	 *
-	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-	 */
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
     public function toJSON()
     {
         // The 'application' parameter must have been defined.
         if (!isset($this->application)) {
-
             throw new PushwooshException('The \'application\' property is not set !');
 
         }
 
         // The 'auth' parameter must have been set
         if (!isset($this->auth)) {
-
             throw new PushwooshException('The \'auth\' property is not set !');
 
         }
 
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
-
             throw new PushwooshException('The \'hwid\' property is not set !');
 
         }

@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>PushStatRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group PushStateRequestTest
+ * @group  PushStateRequestTest
  */
 class PushStatRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $pushStatRequest = PushStatRequest::create();
@@ -63,20 +63,18 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $pushStatRequest = new PushStatRequest();
 
         // Test without the 'application' parameter set
         try {
-
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -84,12 +82,10 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hash' parameter set
         $pushStatRequest->setApplication('APPLICATION');
         try {
-
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -97,12 +93,10 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $pushStatRequest->setHash('hash');
         try {
-
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

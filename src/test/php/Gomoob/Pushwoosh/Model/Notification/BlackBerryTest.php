@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Test case used to test the <code>BlackBerry</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group BlackBerryTest
+ * @group  BlackBerryTest
  */
 class BlackBerryTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <code>#create()</code> function;
-	 */
+     * Test method for the <code>#create()</code> function;
+     */
     public function testCreate()
     {
         $this->assertNotNull(BlackBerry::create());
@@ -26,8 +26,8 @@ class BlackBerryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getHeader()</code> and <code>setHeader($header)</code> functions.
-	 */
+     * Test method for the <code>#getHeader()</code> and <code>setHeader($header)</code> functions.
+     */
     public function testGetSetBanner()
     {
         $blackBerry = new BlackBerry();

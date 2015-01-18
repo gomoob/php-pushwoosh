@@ -16,21 +16,21 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 class IntCondition extends AbstractCondition
 {
     /**
-	 * Create a new <code>IntCondition</code> instance.
-	 */
+     * Create a new <code>IntCondition</code> instance.
+     */
     private function __construct($tagName)
     {
         $this->tagName = $tagName;
     }
 
     /**
-	 * Apply a between operator to min and max operand values.
-	 *
-	 * @param int $minValue the integer min value of the range.
-	 * @param int $maxValue the integer max value of the range.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
-	 */
+     * Apply a between operator to min and max operand values.
+     *
+     * @param int $minValue the integer min value of the range.
+     * @param int $maxValue the integer max value of the range.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
     public function between($minValue, $maxValue)
     {
         $this->operator = 'BETWEEN';
@@ -41,24 +41,24 @@ class IntCondition extends AbstractCondition
     }
 
     /**
-	 * Create a new <code>IntCondition</code> instance.
-	 *
-	 * @param string $tagName the name of the tag.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition the created integer condition.
-	 */
+     * Create a new <code>IntCondition</code> instance.
+     *
+     * @param string $tagName the name of the tag.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition the created integer condition.
+     */
     public static function create($tagName)
     {
         return new IntCondition($tagName);
     }
 
     /**
-	 * Apply an equals operator to a specified operand value.
-	 *
-	 * @param int $value the integer value to compare with.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
-	 */
+     * Apply an equals operator to a specified operand value.
+     *
+     * @param int $value the integer value to compare with.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
     public function eq($value)
     {
         $this->operator = 'EQ';
@@ -69,12 +69,12 @@ class IntCondition extends AbstractCondition
     }
 
     /**
-	 * Apply a greater than or equals operator to a specified operand value.
-	 *
-	 * @param int $value the integer value to compare with.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
-	 */
+     * Apply a greater than or equals operator to a specified operand value.
+     *
+     * @param int $value the integer value to compare with.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
     public function gte($value)
     {
         $this->operator = 'GTE';
@@ -85,12 +85,12 @@ class IntCondition extends AbstractCondition
     }
 
     /**
-	 * Apply a less than or equals operator to a specified operand value.
-	 *
-	 * @param int $value the integer value to compare with.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
-	 */
+     * Apply a less than or equals operator to a specified operand value.
+     *
+     * @param int $value the integer value to compare with.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
     public function lte($value)
     {
         $this->operator = 'LTE';

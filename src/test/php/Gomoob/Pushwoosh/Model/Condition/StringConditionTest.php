@@ -12,13 +12,13 @@ namespace Gomoob\Pushwoosh\Model\Condition;
  * Test case used to test the <code>StringCondition</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group StringonditionTest
+ * @group  StringonditionTest
  */
 class StringConditionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <code>#eq($value)</code> function.
-	 */
+     * Test method for the <code>#eq($value)</code> function.
+     */
     public function testEq()
     {
         $stringCondition = StringCondition::create('A_TAG')->eq('VALUE');

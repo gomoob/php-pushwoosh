@@ -16,8 +16,8 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 class ListCondition extends AbstractCondition
 {
     /**
-	 * Create a new <code>ListCondition</code> instance.
-	 */
+     * Create a new <code>ListCondition</code> instance.
+     */
     private function __construct($tagName)
     {
         $this->tagName = $tagName;
@@ -36,12 +36,12 @@ class ListCondition extends AbstractCondition
     }
 
     /**
-	 * Apply an IN operator to a specified operand value.
-	 *
-	 * @param string[] $values the string values used to build in IN value set.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Condition\ListCondition this instance.
-	 */
+     * Apply an IN operator to a specified operand value.
+     *
+     * @param string[] $values the string values used to build in IN value set.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\ListCondition this instance.
+     */
     public function in(array $values)
     {
         $this->operator = 'IN';

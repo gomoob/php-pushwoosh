@@ -16,19 +16,19 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class CreateMessageResponse extends AbstractResponse
 {
     /**
-	 * Gets the Pushwoosh '/createMessage' response response.
-	 *
-	 * @var \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse
-	 */
+     * Gets the Pushwoosh '/createMessage' response response.
+     *
+     * @var \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse
+     */
     private $response;
 
     /**
-	 * Utility function used to create a new instance from a JSON string.
-	 *
-	 * @param array $json a PHP array which contains the result of a 'json_decode' execution.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponse the resulting instance.
-	 */
+     * Utility function used to create a new instance from a JSON string.
+     *
+     * @param array $json a PHP array which contains the result of a 'json_decode' execution.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponse the resulting instance.
+     */
     public static function create(array $json)
     {
         $createMessageResponse = new CreateMessageResponse();
@@ -37,12 +37,10 @@ class CreateMessageResponse extends AbstractResponse
 
         // If a 'response' is provided
         if (array_key_exists('response', $json)) {
-
             $createMessageResponseResponse = new CreateMessageResponseResponse();
 
             // If 'Messages' are provided
             if (array_key_exists('Messages', $json['response'])) {
-
                 $createMessageResponseResponse->setMessages($json['response']['Messages']);
 
             }
@@ -55,22 +53,22 @@ class CreateMessageResponse extends AbstractResponse
     }
 
     /**
-	 * Gets the Pushwoosh '/createMessage' response response.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse the Pushwoosh '/createMessage' response
-	 *         response.
-	 */
+     * Gets the Pushwoosh '/createMessage' response response.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse the Pushwoosh '/createMessage' response
+     *         response.
+     */
     public function getResponse()
     {
         return $this->response;
     }
 
     /**
-	 * Sets the Pushwoosh '/createMessage' response response.
-	 *
-	 * @param \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse $response the Pushwoosh '/createMessage'
-	 *        response response.
-	 */
+     * Sets the Pushwoosh '/createMessage' response response.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Response\CreateMessageResponseResponse $response the Pushwoosh '/createMessage'
+     *        response response.
+     */
     public function setResponse(CreateMessageResponseResponse $response)
     {
         $this->response = $response;

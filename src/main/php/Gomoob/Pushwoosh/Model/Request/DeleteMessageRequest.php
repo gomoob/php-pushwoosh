@@ -18,17 +18,17 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class DeleteMessageRequest
 {
     /**
-	 * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
-	 *
-	 * @var string
-	 */
+     * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
+     *
+     * @var string
+     */
     private $auth;
 
     /**
-	 * The message code obtained in createMessage.
-	 *
-	 * @var string
-	 */
+     * The message code obtained in createMessage.
+     *
+     * @var string
+     */
     private $message;
 
     /**
@@ -43,12 +43,12 @@ class DeleteMessageRequest
     }
 
     /**
-	 * Gets the API access token from the Pushwoosh control panel (create this token at
-	 * https://cp.pushwoosh.com/api_access).
-	 *
-	 * @return string the API access token from the Pushwoosh control panel (create this token at
-	 *         https://cp.pushwoosh.com/api_access).
-	 */
+     * Gets the API access token from the Pushwoosh control panel (create this token at
+     * https://cp.pushwoosh.com/api_access).
+     *
+     * @return string the API access token from the Pushwoosh control panel (create this token at
+     *         https://cp.pushwoosh.com/api_access).
+     */
     public function getAuth()
     {
         return $this->auth;
@@ -56,10 +56,10 @@ class DeleteMessageRequest
     }
 
     /**
-	 * Gets the message code obtained in createMessage.
-	 *
-	 * @return string the message code obtained in createMessage.
-	 */
+     * Gets the message code obtained in createMessage.
+     *
+     * @return string the message code obtained in createMessage.
+     */
     public function getMessage()
     {
         return $this->message;
@@ -67,14 +67,14 @@ class DeleteMessageRequest
     }
 
     /**
-	 * Sets the API access token from the Pushwoosh control panel (create this token at
-	 * https://cp.pushwoosh.com/api_access).
-	 *
-	 * @param string $auth the API access token from the Pushwoosh control panel (create this token at
-	 *        https://cp.pushwoosh.com/api_access).
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
-	 */
+     * Sets the API access token from the Pushwoosh control panel (create this token at
+     * https://cp.pushwoosh.com/api_access).
+     *
+     * @param string $auth the API access token from the Pushwoosh control panel (create this token at
+     *        https://cp.pushwoosh.com/api_access).
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
+     */
     public function setAuth($auth)
     {
         $this->auth = $auth;
@@ -84,12 +84,12 @@ class DeleteMessageRequest
     }
 
     /**
-	 * Sets the message code obtained in createMessage.
-	 *
-	 * @param string $message the message code obtained in createdMessage.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
-	 */
+     * Sets the message code obtained in createMessage.
+     *
+     * @param string $message the message code obtained in createdMessage.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
+     */
     public function setMessage($message)
     {
         $this->message = $message;
@@ -107,14 +107,12 @@ class DeleteMessageRequest
     {
         // The 'auth' parameter must have been set
         if (!isset($this->auth)) {
-
             throw new PushwooshException('The \'auth\' property is not set !');
 
         }
 
         // The 'message' parameter must have been set
         if (!isset($this->message)) {
-
             throw new PushwooshException('The \'message\' property is not set !');
 
         }

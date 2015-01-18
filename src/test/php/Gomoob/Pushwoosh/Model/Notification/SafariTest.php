@@ -12,14 +12,14 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * Test case used to test the <code>Safari</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group SafariTest
+ * @group  SafariTest
  */
 class SafariTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-	 * Test method for the <code>#create()</code> function;
-	 */
+     * Test method for the <code>#create()</code> function;
+     */
     public function testCreate()
     {
         $this->assertNotNull(Safari::create());
@@ -27,8 +27,8 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getAction()</code> and <code>#setAction($action)</code> functions.
-	 */
+     * Test method for the <code>#getAction()</code> and <code>#setAction($action)</code> functions.
+     */
     public function testGetSetAction()
     {
         $safari = new Safari();
@@ -37,8 +37,8 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getTitle()</code> and <code>#setTitle($title)</code> functions.
-	 */
+     * Test method for the <code>#getTitle()</code> and <code>#setTitle($title)</code> functions.
+     */
     public function testGetSetTitle()
     {
         $safari = new Safari();
@@ -47,8 +47,8 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
-	 */
+     * Test method for the <code>#getTtl()</code> and <code>#setTtl($ttl)</code> functions.
+     */
     public function testGetSetTtl()
     {
         $safari = new Safari();
@@ -57,8 +57,8 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <code>#getUrlArgs()</code> and <code>#setUrlArgs($urlArgs)</code> functions.
-	 */
+     * Test method for the <code>#getUrlArgs()</code> and <code>#setUrlArgs($urlArgs)</code> functions.
+     */
     public function testGetSetUrlArgs()
     {
         $safari = new Safari();

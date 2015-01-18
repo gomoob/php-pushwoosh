@@ -16,29 +16,29 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 abstract class AbstractCondition implements ICondition
 {
     /**
-	 * The operand.
-	 *
-	 * @var mixed
-	 */
+     * The operand.
+     *
+     * @var mixed
+     */
     protected $operand;
 
     /**
-	 * The operator.
-	 *
-	 * @var string
-	 */
+     * The operator.
+     *
+     * @var string
+     */
     protected $operator;
 
     /**
-	 * The tag name.
-	 *
-	 * @var string
-	 */
+     * The tag name.
+     *
+     * @var string
+     */
     protected $tagName;
 
     /**
-	 * {@inheritDoc}
-	 */
+     * {@inheritDoc}
+     */
     public function getOperand()
     {
         return $this->operand;
@@ -46,8 +46,8 @@ abstract class AbstractCondition implements ICondition
     }
 
     /**
-	 * {@inheritDoc}
-	 */
+     * {@inheritDoc}
+     */
     public function getOperator()
     {
         return $this->operator;
@@ -55,8 +55,8 @@ abstract class AbstractCondition implements ICondition
     }
 
     /**
-	 * {@inheritDoc}
-	 */
+     * {@inheritDoc}
+     */
     public function getTagName()
     {
         return $this->tagName;
@@ -64,8 +64,8 @@ abstract class AbstractCondition implements ICondition
     }
 
     /**
-	 * {@inheritDoc}
-	 */
+     * {@inheritDoc}
+     */
     public function toJSON()
     {
         return array(

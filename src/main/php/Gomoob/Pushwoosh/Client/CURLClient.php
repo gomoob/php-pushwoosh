@@ -18,8 +18,8 @@ use Gomoob\Pushwoosh\ICURLClient;
 class CURLClient implements ICURLClient
 {
     /**
-	 * {@inheritDoc}
-	 */
+     * {@inheritDoc}
+     */
     public function pushwooshCall($method, array $data)
     {
         $url = 'https://cp.pushwoosh.com/json/1.3/' . $method;
@@ -50,7 +50,6 @@ class CURLClient implements ICURLClient
         $error = curl_error($ch);
 
         if ($error) {
-
             $info = curl_getinfo($ch);
 
             // FIXME

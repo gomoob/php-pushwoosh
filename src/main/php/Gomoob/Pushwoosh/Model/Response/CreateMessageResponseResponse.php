@@ -16,17 +16,17 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class CreateMessageResponseResponse
 {
     /**
-	 * The Pushwoosh messages sent in response to a Create Message request.
-	 *
-	 * @var string[]
-	 */
+     * The Pushwoosh messages sent in response to a Create Message request.
+     *
+     * @var string[]
+     */
     private $messages;
 
     /**
-	 * Gets the Pushwoosh messages sent in response to a Create Message request.
-	 *
-	 * @return string[]
-	 */
+     * Gets the Pushwoosh messages sent in response to a Create Message request.
+     *
+     * @return string[]
+     */
     public function getMessages()
     {
         return $this->messages;
@@ -34,10 +34,10 @@ class CreateMessageResponseResponse
     }
 
     /**
-	 * Sets the Pushwoosh messages sent in response to a Create Message request.
-	 *
-	 * @param string[] $messages the Pushwoosh messages sent in response to a Create Message Request.
-	 */
+     * Sets the Pushwoosh messages sent in response to a Create Message request.
+     *
+     * @param string[] $messages the Pushwoosh messages sent in response to a Create Message Request.
+     */
     public function setMessages($messages)
     {
         $this->messages = $messages;

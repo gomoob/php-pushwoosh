@@ -16,10 +16,10 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 class IOS
 {
     /**
-	 * //TODO: TO BE DOCUMENTED !
-	 *
-	 * @var boolean
-	 */
+     * //TODO: TO BE DOCUMENTED !
+     *
+     * @var boolean
+     */
     private $apnsTrimContent;
 
     private $badges;
@@ -29,10 +29,10 @@ class IOS
     private $trimContent;
 
     /**
-	 * Utility function used to create a new IOS instance.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Notification\IOS the new created instance.
-	 */
+     * Utility function used to create a new IOS instance.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\IOS the new created instance.
+     */
     public static function create()
     {
         return new IOS();
@@ -134,10 +134,10 @@ class IOS
     }
 
     /**
-	 * Creates a JSON representation of this request.
-	 *
-	 * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-	 */
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     */
     public function toJSON()
     {
         $json = array();

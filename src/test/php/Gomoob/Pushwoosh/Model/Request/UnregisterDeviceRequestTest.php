@@ -14,13 +14,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  * Test case used to test the <code>UnregisterDeviceRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
- * @group UnregisterDeviceRequestTest
+ * @group  UnregisterDeviceRequestTest
  */
 class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-	 * Test method for the <tt>create()</tt> function.
-	 */
+     * Test method for the <tt>create()</tt> function.
+     */
     public function testCreate()
     {
         $unregisterDeviceRequest = UnregisterDeviceRequest::create();
@@ -52,20 +52,18 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-	 * Test method for the <tt>toJSON()</tt> function.
-	 */
+     * Test method for the <tt>toJSON()</tt> function.
+     */
     public function testToJSON()
     {
         $unregisterDeviceRequest = new UnregisterDeviceRequest();
 
         // Test without the 'application' parameter set
         try {
-
             $unregisterDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }
@@ -73,12 +71,10 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $unregisterDeviceRequest->setApplication('APPLICATION');
         try {
-
             $unregisterDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
 
         } catch (PushwooshException $pe) {
-
             // Expected
 
         }

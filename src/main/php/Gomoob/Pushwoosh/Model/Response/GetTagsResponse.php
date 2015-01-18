@@ -16,19 +16,19 @@ namespace Gomoob\Pushwoosh\Model\Response;
 class GetTagsResponse extends AbstractResponse
 {
     /**
-	 * Gets the Pushwoosh '/getTags' response response.
-	 *
-	 * @var \Gomoob\Pushwoosh\Model\Response\GetTagsResponseResponse
-	 */
+     * Gets the Pushwoosh '/getTags' response response.
+     *
+     * @var \Gomoob\Pushwoosh\Model\Response\GetTagsResponseResponse
+     */
     private $response;
 
     /**
-	 * Utility function used to create a new instance from a JSON string.
-	 *
-	 * @param array $json a PHP array which contains the result of a 'json_decode' execution.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\GetTagsResponse the resulting instance.
-	 */
+     * Utility function used to create a new instance from a JSON string.
+     *
+     * @param array $json a PHP array which contains the result of a 'json_decode' execution.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\GetTagsResponse the resulting instance.
+     */
     public static function create(array $json)
     {
         $getTagsResponse = new GetTagsResponse();
@@ -37,12 +37,10 @@ class GetTagsResponse extends AbstractResponse
 
         // If a 'response' is provided
         if (array_key_exists('response', $json)) {
-
             $getTagsResponseResponse = new GetTagsResponseResponse();
 
             // If a 'result' is provided
             if (array_key_exists('result', $json['response'])) {
-
                 $getTagsResponseResponse->setResult($json['response']['result']);
 
             }
@@ -55,22 +53,22 @@ class GetTagsResponse extends AbstractResponse
     }
 
     /**
-	 * Gets the Pushwoosh '/getTags' response response.
-	 *
-	 * @return \Gomoob\Pushwoosh\Model\Response\GetTagsResponseResponse the Pushwoosh '/createMessage' response
-	 *         response.
-	 */
+     * Gets the Pushwoosh '/getTags' response response.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\GetTagsResponseResponse the Pushwoosh '/createMessage' response
+     *         response.
+     */
     public function getResponse()
     {
         return $this->response;
     }
 
     /**
-	 * Sets the Pushwoosh '/getTags' response response.
-	 *
-	 * @param \Gomoob\Pushwoosh\Model\Response\GetTagsResponseResponse $response the Pushwoosh '/createMessage'
-	 *        response response.
-	 */
+     * Sets the Pushwoosh '/getTags' response response.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Response\GetTagsResponseResponse $response the Pushwoosh '/createMessage'
+     *        response response.
+     */
     public function setResponse(GetTagsResponseResponse $response)
     {
         $this->response = $response;
