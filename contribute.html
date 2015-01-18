@@ -1,0 +1,142 @@
+---
+layout: default
+title: Contribute
+---
+
+<h1>How to contribute</h1>
+<p>
+    Your are welcome to contribute to the project by simply posting issues or by providing pull resquests.
+</p>
+<p>
+    Each time you provide a pull request to fix bugs or propose an evolution you MUST adhere to the conventions and best 
+    practices described here.
+</p>
+
+<h2>Always create PRs on the <code>develop</code> branch</h2>
+<p>
+    The project is hosted on Github using 2 branches :
+</p>
+<ul>
+    <li>
+        <code>develop</code> : This branch <b>MUST BE</b> used to create Pull Requests
+    </li>
+    <li>
+        <code>master</code> : This branch <b>MUST NEVER BE</b> used directly to create Pull Requests and is 
+        maintained by GoMoob
+    </li>
+</ul>
+<p> 
+    All Pull Requests created using the master branch will be rejected.
+</p>
+
+<h2>Coding conventions</h2>
+
+<h3>Formatting</h3>
+<p>
+    The source code MUST BE compliant with the following PSRs :
+</p>
+<ul>
+    <li>Basic Coding Standard <a href="http://www.php-fig.org/psr/psr-1" target="_blank">PSR-1</a></li>
+    <li>Coding Style Guide <a href="http://www.php-fig.org/psr/psr-2" target="_blank">PSR-2</a></li>
+</ul>
+<p>
+    If you provide a Pull Request with source code which is not compliant with those 2 standards the CI build will fail. 
+</p>
+<p>
+    To check if your code is compliant with <a href="http://www.php-fig.org/psr/psr-1" target="_blank">PSR-1</a> and 
+    <a href="http://www.php-fig.org/psr/psr-2" target="_blank">PSR-2</a> a Grunt build command which uses 
+    <a href="https://github.com/squizlabs/PHP_CodeSniffer" target="_blank">PHP_CodeSniffer</a> is provided with the 
+    project, <b>ALWAYS</b> execute it before commiting your changes.
+</p>
+<p>
+{% highlight bash %}
+grunt phpcs
+{% endhighlight %}
+</p>
+<p>
+    Sometimes this command will output a lot of errors, an other Grunt command is provided to automatically fix the most 
+    common errors (this command uses the 
+    <a href="https://github.com/squizlabs/PHP_CodeSniffer" target="_blank">PHP_CodeSniffer</a> <code>phpcbf</code> tool
+    ).
+</p>
+<p>
+{% highlight bash %}
+grunt phpcs
+{% endhighlight %}
+</p>
+
+<h3>Unit tests</h3>
+
+<p>
+    The unit tests of the project are executed using <a href="https://phpunit.de/" target="_blank">PHPUnit</a>, the main 
+    code has to be placed inside the <code>src/main/php</code> directory, the test code has to be placed inside the 
+    <code>src/test/php</code> directory.
+</p>
+<p>
+    Each class which is tested is named using a clearly defined convention, for example the class 
+    <code>Gomoob\Pushwoosh\Model\Request\CreateMessageRequest</code> which is placed in the 
+    <code>src/main/php</code> directory is tested using a class named 
+    <code>GoMoob\Pushwoosh\Model\Request\CreateMessageRequestTest</code> placed in the <code>src/test/php</code> 
+    directory.
+</p>
+<p>
+    A test class <b>MUST</b> have the same PHP namespace as the class it tests.
+</p>
+
+<h2>Build scripts</h2>
+<p>
+    The build scripts of the project are managed using the <a href="http://gruntjs.com" target="_blank">Grunt</a> 
+    build tool.
+</p>
+<p>
+    To execute the builds first install <a href="http://gruntjs.com" target="_blank">Grunt</a> (which needs 
+    <a href="http://nodejs.org" target="_blank">NodeJS</a>) and then pull the Node dependencies / Grunt plugins required 
+    by the Gruntfile build script.
+</p>
+<p>
+{% highlight bash %}
+$ npm install
+npm http GET https://registry.npmjs.org/grunt-contrib-copy
+npm http GET https://registry.npmjs.org/grunt-phpunit
+...
+{% endhighlight %}
+</p>
+<p>
+    Then install <a href="https://getcomposer.org" target="_blank">Composer</a> and executes the following command to 
+    pull the PHP dependencies required (in fact this is onlye necessary to generate the <code>vendor/autoload.php</code> 
+    file required for the PHP classes autoloading).
+</p>
+<p>
+{% highlight bash %}
+$ composer update
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Nothing to install or update
+Generating autoload files
+...
+{% endhighlight %}
+</p>
+
+<h3>Default build task</h3>
+<p>
+    The default build task cleans the temporary <code>target</code> directory of the project, executes the unit tests 
+    and generates the <a href="http://www.phpdoc.org" target="_blank">PHPDocumentor</a> documentation.
+</p>
+<p>
+{% highlight bash %}
+grunt
+{% endhighlight %}
+</p>
+
+
+<h3>Execute the unit tests</h3>
+<p>
+{% highlight bash %}
+grunt test
+{% endhighlight %}
+</p>
+
+<h3>Generate the PHPDocumentor documentation</h3>
+<p>
+grunt generate-documentation
+</p>
