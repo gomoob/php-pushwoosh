@@ -9,10 +9,34 @@
 [![License](https://img.shields.io/packagist/l/gomoob/php-pushwoosh.svg?style=flat)](https://packagist.org/packages/gomoob/php-pushwoosh)
 [![Issues](https://img.shields.io/github/issues/gomoob/php-pushwoosh.svg?style=flat)](https://github.com/gomoob/php-pushwoosh/issues)
 
+## First sample, creating a Pushwoosh message
+
+```php
+// Create a Pushwoosh client
+$pushwoosh = Pushwoosh::create()
+    ->setApplication('XXXX-XXX')
+    ->setAuth('xxxxxxxx');
+
+// Create a request for the '/createMessage' Web Service
+$request = CreateMessageRequest::create()
+    ->addNotification(Notification::create()->setContent('Hello Jean !'));
+
+// Call the REST Web Service
+$response = $pushwoosh->createMessage($request);
+
+// Check if its ok
+if($response->isOk()) {
+    print 'Great, my message has been sent !';
+} else {
+    print 'Oups, the sent failed :-('; 
+    print 'Status code : ' . $response->getStatusCode();
+    print 'Status message : ' . $response->getStatusMessage();
+}
+```
+
+Easy, isn't it ? 
+
 ## Documentation
 
-The documentation can be found at http://gomoob.github.io/php-pushwoosh.
-
-## How to Contribute
-
-Read our guide at https://github.com/gomoob/php-pushwoosh/docs/contribute.md.
+ * [Documentation](http://gomoob.github.io/php-pushwoosh) 
+ * [How to Contribute](http://gomoob.github.io/php-pushwoosh/contribute.html)
