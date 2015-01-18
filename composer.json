@@ -35,6 +35,7 @@
 		"php" : ">=5.3.3"
 	},
 	"require-dev" : {
+	    "codeclimate/php-test-reporter": "~0.1",
 		"pdepend/pdepend" : "~2.0",
 		"phploc/phploc" : "~2.0",
 		"phpmd/phpmd" : "~2.1",

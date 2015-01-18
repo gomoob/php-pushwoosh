@@ -70,7 +70,7 @@ module.exports = function(grunt) {
                 }, 
                 
                 options: {
-                    configuration : 'phpunit.xml',
+                    configuration : 'phpunit.xml.dist',
                     //group : 'PushwooshTest'
                         
                 }
