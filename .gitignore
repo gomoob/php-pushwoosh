@@ -4,3 +4,4 @@
 /target/
 /_site/
 /Gemfile.lock
+/build/
