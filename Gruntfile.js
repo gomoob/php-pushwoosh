@@ -257,6 +257,11 @@ module.exports = function(grunt) {
     grunt.registerTask('phpcbf', ['shell:phpcbf']);
     
     /**
+     * Task used to check the code using PHP_CodeSniffer.
+     */
+    grunt.registerTask('phpcs', ['before-phpcs', 'shell:phpcs', ]);
+    
+    /**
      * Task used to generate a PHPMD report.
      */
     grunt.registerTask('phpmd', ['before-phpmd', 'shell:phpmd']);
@@ -264,12 +269,7 @@ module.exports = function(grunt) {
     /**
      * Task used to create the project documentation.
      */
-    grunt.registerTask('generate-documentation', ['pdepend',
-                                                  'before-phpcs', 
-                                                  'shell:phpcs', 
-                                                  'phpmd',
-                                                  'phpdocumentor' 
-                                                  ]);
+    grunt.registerTask('generate-documentation', ['pdepend', 'phpcs', 'phpmd', 'phpdocumentor']);
     
     /**
      * Task used to execute the project tests.
