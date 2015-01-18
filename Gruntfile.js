@@ -2,13 +2,6 @@ var fs = require('fs');
 
 module.exports = function(grunt) {
 
-    /**
-     * The directory used to produce outputs.
-     * 
-     * @property {String}
-     */
-    var TARGET_DIRECTORY = 'target';
-
     grunt.initConfig(
         {
             
@@ -20,7 +13,7 @@ module.exports = function(grunt) {
             /**
              * Clean task.
              */
-            clean : ['target'],
+            clean : ['build'],
             
             /**
              * Copy task.
@@ -28,7 +21,7 @@ module.exports = function(grunt) {
             copy : {
                 
                 /**
-                 * Copy test resource files to the target.
+                 * Copy test resource files to the build.
                  */
                 'test-resources' : {
                     files : [
@@ -36,7 +29,7 @@ module.exports = function(grunt) {
                             cwd: 'src/test/resources',
                             expand: true,
                             src: '**',
-                            dest: 'target/test-resources/'
+                            dest: 'build/test-resources/'
                         }
                     ]
                 }
@@ -50,7 +43,7 @@ module.exports = function(grunt) {
                 
                 options : {
                     directory : 'src/main/php',
-                    target : 'target/reports/phpdocumentor'
+                    target : 'build/reports/phpdocumentor'
                 }, 
                 
                 /**
@@ -86,10 +79,10 @@ module.exports = function(grunt) {
                     command : function() {
                         
                         var command = 'php vendor/pdepend/pdepend/src/bin/pdepend';
-                        command += ' --jdepend-chart=target/reports/pdepend/jdepend-chart.svg';
-                        command += ' --jdepend-xml=target/reports/pdepend/jdepend.xml';
-                        command += ' --overview-pyramid=target/reports/pdepend/overview-pyramid.svg';
-                        command += ' --summary-xml=target/reports/pdepend/summary.xml';
+                        command += ' --jdepend-chart=build/reports/pdepend/jdepend-chart.svg';
+                        command += ' --jdepend-xml=build/reports/pdepend/jdepend.xml';
+                        command += ' --overview-pyramid=build/reports/pdepend/overview-pyramid.svg';
+                        command += ' --summary-xml=build/reports/pdepend/summary.xml';
                         command += ' src/main/php';
                         
                         return command;
@@ -107,7 +100,7 @@ module.exports = function(grunt) {
                         if(grunt.option('checkstyle') === true) {
                             
                             command += ' --report=checkstyle';
-                            command += ' --report-file=target/reports/phpcs/phpcs.xml'; 
+                            command += ' --report-file=build/reports/phpcs/phpcs.xml'; 
                         }
 
                         command += ' src/main/php';
@@ -143,7 +136,7 @@ module.exports = function(grunt) {
                 
                 phpdocumentor : {
                     command : function() {
-                        return 'phpdoc --target=target/reports/phpdocumentor --directory=src/main/php';
+                        return 'phpdoc --target=build/reports/phpdocumentor --directory=src/main/php';
                     }
                 },
                 
@@ -162,14 +155,14 @@ module.exports = function(grunt) {
                         command += 'src/main/php ';
                         command += 'html ';
                         command += 'cleancode,codesize,controversial,design,naming,unusedcode ';
-                        command += '--reportfile=target/reports/phpmd/phpmd.html';
+                        command += '--reportfile=build/reports/phpmd/phpmd.html';
 
                         return command;
 
                     },
                     options : {
                         callback : function(err, stdout, stderr, cb) {
-                            grunt.file.write('target/reports/phpmd/phpmd.html', stdout);
+                            grunt.file.write('build/reports/phpmd/phpmd.html', stdout);
                             cb();
                             
                         }
@@ -190,16 +183,16 @@ module.exports = function(grunt) {
      */
     grunt.registerTask('before-pdepend' , 'Creating directories required by PDepend...', function() {
 
-        if(!fs.existsSync('target')) {
-            fs.mkdirSync('target');
+        if(!fs.existsSync('build')) {
+            fs.mkdirSync('build');
         }
 
-        if(!fs.existsSync('target/reports')) {
-            fs.mkdirSync('target/reports');
+        if(!fs.existsSync('build/reports')) {
+            fs.mkdirSync('build/reports');
         }
 
-        if(!fs.existsSync('target/reports/pdepend')) {   
-            fs.mkdirSync('target/reports/pdepend');
+        if(!fs.existsSync('build/reports/pdepend')) {   
+            fs.mkdirSync('build/reports/pdepend');
         }
 
     });
@@ -211,16 +204,16 @@ module.exports = function(grunt) {
         
         if(grunt.option('checkstyle') === true) {
 
-            if(!fs.existsSync('target')) {
-                fs.mkdirSync('target');
+            if(!fs.existsSync('build')) {
+                fs.mkdirSync('build');
             }
             
-            if(!fs.existsSync('target/reports')) {
-                fs.mkdirSync('target/reports');
+            if(!fs.existsSync('build/reports')) {
+                fs.mkdirSync('build/reports');
             }
 
-            if(!fs.existsSync('target/reports/phpcs')) {   
-                fs.mkdirSync('target/reports/phpcs');
+            if(!fs.existsSync('build/reports/phpcs')) {   
+                fs.mkdirSync('build/reports/phpcs');
             }
 
         }
@@ -232,16 +225,16 @@ module.exports = function(grunt) {
      */
     grunt.registerTask('before-phpmd', 'Creating directories required by PHP Mess Detector...', function() {
        
-        if(!fs.existsSync('target')) {
-            fs.mkdirSync('target');
+        if(!fs.existsSync('build')) {
+            fs.mkdirSync('build');
         }
 
-        if(!fs.existsSync('target/reports')) {
-            fs.mkdirSync('target/reports');
+        if(!fs.existsSync('build/reports')) {
+            fs.mkdirSync('build/reports');
         }
 
-        if(!fs.existsSync('target/reports/phpmd')) {   
-            fs.mkdirSync('target/reports/phpmd');
+        if(!fs.existsSync('build/reports/phpmd')) {   
+            fs.mkdirSync('build/reports/phpmd');
         }
         
     });
@@ -278,7 +271,7 @@ module.exports = function(grunt) {
     
     /**
      * Default task, this task executes the following actions :
-     *  - Clean the previous target folder 
+     *  - Clean the previous build folder 
      */
     grunt.registerTask('default', ['clean', 'test', 'generate-documentation']);
 

@@ -10,12 +10,12 @@
         
         <!-- Log Unit Test results into a JUnit XML file -->
         <log type="junit" 
-             target="target/reports/phpunit/TEST-phpunit.report.xml" 
+             target="build/reports/phpunit/TEST-phpunit.report.xml" 
              logIncompleteSkipped="false"/>
 
         <!-- Log Code Coverage results as HTML -->
         <log type="coverage-html" 
-             target="target/reports/coverage/html" 
+             target="build/reports/coverage/html" 
              charset="UTF-8"
              yui="true" 
              highlight="false"
@@ -24,8 +24,11 @@
         
         <!-- Log Code Coverage results as a Clover XML file -->
         <log type="coverage-clover" 
-             target="target/reports/coverage/clover/coverage.xml" />
-        
+             target="build/reports/coverage/clover/coverage.xml" />
+        <!-- Needed by Code Climate -->
+        <log type="coverage-clover" 
+             target="build/logs/clover.xml" />
+
     </logging>
     
     <!-- Includes and Excludes files for Code Coverage -->
