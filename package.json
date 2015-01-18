@@ -2,6 +2,10 @@
   "name": "gomoob-php-pushwoosh",
   "version": "0.1.0",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/gomoob/php-pushwoosh.git"  
+  },
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-contrib-clean": "~0.6",
