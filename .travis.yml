@@ -20,4 +20,4 @@ script:
 
 after_script: 
   - php vendor/bin/coveralls -v
-  - CODECLIMATE_REPO_TOKEN=fbbb8faf1226ee12fa1f4f6b838fb021e0fcfcb4c48a8be1906adedcc255a860 ./vendor/bin/test-reporter
+  - CODECLIMATE_REPO_TOKEN=fbbb8faf1226ee12fa1f4f6b838fb021e0fcfcb4c48a8be1906adedcc255a860 ./code-climat-test-reporter
