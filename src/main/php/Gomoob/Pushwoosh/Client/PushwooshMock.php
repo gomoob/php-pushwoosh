@@ -18,6 +18,7 @@ use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
 use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
+use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
 
 /**
  * Class which defines a Pushwoosh client mock.
@@ -74,7 +75,7 @@ class PushwooshMock implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-    public function getNearestZone()
+    public function getNearestZone(GetNearestZoneRequest $getNearestZoneRequest)
     {
         // TODO: Auto-generated method stub
 
