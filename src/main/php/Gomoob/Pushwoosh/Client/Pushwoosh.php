@@ -45,7 +45,6 @@ class Pushwoosh implements IPushwoosh
      *
      * @var string
      */
-
     private $application;
 
     /**
@@ -177,7 +176,6 @@ class Pushwoosh implements IPushwoosh
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -187,7 +185,6 @@ class Pushwoosh implements IPushwoosh
     public function getApplicationsGroup()
     {
         return $this->applicationsGroup;
-
     }
 
     /**
@@ -196,7 +193,6 @@ class Pushwoosh implements IPushwoosh
     public function getAuth()
     {
         return $this->auth;
-
     }
 
     /**
@@ -207,7 +203,6 @@ class Pushwoosh implements IPushwoosh
     public function getCURLClient()
     {
         return $this->cURLClient;
-
     }
 
     /**
@@ -328,7 +323,6 @@ class Pushwoosh implements IPushwoosh
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -339,7 +333,6 @@ class Pushwoosh implements IPushwoosh
         $this->applicationsGroup = $applicationsGroup;
 
         return $this;
-
     }
 
     /**
@@ -350,7 +343,6 @@ class Pushwoosh implements IPushwoosh
         $this->auth = $auth;
 
         return $this;
-
     }
 
     /**
