@@ -66,7 +66,15 @@ class PushwooshMock implements IPushwoosh
      */
     public function createMessage(CreateMessageRequest $createMessageRequest)
     {
-        return CreateMessageResponse::create(json_decode('{"status_code":200,"status_message":"OK","response": {"Messages":[]}}', true));
+        return CreateMessageResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK",
+                "response": {
+                    "Messages":[]
+                }
+            }', true)
+        );
     }
     
     /**
@@ -74,7 +82,12 @@ class PushwooshMock implements IPushwoosh
      */
     public function deleteMessage(DeleteMessageRequest $deleteMessageRequest)
     {
-        return DeleteMessageResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
+        return DeleteMessageResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK"
+            }', true)
+        );
     }
     
     /**
@@ -107,7 +120,7 @@ class PushwooshMock implements IPushwoosh
     public function getNearestZone(GetNearestZoneRequest $getNearestZoneRequest)
     {
         return GetNearestZoneResponse::create(
-            '{
+            json_decode('{
                "status_code":200,
                "status_message":"OK"
                "response": {  
@@ -117,7 +130,7 @@ class PushwooshMock implements IPushwoosh
                   "range":100,         
                   "distance":4715784 
                }
-            }'
+            }', true)
         );
     }
     
@@ -127,7 +140,7 @@ class PushwooshMock implements IPushwoosh
     public function getTags(GetTagsRequest $getTagsRequest)
     {
         return GetTagsResponse::create(
-            '{
+            json_decode('{
               "status_code": 200,
               "status_message": "OK"
               "response": {
@@ -135,7 +148,7 @@ class PushwooshMock implements IPushwoosh
                   "Language": "fr"
                 }
               }
-            }'
+            }', true)
         );
     }
     
@@ -144,7 +157,12 @@ class PushwooshMock implements IPushwoosh
      */
     public function pushStat(PushStatRequest $pushStatRequest)
     {
-        return PushStatResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
+        return PushStatResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK"
+            }', true)
+        );
     }
     
     /**
@@ -152,7 +170,13 @@ class PushwooshMock implements IPushwoosh
      */
     public function registerDevice(RegisterDeviceRequest $registerDeviceRequest)
     {
-        return RegisterDeviceResponse::create(json_decode('{"status_code":200,"status_message":"OK","response": null}', true));
+        return RegisterDeviceResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK",
+                "response": null
+            }', true)
+        );
     }
     
     /**
@@ -190,7 +214,12 @@ class PushwooshMock implements IPushwoosh
      */
     public function setBadge(SetBadgeRequest $setBadgeRequest)
     {
-        return SetBadgeResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
+        return SetBadgeResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK"
+            }', true)
+        );
     }
     
     /**
@@ -198,7 +227,13 @@ class PushwooshMock implements IPushwoosh
      */
     public function setTags(SetTagsRequest $setTagsRequest)
     {
-        return SetTagsResponse::create(json_decode('{"status_code":200,"status_message":"OK","response": null}', true));
+        return SetTagsResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK",
+                "response": null
+            }', true)
+        );
     }
     
     /**
@@ -206,6 +241,11 @@ class PushwooshMock implements IPushwoosh
      */
     public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest)
     {
-        return UnregisterDeviceResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
+        return UnregisterDeviceResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK"
+            }', true)
+        );
     }
 }
