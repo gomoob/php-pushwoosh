@@ -62,19 +62,20 @@ class PushwooshMock implements IPushwoosh
     private $auth;
     
     /**
+     * An array which contains all pushwoosh requests sent by this pushwoosh client.
+     *
+     * @var array
+     */
+    private $pushwhooshRequests;
+    
+    /**
      * {@inheritDoc}
      */
     public function createMessage(CreateMessageRequest $createMessageRequest)
     {
-        return CreateMessageResponse::create(
-            json_decode('{
-                "status_code":200,
-                "status_message":"OK",
-                "response": {
-                    "Messages":[]
-                }
-            }', true)
-        );
+        $this->pushwhooshRequests[] = $createMessageRequest;
+        
+        return CreateMessageResponse::create(json_decode('{"status_code":200,"status_message":"OK","response": {"Messages":[]}}', true));
     }
     
     /**
@@ -82,12 +83,9 @@ class PushwooshMock implements IPushwoosh
      */
     public function deleteMessage(DeleteMessageRequest $deleteMessageRequest)
     {
-        return DeleteMessageResponse::create(
-            json_decode('{
-                "status_code":200,
-                "status_message":"OK"
-            }', true)
-        );
+        $this->pushwhooshRequests[] = $deleteMessageRequest;
+        
+        return DeleteMessageResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
     }
     
     /**
@@ -119,8 +117,10 @@ class PushwooshMock implements IPushwoosh
      */
     public function getNearestZone(GetNearestZoneRequest $getNearestZoneRequest)
     {
+        $this->pushwhooshRequests[] = $getNearestZoneRequest;
+        
         return GetNearestZoneResponse::create(
-            json_decode('{
+            '{
                "status_code":200,
                "status_message":"OK"
                "response": {  
@@ -130,8 +130,26 @@ class PushwooshMock implements IPushwoosh
                   "range":100,         
                   "distance":4715784 
                }
-            }', true)
+            }'
         );
+    }
+
+    /**
+     * Gets the list of pushwoosh requests which have been sent with this Pushwoosh client.
+     *
+     * @return array An array of pushwoosh requests which have been sent with this Pushwoosh client.
+     */
+    public function getPushwooshRequests() 
+    {
+        return $this->pushwhooshRequests;
+    }
+    
+    /**
+     * Clears the create message requests which have been sent with this Pushwoosh client.
+     */
+    public function clear() 
+    {
+        $this->pushwhooshRequests = array();
     }
     
     /**
@@ -139,8 +157,10 @@ class PushwooshMock implements IPushwoosh
      */
     public function getTags(GetTagsRequest $getTagsRequest)
     {
+        $this->pushwhooshRequests[] = $getTagsRequest;
+        
         return GetTagsResponse::create(
-            json_decode('{
+            '{
               "status_code": 200,
               "status_message": "OK"
               "response": {
@@ -148,7 +168,7 @@ class PushwooshMock implements IPushwoosh
                   "Language": "fr"
                 }
               }
-            }', true)
+            }'
         );
     }
     
@@ -157,12 +177,9 @@ class PushwooshMock implements IPushwoosh
      */
     public function pushStat(PushStatRequest $pushStatRequest)
     {
-        return PushStatResponse::create(
-            json_decode('{
-                "status_code":200,
-                "status_message":"OK"
-            }', true)
-        );
+        $this->pushwhooshRequests[] = $pushStatRequest;
+        
+        return PushStatResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
     }
     
     /**
@@ -170,13 +187,9 @@ class PushwooshMock implements IPushwoosh
      */
     public function registerDevice(RegisterDeviceRequest $registerDeviceRequest)
     {
-        return RegisterDeviceResponse::create(
-            json_decode('{
-                "status_code":200,
-                "status_message":"OK",
-                "response": null
-            }', true)
-        );
+        $this->pushwhooshRequests[] = $registerDeviceRequest;
+        
+        return RegisterDeviceResponse::create(json_decode('{"status_code":200,"status_message":"OK","response": null}', true));
     }
     
     /**
@@ -214,12 +227,9 @@ class PushwooshMock implements IPushwoosh
      */
     public function setBadge(SetBadgeRequest $setBadgeRequest)
     {
-        return SetBadgeResponse::create(
-            json_decode('{
-                "status_code":200,
-                "status_message":"OK"
-            }', true)
-        );
+        $this->pushwhooshRequests[] = $setBadgeRequest;
+        
+        return SetBadgeResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
     }
     
     /**
@@ -227,13 +237,9 @@ class PushwooshMock implements IPushwoosh
      */
     public function setTags(SetTagsRequest $setTagsRequest)
     {
-        return SetTagsResponse::create(
-            json_decode('{
-                "status_code":200,
-                "status_message":"OK",
-                "response": null
-            }', true)
-        );
+        $this->pushwhooshRequests[] = $setTagsRequest;
+        
+        return SetTagsResponse::create(json_decode('{"status_code":200,"status_message":"OK","response": null}', true));
     }
     
     /**
@@ -241,11 +247,8 @@ class PushwooshMock implements IPushwoosh
      */
     public function unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest)
     {
-        return UnregisterDeviceResponse::create(
-            json_decode('{
-                "status_code":200,
-                "status_message":"OK"
-            }', true)
-        );
+        $this->pushwhooshRequests[] = $unregisterDeviceRequest;
+        
+        return UnregisterDeviceResponse::create(json_decode('{"status_code":200,"status_message":"OK"}', true));
     }
 }
