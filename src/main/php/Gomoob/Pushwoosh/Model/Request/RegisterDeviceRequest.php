@@ -270,19 +270,7 @@ class RegisterDeviceRequest
             throw new PushwooshException('The \'hwid\' property is not set !');
 
         }
-
-        // The 'pushToken' parameter must have been defined.
-        if (!isset($this->pushToken)) {
-            throw new PushwooshException('The  \'pushToken\' property is not set !');
-
-        }
-
-        // The 'timezone' parameter must have been defined.
-        if (!isset($this->timezone)) {
-            throw new PushwooshException('The  \'timezone\' property is not set !');
-
-        }
-
+        
         $json = array(
             'application' => $this->application,
             'push_token' => $this->pushToken,
