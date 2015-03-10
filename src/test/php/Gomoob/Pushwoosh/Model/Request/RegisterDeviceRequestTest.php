@@ -169,15 +169,6 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
 
         // Test without the 'timezone' parameter set
         $registerDeviceRequest->setPushToken('PUSH_TOKEN');
-        try {
-            $registerDeviceRequest->toJSON();
-            $this->fail('Must have thrown a PushwooshException !');
-
-        } catch (PushwooshException $pe) {
-            // Expected
-
-        }
-
         $registerDeviceRequest->setTimezone(3600);
 
         // Test without the 'language' parameter set

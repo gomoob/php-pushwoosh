@@ -270,6 +270,12 @@ class RegisterDeviceRequest
             throw new PushwooshException('The \'hwid\' property is not set !');
 
         }
+
+        // The 'pushToken' parameter must have been defined.
+        if (!isset($this->pushToken)) {
+            throw new PushwooshException('The  \'pushToken\' property is not set !');
+        
+        }
         
         $json = array(
             'application' => $this->application,
