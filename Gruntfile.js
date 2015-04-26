@@ -252,7 +252,7 @@ module.exports = function(grunt) {
     /**
      * Task used to check the code using PHP_CodeSniffer.
      */
-    grunt.registerTask('phpcs', ['before-phpcs', 'shell:phpcs', ]);
+    grunt.registerTask('phpcs', ['before-phpcs', 'shell:phpcs']);
     
     /**
      * Task used to generate a PHPMD report.

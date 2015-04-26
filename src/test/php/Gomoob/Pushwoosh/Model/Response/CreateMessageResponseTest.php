@@ -48,7 +48,7 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $createMessageResponse->getStatusCode());
         $this->assertEquals('OK', $createMessageResponse->getStatusMessage());
 
-        // Test with an error response
+        // Test with an error response without any 'response' field
         $createMessageResponse = CreateMessageResponse::create(
             array(
                 'status_code' => 400,
@@ -56,6 +56,22 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
             )
         );
 
+        $createMessageResponseResponse = $createMessageResponse->getResponse();
+        $this->assertNull($createMessageResponseResponse);
+        $this->assertFalse($createMessageResponse->isOk());
+        $this->assertEquals(400, $createMessageResponse->getStatusCode());
+        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
+
+        // Test with an error response with a null 'response' field
+        // Fix https://github.com/gomoob/php-pushwoosh/issues/13
+        $createMessageResponse = CreateMessageResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO',
+                'response' => null
+            )
+        );
+        
         $createMessageResponseResponse = $createMessageResponse->getResponse();
         $this->assertNull($createMessageResponseResponse);
         $this->assertFalse($createMessageResponse->isOk());

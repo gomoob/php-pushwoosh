@@ -36,7 +36,7 @@ class CreateMessageResponse extends AbstractResponse
         $createMessageResponse->setStatusMessage($json['status_message']);
 
         // If a 'response' is provided
-        if (array_key_exists('response', $json)) {
+        if (array_key_exists('response', $json) && isset($json['response'])) {
             $createMessageResponseResponse = new CreateMessageResponseResponse();
 
             // If 'Messages' are provided

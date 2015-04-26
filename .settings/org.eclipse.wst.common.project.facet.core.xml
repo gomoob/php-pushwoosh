@@ -4,4 +4,5 @@
   <fixed facet="php.component"/>
   <installed facet="php.core.component" version="1"/>
   <installed facet="php.component" version="5.4"/>
+  <installed facet="php.composer.component" version="1"/>
 </faceted-project>

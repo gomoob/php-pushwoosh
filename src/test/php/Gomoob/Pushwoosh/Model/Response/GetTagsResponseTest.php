@@ -59,7 +59,7 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $getTagsResponse->getStatusCode());
         $this->assertEquals('OK', $getTagsResponse->getStatusMessage());
 
-        // Test with an error response
+        // Test with an error response without any 'response' field
         $getTagsResponse = GetTagsResponse::create(
             array(
                 'status_code' => 400,
@@ -72,6 +72,21 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($getTagsResponse->isOk());
         $this->assertEquals(400, $getTagsResponse->getStatusCode());
         $this->assertEquals('KO', $getTagsResponse->getStatusMessage());
-
+        
+        // Test with an error response with a null 'response' field
+        // Fix https://github.com/gomoob/php-pushwoosh/issues/13
+        $getTagsResponse = GetTagsResponse::create(
+            array(
+                'status_code' => 400,
+                'status_message' => 'KO',
+                'response' => null
+            )
+        );
+        
+        $getTagsResponseResponse = $getTagsResponse->getResponse();
+        $this->assertNull($getTagsResponseResponse);
+        $this->assertFalse($getTagsResponse->isOk());
+        $this->assertEquals(400, $getTagsResponse->getStatusCode());
+        $this->assertEquals('KO', $getTagsResponse->getStatusMessage());
     }
 }

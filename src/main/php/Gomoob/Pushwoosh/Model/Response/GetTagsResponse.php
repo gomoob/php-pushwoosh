@@ -36,7 +36,7 @@ class GetTagsResponse extends AbstractResponse
         $getTagsResponse->setStatusMessage($json['status_message']);
 
         // If a 'response' is provided
-        if (array_key_exists('response', $json)) {
+        if (array_key_exists('response', $json) && isset($json['response'])) {
             $getTagsResponseResponse = new GetTagsResponseResponse();
 
             // If a 'result' is provided

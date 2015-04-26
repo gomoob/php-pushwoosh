@@ -36,7 +36,7 @@ class GetNearestZoneResponse extends AbstractResponse
         $getNearestZoneResponse->setStatusMessage($json['status_message']);
 
         // If a 'response' is provided
-        if (array_key_exists('response', $json)) {
+        if (array_key_exists('response', $json) && isset($json['response'])) {
             $getNearestZoneResponseResponse = new GetNearestZoneResponseResponse();
             $getNearestZoneResponseResponse->setDistance($json['response']['distance']);
             $getNearestZoneResponseResponse->setLat($json['response']['lat']);
