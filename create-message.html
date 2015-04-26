@@ -95,14 +95,14 @@ $pushwoosh->createMessage($request1);
 $notification = Notification::create()
     ->addCondition(StringCondition::create('stringCondition')->eq('toto'));
     ->addCondition(InCondition::create('intCondition')->lte(15));
-    ->addCondition(ListCondition::create('listCondition')->in('value 1', 'value 2', 'value 3'));
+    ->addCondition(ListCondition::create('listCondition')->in(array('value 1', 'value 2', 'value 3')));
 
 // Setting conditions with the 'setConditions' method
 $notification = Notification::create()->setConditions(
     array(
         StringCondition::create('stringCondition')->eq('toto'),
         IntCondition::create('intCondition')->lte(15),
-        ListCondition::create('listCondition')->in('value 1', 'value 2', 'value 3'));
+        ListCondition::create('listCondition')->in(array('value 1', 'value 2', 'value 3')));
     )
 );
 ?>
