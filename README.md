@@ -41,3 +41,8 @@ Easy, isn't it ?
 
  * [Documentation](http://gomoob.github.io/php-pushwoosh) 
  * [How to Contribute](http://gomoob.github.io/php-pushwoosh/contribute.html)
+
+# Framework Integrations
+ - **Laravel** - https://github.com/zoophp/pushwoosh
+ 
+If you have integrated Pushwoosh into a popular PHP framework let us know!
