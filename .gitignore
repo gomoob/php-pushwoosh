@@ -1,7 +1,6 @@
 /node_modules
 /vendor
 /target
-/composer.lock
 /_site/
 /Gemfile.lock
 /phpdocumentor/

@@ -306,7 +306,6 @@ class RegisterDeviceRequest
 
         // The 'deviceType' must be valid
         switch ($this->deviceType) {
-
             // 1 - iOS
             case 1:
                 break;
