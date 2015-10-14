@@ -13,6 +13,7 @@
 	<buildpathentry kind="src" path="vendor/sebastian/finder-facade/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/phpcpd/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/global-state/src"/>
+	<buildpathentry kind="src" path="vendor/myclabs/deep-copy/src/DeepCopy"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/DocGenerators"/>
@@ -26,7 +27,9 @@
 	<buildpathentry kind="src" path="vendor/phpunit/phpunit-mock-objects/src"/>
 	<buildpathentry kind="src" path="vendor/symfony/stopwatch"/>
 	<buildpathentry kind="src" path="vendor/symfony/filesystem"/>
+	<buildpathentry kind="src" path="vendor/sebastian/resource-operations/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/exporter/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/src"/>
 	<buildpathentry kind="src" path="vendor/guzzle/guzzle/tests"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Tokenizers"/>
 	<buildpathentry kind="src" path="vendor/sebastian/version/src"/>
@@ -50,5 +53,6 @@
 	<buildpathentry kind="src" path="vendor/phploc/phploc/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Generic/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Reports"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-timer/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Zend/Sniffs"/>
 </buildpath>
