@@ -64,10 +64,9 @@ module.exports = function(grunt) {
                 
                 options: {
                     configuration : 'phpunit.xml.dist',
-                    //group : 'PushwooshTest'
-                        
+                    //group : 'CURLClientTest'
                 }
-                
+
             }, /* PHPUnit Task */
 
             /**
