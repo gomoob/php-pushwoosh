@@ -27,6 +27,7 @@
 	<buildpathentry kind="src" path="vendor/symfony/stopwatch"/>
 	<buildpathentry kind="src" path="vendor/symfony/filesystem"/>
 	<buildpathentry kind="src" path="vendor/sebastian/exporter/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/src"/>
 	<buildpathentry kind="src" path="vendor/guzzle/guzzle/tests"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Tokenizers"/>
 	<buildpathentry kind="src" path="vendor/sebastian/version/src"/>
@@ -50,5 +51,6 @@
 	<buildpathentry kind="src" path="vendor/phploc/phploc/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Generic/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Reports"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-timer/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Zend/Sniffs"/>
 </buildpath>
