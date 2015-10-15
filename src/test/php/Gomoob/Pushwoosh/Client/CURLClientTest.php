@@ -28,7 +28,7 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
         $curlClient = new CURLClient();
     
         // First test with a response return which does not correspond to a valid JSON payload
-        $curlRequest = $this->getMock('\Gomoob\CURL\CURLRequest');
+        $curlRequest = $this->getMock('\Gomoob\Pushwoosh\Curl\CURLRequest');
         $curlRequest->method('exec')->willReturn(false);
         $curlRequest->method('getInfo')->willReturn('CURL_INFO');
 
@@ -61,7 +61,7 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
         }
         
         // Second test with a CURL error encountered
-        $curlRequest = $this->getMock('\Gomoob\CURL\CURLRequest');
+        $curlRequest = $this->getMock('\Gomoob\Pushwoosh\Curl\CURLRequest');
         $curlRequest->method('exec')->willReturn(
             array(
                 'status_code' => 400,
