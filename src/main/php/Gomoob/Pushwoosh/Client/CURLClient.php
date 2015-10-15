@@ -8,10 +8,9 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
-use Gomoob\Curl\CurlRequest;
-use Gomoob\Curl\ICurlRequest;
-
 use Gomoob\Pushwoosh\ICURLClient;
+use Gomoob\Pushwoosh\Curl\CurlRequest;
+use Gomoob\Pushwoosh\Curl\ICurlRequest;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 /**
