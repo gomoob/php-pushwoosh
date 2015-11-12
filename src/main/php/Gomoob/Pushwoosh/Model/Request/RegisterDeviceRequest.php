@@ -300,7 +300,7 @@ class RegisterDeviceRequest
 
         // The 'deviceType' parameter must have been defined.
         if (!isset($this->deviceType)) {
-            throw new PushwooshException('The  \'application\' property is not set !');
+            throw new PushwooshException('The  \'deviceType\' property is not set !');
 
         }
 
