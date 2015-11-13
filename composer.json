@@ -1,7 +1,7 @@
 {
 	"name" : "gomoob/php-pushwoosh",
 	"description" : "A PHP Library to easily work with the Pushwoosh REST Web Services.",
-	"version" : "1.0.9",
+	"version" : "1.1.0",
 	"license" : "MIT",
 	"type" : "library",
 	"keywords" : [
@@ -32,7 +32,7 @@
 		}
 	},
 	"require" : {
-		"php" : ">=5.3.3"
+		"php" : ">=5.3.9"
 	},
 	"require-dev" : {
 		"codeclimate/php-test-reporter" : "~0.2",
