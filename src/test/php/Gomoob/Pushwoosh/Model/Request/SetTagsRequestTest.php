@@ -41,10 +41,12 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $setTagsRequest->addTag('tag0', 'tag0_value');
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals(
+                'The tag \'tag0\' has already been added, use the \'setTag\' method if you want to overwrite its ' .
+                'value !',
+                $pe->getMessage()
+            );
         }
     }
 
@@ -56,7 +58,6 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $setTagsRequest = SetTagsRequest::create();
 
         $this->assertNotNull($setTagsRequest);
-
     }
 
     /**
@@ -210,10 +211,8 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -221,10 +220,8 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'tags' parameter set
@@ -232,10 +229,8 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'tags\' property is not set !', $pe->getMessage());
         }
 
         $setTagsRequest->setTags(

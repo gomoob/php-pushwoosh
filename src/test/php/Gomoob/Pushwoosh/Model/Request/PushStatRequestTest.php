@@ -26,7 +26,6 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         $pushStatRequest = PushStatRequest::create();
 
         $this->assertNotNull($pushStatRequest);
-
     }
 
     /**
@@ -73,10 +72,8 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hash' parameter set
@@ -84,10 +81,8 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'hash\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -95,10 +90,8 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test with valid values

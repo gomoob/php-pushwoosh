@@ -26,7 +26,6 @@ class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $getTagsRequest = GetTagsRequest::create();
 
         $this->assertNotNull($getTagsRequest);
-
     }
 
     /**
@@ -73,10 +72,8 @@ class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $getTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'auth' parameter set
@@ -84,10 +81,8 @@ class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $getTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'auth\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -95,10 +90,8 @@ class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $getTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         $getTagsRequest->setHwid('HWID');

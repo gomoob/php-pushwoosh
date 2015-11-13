@@ -26,7 +26,6 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         $getNearestZoneRequest = GetNearestZoneRequest::create();
 
         $this->assertNotNull($getNearestZoneRequest);
-
     }
 
     /**
@@ -84,10 +83,8 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -95,10 +92,8 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'lat' parameter set
@@ -106,10 +101,8 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'lat\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'lng' parameter set
@@ -117,10 +110,8 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'lng\' property is not set !', $pe->getMessage());
         }
 
         // Test with valid values

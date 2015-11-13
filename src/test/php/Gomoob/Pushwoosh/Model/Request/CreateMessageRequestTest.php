@@ -27,7 +27,6 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest = CreateMessageRequest::create();
 
         $this->assertNotNull($createMessageRequest);
-
     }
 
     /**
@@ -121,10 +120,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals(
+                'None of the \'application\' or \'applicationsGroup\' properties are set !',
+                $pe->getMessage()
+            );
         }
 
         // Test with both the 'application' and 'applicationsGroup parameters set
@@ -134,10 +134,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals(
+                'Both \'application\' and \'applicationsGroup\' properties are set !',
+                $pe->getMessage()
+            );
         }
 
         // Test without the 'auth' parameter set
@@ -146,10 +147,8 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'auth\' property is not set !', $pe->getMessage());
         }
 
         // Test with the 'auth' and 'application' parameters set and no notification

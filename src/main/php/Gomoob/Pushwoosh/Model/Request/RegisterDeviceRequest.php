@@ -259,7 +259,6 @@ class RegisterDeviceRequest
         // The 'application' parameter must have been defined.
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
-
         }
 
         // The 'deviceType' parameter must have been defined and must be valid.
@@ -268,13 +267,11 @@ class RegisterDeviceRequest
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
-
         }
 
         // The 'pushToken' parameter must have been defined.
         if (!isset($this->pushToken)) {
-            throw new PushwooshException('The  \'pushToken\' property is not set !');
-        
+            throw new PushwooshException('The \'pushToken\' property is not set !');
         }
         
         $json = array(
@@ -300,7 +297,7 @@ class RegisterDeviceRequest
 
         // The 'deviceType' parameter must have been defined.
         if (!isset($this->deviceType)) {
-            throw new PushwooshException('The  \'deviceType\' property is not set !');
+            throw new PushwooshException('The \'deviceType\' property is not set !');
 
         }
 

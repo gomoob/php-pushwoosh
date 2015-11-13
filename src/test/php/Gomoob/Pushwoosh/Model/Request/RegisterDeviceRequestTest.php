@@ -26,7 +26,6 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest = RegisterDeviceRequest::create();
 
         $this->assertNotNull($registerDeviceRequest);
-
     }
 
     /**
@@ -106,10 +105,8 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'deviceType' parameter set
@@ -117,10 +114,8 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'deviceType\' property is not set !', $pe->getMessage());
         }
 
         // Test with a bad 'deviceType' parameter set (special value 6)
@@ -128,10 +123,8 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'deviceType\' value \'6\' is invalid !', $pe->getMessage());
         }
 
         // Test with a bad 'deviceType' parameter set
@@ -139,10 +132,8 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'deviceType\' value \'100\' is invalid !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -150,10 +141,8 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'pushToken' parameter set
@@ -161,10 +150,8 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'pushToken\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'timezone' parameter set

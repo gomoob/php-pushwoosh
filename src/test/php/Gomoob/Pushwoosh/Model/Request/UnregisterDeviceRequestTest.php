@@ -26,7 +26,6 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $unregisterDeviceRequest = UnregisterDeviceRequest::create();
 
         $this->assertNotNull($unregisterDeviceRequest);
-
     }
 
     /**
@@ -62,10 +61,8 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $unregisterDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -73,10 +70,8 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $unregisterDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         $unregisterDeviceRequest->setHwid('HWID');

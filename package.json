@@ -1,6 +1,6 @@
 {
   "name": "gomoob-php-pushwoosh",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": "MIT",
   "repository" : {
     "type" : "git",
@@ -13,6 +13,6 @@
     "grunt-phpdocumentor": "~0.4",
     "grunt-phpunit": "~0.3",
     "grunt-shell": "~1.1",
-    "load-grunt-tasks" : "~3.1"
+    "load-grunt-tasks" : "~3.3"
   }
 }

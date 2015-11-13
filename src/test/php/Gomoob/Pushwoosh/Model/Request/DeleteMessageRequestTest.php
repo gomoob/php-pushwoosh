@@ -26,7 +26,6 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         $deleteMessageRequest = DeleteMessageRequest::create();
 
         $this->assertNotNull($deleteMessageRequest);
-
     }
 
     /**
@@ -62,10 +61,8 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $deleteMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'auth\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'message' parameter set
@@ -74,10 +71,8 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $deleteMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
-            // Expected
-
+            $this->assertEquals('The \'message\' property is not set !', $pe->getMessage());
         }
 
         // Test with valid values
