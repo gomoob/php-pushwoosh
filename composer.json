@@ -32,7 +32,7 @@
 		}
 	},
 	"require" : {
-		"php" : ">=5.3.9"
+		"php" : ">=5.4"
 	},
 	"require-dev" : {
 		"codeclimate/php-test-reporter" : "~0.2",
