@@ -91,7 +91,7 @@ class Platform
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Platform the created <code>Platform</code> instance.
      */
-    public static function maxOSX()
+    public static function macOSX()
     {
         return new Platform(7);
 
