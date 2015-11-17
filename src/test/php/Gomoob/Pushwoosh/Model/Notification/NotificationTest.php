@@ -374,7 +374,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     Platform::android(),
                     Platform::nokia(),
                     Platform::windowsPhone7(),
-                    Platform::maxOSX(),
+                    Platform::macOSX(),
                     Platform::windows8(),
                     Platform::amazon(),
                     Platform::safari()

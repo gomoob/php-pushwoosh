@@ -57,7 +57,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testMacOSX()
     {
-        $this->assertEquals(7, Platform::maxOSX()->getValue());
+        $this->assertEquals(7, Platform::macOSX()->getValue());
 
     }
 
