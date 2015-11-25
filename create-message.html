@@ -367,7 +367,7 @@ Notification::create()->setADM(
     {% highlight php %}
 <?php
 Notification::create()->setAndroid(
-    ADM::create()->setBanner($banner)
+    Android::create()->setBanner($banner)
                  ->setCustomIcon($customIcon)
                  ->setGcmTtl(3600)
                  ->setHeader($header)
