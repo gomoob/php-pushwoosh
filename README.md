@@ -43,5 +43,6 @@ Easy, isn't it ?
 
 ## Framework Integrations
  - **Laravel** - https://github.com/schimpanz/Laravel-Pushwoosh
+ - **Symfony 2** - https://github.com/Prezent/pushwoosh-bundle
  
-If you have integrated Pushwoosh into a popular PHP framework let us know!
+If you have integrated php-pushwoosh into a popular PHP framework let us know !
