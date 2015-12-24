@@ -30,8 +30,8 @@ class SetBadgeResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($setBadgeResponse->isOk());
-        $this->assertEquals(200, $setBadgeResponse->getStatusCode());
-        $this->assertEquals('OK', $setBadgeResponse->getStatusMessage());
+        $this->assertSame(200, $setBadgeResponse->getStatusCode());
+        $this->assertSame('OK', $setBadgeResponse->getStatusMessage());
 
         // Test with an error response
         $setBadgeResponse = SetBadgeResponse::create(
@@ -42,7 +42,7 @@ class SetBadgeResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertFalse($setBadgeResponse->isOk());
-        $this->assertEquals(400, $setBadgeResponse->getStatusCode());
-        $this->assertEquals('KO', $setBadgeResponse->getStatusMessage());
+        $this->assertSame(400, $setBadgeResponse->getStatusCode());
+        $this->assertSame('KO', $setBadgeResponse->getStatusMessage());
     }
 }

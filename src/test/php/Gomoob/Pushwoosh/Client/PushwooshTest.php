@@ -187,8 +187,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest->setAuth(null);
         $createMessageResponse = $pushwoosh->createMessage($createMessageRequest);
 
-        $this->assertEquals(200, $createMessageResponse->getStatusCode());
-        $this->assertEquals('OK', $createMessageResponse->getStatusMessage());
+        $this->assertSame(200, $createMessageResponse->getStatusCode());
+        $this->assertSame('OK', $createMessageResponse->getStatusMessage());
         $this->assertNotNull($createMessageResponse->getResponse());
         $this->assertCount(0, $createMessageResponse->getResponse()->getMessages());
 
@@ -205,8 +205,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         );
         $pushwoosh->setCURLClient($cURLClient);
         $createMessageResponse = $pushwoosh->createMessage($createMessageRequest);
-        $this->assertEquals(400, $createMessageResponse->getStatusCode());
-        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
+        $this->assertSame(400, $createMessageResponse->getStatusCode());
+        $this->assertSame('KO', $createMessageResponse->getStatusMessage());
         $this->assertNotNull($createMessageResponse->getResponse());
         $this->assertCount(0, $createMessageResponse->getResponse()->getMessages());
 
@@ -223,8 +223,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $createMessageResponse = $pushwoosh->createMessage($createMessageRequest);
         $this->assertFalse($createMessageResponse->isOk());
-        $this->assertEquals(400, $createMessageResponse->getStatusCode());
-        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
+        $this->assertSame(400, $createMessageResponse->getStatusCode());
+        $this->assertSame('KO', $createMessageResponse->getStatusMessage());
         $this->assertNull($createMessageResponse->getResponse());
 
     }
@@ -273,8 +273,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $deleteMessageResponse = $pushwoosh->deleteMessage($deleteMessageRequest);
 
         $this->assertTrue($deleteMessageResponse->isOk());
-        $this->assertEquals(200, $deleteMessageResponse->getStatusCode());
-        $this->assertEquals('OK', $deleteMessageResponse->getStatusMessage());
+        $this->assertSame(200, $deleteMessageResponse->getStatusCode());
+        $this->assertSame('OK', $deleteMessageResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -289,8 +289,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $deleteMessageResponse = $pushwoosh->deleteMessage($deleteMessageRequest);
         $this->assertFalse($deleteMessageResponse->isOk());
-        $this->assertEquals(400, $deleteMessageResponse->getStatusCode());
-        $this->assertEquals('KO', $deleteMessageResponse->getStatusMessage());
+        $this->assertSame(400, $deleteMessageResponse->getStatusCode());
+        $this->assertSame('KO', $deleteMessageResponse->getStatusMessage());
 
     }
 
@@ -338,8 +338,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $getNearestZoneResponse = $pushwoosh->getNearestZone($getNearestZoneRequest);
 
         $this->assertTrue($getNearestZoneResponse->isOk());
-        $this->assertEquals(200, $getNearestZoneResponse->getStatusCode());
-        $this->assertEquals('OK', $getNearestZoneResponse->getStatusMessage());
+        $this->assertSame(200, $getNearestZoneResponse->getStatusCode());
+        $this->assertSame('OK', $getNearestZoneResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -354,8 +354,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $getNearestZoneResponse = $pushwoosh->getNearestZone($getNearestZoneRequest);
         $this->assertFalse($getNearestZoneResponse->isOk());
-        $this->assertEquals(400, $getNearestZoneResponse->getStatusCode());
-        $this->assertEquals('KO', $getNearestZoneResponse->getStatusMessage());
+        $this->assertSame(400, $getNearestZoneResponse->getStatusCode());
+        $this->assertSame('KO', $getNearestZoneResponse->getStatusMessage());
 
     }
 
@@ -367,7 +367,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh = new Pushwoosh();
         $this->assertNull($pushwoosh->getApplication());
         $this->assertSame($pushwoosh, $pushwoosh->setApplication('APPLICATION'));
-        $this->assertEquals('APPLICATION', $pushwoosh->getApplication());
+        $this->assertSame('APPLICATION', $pushwoosh->getApplication());
     }
 
     /**
@@ -379,7 +379,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh = new Pushwoosh();
         $this->assertNull($pushwoosh->getApplicationsGroup());
         $this->assertSame($pushwoosh, $pushwoosh->setApplicationsGroup('APPLICATIONS_GROUP'));
-        $this->assertEquals('APPLICATIONS_GROUP', $pushwoosh->getApplicationsGroup());
+        $this->assertSame('APPLICATIONS_GROUP', $pushwoosh->getApplicationsGroup());
     }
 
     /**
@@ -390,7 +390,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh = new Pushwoosh();
         $this->assertNull($pushwoosh->getAuth());
         $this->assertSame($pushwoosh, $pushwoosh->setAuth('AUTH'));
-        $this->assertEquals('AUTH', $pushwoosh->getAuth());
+        $this->assertSame('AUTH', $pushwoosh->getAuth());
     }
 
     /**
@@ -475,23 +475,23 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
 
         $result = $getTagsResponseResponse->getResult();
         $this->assertCount(3, $result);
-        $this->assertEquals('tag0Value', $result['tag0']);
-        $this->assertEquals('tag1Value', $result['tag1']);
-        $this->assertEquals('tag2Value', $result['tag2']);
+        $this->assertSame('tag0Value', $result['tag0']);
+        $this->assertSame('tag1Value', $result['tag1']);
+        $this->assertSame('tag2Value', $result['tag2']);
 
         $tags = $getTagsResponseResponse->getTags();
         $this->assertCount(3, $tags);
-        $this->assertEquals('tag0Value', $tags['tag0']);
-        $this->assertEquals('tag1Value', $tags['tag1']);
-        $this->assertEquals('tag2Value', $tags['tag2']);
+        $this->assertSame('tag0Value', $tags['tag0']);
+        $this->assertSame('tag1Value', $tags['tag1']);
+        $this->assertSame('tag2Value', $tags['tag2']);
 
         $this->assertTrue($getTagsResponseResponse->hasTag('tag0'));
         $this->assertTrue($getTagsResponseResponse->hasTag('tag1'));
         $this->assertTrue($getTagsResponseResponse->hasTag('tag2'));
 
         $this->assertTrue($getTagsResponse->isOk());
-        $this->assertEquals(200, $getTagsResponse->getStatusCode());
-        $this->assertEquals('OK', $getTagsResponse->getStatusMessage());
+        $this->assertSame(200, $getTagsResponse->getStatusCode());
+        $this->assertSame('OK', $getTagsResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -506,8 +506,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $getTagsResponse = $pushwoosh->getTags($getTagsRequest);
         $this->assertFalse($getTagsResponse->isOk());
-        $this->assertEquals(400, $getTagsResponse->getStatusCode());
-        $this->assertEquals('KO', $getTagsResponse->getStatusMessage());
+        $this->assertSame(400, $getTagsResponse->getStatusCode());
+        $this->assertSame('KO', $getTagsResponse->getStatusMessage());
     }
 
     /**
@@ -553,8 +553,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushStatResponse = $pushwoosh->pushStat($pushStatRequest);
 
         $this->assertTrue($pushStatResponse->isOk());
-        $this->assertEquals(200, $pushStatResponse->getStatusCode());
-        $this->assertEquals('OK', $pushStatResponse->getStatusMessage());
+        $this->assertSame(200, $pushStatResponse->getStatusCode());
+        $this->assertSame('OK', $pushStatResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -569,8 +569,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $pushStatResponse = $pushwoosh->pushStat($pushStatRequest);
         $this->assertFalse($pushStatResponse->isOk());
-        $this->assertEquals(400, $pushStatResponse->getStatusCode());
-        $this->assertEquals('KO', $pushStatResponse->getStatusMessage());
+        $this->assertSame(400, $pushStatResponse->getStatusCode());
+        $this->assertSame('KO', $pushStatResponse->getStatusMessage());
     }
 
     /**
@@ -621,8 +621,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $registerDeviceResponse = $pushwoosh->registerDevice($registerDeviceRequest);
 
         $this->assertTrue($registerDeviceResponse->isOk());
-        $this->assertEquals(200, $registerDeviceResponse->getStatusCode());
-        $this->assertEquals('OK', $registerDeviceResponse->getStatusMessage());
+        $this->assertSame(200, $registerDeviceResponse->getStatusCode());
+        $this->assertSame('OK', $registerDeviceResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -637,8 +637,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $registerDeviceResponse = $pushwoosh->registerDevice($registerDeviceRequest);
         $this->assertFalse($registerDeviceResponse->isOk());
-        $this->assertEquals(400, $registerDeviceResponse->getStatusCode());
-        $this->assertEquals('KO', $registerDeviceResponse->getStatusMessage());
+        $this->assertSame(400, $registerDeviceResponse->getStatusCode());
+        $this->assertSame('KO', $registerDeviceResponse->getStatusMessage());
 
     }
 
@@ -687,8 +687,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $setBadgeResponse = $pushwoosh->setBadge($setBadgeRequest);
 
         $this->assertTrue($setBadgeResponse->isOk());
-        $this->assertEquals(200, $setBadgeResponse->getStatusCode());
-        $this->assertEquals('OK', $setBadgeResponse->getStatusMessage());
+        $this->assertSame(200, $setBadgeResponse->getStatusCode());
+        $this->assertSame('OK', $setBadgeResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -703,8 +703,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $setBadgeResponse = $pushwoosh->setBadge($setBadgeRequest);
         $this->assertFalse($setBadgeResponse->isOk());
-        $this->assertEquals(400, $setBadgeResponse->getStatusCode());
-        $this->assertEquals('KO', $setBadgeResponse->getStatusMessage());
+        $this->assertSame(400, $setBadgeResponse->getStatusCode());
+        $this->assertSame('KO', $setBadgeResponse->getStatusMessage());
     }
 
     /**
@@ -753,8 +753,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $setTagsResponse = $pushwoosh->setTags($setTagsRequest);
 
         $this->assertTrue($setTagsResponse->isOk());
-        $this->assertEquals(200, $setTagsResponse->getStatusCode());
-        $this->assertEquals('OK', $setTagsResponse->getStatusMessage());
+        $this->assertSame(200, $setTagsResponse->getStatusCode());
+        $this->assertSame('OK', $setTagsResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -769,8 +769,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $setTagsResponse = $pushwoosh->setTags($setTagsRequest);
         $this->assertFalse($setTagsResponse->isOk());
-        $this->assertEquals(400, $setTagsResponse->getStatusCode());
-        $this->assertEquals('KO', $setTagsResponse->getStatusMessage());
+        $this->assertSame(400, $setTagsResponse->getStatusCode());
+        $this->assertSame('KO', $setTagsResponse->getStatusMessage());
 
     }
 
@@ -817,8 +817,8 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $unregisterDeviceResponse = $pushwoosh->unregisterDevice($unregisterDeviceRequest);
 
         $this->assertTrue($unregisterDeviceResponse->isOk());
-        $this->assertEquals(200, $unregisterDeviceResponse->getStatusCode());
-        $this->assertEquals('OK', $unregisterDeviceResponse->getStatusMessage());
+        $this->assertSame(200, $unregisterDeviceResponse->getStatusCode());
+        $this->assertSame('OK', $unregisterDeviceResponse->getStatusMessage());
 
         // Test a call with an error response
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
@@ -833,8 +833,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $pushwoosh->setCURLClient($cURLClient);
         $unregisterDeviceResponse = $pushwoosh->unregisterDevice($unregisterDeviceRequest);
         $this->assertFalse($unregisterDeviceResponse->isOk());
-        $this->assertEquals(400, $unregisterDeviceResponse->getStatusCode());
-        $this->assertEquals('KO', $unregisterDeviceResponse->getStatusMessage());
-
+        $this->assertSame(400, $unregisterDeviceResponse->getStatusCode());
+        $this->assertSame('KO', $unregisterDeviceResponse->getStatusMessage());
     }
 }

@@ -33,16 +33,16 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertTrue(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag0_value', $tags['tag0']);
-        $this->assertEquals('tag1_value', $tags['tag1']);
-        $this->assertEquals('tag2_value', $tags['tag2']);
+        $this->assertSame('tag0_value', $tags['tag0']);
+        $this->assertSame('tag1_value', $tags['tag1']);
+        $this->assertSame('tag2_value', $tags['tag2']);
 
         // Adding the same tag 2 times is forbidden
         try {
             $setTagsRequest->addTag('tag0', 'tag0_value');
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals(
+            $this->assertSame(
                 'The tag \'tag0\' has already been added, use the \'setTag\' method if you want to overwrite its ' .
                 'value !',
                 $pe->getMessage()
@@ -68,7 +68,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $setTagsRequest = new SetTagsRequest();
         $this->assertNull($setTagsRequest->getApplication());
         $setTagsRequest->setApplication('APPLICATION');
-        $this->assertEquals('APPLICATION', $setTagsRequest->getApplication());
+        $this->assertSame('APPLICATION', $setTagsRequest->getApplication());
     }
 
     /**
@@ -79,7 +79,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $setTagsRequest = new SetTagsRequest();
         $this->assertNull($setTagsRequest->getHwid());
         $setTagsRequest->setHwid('HWID');
-        $this->assertEquals('HWID', $setTagsRequest->getHwid());
+        $this->assertSame('HWID', $setTagsRequest->getHwid());
     }
 
     /**
@@ -101,9 +101,9 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertTrue(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag0_value', $tags['tag0']);
-        $this->assertEquals('tag1_value', $tags['tag1']);
-        $this->assertEquals('tag2_value', $tags['tag2']);
+        $this->assertSame('tag0_value', $tags['tag0']);
+        $this->assertSame('tag1_value', $tags['tag1']);
+        $this->assertSame('tag2_value', $tags['tag2']);
     }
 
     /**
@@ -144,9 +144,9 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertTrue(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag0_value', $tags['tag0']);
-        $this->assertEquals('tag1_value', $tags['tag1']);
-        $this->assertEquals('tag2_value', $tags['tag2']);
+        $this->assertSame('tag0_value', $tags['tag0']);
+        $this->assertSame('tag1_value', $tags['tag1']);
+        $this->assertSame('tag2_value', $tags['tag2']);
 
         // Test removal of existing tags
         $setTagsRequest->removeTag('tag0');
@@ -155,8 +155,8 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertTrue(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag1_value', $tags['tag1']);
-        $this->assertEquals('tag2_value', $tags['tag2']);
+        $this->assertSame('tag1_value', $tags['tag1']);
+        $this->assertSame('tag2_value', $tags['tag2']);
 
         $setTagsRequest->removeTag('tag2');
         $tags = $setTagsRequest->getTags();
@@ -164,7 +164,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertFalse(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag1_value', $tags['tag1']);
+        $this->assertSame('tag1_value', $tags['tag1']);
     }
 
     /**
@@ -182,9 +182,9 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertTrue(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag0_value', $tags['tag0']);
-        $this->assertEquals('tag1_value', $tags['tag1']);
-        $this->assertEquals('tag2_value', $tags['tag2']);
+        $this->assertSame('tag0_value', $tags['tag0']);
+        $this->assertSame('tag1_value', $tags['tag1']);
+        $this->assertSame('tag2_value', $tags['tag2']);
 
         // Overwriting a tag value is authorized
         $setTagsRequest->setTag('tag0', 'tag0_other_value');
@@ -195,9 +195,9 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertTrue(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag0_other_value', $tags['tag0']);
-        $this->assertEquals('tag1_other_value', $tags['tag1']);
-        $this->assertEquals('tag2_other_value', $tags['tag2']);
+        $this->assertSame('tag0_other_value', $tags['tag0']);
+        $this->assertSame('tag1_other_value', $tags['tag1']);
+        $this->assertSame('tag2_other_value', $tags['tag2']);
     }
 
     /**
@@ -212,7 +212,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -221,7 +221,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'tags' parameter set
@@ -230,7 +230,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
             $setTagsRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'tags\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'tags\' property is not set !', $pe->getMessage());
         }
 
         $setTagsRequest->setTags(
@@ -243,17 +243,16 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
 
         // Test with valid values
         $array = $setTagsRequest->toJSON();
-        $this->assertEquals('APPLICATION', $setTagsRequest->getApplication());
-        $this->assertEquals('HWID', $setTagsRequest->getHwid());
+        $this->assertSame('APPLICATION', $setTagsRequest->getApplication());
+        $this->assertSame('HWID', $setTagsRequest->getHwid());
 
         $tags = $array['tags'];
         $this->assertCount(3, $tags);
         $this->assertTrue(array_key_exists('tag0', $tags));
         $this->assertTrue(array_key_exists('tag1', $tags));
         $this->assertTrue(array_key_exists('tag2', $tags));
-        $this->assertEquals('tag0_value', $tags['tag0']);
-        $this->assertEquals('tag1_value', $tags['tag1']);
-        $this->assertEquals('tag2_value', $tags['tag2']);
-
+        $this->assertSame('tag0_value', $tags['tag0']);
+        $this->assertSame('tag1_value', $tags['tag1']);
+        $this->assertSame('tag2_value', $tags['tag2']);
     }
 }

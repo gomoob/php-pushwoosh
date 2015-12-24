@@ -30,8 +30,8 @@ class PushStatResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($pushStatResponse->isOk());
-        $this->assertEquals(200, $pushStatResponse->getStatusCode());
-        $this->assertEquals('OK', $pushStatResponse->getStatusMessage());
+        $this->assertSame(200, $pushStatResponse->getStatusCode());
+        $this->assertSame('OK', $pushStatResponse->getStatusMessage());
 
         // Test with an error response
         $pushStatResponse = PushStatResponse::create(
@@ -42,7 +42,7 @@ class PushStatResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertFalse($pushStatResponse->isOk());
-        $this->assertEquals(400, $pushStatResponse->getStatusCode());
-        $this->assertEquals('KO', $pushStatResponse->getStatusMessage());
+        $this->assertSame(400, $pushStatResponse->getStatusCode());
+        $this->assertSame('KO', $pushStatResponse->getStatusMessage());
     }
 }

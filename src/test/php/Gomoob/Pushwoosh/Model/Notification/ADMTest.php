@@ -22,7 +22,6 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $this->assertNotNull(ADM::create());
-
     }
 
     /**
@@ -32,7 +31,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     {
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setBanner('http://example.com/banner.png'));
-        $this->assertEquals('http://example.com/banner.png', $aDM->getBanner());
+        $this->assertSame('http://example.com/banner.png', $aDM->getBanner());
     }
 
     /**
@@ -42,7 +41,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     {
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setCustomIcon('http://example.com/image.png'));
-        $this->assertEquals('http://example.com/image.png', $aDM->getCustomIcon());
+        $this->assertSame('http://example.com/image.png', $aDM->getCustomIcon());
     }
 
     /**
@@ -52,7 +51,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     {
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setHeader('Header'));
-        $this->assertEquals('Header', $aDM->getHeader());
+        $this->assertSame('Header', $aDM->getHeader());
     }
 
     /**
@@ -62,7 +61,17 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     {
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setIcon('icon'));
-        $this->assertEquals('icon', $aDM->getIcon());
+        $this->assertSame('icon', $aDM->getIcon());
+    }
+    
+    /**
+     * Test method for the <code>#getPriority()</code> and <code>#setPriority($priority)</code> functions.
+     */
+    public function testGetSetPriority()
+    {
+        $aDM = new ADM();
+        $this->assertSame($aDM, $aDM->setPriority(-1));
+        $this->assertSame(-1, $aDM->getPriority());
     }
 
     /**
@@ -72,7 +81,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     {
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setRootParams(array('key' => 'value')));
-        $this->assertEquals(array('key' => 'value'), $aDM->getRootParams());
+        $this->assertSame(array('key' => 'value'), $aDM->getRootParams());
     }
 
     /**
@@ -82,7 +91,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     {
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setSound('push.mp3'));
-        $this->assertEquals('push.mp3', $aDM->getSound());
+        $this->assertSame('push.mp3', $aDM->getSound());
     }
 
     /**
@@ -92,7 +101,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     {
         $aDM = new ADM();
         $this->assertSame($aDM, $aDM->setTtl(3600));
-        $this->assertEquals(3600, $aDM->getTtl());
+        $this->assertSame(3600, $aDM->getTtl());
     }
 
     /**
@@ -105,19 +114,21 @@ class ADMTest extends \PHPUnit_Framework_TestCase
             ->setCustomIcon('http://example.com/image.png')
             ->setHeader('Header')
             ->setIcon('icon')
+            ->setPriority(-1)
             ->setRootParams(array('key' => 'value'))
             ->setSound('push.mp3')
             ->setTtl(3600)
             ->toJSON();
 
-        $this->assertCount(7, $array);
-        $this->assertEquals('http://example.com/banner.png', $array['adm_banner']);
-        $this->assertEquals('http://example.com/image.png', $array['adm_custom_icon']);
-        $this->assertEquals('Header', $array['adm_header']);
-        $this->assertEquals('icon', $array['adm_icon']);
-        $this->assertEquals(array('key' => 'value'), $array['adm_root_params']);
-        $this->assertEquals('push.mp3', $array['adm_sound']);
-        $this->assertEquals(3600, $array['adm_ttl']);
+        $this->assertCount(8, $array);
+        $this->assertSame('http://example.com/banner.png', $array['adm_banner']);
+        $this->assertSame('http://example.com/image.png', $array['adm_custom_icon']);
+        $this->assertSame('Header', $array['adm_header']);
+        $this->assertSame('icon', $array['adm_icon']);
+        $this->assertSame(-1, $array['adm_priority']);
+        $this->assertSame(array('key' => 'value'), $array['adm_root_params']);
+        $this->assertSame('push.mp3', $array['adm_sound']);
+        $this->assertSame(3600, $array['adm_ttl']);
 
     }
 }

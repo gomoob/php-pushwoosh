@@ -33,7 +33,7 @@ class WPTest extends \PHPUnit_Framework_TestCase
     {
         $wp = new WP();
         $this->assertSame($wp, $wp->setBackbackground('/Resources/Green.jpg'));
-        $this->assertEquals('/Resources/Green.jpg', $wp->getBackbackground());
+        $this->assertSame('/Resources/Green.jpg', $wp->getBackbackground());
     }
 
     /**
@@ -43,7 +43,7 @@ class WPTest extends \PHPUnit_Framework_TestCase
     {
         $wp = new WP();
         $this->assertSame($wp, $wp->setBackcontent('back content'));
-        $this->assertEquals('back content', $wp->getBackcontent());
+        $this->assertSame('back content', $wp->getBackcontent());
     }
 
     /**
@@ -53,7 +53,7 @@ class WPTest extends \PHPUnit_Framework_TestCase
     {
         $wp = new WP();
         $this->assertSame($wp, $wp->setBackground('/Resources/Red.jpg'));
-        $this->assertEquals('/Resources/Red.jpg', $wp->getBackground());
+        $this->assertSame('/Resources/Red.jpg', $wp->getBackground());
     }
 
     /**
@@ -63,7 +63,7 @@ class WPTest extends \PHPUnit_Framework_TestCase
     {
         $wp = new WP();
         $this->assertSame($wp, $wp->setBacktitle('back title'));
-        $this->assertEquals('back title', $wp->getBacktitle());
+        $this->assertSame('back title', $wp->getBacktitle());
     }
 
     /**
@@ -73,7 +73,7 @@ class WPTest extends \PHPUnit_Framework_TestCase
     {
         $wp = new WP();
         $this->assertSame($wp, $wp->setCount(3));
-        $this->assertEquals(3, $wp->getCount());
+        $this->assertSame(3, $wp->getCount());
     }
 
     /**
@@ -83,7 +83,7 @@ class WPTest extends \PHPUnit_Framework_TestCase
     {
         $wp = new WP();
         $this->assertSame($wp, $wp->setType('Tile'));
-        $this->assertEquals('Tile', $wp->getType());
+        $this->assertSame('Tile', $wp->getType());
     }
 
     /**
@@ -102,12 +102,12 @@ class WPTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         $this->assertCount(6, $array);
-        $this->assertEquals('/Resources/Green.jpg', $array['wp_backbackground']);
-        $this->assertEquals('back content', $array['wp_backcontent']);
-        $this->assertEquals('/Resources/Red.jpg', $array['wp_background']);
-        $this->assertEquals('back title', $array['wp_backtitle']);
-        $this->assertEquals(3, $array['wp_count']);
-        $this->assertEquals('Tile', $array['wp_type']);
+        $this->assertSame('/Resources/Green.jpg', $array['wp_backbackground']);
+        $this->assertSame('back content', $array['wp_backcontent']);
+        $this->assertSame('/Resources/Red.jpg', $array['wp_background']);
+        $this->assertSame('back title', $array['wp_backtitle']);
+        $this->assertSame(3, $array['wp_count']);
+        $this->assertSame('Tile', $array['wp_type']);
 
     }
 }

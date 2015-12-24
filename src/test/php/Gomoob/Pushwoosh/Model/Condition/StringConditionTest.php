@@ -26,13 +26,13 @@ class StringConditionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(3, $array);
 
-        $this->assertEquals('A_TAG', $array[0]);
-        $this->assertEquals('A_TAG', $stringCondition->getTagName());
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $stringCondition->getTagName());
 
-        $this->assertEquals('EQ', $array[1]);
-        $this->assertEquals('EQ', $stringCondition->getOperator());
+        $this->assertSame('EQ', $array[1]);
+        $this->assertSame('EQ', $stringCondition->getOperator());
 
-        $this->assertEquals('VALUE', $array[2]);
-        $this->assertEquals('VALUE', $stringCondition->getOperand());
+        $this->assertSame('VALUE', $array[2]);
+        $this->assertSame('VALUE', $stringCondition->getOperand());
     }
 }

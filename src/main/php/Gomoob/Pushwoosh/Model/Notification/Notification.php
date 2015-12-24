@@ -38,6 +38,13 @@ class Notification
      * @var \Gomoob\Pushwoosh\Model\Notification\BlackBerry
      */
     private $blackBerry;
+    
+    /**
+     * The object which contains specific Pushwoosh notification informations for Chrome.
+     *
+     * @var \Gomoob\Pushwoosh\Model\Notification\Chrome
+     */
+    private $chrome;
 
     /**
      * An array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to send
@@ -277,6 +284,16 @@ class Notification
     public function getBlackBerry()
     {
         return $this->blackBerry;
+    }
+    
+    /**
+     * Gets the object which contains specific Pushwoosh notification informations for Chrome.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Chrome
+     */
+    public function getChrome()
+    {
+        return $this->chrome;
     }
 
     /**
@@ -526,6 +543,21 @@ class Notification
     {
         $this->blackBerry = $blackBerry;
 
+        return $this;
+    }
+    
+    /**
+     * Sets the object which contains specific Pushwoosh notification informations for Chrome.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Notification\Chrome $chrome the object which contains specific Pushwoosh
+     *                                                            notification informations for Chrome.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setChrome(Chrome $chrome)
+    {
+        $this->chrome = $chrome;
+    
         return $this;
     }
 
@@ -834,11 +866,9 @@ class Notification
 
             foreach ($this->conditions as $condition) {
                 $conditionsArray[] = $condition->toJSON();
-
             }
 
             $json['conditions'] = $conditionsArray;
-
         }
 
         if (isset($this->platforms)) {
@@ -846,86 +876,56 @@ class Notification
 
             foreach ($this->platforms as $platform) {
                 $platformsArray[] = $platform->getValue();
-
             }
 
             $json['platforms'] = $platformsArray;
-
         }
 
         // Amazon Device Messaging specific informations
         if (isset($this->aDM)) {
-            foreach ($this->aDM->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->aDM->toJSON());
         }
 
         // Android specific informations
         if (isset($this->android)) {
-            foreach ($this->android->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->android->toJSON());
         }
 
         // BlackBerry specific informations
         if (isset($this->blackBerry)) {
-            foreach ($this->blackBerry->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->blackBerry->toJSON());
+        }
+        
+        // Chrome specific informations
+        if (isset($this->chrome)) {
+            $json = array_merge($json, $this->chrome->toJSON());
         }
 
         // iOS specific informations
         if (isset($this->iOS)) {
-            foreach ($this->iOS->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->iOS->toJSON());
         }
 
         // Mac specific informations
         if (isset($this->mac)) {
-            foreach ($this->mac->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->mac->toJSON());
         }
 
         // Safari specific informations
         if (isset($this->safari)) {
-            foreach ($this->safari->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->safari->toJSON());
         }
 
         // Windows Notification Service specific informations
         if (isset($this->wNS)) {
-            foreach ($this->wNS->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->wNS->toJSON());
         }
 
         // Windows Phone specific informations
         if (isset($this->wP)) {
-            foreach ($this->wP->toJSON() as $key => $value) {
-                $json[$key] = $value;
-
-            }
-
+            $json = array_merge($json, $this->wP->toJSON());
         }
 
         return $json;
-
     }
 }

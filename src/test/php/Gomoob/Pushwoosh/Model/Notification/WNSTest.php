@@ -41,7 +41,7 @@ class WNSTest extends \PHPUnit_Framework_TestCase
                 )
             )
         );
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'en' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9ImF2YWlsYWJsZSIvPg==',
                 'de' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9Im5ld01lc3NhZ2UiLz4'
@@ -57,7 +57,7 @@ class WNSTest extends \PHPUnit_Framework_TestCase
     {
         $wNS = new WNS();
         $this->assertSame($wNS, $wNS->setTag('myTag'));
-        $this->assertEquals('myTag', $wNS->getTag());
+        $this->assertSame('myTag', $wNS->getTag());
     }
 
     /**
@@ -67,7 +67,7 @@ class WNSTest extends \PHPUnit_Framework_TestCase
     {
         $wNS = new WNS();
         $this->assertSame($wNS, $wNS->setType('Badge'));
-        $this->assertEquals('Badge', $wNS->getType());
+        $this->assertSame('Badge', $wNS->getType());
     }
 
     /**
@@ -88,15 +88,15 @@ class WNSTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         $this->assertCount(3, $array);
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'en' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9ImF2YWlsYWJsZSIvPg==',
                 'de' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9Im5ld01lc3NhZ2UiLz4'
             ),
             $array['wns_content']
         );
-        $this->assertEquals('myTag', $array['wns_tag']);
-        $this->assertEquals('Badge', $array['wns_type']);
+        $this->assertSame('myTag', $array['wns_tag']);
+        $this->assertSame('Badge', $array['wns_type']);
 
     }
 }

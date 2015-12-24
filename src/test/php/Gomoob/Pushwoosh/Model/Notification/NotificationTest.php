@@ -165,7 +165,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $notification = new Notification();
         $this->assertNull($notification->getContent());
         $this->assertSame($notification, $notification->setContent('CONTENT'));
-        $this->assertEquals('CONTENT', $notification->getContent());
+        $this->assertSame('CONTENT', $notification->getContent());
     }
 
     /**
@@ -179,8 +179,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($notification, $notification->setData($data));
         $data = $notification->getData();
         $this->assertCount(2, $data);
-        $this->assertEquals('field0_value', $data['field0']);
-        $this->assertEquals('field1_value', $data['field1']);
+        $this->assertSame('field0_value', $data['field0']);
+        $this->assertSame('field1_value', $data['field1']);
     }
 
     /**
@@ -191,7 +191,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $notification = new Notification();
         $this->assertNull($notification->getFilter());
         $this->assertSame($notification, $notification->setFilter('FILTER'));
-        $this->assertEquals('FILTER', $notification->getFilter());
+        $this->assertSame('FILTER', $notification->getFilter());
     }
 
     /**
@@ -214,7 +214,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $notification = new Notification();
         $this->assertNull($notification->getLink());
         $this->assertSame($notification, $notification->setLink('http://www.gomoob.com'));
-        $this->assertEquals('http://www.gomoob.com', $notification->getLink());
+        $this->assertSame('http://www.gomoob.com', $notification->getLink());
     }
 
     /**
@@ -249,7 +249,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $notification = new Notification();
         $this->assertNull($notification->getPageId());
         $this->assertSame($notification, $notification->setPageId(15));
-        $this->assertEquals(15, $notification->getPageId());
+        $this->assertSame(15, $notification->getPageId());
     }
 
     /**
@@ -293,11 +293,11 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
 
         // Test with 'now'
         $this->assertSame($notification, $notification->setSendDate('now'));
-        $this->assertEquals('now', $notification->getSendDate());
+        $this->assertSame('now', $notification->getSendDate());
 
         // Test with a valid string date provided
         $this->assertSame($notification, $notification->setSendDate('2014-01-01 10:06'));
-        $this->assertEquals(
+        $this->assertSame(
             \DateTime::createFromFormat('Y-m-d H:i', '2014-01-01 10:06')->getTimestamp(),
             $notification->getSendDate()->getTimestamp()
         );
@@ -377,7 +377,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     Platform::macOSX(),
                     Platform::windows8(),
                     Platform::amazon(),
-                    Platform::safari()
+                    Platform::safari(),
+                    Platform::chrome()
                 )
             )
             ->setDevices(
@@ -399,23 +400,35 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setCustomIcon('http://example.com/image.png')
                     ->setHeader('Header')
                     ->setIcon('icon')
+                    ->setPriority(-1)
                     ->setRootParams(array('key' => 'value'))
                     ->setSound('push.mp3')
                     ->setTtl(3600)
             )
             ->setAndroid(
                 Android::create()
+                    ->setBadges(5)
                     ->setBanner('http://example.com/banner.png')
                     ->setCustomIcon('http://example.com/image.png')
                     ->setGcmTtl(3600)
                     ->setHeader('Header')
+                    ->setIbc('#AA9966')
                     ->setIcon('icon')
+                    ->setLed('#4455cc')
+                    ->setPriority(-1)
                     ->setRootParams(array('key' => 'value'))
                     ->setSound('push.mp3')
+                    ->setVibration(true)
             )
             ->setBlackBerry(
                 BlackBerry::create()
                     ->setHeader('header')
+            )
+            ->setChrome(
+                Chrome::create()
+                    ->setGcmTtl(3600)
+                    ->setIcon('icon')
+                    ->setTitle('Title')
             )
             ->setIOS(
                 IOS::create()
@@ -463,104 +476,116 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         // Test the generic properties
-        $this->assertCount(49, $array);
-        $this->assertEquals('now', $array['send_date']);
+        $this->assertCount(58, $array);
+        $this->assertSame('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
-        $this->assertEquals('English', $array['content']['en']);
-        $this->assertEquals('Русский', $array['content']['ru']);
-        $this->assertEquals('Deutsch', $array['content']['de']);
-        $this->assertEquals(39, $array['page_id']);
-        $this->assertEquals('http://google.com', $array['link']);
-        $this->assertEquals(0, $array['minimize_link']);
+        $this->assertSame('English', $array['content']['en']);
+        $this->assertSame('Русский', $array['content']['ru']);
+        $this->assertSame('Deutsch', $array['content']['de']);
+        $this->assertSame(39, $array['page_id']);
+        $this->assertSame('http://google.com', $array['link']);
+        $this->assertSame(0, $array['minimize_link']);
         $this->assertCount(1, $array['data']);
-        $this->assertEquals('json data', $array['data']['custom']);
-        $this->assertCount(9, $array['platforms']);
-        $this->assertEquals(1, $array['platforms'][0]);
-        $this->assertEquals(2, $array['platforms'][1]);
-        $this->assertEquals(3, $array['platforms'][2]);
-        $this->assertEquals(4, $array['platforms'][3]);
-        $this->assertEquals(5, $array['platforms'][4]);
-        $this->assertEquals(7, $array['platforms'][5]);
-        $this->assertEquals(8, $array['platforms'][6]);
-        $this->assertEquals(9, $array['platforms'][7]);
-        $this->assertEquals(10, $array['platforms'][8]);
+        $this->assertSame('json data', $array['data']['custom']);
+        $this->assertCount(10, $array['platforms']);
+        $this->assertSame(1, $array['platforms'][0]);
+        $this->assertSame(2, $array['platforms'][1]);
+        $this->assertSame(3, $array['platforms'][2]);
+        $this->assertSame(4, $array['platforms'][3]);
+        $this->assertSame(5, $array['platforms'][4]);
+        $this->assertSame(7, $array['platforms'][5]);
+        $this->assertSame(8, $array['platforms'][6]);
+        $this->assertSame(9, $array['platforms'][7]);
+        $this->assertSame(10, $array['platforms'][8]);
+        $this->assertSame(11, $array['platforms'][9]);
         $this->assertCount(1, $array['devices']);
-        $this->assertEquals('dec301908b9ba8df85e57a58e40f96f523f4c2068674f5fe2ba25cdc250a2a41', $array['devices'][0]);
-        $this->assertEquals('FILTER_NAME', $array['filter']);
+        $this->assertSame('dec301908b9ba8df85e57a58e40f96f523f4c2068674f5fe2ba25cdc250a2a41', $array['devices'][0]);
+        $this->assertSame('FILTER_NAME', $array['filter']);
         $this->assertCount(3, $array['conditions']);
-        $this->assertEquals('intTag', $array['conditions'][0][0]);
-        $this->assertEquals('GTE', $array['conditions'][0][1]);
-        $this->assertEquals(10, $array['conditions'][0][2]);
-        $this->assertEquals('stringTag', $array['conditions'][1][0]);
-        $this->assertEquals('EQ', $array['conditions'][1][1]);
-        $this->assertEquals('stringValue', $array['conditions'][1][2]);
-        $this->assertEquals('listTag', $array['conditions'][2][0]);
-        $this->assertEquals('IN', $array['conditions'][2][1]);
+        $this->assertSame('intTag', $array['conditions'][0][0]);
+        $this->assertSame('GTE', $array['conditions'][0][1]);
+        $this->assertSame(10, $array['conditions'][0][2]);
+        $this->assertSame('stringTag', $array['conditions'][1][0]);
+        $this->assertSame('EQ', $array['conditions'][1][1]);
+        $this->assertSame('stringValue', $array['conditions'][1][2]);
+        $this->assertSame('listTag', $array['conditions'][2][0]);
+        $this->assertSame('IN', $array['conditions'][2][1]);
         $this->assertCount(3, $array['conditions'][2][2]);
-        $this->assertEquals('value0', $array['conditions'][2][2][0]);
-        $this->assertEquals('value1', $array['conditions'][2][2][1]);
-        $this->assertEquals('value2', $array['conditions'][2][2][2]);
+        $this->assertSame('value0', $array['conditions'][2][2][0]);
+        $this->assertSame('value1', $array['conditions'][2][2][1]);
+        $this->assertSame('value2', $array['conditions'][2][2][2]);
 
         // Test the ADM parameters
-        $this->assertEquals('http://example.com/banner.png', $array['adm_banner']);
-        $this->assertEquals('http://example.com/image.png', $array['adm_custom_icon']);
-        $this->assertEquals('Header', $array['adm_header']);
-        $this->assertEquals('icon', $array['adm_icon']);
-        $this->assertEquals(array('key' => 'value'), $array['adm_root_params']);
-        $this->assertEquals('push.mp3', $array['adm_sound']);
-        $this->assertEquals(3600, $array['adm_ttl']);
+        $this->assertSame('http://example.com/banner.png', $array['adm_banner']);
+        $this->assertSame('http://example.com/image.png', $array['adm_custom_icon']);
+        $this->assertSame('Header', $array['adm_header']);
+        $this->assertSame('icon', $array['adm_icon']);
+        $this->assertSame(-1, $array['adm_priority']);
+        $this->assertSame(array('key' => 'value'), $array['adm_root_params']);
+        $this->assertSame('push.mp3', $array['adm_sound']);
+        $this->assertSame(3600, $array['adm_ttl']);
 
         // Test Android parameters
-        $this->assertEquals('http://example.com/banner.png', $array['android_banner']);
-        $this->assertEquals('http://example.com/image.png', $array['android_custom_icon']);
-        $this->assertEquals(3600, $array['android_gcm_ttl']);
-        $this->assertEquals('Header', $array['android_header']);
-        $this->assertEquals('icon', $array['android_icon']);
-        $this->assertEquals(array('key' => 'value'), $array['android_root_params']);
-        $this->assertEquals('push.mp3', $array['android_sound']);
+        $this->assertSame(5, $array['android_badges']);
+        $this->assertSame('http://example.com/banner.png', $array['android_banner']);
+        $this->assertSame('http://example.com/image.png', $array['android_custom_icon']);
+        $this->assertSame(3600, $array['android_gcm_ttl']);
+        $this->assertSame('Header', $array['android_header']);
+        $this->assertSame('#AA9966', $array['android_ibc']);
+        $this->assertSame('icon', $array['android_icon']);
+        $this->assertSame('#4455cc', $array['android_led']);
+        $this->assertSame(-1, $array['android_priority']);
+        $this->assertSame(array('key' => 'value'), $array['android_root_params']);
+        $this->assertSame('push.mp3', $array['android_sound']);
+        $this->assertSame(1, $array['android_vibration']);
 
         // Test BlackBerry parameters
-        $this->assertEquals('header', $array['blackberry_header']);
+        $this->assertSame('header', $array['blackberry_header']);
+
+        // Test Chrome parameters
+        $this->assertSame(3600, $array['chrome_gcm_ttl']);
+        $this->assertSame('icon', $array['chrome_icon']);
+        $this->assertSame('Title', $array['chrome_title']);
 
         // Test IOS parameters
-        $this->assertEquals(1, $array['apns_trim_content']);
-        $this->assertEquals(5, $array['ios_badges']);
-        $this->assertEquals(array('aps' => array('content-available' => '1')), $array['ios_root_params']);
-        $this->assertEquals('sound file.wav', $array['ios_sound']);
-        $this->assertEquals(3600, $array['ios_ttl']);
-        $this->assertEquals(1, $array['ios_trim_content']);
+        $this->assertSame(1, $array['apns_trim_content']);
+        $this->assertSame(5, $array['ios_badges']);
+        $this->assertSame(array('aps' => array('content-available' => '1')), $array['ios_root_params']);
+        $this->assertSame('sound file.wav', $array['ios_sound']);
+        $this->assertSame(3600, $array['ios_ttl']);
+        $this->assertSame(1, $array['ios_trim_content']);
 
         // Test Mac parameters
-        $this->assertEquals(3, $array['mac_badges']);
-        $this->assertEquals(array('content-available' => '1'), $array['mac_root_params']);
-        $this->assertEquals('sound.caf', $array['mac_sound']);
-        $this->assertEquals(3600, $array['mac_ttl']);
+        $this->assertSame(3, $array['mac_badges']);
+        $this->assertSame(array('content-available' => '1'), $array['mac_root_params']);
+        $this->assertSame('sound.caf', $array['mac_sound']);
+        $this->assertSame(3600, $array['mac_ttl']);
 
         // Test Safari parameters
-        $this->assertEquals('Click here', $array['safari_action']);
-        $this->assertEquals('Title', $array['safari_title']);
-        $this->assertEquals(3600, $array['safari_ttl']);
-        $this->assertEquals(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
+        $this->assertSame('Click here', $array['safari_action']);
+        $this->assertSame('Title', $array['safari_title']);
+        $this->assertSame(3600, $array['safari_ttl']);
+        $this->assertSame(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
 
         // Test WNS parameters
-        $this->assertEquals(
+        $this->assertSame(
             array(
                 'en' => 'ENENENEN',
                 'de' => 'DEDEDEDE'
             ),
             $array['wns_content']
         );
-        $this->assertEquals('myTag', $array['wns_tag']);
-        $this->assertEquals('Badge', $array['wns_type']);
+        $this->assertSame('myTag', $array['wns_tag']);
+        $this->assertSame('Badge', $array['wns_type']);
 
         // Test WP parameters
-        $this->assertEquals('/Resources/Green.jpg', $array['wp_backbackground']);
-        $this->assertEquals('back content', $array['wp_backcontent']);
-        $this->assertEquals('/Resources/Red.jpg', $array['wp_background']);
-        $this->assertEquals('back title', $array['wp_backtitle']);
-        $this->assertEquals(3, $array['wp_count']);
-        $this->assertEquals('Tile', $array['wp_type']);
+        $this->assertSame('/Resources/Green.jpg', $array['wp_backbackground']);
+        $this->assertSame('back content', $array['wp_backcontent']);
+        $this->assertSame('/Resources/Red.jpg', $array['wp_background']);
+        $this->assertSame('back title', $array['wp_backtitle']);
+        $this->assertSame(3, $array['wp_count']);
+        $this->assertSame('Tile', $array['wp_type']);
 
     }
 }

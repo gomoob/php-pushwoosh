@@ -38,7 +38,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest = new CreateMessageRequest();
         $this->assertNull($createMessageRequest->getApplication());
         $createMessageRequest->setApplication('APPLICATION');
-        $this->assertEquals('APPLICATION', $createMessageRequest->getApplication());
+        $this->assertSame('APPLICATION', $createMessageRequest->getApplication());
 
     }
 
@@ -51,7 +51,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest = new CreateMessageRequest();
         $this->assertNull($createMessageRequest->getApplicationsGroup());
         $createMessageRequest->setApplicationsGroup('APPLICATIONS_GROUP');
-        $this->assertEquals('APPLICATIONS_GROUP', $createMessageRequest->getApplicationsGroup());
+        $this->assertSame('APPLICATIONS_GROUP', $createMessageRequest->getApplicationsGroup());
     }
 
     /**
@@ -62,7 +62,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest = new CreateMessageRequest();
         $this->assertNull($createMessageRequest->getAuth());
         $createMessageRequest->setAuth('XXXX');
-        $this->assertEquals('XXXX', $createMessageRequest->getAuth());
+        $this->assertSame('XXXX', $createMessageRequest->getAuth());
     }
 
     /**
@@ -106,7 +106,6 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($notification3, $notifications[0]);
         $this->assertSame($notification4, $notifications[1]);
         $this->assertSame($notification5, $notifications[2]);
-
     }
 
     /**
@@ -121,7 +120,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals(
+            $this->assertSame(
                 'None of the \'application\' or \'applicationsGroup\' properties are set !',
                 $pe->getMessage()
             );
@@ -135,7 +134,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals(
+            $this->assertSame(
                 'Both \'application\' and \'applicationsGroup\' properties are set !',
                 $pe->getMessage()
             );
@@ -148,7 +147,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
             $createMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'auth\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'auth\' property is not set !', $pe->getMessage());
         }
 
         // Test with the 'auth' and 'application' parameters set and no notification
@@ -160,9 +159,9 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('applicationsGroup', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
-        $this->assertEquals('XXXX-XXXX', $json['application']);
+        $this->assertSame('XXXX-XXXX', $json['application']);
         $this->assertNull($json['applicationsGroup']);
-        $this->assertEquals('XXXX', $json['auth']);
+        $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(0, $json['notifications']);
 
         // Test with one notificiation with only a 'content' field
@@ -176,14 +175,14 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('applicationsGroup', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
-        $this->assertEquals('XXXX-XXXX', $json['application']);
+        $this->assertSame('XXXX-XXXX', $json['application']);
         $this->assertNull($json['applicationsGroup']);
-        $this->assertEquals('XXXX', $json['auth']);
+        $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(1, $json['notifications']);
         $this->assertCount(3, $json['notifications'][0]);
         $this->assertTrue(array_key_exists('send_date', $json['notifications'][0]));
         $this->assertTrue($json['notifications'][0]['ignore_user_timezone']);
-        $this->assertEquals('CONTENT', $json['notifications'][0]['content']);
+        $this->assertSame('CONTENT', $json['notifications'][0]['content']);
 
         // Test with one notification having additional data
         $notification->setData(
@@ -200,18 +199,18 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('applicationsGroup', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
-        $this->assertEquals('XXXX-XXXX', $json['application']);
+        $this->assertSame('XXXX-XXXX', $json['application']);
         $this->assertNull($json['applicationsGroup']);
-        $this->assertEquals('XXXX', $json['auth']);
+        $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(1, $json['notifications']);
         $this->assertCount(4, $json['notifications'][0]);
         $this->assertTrue(array_key_exists('send_date', $json['notifications'][0]));
         $this->assertTrue($json['notifications'][0]['ignore_user_timezone']);
-        $this->assertEquals('CONTENT', $json['notifications'][0]['content']);
+        $this->assertSame('CONTENT', $json['notifications'][0]['content']);
         $this->assertCount(3, $json['notifications'][0]['data']);
-        $this->assertEquals('DATA_PARAMETER_1_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_1']);
-        $this->assertEquals('DATA_PARAMETER_2_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_2']);
-        $this->assertEquals('DATA_PARAMETER_3_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_3']);
+        $this->assertSame('DATA_PARAMETER_1_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_1']);
+        $this->assertSame('DATA_PARAMETER_2_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_2']);
+        $this->assertSame('DATA_PARAMETER_3_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_3']);
 
         // Test with one notification hacing additional data and devices
         $notification->addDevice('DEVICE_TOKEN_1');
@@ -224,22 +223,21 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(array_key_exists('applicationsGroup', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
-        $this->assertEquals('XXXX-XXXX', $json['application']);
+        $this->assertSame('XXXX-XXXX', $json['application']);
         $this->assertNull($json['applicationsGroup']);
-        $this->assertEquals('XXXX', $json['auth']);
+        $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(1, $json['notifications']);
         $this->assertCount(5, $json['notifications'][0]);
         $this->assertTrue(array_key_exists('send_date', $json['notifications'][0]));
         $this->assertTrue($json['notifications'][0]['ignore_user_timezone']);
-        $this->assertEquals('CONTENT', $json['notifications'][0]['content']);
+        $this->assertSame('CONTENT', $json['notifications'][0]['content']);
         $this->assertCount(3, $json['notifications'][0]['data']);
-        $this->assertEquals('DATA_PARAMETER_1_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_1']);
-        $this->assertEquals('DATA_PARAMETER_2_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_2']);
-        $this->assertEquals('DATA_PARAMETER_3_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_3']);
+        $this->assertSame('DATA_PARAMETER_1_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_1']);
+        $this->assertSame('DATA_PARAMETER_2_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_2']);
+        $this->assertSame('DATA_PARAMETER_3_VALUE', $json['notifications'][0]['data']['DATA_PARAMETER_3']);
         $this->assertCount(3, $json['notifications'][0]['devices']);
-        $this->assertEquals('DEVICE_TOKEN_1', $json['notifications'][0]['devices'][0]);
-        $this->assertEquals('DEVICE_TOKEN_2', $json['notifications'][0]['devices'][1]);
-        $this->assertEquals('DEVICE_TOKEN_3', $json['notifications'][0]['devices'][2]);
-
+        $this->assertSame('DEVICE_TOKEN_1', $json['notifications'][0]['devices'][0]);
+        $this->assertSame('DEVICE_TOKEN_2', $json['notifications'][0]['devices'][1]);
+        $this->assertSame('DEVICE_TOKEN_3', $json['notifications'][0]['devices'][2]);
     }
 }

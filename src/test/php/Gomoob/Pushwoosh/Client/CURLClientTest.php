@@ -47,7 +47,7 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
             $this->fail('Must have thrown a PushwooshException !');
             
         } catch (PushwooshException $ex) {
-            $this->assertEquals(
+            $this->assertSame(
                 'Bad response encountered while requesting the Pushwoosh web services using CURL !',
                 $ex->getMessage()
             );
@@ -56,7 +56,7 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
             
             $this->assertCount(1, $data);
             $this->assertTrue(array_key_exists('curl_info', $data));
-            $this->assertEquals('CURL_INFO', $data['curl_info']);
+            $this->assertSame('CURL_INFO', $data['curl_info']);
 
         }
         
@@ -87,7 +87,7 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
             $this->fail('Must have thrown a PushwooshException !');
                 
         } catch (PushwooshException $ex) {
-            $this->assertEquals(
+            $this->assertSame(
                 'CURL error encountered while requesting the Pushwoosh web services using CURL !',
                 $ex->getMessage()
             );
@@ -97,9 +97,8 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
             $this->assertCount(2, $data);
             $this->assertTrue(array_key_exists('curl_error', $data));
             $this->assertTrue(array_key_exists('curl_info', $data));
-            $this->assertEquals('CURL_ERROR', $data['curl_error']);
-            $this->assertEquals('CURL_INFO', $data['curl_info']);
-        
+            $this->assertSame('CURL_ERROR', $data['curl_error']);
+            $this->assertSame('CURL_INFO', $data['curl_info']);
         }
     }
 }

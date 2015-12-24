@@ -17,7 +17,7 @@ class Platform
 {
     /**
      * The value of the platform, this can be equal to :
-     *     - 1 : iOS
+     *  - 1 : iOS
      *  - 2 : BlackBerry
      *  - 3 : Android
      *  - 4 : Nokia ASHA
@@ -26,6 +26,7 @@ class Platform
      *  - 8 : Windows 8
      *  - 9 : Amazon
      *  - 10: Safari
+     *  - 11: Chrome
      *
      * @var int
      */
@@ -39,7 +40,6 @@ class Platform
     private function __construct($value)
     {
         $this->value = $value;
-
     }
 
     /**
@@ -50,7 +50,6 @@ class Platform
     public static function amazon()
     {
         return new Platform(9);
-
     }
 
     /**
@@ -61,7 +60,6 @@ class Platform
     public static function android()
     {
         return new Platform(3);
-
     }
 
     /**
@@ -72,7 +70,16 @@ class Platform
     public static function blackBerry()
     {
         return new Platform(2);
-
+    }
+    
+    /**
+     * Get a <code>Platform</code> instance for Chrome.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Platform the created <code>Platform</code> instance.
+     */
+    public static function chrome()
+    {
+        return new Platform(11);
     }
 
     /**
@@ -83,7 +90,6 @@ class Platform
     public static function iOS()
     {
         return new Platform(1);
-
     }
 
     /**
@@ -94,7 +100,6 @@ class Platform
     public static function macOSX()
     {
         return new Platform(7);
-
     }
 
     /**
@@ -105,7 +110,6 @@ class Platform
     public static function nokia()
     {
         return new Platform(4);
-
     }
 
     /**
@@ -116,7 +120,6 @@ class Platform
     public static function safari()
     {
         return new Platform(10);
-
     }
 
     /**
@@ -127,7 +130,6 @@ class Platform
     public static function windowsPhone7()
     {
         return new Platform(5);
-
     }
 
     /**
@@ -138,12 +140,11 @@ class Platform
     public static function windows8()
     {
         return new Platform(8);
-
     }
 
     /**
      * Gets the value of the plateform, this can be equal to :
-     *     - 1 : iOS
+     *  - 1 : iOS
      *  - 2 : BlackBerry
      *  - 3 : Android
      *  - 4 : Nokia ASHA
@@ -152,12 +153,12 @@ class Platform
      *  - 8 : Windows 8
      *  - 9 : Amazon
      *  - 10: Safari
+     *  - 11: Chrome
      *
      * @return int the value of the platform.
      */
     public function getValue()
     {
         return $this->value;
-
     }
 }

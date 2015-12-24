@@ -26,21 +26,20 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(3, $array);
 
-        $this->assertEquals('A_TAG', $array[0]);
-        $this->assertEquals('A_TAG', $intCondition->getTagName());
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $intCondition->getTagName());
 
-        $this->assertEquals('BETWEEN', $array[1]);
-        $this->assertEquals('BETWEEN', $intCondition->getOperator());
+        $this->assertSame('BETWEEN', $array[1]);
+        $this->assertSame('BETWEEN', $intCondition->getOperator());
 
         $this->assertCount(2, $array[2]);
-        $this->assertEquals(10, $array[2][0]);
-        $this->assertEquals(100, $array[2][1]);
+        $this->assertSame(10, $array[2][0]);
+        $this->assertSame(100, $array[2][1]);
 
         $operand = $intCondition->getOperand();
         $this->assertCount(2, $operand);
-        $this->assertEquals(10, $operand[0]);
-        $this->assertEquals(100, $operand[1]);
-
+        $this->assertSame(10, $operand[0]);
+        $this->assertSame(100, $operand[1]);
     }
 
     /**
@@ -53,14 +52,14 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(3, $array);
 
-        $this->assertEquals('A_TAG', $array[0]);
-        $this->assertEquals('A_TAG', $intCondition->getTagName());
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $intCondition->getTagName());
 
-        $this->assertEquals('EQ', $array[1]);
-        $this->assertEquals('EQ', $intCondition->getOperator());
+        $this->assertSame('EQ', $array[1]);
+        $this->assertSame('EQ', $intCondition->getOperator());
 
-        $this->assertEquals(10, $array[2]);
-        $this->assertEquals(10, $intCondition->getOperand());
+        $this->assertSame(10, $array[2]);
+        $this->assertSame(10, $intCondition->getOperand());
     }
 
     /**
@@ -73,14 +72,14 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(3, $array);
 
-        $this->assertEquals('A_TAG', $array[0]);
-        $this->assertEquals('A_TAG', $intCondition->getTagName());
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $intCondition->getTagName());
 
-        $this->assertEquals('GTE', $array[1]);
-        $this->assertEquals('GTE', $intCondition->getOperator());
+        $this->assertSame('GTE', $array[1]);
+        $this->assertSame('GTE', $intCondition->getOperator());
 
-        $this->assertEquals(10, $array[2]);
-        $this->assertEquals(10, $intCondition->getOperand());
+        $this->assertSame(10, $array[2]);
+        $this->assertSame(10, $intCondition->getOperand());
     }
 
     /**
@@ -93,13 +92,13 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(3, $array);
 
-        $this->assertEquals('A_TAG', $array[0]);
-        $this->assertEquals('A_TAG', $intCondition->getTagName());
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $intCondition->getTagName());
 
-        $this->assertEquals('LTE', $array[1]);
-        $this->assertEquals('LTE', $intCondition->getOperator());
+        $this->assertSame('LTE', $array[1]);
+        $this->assertSame('LTE', $intCondition->getOperator());
 
-        $this->assertEquals(10, $array[2]);
-        $this->assertEquals(10, $intCondition->getOperand());
+        $this->assertSame(10, $array[2]);
+        $this->assertSame(10, $intCondition->getOperand());
     }
 }

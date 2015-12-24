@@ -36,7 +36,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         $setBadgeRequest = new SetBadgeRequest();
         $this->assertNull($setBadgeRequest->getApplication());
         $setBadgeRequest->setApplication('APPLICATION');
-        $this->assertEquals('APPLICATION', $setBadgeRequest->getApplication());
+        $this->assertSame('APPLICATION', $setBadgeRequest->getApplication());
     }
 
     /**
@@ -47,7 +47,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         $setBadgeRequest = new SetBadgeRequest();
         $this->assertNull($setBadgeRequest->getBadge());
         $setBadgeRequest->setBadge(5);
-        $this->assertEquals(5, $setBadgeRequest->getBadge());
+        $this->assertSame(5, $setBadgeRequest->getBadge());
     }
 
     /**
@@ -58,7 +58,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         $setBadgeRequest = new SetBadgeRequest();
         $this->assertNull($setBadgeRequest->getHwid());
         $setBadgeRequest->setHwid('HWID');
-        $this->assertEquals('HWID', $setBadgeRequest->getHwid());
+        $this->assertSame('HWID', $setBadgeRequest->getHwid());
     }
 
     /**
@@ -73,7 +73,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
             $setBadgeRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'badge' parameter set
@@ -82,7 +82,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
             $setBadgeRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'badge\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'badge\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -91,16 +91,15 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
             $setBadgeRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         $setBadgeRequest->setHwid('HWID');
 
         // Test with valid values
         $array = $setBadgeRequest->toJSON();
-        $this->assertEquals('APPLICATION', $array['application']);
-        $this->assertEquals(5, $array['badge']);
-        $this->assertEquals('HWID', $array['hwid']);
-
+        $this->assertSame('APPLICATION', $array['application']);
+        $this->assertSame(5, $array['badge']);
+        $this->assertSame('HWID', $array['hwid']);
     }
 }

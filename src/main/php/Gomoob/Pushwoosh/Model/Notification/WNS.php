@@ -22,7 +22,7 @@ class WNS
     /**
      * Utility function used to create a new WNS instance.
      *
-     * @return \Gomoob\Pushwoosh\Model\Notification\Mac the new created instance.
+     * @return \Gomoob\Pushwoosh\Model\Notification\WNS the new created instance.
      */
     public static function create()
     {

@@ -36,7 +36,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest = new RegisterDeviceRequest();
         $this->assertNull($registerDeviceRequest->getApplication());
         $registerDeviceRequest->setApplication('APPLICATION');
-        $this->assertEquals('APPLICATION', $registerDeviceRequest->getApplication());
+        $this->assertSame('APPLICATION', $registerDeviceRequest->getApplication());
     }
 
     /**
@@ -47,7 +47,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest = new RegisterDeviceRequest();
         $this->assertNull($registerDeviceRequest->getDeviceType());
         $registerDeviceRequest->setDeviceType(1);
-        $this->assertEquals(1, $registerDeviceRequest->getDeviceType());
+        $this->assertSame(1, $registerDeviceRequest->getDeviceType());
     }
 
     /**
@@ -58,7 +58,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest = new RegisterDeviceRequest();
         $this->assertNull($registerDeviceRequest->getHwid());
         $registerDeviceRequest->setHwid('HWID');
-        $this->assertEquals('HWID', $registerDeviceRequest->getHwid());
+        $this->assertSame('HWID', $registerDeviceRequest->getHwid());
     }
 
     /**
@@ -69,7 +69,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest = new RegisterDeviceRequest();
         $this->assertNull($registerDeviceRequest->getLanguage());
         $registerDeviceRequest->setLanguage('fr');
-        $this->assertEquals('fr', $registerDeviceRequest->getLanguage());
+        $this->assertSame('fr', $registerDeviceRequest->getLanguage());
     }
 
     /**
@@ -80,7 +80,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest = new RegisterDeviceRequest();
         $this->assertNull($registerDeviceRequest->getPushToken());
         $registerDeviceRequest->setPushToken('PUSH_TOKEN');
-        $this->assertEquals('PUSH_TOKEN', $registerDeviceRequest->getPushToken());
+        $this->assertSame('PUSH_TOKEN', $registerDeviceRequest->getPushToken());
     }
 
     /**
@@ -91,7 +91,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest = new RegisterDeviceRequest();
         $this->assertNull($registerDeviceRequest->getTimezone());
         $registerDeviceRequest->setTimezone(3600);
-        $this->assertEquals(3600, $registerDeviceRequest->getTimezone());
+        $this->assertSame(3600, $registerDeviceRequest->getTimezone());
     }
 
     /**
@@ -106,7 +106,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'deviceType' parameter set
@@ -115,7 +115,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'deviceType\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'deviceType\' property is not set !', $pe->getMessage());
         }
 
         // Test with a bad 'deviceType' parameter set (special value 6)
@@ -124,7 +124,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'deviceType\' value \'6\' is invalid !', $pe->getMessage());
+            $this->assertSame('The \'deviceType\' value \'6\' is invalid !', $pe->getMessage());
         }
 
         // Test with a bad 'deviceType' parameter set
@@ -133,7 +133,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'deviceType\' value \'100\' is invalid !', $pe->getMessage());
+            $this->assertSame('The \'deviceType\' value \'100\' is invalid !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -142,7 +142,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'pushToken' parameter set
@@ -151,7 +151,7 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $registerDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'pushToken\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'pushToken\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'timezone' parameter set
@@ -160,22 +160,22 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
 
         // Test without the 'language' parameter set
         $array = $registerDeviceRequest->toJSON();
-        $this->assertEquals('APPLICATION', $array['application']);
-        $this->assertEquals(1, $array['device_type']);
-        $this->assertEquals('HWID', $array['hwid']);
+        $this->assertSame('APPLICATION', $array['application']);
+        $this->assertSame(1, $array['device_type']);
+        $this->assertSame('HWID', $array['hwid']);
         $this->assertNull($array['language']);
-        $this->assertEquals('PUSH_TOKEN', $array['push_token']);
-        $this->assertEquals(3600, $array['timezone']);
+        $this->assertSame('PUSH_TOKEN', $array['push_token']);
+        $this->assertSame(3600, $array['timezone']);
 
         // Test with the 'language' parameter set
         $registerDeviceRequest->setLanguage('fr');
         $array = $registerDeviceRequest->toJSON();
-        $this->assertEquals('APPLICATION', $array['application']);
-        $this->assertEquals(1, $array['device_type']);
-        $this->assertEquals('HWID', $array['hwid']);
-        $this->assertEquals('fr', $array['language']);
-        $this->assertEquals('PUSH_TOKEN', $array['push_token']);
-        $this->assertEquals(3600, $array['timezone']);
+        $this->assertSame('APPLICATION', $array['application']);
+        $this->assertSame(1, $array['device_type']);
+        $this->assertSame('HWID', $array['hwid']);
+        $this->assertSame('fr', $array['language']);
+        $this->assertSame('PUSH_TOKEN', $array['push_token']);
+        $this->assertSame(3600, $array['timezone']);
 
         // Test that all the supported device types does not fail
         $registerDeviceRequest->setDeviceType(1)->toJSON();
@@ -187,6 +187,5 @@ class RegisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $registerDeviceRequest->setDeviceType(8)->toJSON();
         $registerDeviceRequest->setDeviceType(9)->toJSON();
         $registerDeviceRequest->setDeviceType(10)->toJSON();
-
     }
 }

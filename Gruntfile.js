@@ -37,23 +37,6 @@ module.exports = function(grunt) {
             }, /* Copy task */
 
             /**
-             * PHPDocumentor Task.
-             */
-            phpdocumentor : {
-                
-                options : {
-                    directory : 'src/main/php',
-                    target : 'build/reports/phpdocumentor'
-                }, 
-                
-                /**
-                 * Target used to generate the PHP documentation of the project.
-                 */
-                generate : {}
-                
-            }, /* PHPDocumentor Task */
-            
-            /**
              * PHPUnit Task.
              */
             phpunit : {
@@ -135,7 +118,7 @@ module.exports = function(grunt) {
                 
                 phpdocumentor : {
                     command : function() {
-                        return 'phpdoc --target=build/reports/phpdocumentor --directory=src/main/php';
+                        return 'php vendor/phpdocumentor/phpdocumentor/bin/phpdoc --target=build/reports/phpdocumentor --directory=src/main/php';
                     }
                 },
                 

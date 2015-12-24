@@ -45,8 +45,8 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(in_array('notificationCode2', $messages));
 
         $this->assertTrue($createMessageResponse->isOk());
-        $this->assertEquals(200, $createMessageResponse->getStatusCode());
-        $this->assertEquals('OK', $createMessageResponse->getStatusMessage());
+        $this->assertSame(200, $createMessageResponse->getStatusCode());
+        $this->assertSame('OK', $createMessageResponse->getStatusMessage());
 
         // Test with an error response without any 'response' field
         $createMessageResponse = CreateMessageResponse::create(
@@ -59,8 +59,8 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
         $createMessageResponseResponse = $createMessageResponse->getResponse();
         $this->assertNull($createMessageResponseResponse);
         $this->assertFalse($createMessageResponse->isOk());
-        $this->assertEquals(400, $createMessageResponse->getStatusCode());
-        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
+        $this->assertSame(400, $createMessageResponse->getStatusCode());
+        $this->assertSame('KO', $createMessageResponse->getStatusMessage());
 
         // Test with an error response with a null 'response' field
         // Fix https://github.com/gomoob/php-pushwoosh/issues/13
@@ -75,8 +75,7 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
         $createMessageResponseResponse = $createMessageResponse->getResponse();
         $this->assertNull($createMessageResponseResponse);
         $this->assertFalse($createMessageResponse->isOk());
-        $this->assertEquals(400, $createMessageResponse->getStatusCode());
-        $this->assertEquals('KO', $createMessageResponse->getStatusMessage());
-
+        $this->assertSame(400, $createMessageResponse->getStatusCode());
+        $this->assertSame('KO', $createMessageResponse->getStatusMessage());
     }
 }

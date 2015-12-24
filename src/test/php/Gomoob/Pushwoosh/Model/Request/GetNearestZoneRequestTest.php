@@ -36,7 +36,7 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         $getNearestZoneRequest = new GetNearestZoneRequest();
         $this->assertNull($getNearestZoneRequest->getApplication());
         $getNearestZoneRequest->setApplication('APPLICATION');
-        $this->assertEquals('APPLICATION', $getNearestZoneRequest->getApplication());
+        $this->assertSame('APPLICATION', $getNearestZoneRequest->getApplication());
     }
 
     /**
@@ -47,7 +47,7 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         $getNearestZoneRequest = new GetNearestZoneRequest();
         $this->assertNull($getNearestZoneRequest->getHwid());
         $getNearestZoneRequest->setHwid('HWID');
-        $this->assertEquals('HWID', $getNearestZoneRequest->getHwid());
+        $this->assertSame('HWID', $getNearestZoneRequest->getHwid());
     }
 
     /**
@@ -58,7 +58,7 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         $getNearestZoneRequest = new GetNearestZoneRequest();
         $this->assertNull($getNearestZoneRequest->getLat());
         $getNearestZoneRequest->setLat(10.12345);
-        $this->assertEquals(10.12345, $getNearestZoneRequest->getLat());
+        $this->assertSame(10.12345, $getNearestZoneRequest->getLat());
     }
 
     /**
@@ -69,7 +69,7 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
         $getNearestZoneRequest = new GetNearestZoneRequest();
         $this->assertNull($getNearestZoneRequest->getLng());
         $getNearestZoneRequest->setLng(28.12345);
-        $this->assertEquals(28.12345, $getNearestZoneRequest->getLng());
+        $this->assertSame(28.12345, $getNearestZoneRequest->getLng());
     }
 
     /**
@@ -84,7 +84,7 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -93,7 +93,7 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'lat' parameter set
@@ -102,7 +102,7 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'lat\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'lat\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'lng' parameter set
@@ -111,16 +111,15 @@ class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
             $getNearestZoneRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'lng\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'lng\' property is not set !', $pe->getMessage());
         }
 
         // Test with valid values
         $getNearestZoneRequest->setLng(28.12345);
         $array = $getNearestZoneRequest->toJSON();
-        $this->assertEquals('APPLICATION', $array['application']);
-        $this->assertEquals('HWID', $array['hwid']);
-        $this->assertEquals(10.12345, $array['lat']);
-        $this->assertEquals(28.12345, $array['lng']);
-
+        $this->assertSame('APPLICATION', $array['application']);
+        $this->assertSame('HWID', $array['hwid']);
+        $this->assertSame(10.12345, $array['lat']);
+        $this->assertSame(28.12345, $array['lng']);
     }
 }

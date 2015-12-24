@@ -23,7 +23,7 @@ class Safari
     /**
      * Utility function used to create a new Safari instance.
      *
-     * @return \Gomoob\Pushwoosh\Model\Notification\Mac the new created instance.
+     * @return \Gomoob\Pushwoosh\Model\Notification\Safari the new created instance.
      */
     public static function create()
     {

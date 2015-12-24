@@ -33,7 +33,7 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     {
         $safari = new Safari();
         $this->assertSame($safari, $safari->setAction('Click here'));
-        $this->assertEquals('Click here', $safari->getAction());
+        $this->assertSame('Click here', $safari->getAction());
     }
 
     /**
@@ -43,7 +43,7 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     {
         $safari = new Safari();
         $this->assertSame($safari, $safari->setTitle('Title'));
-        $this->assertEquals('Title', $safari->getTitle());
+        $this->assertSame('Title', $safari->getTitle());
     }
 
     /**
@@ -53,7 +53,7 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     {
         $safari = new Safari();
         $this->assertSame($safari, $safari->setTtl(3600));
-        $this->assertEquals(3600, $safari->getTtl());
+        $this->assertSame(3600, $safari->getTtl());
     }
 
     /**
@@ -63,7 +63,7 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     {
         $safari = new Safari();
         $this->assertSame($safari, $safari->setUrlArgs(array('firstArgument', 'secondArgument')));
-        $this->assertEquals(array('firstArgument', 'secondArgument'), $safari->getUrlArgs());
+        $this->assertSame(array('firstArgument', 'secondArgument'), $safari->getUrlArgs());
     }
 
     /**
@@ -79,10 +79,10 @@ class SafariTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         $this->assertCount(4, $array);
-        $this->assertEquals('Click here', $array['safari_action']);
-        $this->assertEquals('Title', $array['safari_title']);
-        $this->assertEquals(3600, $array['safari_ttl']);
-        $this->assertEquals(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
+        $this->assertSame('Click here', $array['safari_action']);
+        $this->assertSame('Title', $array['safari_title']);
+        $this->assertSame(3600, $array['safari_ttl']);
+        $this->assertSame(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
 
     }
 }

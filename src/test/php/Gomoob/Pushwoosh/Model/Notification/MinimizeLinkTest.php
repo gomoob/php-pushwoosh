@@ -21,8 +21,7 @@ class MinimizeLinkTest extends \PHPUnit_Framework_TestCase
      */
     public function testBaiduChina()
     {
-        $this->assertEquals(3, MinimizeLink::baiduChina()->getValue());
-
+        $this->assertSame(3, MinimizeLink::baiduChina()->getValue());
     }
 
     /**
@@ -30,8 +29,7 @@ class MinimizeLinkTest extends \PHPUnit_Framework_TestCase
      */
     public function testBitly()
     {
-        $this->assertEquals(2, MinimizeLink::bitly()->getValue());
-
+        $this->assertSame(2, MinimizeLink::bitly()->getValue());
     }
 
     /**
@@ -39,8 +37,7 @@ class MinimizeLinkTest extends \PHPUnit_Framework_TestCase
      */
     public function testNone()
     {
-        $this->assertEquals(0, MinimizeLink::none()->getValue());
-
+        $this->assertSame(0, MinimizeLink::none()->getValue());
     }
 
     /**
@@ -48,7 +45,6 @@ class MinimizeLinkTest extends \PHPUnit_Framework_TestCase
      */
     public function testGoogle()
     {
-        $this->assertEquals(1, MinimizeLink::google()->getValue());
-
+        $this->assertSame(1, MinimizeLink::google()->getValue());
     }
 }

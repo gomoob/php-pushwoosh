@@ -36,7 +36,7 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         $deleteMessageRequest = new DeleteMessageRequest();
         $this->assertNull($deleteMessageRequest->getAuth());
         $deleteMessageRequest->setAuth('XXXX');
-        $this->assertEquals('XXXX', $deleteMessageRequest->getAuth());
+        $this->assertSame('XXXX', $deleteMessageRequest->getAuth());
     }
 
     /**
@@ -47,7 +47,7 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         $deleteMessageRequest = new DeleteMessageRequest();
         $this->assertNull($deleteMessageRequest->getMessage());
         $deleteMessageRequest->setMessage('MESSAGE');
-        $this->assertEquals('MESSAGE', $deleteMessageRequest->getMessage());
+        $this->assertSame('MESSAGE', $deleteMessageRequest->getMessage());
     }
 
     /**
@@ -62,7 +62,7 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
             $deleteMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'auth\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'auth\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'message' parameter set
@@ -72,15 +72,14 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
             $deleteMessageRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'message\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'message\' property is not set !', $pe->getMessage());
         }
 
         // Test with valid values
         $deleteMessageRequest->setMessage('MESSAGE');
 
         $array = $deleteMessageRequest->toJSON();
-        $this->assertEquals('XXXX', $array['auth']);
-        $this->assertEquals('MESSAGE', $array['message']);
-
+        $this->assertSame('XXXX', $array['auth']);
+        $this->assertSame('MESSAGE', $array['message']);
     }
 }

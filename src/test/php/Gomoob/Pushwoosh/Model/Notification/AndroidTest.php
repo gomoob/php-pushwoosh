@@ -22,7 +22,16 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $this->assertNotNull(Android::create());
-
+    }
+    
+    /**
+     * Test method for the <code>#getBadges()</code> and <code>setBadges($badges)</code> functions.
+     */
+    public function testGetSetBadges()
+    {
+        $android = new Android();
+        $this->assertSame($android, $android->setBadges(5));
+        $this->assertSame(5, $android->getBadges());
     }
 
     /**
@@ -32,7 +41,7 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $android = new Android();
         $this->assertSame($android, $android->setBanner('http://example.com/banner.png'));
-        $this->assertEquals('http://example.com/banner.png', $android->getBanner());
+        $this->assertSame('http://example.com/banner.png', $android->getBanner());
     }
 
     /**
@@ -42,7 +51,7 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $android = new Android();
         $this->assertSame($android, $android->setCustomIcon('http://example.com/image.png'));
-        $this->assertEquals('http://example.com/image.png', $android->getCustomIcon());
+        $this->assertSame('http://example.com/image.png', $android->getCustomIcon());
     }
 
     /**
@@ -52,7 +61,7 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $android = new Android();
         $this->assertSame($android, $android->setGcmTtl(3600));
-        $this->assertEquals(3600, $android->getGcmTtl());
+        $this->assertSame(3600, $android->getGcmTtl());
     }
 
     /**
@@ -62,9 +71,19 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $android = new Android();
         $this->assertSame($android, $android->setHeader('Header'));
-        $this->assertEquals('Header', $android->getHeader());
+        $this->assertSame('Header', $android->getHeader());
     }
 
+    /**
+     * Test method for the <code>#getIbc()</code> and <code>#setIbc($ibc)</code> functions.
+     */
+    public function testGetSetIbc()
+    {
+        $android = new Android();
+        $this->assertSame($android, $android->setIbc('#AA9966'));
+        $this->assertSame('#AA9966', $android->getIbc());
+    }
+    
     /**
      * Test method for the <code>#getIcon()</code> and <code>#setIcon($icon)</code> functions.
      */
@@ -72,9 +91,29 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $android = new Android();
         $this->assertSame($android, $android->setIcon('icon'));
-        $this->assertEquals('icon', $android->getIcon());
+        $this->assertSame('icon', $android->getIcon());
     }
 
+    /**
+     * Test method for the <code>#getLed()</code> and <code>#setLed($led)</code> functions.
+     */
+    public function testGetSetLed()
+    {
+        $android = new Android();
+        $this->assertSame($android, $android->setLed('#4455cc'));
+        $this->assertSame('#4455cc', $android->getLed());
+    }
+    
+    /**
+     * Test method for the <code>#getPriority()</code> and <code>#setPriority($priority)</code> functions.
+     */
+    public function testGetSetPriority()
+    {
+        $android = new Android();
+        $this->assertSame($android, $android->setPriority(-1));
+        $this->assertSame(-1, $android->getPriority());
+    }
+    
     /**
      * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
      */
@@ -82,7 +121,7 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $android = new Android();
         $this->assertSame($android, $android->setRootParams(array('key' => 'value')));
-        $this->assertEquals(array('key' => 'value'), $android->getRootParams());
+        $this->assertSame(array('key' => 'value'), $android->getRootParams());
     }
 
     /**
@@ -92,9 +131,19 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $android = new Android();
         $this->assertSame($android, $android->setSound('push.mp3'));
-        $this->assertEquals('push.mp3', $android->getSound());
+        $this->assertSame('push.mp3', $android->getSound());
     }
 
+    /**
+     * Test method for the <code>#getVibration()</code> and <code>#setVibration($vibration)</code> functions.
+     */
+    public function testIsSetVibration()
+    {
+        $android = new Android();
+        $this->assertSame($android, $android->setVibration(true));
+        $this->assertTrue($android->isVibration());
+    }
+    
     /**
      * Test method for the <code>#toJSON()</code> function.
      */
@@ -102,22 +151,31 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     {
         $array = Android::create()
             ->setBanner('http://example.com/banner.png')
+            ->setBadges(5)
             ->setCustomIcon('http://example.com/image.png')
             ->setGcmTtl(3600)
             ->setHeader('Header')
+            ->setIbc('#AA9966')
             ->setIcon('icon')
+            ->setLed('#4455cc')
+            ->setPriority(-1)
             ->setRootParams(array('key' => 'value'))
             ->setSound('push.mp3')
+            ->setVibration(true)
             ->toJSON();
 
-        $this->assertCount(7, $array);
-        $this->assertEquals('http://example.com/banner.png', $array['android_banner']);
-        $this->assertEquals('http://example.com/image.png', $array['android_custom_icon']);
-        $this->assertEquals(3600, $array['android_gcm_ttl']);
-        $this->assertEquals('Header', $array['android_header']);
-        $this->assertEquals('icon', $array['android_icon']);
-        $this->assertEquals(array('key' => 'value'), $array['android_root_params']);
-        $this->assertEquals('push.mp3', $array['android_sound']);
-
+        $this->assertCount(12, $array);
+        $this->assertSame('http://example.com/banner.png', $array['android_banner']);
+        $this->assertSame(5, $array['android_badges']);
+        $this->assertSame('http://example.com/image.png', $array['android_custom_icon']);
+        $this->assertSame(3600, $array['android_gcm_ttl']);
+        $this->assertSame('Header', $array['android_header']);
+        $this->assertSame('#AA9966', $array['android_ibc']);
+        $this->assertSame('icon', $array['android_icon']);
+        $this->assertSame('#4455cc', $array['android_led']);
+        $this->assertSame(-1, $array['android_priority']);
+        $this->assertSame(array('key' => 'value'), $array['android_root_params']);
+        $this->assertSame('push.mp3', $array['android_sound']);
+        $this->assertSame(1, $array['android_vibration']);
     }
 }

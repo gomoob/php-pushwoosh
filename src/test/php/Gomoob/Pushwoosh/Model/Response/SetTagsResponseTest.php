@@ -30,8 +30,8 @@ class SetTagsResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($setTagsResponse->isOk());
-        $this->assertEquals(200, $setTagsResponse->getStatusCode());
-        $this->assertEquals('OK', $setTagsResponse->getStatusMessage());
+        $this->assertSame(200, $setTagsResponse->getStatusCode());
+        $this->assertSame('OK', $setTagsResponse->getStatusMessage());
 
         // Test with an error response
         $setTagsResponse = SetTagsResponse::create(
@@ -42,7 +42,7 @@ class SetTagsResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertFalse($setTagsResponse->isOk());
-        $this->assertEquals(400, $setTagsResponse->getStatusCode());
-        $this->assertEquals('KO', $setTagsResponse->getStatusMessage());
+        $this->assertSame(400, $setTagsResponse->getStatusCode());
+        $this->assertSame('KO', $setTagsResponse->getStatusMessage());
     }
 }

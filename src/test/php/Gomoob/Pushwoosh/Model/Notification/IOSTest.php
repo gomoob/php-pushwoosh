@@ -33,7 +33,7 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     {
         $iOS = new IOS();
         $this->assertSame($iOS, $iOS->setBadges(5));
-        $this->assertEquals(5, $iOS->getBadges());
+        $this->assertSame(5, $iOS->getBadges());
     }
 
     /**
@@ -43,7 +43,7 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     {
         $iOS = new IOS();
         $this->assertSame($iOS, $iOS->setRootParams(array('aps' => array('content-available' => '1'))));
-        $this->assertEquals(array('aps' => array('content-available' => '1')), $iOS->getRootParams());
+        $this->assertSame(array('aps' => array('content-available' => '1')), $iOS->getRootParams());
     }
 
     /**
@@ -53,7 +53,7 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     {
         $iOS = new IOS();
         $this->assertSame($iOS, $iOS->setSound('sound file.wav'));
-        $this->assertEquals('sound file.wav', $iOS->getSound());
+        $this->assertSame('sound file.wav', $iOS->getSound());
     }
 
     /**
@@ -63,7 +63,7 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     {
         $iOS = new IOS();
         $this->assertSame($iOS, $iOS->setTtl(3600));
-        $this->assertEquals(3600, $iOS->getTtl());
+        $this->assertSame(3600, $iOS->getTtl());
     }
 
     /**
@@ -102,12 +102,12 @@ class IOSTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         $this->assertCount(6, $array);
-        $this->assertEquals(1, $array['apns_trim_content']);
-        $this->assertEquals(5, $array['ios_badges']);
-        $this->assertEquals(array('aps' => array('content-available' => '1')), $array['ios_root_params']);
-        $this->assertEquals('sound file.wav', $array['ios_sound']);
-        $this->assertEquals(3600, $array['ios_ttl']);
-        $this->assertEquals(1, $array['ios_trim_content']);
+        $this->assertSame(1, $array['apns_trim_content']);
+        $this->assertSame(5, $array['ios_badges']);
+        $this->assertSame(array('aps' => array('content-available' => '1')), $array['ios_root_params']);
+        $this->assertSame('sound file.wav', $array['ios_sound']);
+        $this->assertSame(3600, $array['ios_ttl']);
+        $this->assertSame(1, $array['ios_trim_content']);
 
     }
 }

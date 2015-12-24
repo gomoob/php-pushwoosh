@@ -17,7 +17,7 @@ class MinimizeLink
 {
     /**
      * The value of the minimize link, this can be equal to :
-     *     - 0 or false : do not minimize the link
+     *  - 0 or false : do not minimize the link
      *  - 1 : (Default) Minimze with Google
      *  - 2 : Minimize with Bitly
      *  - 3 : Minimize with Baidu (china)
@@ -34,7 +34,6 @@ class MinimizeLink
     private function __construct($value)
     {
         $this->value = $value;
-
     }
 
     /**
@@ -65,7 +64,6 @@ class MinimizeLink
     public static function none()
     {
         return new MinimizeLink(0);
-
     }
 
     /**
@@ -76,7 +74,6 @@ class MinimizeLink
     public static function google()
     {
         return new MinimizeLink(1);
-
     }
 
     /**

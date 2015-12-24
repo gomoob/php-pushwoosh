@@ -32,7 +32,7 @@ class BlackBerryTest extends \PHPUnit_Framework_TestCase
     {
         $blackBerry = new BlackBerry();
         $this->assertSame($blackBerry, $blackBerry->setHeader('header'));
-        $this->assertEquals('header', $blackBerry->getHeader());
+        $this->assertSame('header', $blackBerry->getHeader());
     }
 
     /**
@@ -45,7 +45,7 @@ class BlackBerryTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         $this->assertCount(1, $array);
-        $this->assertEquals('header', $array['blackberry_header']);
+        $this->assertSame('header', $array['blackberry_header']);
 
     }
 }

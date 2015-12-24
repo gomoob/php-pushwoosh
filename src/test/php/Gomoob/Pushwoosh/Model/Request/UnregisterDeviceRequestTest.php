@@ -36,7 +36,7 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $unregisterDeviceRequest = new UnregisterDeviceRequest();
         $this->assertNull($unregisterDeviceRequest->getApplication());
         $unregisterDeviceRequest->setApplication('APPLICATION');
-        $this->assertEquals('APPLICATION', $unregisterDeviceRequest->getApplication());
+        $this->assertSame('APPLICATION', $unregisterDeviceRequest->getApplication());
     }
 
     /**
@@ -47,7 +47,7 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $unregisterDeviceRequest = new UnregisterDeviceRequest();
         $this->assertNull($unregisterDeviceRequest->getHwid());
         $unregisterDeviceRequest->setHwid('HWID');
-        $this->assertEquals('HWID', $unregisterDeviceRequest->getHwid());
+        $this->assertSame('HWID', $unregisterDeviceRequest->getHwid());
     }
 
     /**
@@ -62,7 +62,7 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $unregisterDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -71,15 +71,14 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
             $unregisterDeviceRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         $unregisterDeviceRequest->setHwid('HWID');
 
         // Test with valid values
         $array = $unregisterDeviceRequest->toJSON();
-        $this->assertEquals('APPLICATION', $unregisterDeviceRequest->getApplication());
-        $this->assertEquals('HWID', $unregisterDeviceRequest->getHwid());
-
+        $this->assertSame('APPLICATION', $unregisterDeviceRequest->getApplication());
+        $this->assertSame('HWID', $unregisterDeviceRequest->getHwid());
     }
 }

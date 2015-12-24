@@ -20,6 +20,14 @@ class ADM
     private $customIcon;
     private $header;
     private $icon;
+    
+    /**
+     * The priority of the push in the Amazon push drawer, valid values are -2, -1, 0, 1 and 2.
+     *
+     * @var int
+     */
+    private $priority;
+    
     private $rootParams;
     private $sound;
     private $ttl;
@@ -57,6 +65,16 @@ class ADM
     {
         return $this->icon;
 
+    }
+    
+    /**
+     * Gets the priority of the push in the Amazon push drawer, valid values are -2, -1, 0, 1 and 2.
+     *
+     * @return int The priority of the push in the Amazon push drawer.
+     */
+    public function getPriority()
+    {
+        return $this->priority;
     }
 
     public function getRootParams()
@@ -104,6 +122,20 @@ class ADM
 
         return $this;
     }
+    
+    /**
+     * Sets the priority of the push in the Amazon push drawer, valid values are -2, -1, 0, 1 and 2.
+     *
+     * @param int $priority The priority of the push in the Amazon push drawer.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\ADM this instance.
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+         
+        return $this;
+    }
 
     public function setRootParams($rootParams)
     {
@@ -139,6 +171,7 @@ class ADM
         isset($this->customIcon) ? $json['adm_custom_icon'] = $this->customIcon : false;
         isset($this->header) ? $json['adm_header'] = $this->header : false;
         isset($this->icon) ? $json['adm_icon'] = $this->icon : false;
+        isset($this->priority) ? $json['adm_priority'] = $this->priority : false;
         isset($this->rootParams) ? $json['adm_root_params'] = $this->rootParams : false;
         isset($this->sound) ? $json['adm_sound'] = $this->sound : false;
         isset($this->ttl) ? $json['adm_ttl'] = $this->ttl : false;

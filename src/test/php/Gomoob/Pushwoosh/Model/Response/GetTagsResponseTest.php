@@ -41,23 +41,23 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
 
         $result = $getTagsResponseResponse->getResult();
         $this->assertCount(3, $result);
-        $this->assertEquals('tag0Value', $result['tag0']);
-        $this->assertEquals('tag1Value', $result['tag1']);
-        $this->assertEquals('tag2Value', $result['tag2']);
+        $this->assertSame('tag0Value', $result['tag0']);
+        $this->assertSame('tag1Value', $result['tag1']);
+        $this->assertSame('tag2Value', $result['tag2']);
 
         $tags = $getTagsResponseResponse->getTags();
         $this->assertCount(3, $tags);
-        $this->assertEquals('tag0Value', $tags['tag0']);
-        $this->assertEquals('tag1Value', $tags['tag1']);
-        $this->assertEquals('tag2Value', $tags['tag2']);
+        $this->assertSame('tag0Value', $tags['tag0']);
+        $this->assertSame('tag1Value', $tags['tag1']);
+        $this->assertSame('tag2Value', $tags['tag2']);
 
         $this->assertTrue($getTagsResponseResponse->hasTag('tag0'));
         $this->assertTrue($getTagsResponseResponse->hasTag('tag1'));
         $this->assertTrue($getTagsResponseResponse->hasTag('tag2'));
 
         $this->assertTrue($getTagsResponse->isOk());
-        $this->assertEquals(200, $getTagsResponse->getStatusCode());
-        $this->assertEquals('OK', $getTagsResponse->getStatusMessage());
+        $this->assertSame(200, $getTagsResponse->getStatusCode());
+        $this->assertSame('OK', $getTagsResponse->getStatusMessage());
 
         // Test with an error response without any 'response' field
         $getTagsResponse = GetTagsResponse::create(
@@ -70,8 +70,8 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
         $getTagsResponseResponse = $getTagsResponse->getResponse();
         $this->assertNull($getTagsResponseResponse);
         $this->assertFalse($getTagsResponse->isOk());
-        $this->assertEquals(400, $getTagsResponse->getStatusCode());
-        $this->assertEquals('KO', $getTagsResponse->getStatusMessage());
+        $this->assertSame(400, $getTagsResponse->getStatusCode());
+        $this->assertSame('KO', $getTagsResponse->getStatusMessage());
         
         // Test with an error response with a null 'response' field
         // Fix https://github.com/gomoob/php-pushwoosh/issues/13
@@ -86,7 +86,7 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
         $getTagsResponseResponse = $getTagsResponse->getResponse();
         $this->assertNull($getTagsResponseResponse);
         $this->assertFalse($getTagsResponse->isOk());
-        $this->assertEquals(400, $getTagsResponse->getStatusCode());
-        $this->assertEquals('KO', $getTagsResponse->getStatusMessage());
+        $this->assertSame(400, $getTagsResponse->getStatusCode());
+        $this->assertSame('KO', $getTagsResponse->getStatusMessage());
     }
 }

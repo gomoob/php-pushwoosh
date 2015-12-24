@@ -33,7 +33,7 @@ class MacTest extends \PHPUnit_Framework_TestCase
     {
         $mac = new Mac();
         $this->assertSame($mac, $mac->setBadges(3));
-        $this->assertEquals(3, $mac->getBadges());
+        $this->assertSame(3, $mac->getBadges());
     }
 
     /**
@@ -43,7 +43,7 @@ class MacTest extends \PHPUnit_Framework_TestCase
     {
         $mac = new Mac();
         $this->assertSame($mac, $mac->setRootParams(array('content-available' => '1')));
-        $this->assertEquals(array('content-available' => '1'), $mac->getRootParams());
+        $this->assertSame(array('content-available' => '1'), $mac->getRootParams());
     }
 
     /**
@@ -53,7 +53,7 @@ class MacTest extends \PHPUnit_Framework_TestCase
     {
         $mac = new Mac();
         $this->assertSame($mac, $mac->setSound('sound.caf'));
-        $this->assertEquals('sound.caf', $mac->getSound());
+        $this->assertSame('sound.caf', $mac->getSound());
     }
 
     /**
@@ -63,7 +63,7 @@ class MacTest extends \PHPUnit_Framework_TestCase
     {
         $mac = new Mac();
         $this->assertSame($mac, $mac->setTtl(3600));
-        $this->assertEquals(3600, $mac->getTtl());
+        $this->assertSame(3600, $mac->getTtl());
     }
 
     /**
@@ -79,9 +79,9 @@ class MacTest extends \PHPUnit_Framework_TestCase
             ->toJSON();
 
         $this->assertCount(4, $array);
-        $this->assertEquals(3, $array['mac_badges']);
-        $this->assertEquals(array('content-available' => '1'), $array['mac_root_params']);
-        $this->assertEquals('sound.caf', $array['mac_sound']);
-        $this->assertEquals(3600, $array['mac_ttl']);
+        $this->assertSame(3, $array['mac_badges']);
+        $this->assertSame(array('content-available' => '1'), $array['mac_root_params']);
+        $this->assertSame('sound.caf', $array['mac_sound']);
+        $this->assertSame(3600, $array['mac_ttl']);
     }
 }

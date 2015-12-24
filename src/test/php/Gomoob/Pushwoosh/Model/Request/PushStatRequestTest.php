@@ -36,7 +36,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         $pushStatRequest = new PushStatRequest();
         $this->assertNull($pushStatRequest->getApplication());
         $pushStatRequest->setApplication('APPLICATION');
-        $this->assertEquals('APPLICATION', $pushStatRequest->getApplication());
+        $this->assertSame('APPLICATION', $pushStatRequest->getApplication());
     }
 
     /**
@@ -47,7 +47,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         $pushStatRequest = new PushStatRequest();
         $this->assertNull($pushStatRequest->getHash());
         $pushStatRequest->setHash('hash');
-        $this->assertEquals('hash', $pushStatRequest->getHash());
+        $this->assertSame('hash', $pushStatRequest->getHash());
     }
 
     /**
@@ -58,7 +58,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         $pushStatRequest = new PushStatRequest();
         $this->assertNull($pushStatRequest->getHwid());
         $pushStatRequest->setHwid('HWID');
-        $this->assertEquals('HWID', $pushStatRequest->getHwid());
+        $this->assertSame('HWID', $pushStatRequest->getHwid());
     }
 
     /**
@@ -73,7 +73,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'application\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hash' parameter set
@@ -82,7 +82,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'hash\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'hash\' property is not set !', $pe->getMessage());
         }
 
         // Test without the 'hwid' parameter set
@@ -91,15 +91,14 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
             $pushStatRequest->toJSON();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
-            $this->assertEquals('The \'hwid\' property is not set !', $pe->getMessage());
+            $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
         }
 
         // Test with valid values
         $pushStatRequest->setHwid('HWID');
         $array = $pushStatRequest->toJSON();
-        $this->assertEquals('APPLICATION', $array['application']);
-        $this->assertEquals('hash', $array['hash']);
-        $this->assertEquals('HWID', $array['hwid']);
-
+        $this->assertSame('APPLICATION', $array['application']);
+        $this->assertSame('hash', $array['hash']);
+        $this->assertSame('HWID', $array['hwid']);
     }
 }

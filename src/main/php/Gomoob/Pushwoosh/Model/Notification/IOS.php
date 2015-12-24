@@ -23,6 +23,14 @@ class IOS
     private $apnsTrimContent;
 
     private $badges;
+    
+    /**
+     * The iOS 8 category ID from Pushwoosh.
+     *
+     * @var int
+     */
+    private $categoryId;
+    
     private $rootParams;
     private $sound;
     private $ttl;
@@ -36,19 +44,26 @@ class IOS
     public static function create()
     {
         return new IOS();
-
     }
 
     public function getBadges()
     {
         return $this->badges;
-
+    }
+    
+    /**
+     * Gets the iOS 8 category ID from Pushwoosh.
+     *
+     * @return int The iOS 8 category ID from Pushwoosh.
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
     }
 
     public function getRootParams()
     {
         return $this->rootParams;
-
     }
 
     public function getSound()
@@ -60,7 +75,6 @@ class IOS
     public function getTtl()
     {
         return $this->ttl;
-
     }
 
     /**
@@ -101,6 +115,20 @@ class IOS
 
         return $this;
 
+    }
+    
+    /**
+     * Sets the iOS 8 category ID from Pushwoosh.
+     *
+     * @param int $categoryId The iOS 8 category ID from Pushwoosh.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\IOS this instance.
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
+         
+        return $this;
     }
 
     public function setRootParams($rootParams)
@@ -144,6 +172,7 @@ class IOS
 
         isset($this->apnsTrimContent) ? $json['apns_trim_content'] = intval($this->apnsTrimContent) : false;
         isset($this->badges) ? $json['ios_badges'] = $this->badges : false;
+        isset($this->categoryId) ? $json['category_id'] = $this->categoryId : false;
         isset($this->rootParams) ? $json['ios_root_params'] = $this->rootParams : false;
         isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
         isset($this->ttl) ? $json['ios_ttl'] = $this->ttl : false;

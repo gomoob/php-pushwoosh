@@ -1,11 +1,12 @@
 {
 	"name" : "gomoob/php-pushwoosh",
 	"description" : "A PHP Library to easily work with the Pushwoosh REST Web Services.",
-	"version" : "1.1.1",
+	"version" : "1.2.0",
 	"license" : "MIT",
 	"type" : "library",
 	"keywords" : [
 		"gomoob",
+		"notification",
 		"push",
 		"pushwoosh"
 	],
@@ -37,6 +38,7 @@
 	"require-dev" : {
 		"codeclimate/php-test-reporter" : "~0.2",
 		"pdepend/pdepend" : "~2.2",
+		"phpdocumentor/phpdocumentor" : "2.*",
 		"phploc/phploc" : "~2.1",
 		"phpmd/phpmd" : "~2.3",
 		"phpunit/phpunit" : "~4.8",

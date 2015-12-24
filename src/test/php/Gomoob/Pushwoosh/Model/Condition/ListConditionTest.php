@@ -25,22 +25,22 @@ class ListConditionTest extends \PHPUnit_Framework_TestCase
         $array = $listCondition->toJSON();
 
         $this->assertCount(3, $array);
-        $this->assertEquals('A_TAG', $array[0]);
-        $this->assertEquals('A_TAG', $listCondition->getTagName());
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $listCondition->getTagName());
 
-        $this->assertEquals('IN', $array[1]);
-        $this->assertEquals('IN', $listCondition->getOperator());
+        $this->assertSame('IN', $array[1]);
+        $this->assertSame('IN', $listCondition->getOperator());
 
         $this->assertCount(3, $array[2]);
-        $this->assertEquals('value1', $array[2][0]);
-        $this->assertEquals('value2', $array[2][1]);
-        $this->assertEquals('value3', $array[2][2]);
+        $this->assertSame('value1', $array[2][0]);
+        $this->assertSame('value2', $array[2][1]);
+        $this->assertSame('value3', $array[2][2]);
 
         $operand = $listCondition->getOperand();
         $this->assertCount(3, $operand);
-        $this->assertEquals('value1', $operand[0]);
-        $this->assertEquals('value2', $operand[1]);
-        $this->assertEquals('value3', $operand[2]);
+        $this->assertSame('value1', $operand[0]);
+        $this->assertSame('value2', $operand[1]);
+        $this->assertSame('value3', $operand[2]);
 
     }
 }

@@ -30,8 +30,8 @@ class UnregisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($unregisterDeviceResponse->isOk());
-        $this->assertEquals(200, $unregisterDeviceResponse->getStatusCode());
-        $this->assertEquals('OK', $unregisterDeviceResponse->getStatusMessage());
+        $this->assertSame(200, $unregisterDeviceResponse->getStatusCode());
+        $this->assertSame('OK', $unregisterDeviceResponse->getStatusMessage());
 
         // Test with an error response
         $unregisterDeviceResponse = UnregisterDeviceResponse::create(
@@ -42,7 +42,7 @@ class UnregisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertFalse($unregisterDeviceResponse->isOk());
-        $this->assertEquals(400, $unregisterDeviceResponse->getStatusCode());
-        $this->assertEquals('KO', $unregisterDeviceResponse->getStatusMessage());
+        $this->assertSame(400, $unregisterDeviceResponse->getStatusCode());
+        $this->assertSame('KO', $unregisterDeviceResponse->getStatusMessage());
     }
 }

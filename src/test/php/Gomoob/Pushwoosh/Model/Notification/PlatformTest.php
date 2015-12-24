@@ -21,8 +21,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testAmazon()
     {
-        $this->assertEquals(9, Platform::amazon()->getValue());
-
+        $this->assertSame(9, Platform::amazon()->getValue());
     }
 
     /**
@@ -30,8 +29,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testAndroid()
     {
-        $this->assertEquals(3, Platform::android()->getValue());
-
+        $this->assertSame(3, Platform::android()->getValue());
     }
 
     /**
@@ -39,8 +37,15 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testBlackBerry()
     {
-        $this->assertEquals(2, Platform::blackBerry()->getValue());
-
+        $this->assertSame(2, Platform::blackBerry()->getValue());
+    }
+    
+    /**
+     * Test method for the <code>#chrome()</code> function.
+     */
+    public function testChrome()
+    {
+        $this->assertSame(11, Platform::chrome()->getValue());
     }
 
     /**
@@ -48,8 +53,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testIOS()
     {
-        $this->assertEquals(1, Platform::iOS()->getValue());
-
+        $this->assertSame(1, Platform::iOS()->getValue());
     }
 
     /**
@@ -57,8 +61,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testMacOSX()
     {
-        $this->assertEquals(7, Platform::macOSX()->getValue());
-
+        $this->assertSame(7, Platform::macOSX()->getValue());
     }
 
     /**
@@ -66,8 +69,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testNokia()
     {
-        $this->assertEquals(4, Platform::nokia()->getValue());
-
+        $this->assertSame(4, Platform::nokia()->getValue());
     }
 
     /**
@@ -75,8 +77,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testSafari()
     {
-        $this->assertEquals(10, Platform::safari()->getValue());
-
+        $this->assertSame(10, Platform::safari()->getValue());
     }
 
     /**
@@ -84,8 +85,7 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testWindowsPhone7()
     {
-        $this->assertEquals(5, Platform::windowsPhone7()->getValue());
-
+        $this->assertSame(5, Platform::windowsPhone7()->getValue());
     }
 
     /**
@@ -93,7 +93,6 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
      */
     public function testWindows8()
     {
-        $this->assertEquals(8, Platform::windows8()->getValue());
-
+        $this->assertSame(8, Platform::windows8()->getValue());
     }
 }
