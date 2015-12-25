@@ -367,19 +367,42 @@ Notification::create()->setADM(
     {% highlight php %}
 <?php
 Notification::create()->setAndroid(
-    Android::create()->setBanner($banner)
+    Android::create()->setBadges($badges)
+                 ->setBanner($banner)
                  ->setCustomIcon($customIcon)
                  ->setGcmTtl(3600)
                  ->setHeader($header)
+                 ->setIbc($ibc)
                  ->setIcon($icon)
+                 ->setLed($led)
+                 ->setPriority($priority)
                  ->setRootParams($rootParams)
                  ->setSound($sound)
+                 ->setVibration($vibration)
 );
 ?>
     {% endhighlight %}
 </p>
 
 <h5>BlackBerry</h5>
+
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\BlackBerry</code>
+</p>
+
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setBackBerry(
+    BlackBerry::create()->setHeader($header)
+);
+?>
+    {% endhighlight %}
+</p>
 
 <h5>iOS</h5>
 
@@ -489,6 +512,27 @@ Notification::create()->setWP(
                 ->setBacktitle($backtitle)
                 ->setCount($count)
                 ->setType($type)
+);
+?>
+    {% endhighlight %}
+</p>
+
+<h5>Chrome</h5>
+
+<p>
+    <b style="font-weight: bold;">Class name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Notification\Chrome</code>
+</p>
+<p>
+    <b style="font-weight: bold;">Sample</b>
+    <br/>
+    {% highlight php %}
+<?php
+Notification::create()->setChrome(
+    Chrome::create()->setGcmTtl($gcmTtl)
+                ->setIcon($icon)
+                ->setTitle($title)
 );
 ?>
     {% endhighlight %}

@@ -5,6 +5,33 @@ title: Release History
 
 <h1>Release history</h1>
 
+<h2>1.2.0 (2015-12-25)</h2>
+<ul>
+    <li>
+        Add new <code>getPriority()</code> and <code>setPriority($priority)</code> methods to the <code>ADM</code>
+        notification class ; 
+    </li>
+    <li>
+        Add new <code>getBadges()</code>, <code>setBadges($badges)</code>, <code>getIbc()</code>, 
+        <code>setIbc($ibc)</code>, <code>getLed()</code>, <code>setLed($led)</code>, <code>getPriority()</code>,
+        <code>setPriority($priority)</code>, <code>getVibration()</code> and <code>isVibration()</code> to the 
+        <code>Android</code> notification class ; 
+    </li>
+    <li>
+        Add a new <code>Chrome</code> notification class ;
+    </li>
+    <li>
+        Add a new <code>Platform::chrome()</code> method to get the Chrome Platform ; 
+    </li>
+    <li>
+        Update the documentation to reflect new notification methods and classes ;
+    </li>
+    <li>
+        Enforce all unit test assertion by replacing <code>assertEquals(...)</code> by <code>assertSame(...)</code> 
+        when possible ;
+    </li>
+</ul>
+
 <h2>1.1.1 (2015-11-17)</h2>
 <ul>
     <li>
