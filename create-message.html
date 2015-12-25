@@ -94,7 +94,7 @@ $pushwoosh->createMessage($request1);
 // Setting conditions with the 'addCondition' method
 $notification = Notification::create()
     ->addCondition(StringCondition::create('stringCondition')->eq('toto'));
-    ->addCondition(InCondition::create('intCondition')->lte(15));
+    ->addCondition(IntCondition::create('intCondition')->lte(15));
     ->addCondition(ListCondition::create('listCondition')->in(array('value 1', 'value 2', 'value 3')));
 
 // Setting conditions with the 'setConditions' method
@@ -321,7 +321,7 @@ Notification::create()->setSendDate('now');
 <h4>Specific platform settings</h4>
 
 <p>
-    In addition to generic notification settings its possible to specify specific settings depending on the platform where 
+    In addition to generic notification settings it's possible to specify specific settings depending on the platform where 
     the Push notifications are sent.
 </p>
 <p>
