@@ -30,7 +30,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         // Test for 'addCondition'
         $notification = new Notification();
         $condition0 = IntCondition::create('intTag')->eq(10);
-        $condition1 = ListCondition::create('listTag')->in(array('value1', 'value2', 'value3'));
+        $condition1 = ListCondition::create('listTag')->in(['value1', 'value2', 'value3']);
         $condition2 = StringCondition::create('stringTag')->eq('stringValue');
 
         $this->assertNull($notification->getConditions());
@@ -47,7 +47,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         // Test for 'setConditions'
         $notification = new Notification();
         $this->assertNull($notification->getConditions());
-        $notification->setConditions(array($condition0, $condition1, $condition2));
+        $notification->setConditions([$condition0, $condition1, $condition2]);
 
         $conditions = $notification->getConditions();
         $this->assertCount(3, $conditions);
@@ -71,20 +71,20 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($notification, $notification->addDevice('device2'));
         $devices = $notification->getDevices();
         $this->assertCount(3, $devices);
-        $this->assertTrue(in_array('device0', $devices));
-        $this->assertTrue(in_array('device1', $devices));
-        $this->assertTrue(in_array('device2', $devices));
+        $this->assertContains('device0', $devices);
+        $this->assertContains('device1', $devices);
+        $this->assertContains('device2', $devices);
 
         // Test for 'setDevices'
         $notification = new Notification();
         $this->assertNull($notification->getDevices());
-        $devices = array('device0', 'device1', 'device2');
+        $devices = ['device0', 'device1', 'device2'];
         $this->assertSame($notification, $notification->setDevices($devices));
         $devices = $notification->getDevices();
         $this->assertCount(3, $devices);
-        $this->assertTrue(in_array('device0', $devices));
-        $this->assertTrue(in_array('device1', $devices));
-        $this->assertTrue(in_array('device2', $devices));
+        $this->assertContains('device0', $devices);
+        $this->assertContains('device1', $devices);
+        $this->assertContains('device2', $devices);
     }
 
     /**
@@ -100,7 +100,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         // Test for the 'addPlatform' method
         $notification = new Notification();
         $this->assertNull($notification->getPlatforms());
-        $this->assertSame($notification, $notification->setPlatforms(array($platform0, $platform1, $platform2)));
+        $this->assertSame($notification, $notification->setPlatforms([$platform0, $platform1, $platform2]));
         $platforms = $notification->getPlatforms();
         $this->assertCount(3, $platforms);
         $this->assertSame($platform0, $platforms[0]);
@@ -175,7 +175,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     {
         $notification = new Notification();
         $this->assertNull($notification->getData());
-        $data = array('field0' => 'field0_value', 'field1' => 'field1_value');
+        $data = ['field0' => 'field0_value', 'field1' => 'field1_value'];
         $this->assertSame($notification, $notification->setData($data));
         $data = $notification->getData();
         $this->assertCount(2, $data);
@@ -353,22 +353,22 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->setSendDate('now')
             ->setIgnoreUserTimezone(true)
             ->setContent(
-                array(
+                [
                     'en' => 'English',
                     'ru' => 'Русский',
                     'de' => 'Deutsch'
-                )
+                ]
             )
             ->setPageId(39)
             ->setLink('http://google.com')
             ->setMinimizeLink(MinimizeLink::none())
             ->setData(
-                array(
+                [
                    'custom' => 'json data'
-                )
+                ]
             )
             ->setPlatforms(
-                array(
+                [
                     Platform::iOS(),
                     Platform::blackBerry(),
                     Platform::android(),
@@ -379,20 +379,20 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     Platform::amazon(),
                     Platform::safari(),
                     Platform::chrome()
-                )
+                ]
             )
             ->setDevices(
-                array(
+                [
                     'dec301908b9ba8df85e57a58e40f96f523f4c2068674f5fe2ba25cdc250a2a41'
-                )
+                ]
             )
             ->setFilter('FILTER_NAME')
             ->setConditions(
-                array(
+                [
                     IntCondition::create('intTag')->gte(10),
                     StringCondition::create('stringTag')->eq('stringValue'),
-                    ListCondition::create('listTag')->in(array('value0', 'value1', 'value2'))
-                )
+                    ListCondition::create('listTag')->in(['value0', 'value1', 'value2'])
+                ]
             )
             ->setADM(
                 ADM::create()
@@ -401,7 +401,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setHeader('Header')
                     ->setIcon('icon')
                     ->setPriority(-1)
-                    ->setRootParams(array('key' => 'value'))
+                    ->setRootParams(['key' => 'value'])
                     ->setSound('push.mp3')
                     ->setTtl(3600)
             )
@@ -416,7 +416,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setIcon('icon')
                     ->setLed('#4455cc')
                     ->setPriority(-1)
-                    ->setRootParams(array('key' => 'value'))
+                    ->setRootParams(['key' => 'value'])
                     ->setSound('push.mp3')
                     ->setVibration(true)
             )
@@ -434,7 +434,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                 IOS::create()
                     ->setApnsTrimContent(true)
                     ->setBadges(5)
-                    ->setRootParams(array('aps' => array('content-available' => '1')))
+                    ->setRootParams(['aps' => ['content-available' => '1']])
                     ->setSound('sound file.wav')
                     ->setTtl(3600)
                     ->setTrimContent(true)
@@ -442,7 +442,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->setMac(
                 Mac::create()
                     ->setBadges(3)
-                    ->setRootParams(array('content-available' => '1'))
+                    ->setRootParams(['content-available' => '1'])
                     ->setSound('sound.caf')
                     ->setTtl(3600)
             )
@@ -451,15 +451,15 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setAction('Click here')
                     ->setTitle('Title')
                     ->setTtl(3600)
-                    ->setUrlArgs(array('firstArgument', 'secondArgument'))
+                    ->setUrlArgs(['firstArgument', 'secondArgument'])
             )
             ->setWNS(
                 WNS::create()
                     ->setContent(
-                        array(
+                        [
                             'en' => 'ENENENEN',
                             'de' => 'DEDEDEDE'
-                        )
+                        ]
                     )
                     ->setTag('myTag')
                     ->setType('Badge')
@@ -522,7 +522,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Header', $array['adm_header']);
         $this->assertSame('icon', $array['adm_icon']);
         $this->assertSame(-1, $array['adm_priority']);
-        $this->assertSame(array('key' => 'value'), $array['adm_root_params']);
+        $this->assertSame(['key' => 'value'], $array['adm_root_params']);
         $this->assertSame('push.mp3', $array['adm_sound']);
         $this->assertSame(3600, $array['adm_ttl']);
 
@@ -536,7 +536,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('icon', $array['android_icon']);
         $this->assertSame('#4455cc', $array['android_led']);
         $this->assertSame(-1, $array['android_priority']);
-        $this->assertSame(array('key' => 'value'), $array['android_root_params']);
+        $this->assertSame(['key' => 'value'], $array['android_root_params']);
         $this->assertSame('push.mp3', $array['android_sound']);
         $this->assertSame(1, $array['android_vibration']);
 
@@ -551,14 +551,14 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         // Test IOS parameters
         $this->assertSame(1, $array['apns_trim_content']);
         $this->assertSame(5, $array['ios_badges']);
-        $this->assertSame(array('aps' => array('content-available' => '1')), $array['ios_root_params']);
+        $this->assertSame(['aps' => ['content-available' => '1']], $array['ios_root_params']);
         $this->assertSame('sound file.wav', $array['ios_sound']);
         $this->assertSame(3600, $array['ios_ttl']);
         $this->assertSame(1, $array['ios_trim_content']);
 
         // Test Mac parameters
         $this->assertSame(3, $array['mac_badges']);
-        $this->assertSame(array('content-available' => '1'), $array['mac_root_params']);
+        $this->assertSame(['content-available' => '1'], $array['mac_root_params']);
         $this->assertSame('sound.caf', $array['mac_sound']);
         $this->assertSame(3600, $array['mac_ttl']);
 
@@ -566,14 +566,14 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Click here', $array['safari_action']);
         $this->assertSame('Title', $array['safari_title']);
         $this->assertSame(3600, $array['safari_ttl']);
-        $this->assertSame(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
+        $this->assertSame(['firstArgument', 'secondArgument'], $array['safari_url_args']);
 
         // Test WNS parameters
         $this->assertSame(
-            array(
+            [
                 'en' => 'ENENENEN',
                 'de' => 'DEDEDEDE'
-            ),
+            ],
             $array['wns_content']
         );
         $this->assertSame('myTag', $array['wns_tag']);

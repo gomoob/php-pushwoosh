@@ -79,11 +79,11 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK',
-                    'response' => array('Messages' => array())
-                )
+                    'response' => ['Messages' => []]
+                ]
             )
         );
 
@@ -196,11 +196,11 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO',
-                    'response' => array('Messages' => array())
-                )
+                    'response' => ['Messages' => []]
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -214,10 +214,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -240,10 +240,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK'
-                )
+                ]
             )
         );
 
@@ -280,10 +280,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -303,10 +303,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK'
-                )
+                ]
             )
         );
 
@@ -345,10 +345,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -402,17 +402,17 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK',
-                    'response' => array(
-                        'result' => array(
+                    'response' => [
+                        'result' => [
                             'tag0' => 'tag0Value',
                             'tag1' => 'tag1Value',
                             'tag2' => 'tag2Value'
-                        )
-                    )
-                )
+                        ]
+                    ]
+                ]
             )
         );
 
@@ -497,10 +497,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -519,10 +519,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK'
-                )
+                ]
             )
         );
 
@@ -560,10 +560,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -584,10 +584,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK'
-                )
+                ]
             )
         );
 
@@ -628,10 +628,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -653,10 +653,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK'
-                )
+                ]
             )
         );
 
@@ -694,10 +694,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -718,10 +718,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK'
-                )
+                ]
             )
         );
 
@@ -760,10 +760,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
@@ -785,10 +785,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 200,
                     'status_message' => 'OK'
-                )
+                ]
             )
         );
 
@@ -824,10 +824,10 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
-                array(
+                [
                     'status_code' => 400,
                     'status_message' => 'KO'
-                )
+                ]
             )
         );
         $pushwoosh->setCURLClient($cURLClient);

@@ -120,12 +120,12 @@ class GetNearestZoneRequest implements \JsonSerializable
             throw new PushwooshException('The \'lng\' property is not set !');
         }
     
-        return array(
+        return [
             'application' => $this->application,
             'hwid' => $this->hwid,
             'lat' => $this->lat,
             'lng' => $this->lng
-        );
+        ];
     }
 
     /**

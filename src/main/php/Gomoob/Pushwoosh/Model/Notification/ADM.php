@@ -100,7 +100,7 @@ class ADM implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->banner) ? $json['adm_banner'] = $this->banner : false;
         isset($this->customIcon) ? $json['adm_custom_icon'] = $this->customIcon : false;

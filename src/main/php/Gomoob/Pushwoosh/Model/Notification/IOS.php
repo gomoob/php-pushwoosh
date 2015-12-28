@@ -99,7 +99,7 @@ class IOS implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->apnsTrimContent) ? $json['apns_trim_content'] = intval($this->apnsTrimContent) : false;
         isset($this->badges) ? $json['ios_badges'] = $this->badges : false;

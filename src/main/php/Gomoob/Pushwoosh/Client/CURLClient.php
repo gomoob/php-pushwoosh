@@ -51,7 +51,7 @@ class CURLClient implements ICURLClient
     public function pushwooshCall($method, array $data)
     {
         $url = 'https://cp.pushwoosh.com/json/1.3/' . $method;
-        $request = json_encode(array('request' => $data));
+        $request = json_encode(['request' => $data]);
 
         $this->curlRequest->init($url);
 
@@ -67,10 +67,10 @@ class CURLClient implements ICURLClient
         $this->curlRequest->setOpt(CURLOPT_POSTFIELDS, $request);
         $this->curlRequest->setOpt(
             CURLOPT_HTTPHEADER,
-            array(
+            [
                 'Content-Type: application/json',
                 'Content-Length: ' . strlen($request)
-            )
+            ]
         );
 
         $response = $this->curlRequest->exec();
@@ -89,10 +89,10 @@ class CURLClient implements ICURLClient
                 'CURL error encountered while requesting the Pushwoosh web services using CURL !',
                 -1,
                 null,
-                array(
+                [
                     'curl_error' => $error,
                     'curl_info' => $info
-                )
+                ]
             );
 
         }
@@ -109,9 +109,9 @@ class CURLClient implements ICURLClient
                 'Bad response encountered while requesting the Pushwoosh web services using CURL !',
                 -1,
                 null,
-                array(
+                [
                     'curl_info' => $info
-                )
+                ]
             );
             
             // Close the CURL handle

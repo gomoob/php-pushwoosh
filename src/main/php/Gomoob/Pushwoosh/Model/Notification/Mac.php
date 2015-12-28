@@ -59,7 +59,7 @@ class Mac implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->badges) ? $json['mac_badges'] = $this->badges : false;
         isset($this->rootParams) ? $json['mac_root_params'] = $this->rootParams : false;

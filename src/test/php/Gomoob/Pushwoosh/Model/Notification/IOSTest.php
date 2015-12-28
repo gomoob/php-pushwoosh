@@ -42,8 +42,8 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     public function testGetSetRootParams()
     {
         $iOS = new IOS();
-        $this->assertSame($iOS, $iOS->setRootParams(array('aps' => array('content-available' => '1'))));
-        $this->assertSame(array('aps' => array('content-available' => '1')), $iOS->getRootParams());
+        $this->assertSame($iOS, $iOS->setRootParams(['aps' => ['content-available' => '1']]));
+        $this->assertSame(['aps' => ['content-available' => '1']], $iOS->getRootParams());
     }
 
     /**
@@ -95,7 +95,7 @@ class IOSTest extends \PHPUnit_Framework_TestCase
         $array = IOS::create()
             ->setApnsTrimContent(true)
             ->setBadges(5)
-            ->setRootParams(array('aps' => array('content-available' => '1')))
+            ->setRootParams(['aps' => ['content-available' => '1']])
             ->setSound('sound file.wav')
             ->setTtl(3600)
             ->setTrimContent(true)
@@ -104,7 +104,7 @@ class IOSTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(6, $array);
         $this->assertSame(1, $array['apns_trim_content']);
         $this->assertSame(5, $array['ios_badges']);
-        $this->assertSame(array('aps' => array('content-available' => '1')), $array['ios_root_params']);
+        $this->assertSame(['aps' => ['content-available' => '1']], $array['ios_root_params']);
         $this->assertSame('sound file.wav', $array['ios_sound']);
         $this->assertSame(3600, $array['ios_ttl']);
         $this->assertSame(1, $array['ios_trim_content']);

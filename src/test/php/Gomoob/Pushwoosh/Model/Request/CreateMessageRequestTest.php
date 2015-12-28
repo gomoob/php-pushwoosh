@@ -94,11 +94,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $notification5 = new Notification();
 
         $createMessageRequest->setNotifications(
-            array(
+            [
                 $notification3,
                 $notification4,
                 $notification5
-            )
+            ]
         );
 
         $notifications = $createMessageRequest->getNotifications();
@@ -186,11 +186,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
 
         // Test with one notification having additional data
         $notification->setData(
-            array(
+            [
                 'DATA_PARAMETER_1' => 'DATA_PARAMETER_1_VALUE',
                 'DATA_PARAMETER_2' => 'DATA_PARAMETER_2_VALUE',
                 'DATA_PARAMETER_3' => 'DATA_PARAMETER_3_VALUE'
-            )
+            ]
         );
 
         $json = $createMessageRequest->jsonSerialize();

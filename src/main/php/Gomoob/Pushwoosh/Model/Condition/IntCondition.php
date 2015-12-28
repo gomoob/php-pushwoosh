@@ -34,7 +34,7 @@ class IntCondition extends AbstractCondition
     public function between($minValue, $maxValue)
     {
         $this->operator = 'BETWEEN';
-        $this->operand = array($minValue, $maxValue);
+        $this->operand = [$minValue, $maxValue];
 
         return $this;
 

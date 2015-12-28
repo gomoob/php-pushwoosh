@@ -67,8 +67,7 @@ class CreateMessageRequest implements \JsonSerializable
     public function addNotification(Notification $notification)
     {
         if (!isset($this->notifications)) {
-            $this->notifications = array();
-
+            $this->notifications = [];
         }
 
         $this->notifications[] = $notification;
@@ -141,12 +140,12 @@ class CreateMessageRequest implements \JsonSerializable
             throw new PushwooshException('The \'auth\' property is not set !');
         }
     
-        $json = array(
+        $json = [
             'application' => $this->application,
             'applicationsGroup' => $this->applicationsGroup,
             'auth' => $this->auth,
-            'notifications' => array()
-        );
+            'notifications' => []
+        ];
     
         // Adds the notifications
         // Please note that the Pushwoosh REST API seems to authorize calls to the 'createMessage' service with a create

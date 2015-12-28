@@ -35,17 +35,17 @@ class WNSTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             $wNS,
             $wNS->setContent(
-                array(
+                [
                     'en' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9ImF2YWlsYWJsZSIvPg==',
                     'de' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9Im5ld01lc3NhZ2UiLz4'
-                )
+                ]
             )
         );
         $this->assertSame(
-            array(
+            [
                 'en' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9ImF2YWlsYWJsZSIvPg==',
                 'de' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9Im5ld01lc3NhZ2UiLz4'
-            ),
+            ],
             $wNS->getContent()
         );
     }
@@ -78,10 +78,10 @@ class WNSTest extends \PHPUnit_Framework_TestCase
 
         $array = WNS::create()
             ->setContent(
-                array(
+                [
                     'en' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9ImF2YWlsYWJsZSIvPg==',
                     'de' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9Im5ld01lc3NhZ2UiLz4'
-                )
+                ]
             )
             ->setTag('myTag')
             ->setType('Badge')
@@ -89,10 +89,10 @@ class WNSTest extends \PHPUnit_Framework_TestCase
 
         $this->assertCount(3, $array);
         $this->assertSame(
-            array(
+            [
                 'en' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9ImF2YWlsYWJsZSIvPg==',
                 'de' => 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmFkZ2UgdmFsdWU9Im5ld01lc3NhZ2UiLz4'
-            ),
+            ],
             $array['wns_content']
         );
         $this->assertSame('myTag', $array['wns_tag']);

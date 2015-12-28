@@ -90,11 +90,11 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $setTagsRequest = new SetTagsRequest();
         $this->assertNull($setTagsRequest->getTags());
         $setTagsRequest->setTags(
-            array(
+            [
                 'tag0' => 'tag0_value',
                 'tag1' => 'tag1_value',
                 'tag2' => 'tag2_value'
-            )
+            ]
         );
         $tags = $setTagsRequest->getTags();
         $this->assertCount(3, $tags);
@@ -130,11 +130,11 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         $setTagsRequest->removeTag('tag0');
 
         $setTagsRequest->setTags(
-            array(
+            [
                 'tag0' => 'tag0_value',
                 'tag1' => 'tag1_value',
                 'tag2' => 'tag2_value'
-            )
+            ]
         );
 
         $setTagsRequest->removeTag('tag3');
@@ -234,11 +234,11 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         }
 
         $setTagsRequest->setTags(
-            array(
+            [
                 'tag0' => 'tag0_value',
                 'tag1' => 'tag1_value',
                 'tag2' => 'tag2_value'
-            )
+            ]
         );
 
         // Test with valid values

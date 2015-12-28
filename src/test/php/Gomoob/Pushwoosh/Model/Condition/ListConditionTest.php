@@ -21,7 +21,7 @@ class ListConditionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIn()
     {
-        $listCondition = ListCondition::create('A_TAG')->in(array('value1', 'value2', 'value3'));
+        $listCondition = ListCondition::create('A_TAG')->in(['value1', 'value2', 'value3']);
         $array = $listCondition->jsonSerialize();
 
         $this->assertCount(3, $array);

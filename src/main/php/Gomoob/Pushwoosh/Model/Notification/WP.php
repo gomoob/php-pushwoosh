@@ -69,7 +69,7 @@ class WP implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->backbackground) ? $json['wp_backbackground'] = $this->backbackground : false;
         isset($this->backcontent) ? $json['wp_backcontent'] = $this->backcontent : false;

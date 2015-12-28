@@ -23,17 +23,17 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a successful response
         $getTagsResponse = GetTagsResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK',
-                'response' => array(
-                    'result' => array(
+                'response' => [
+                    'result' => [
                         'tag0' => 'tag0Value',
                         'tag1' => 'tag1Value',
                         'tag2' => 'tag2Value'
-                    )
-                )
-            )
+                    ]
+                ]
+            ]
         );
 
         $getTagsResponseResponse = $getTagsResponse->getResponse();
@@ -61,10 +61,10 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response without any 'response' field
         $getTagsResponse = GetTagsResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $getTagsResponseResponse = $getTagsResponse->getResponse();
@@ -76,11 +76,11 @@ class GetTagsResponseTest extends \PHPUnit_Framework_TestCase
         // Test with an error response with a null 'response' field
         // Fix https://github.com/gomoob/php-pushwoosh/issues/13
         $getTagsResponse = GetTagsResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO',
                 'response' => null
-            )
+            ]
         );
         
         $getTagsResponseResponse = $getTagsResponse->getResponse();

@@ -68,10 +68,10 @@ abstract class AbstractCondition implements ICondition
      */
     public function jsonSerialize()
     {
-        return array(
+        return [
             $this->tagName,
             $this->operator,
             $this->operand
-        );
+        ];
     }
 }

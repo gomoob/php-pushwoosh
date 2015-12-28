@@ -23,10 +23,10 @@ class UnregisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a success response
         $unregisterDeviceResponse = UnregisterDeviceResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK'
-            )
+            ]
         );
 
         $this->assertTrue($unregisterDeviceResponse->isOk());
@@ -35,10 +35,10 @@ class UnregisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response
         $unregisterDeviceResponse = UnregisterDeviceResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $this->assertFalse($unregisterDeviceResponse->isOk());

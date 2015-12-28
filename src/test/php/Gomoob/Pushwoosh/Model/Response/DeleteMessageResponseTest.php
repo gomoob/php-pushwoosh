@@ -23,10 +23,10 @@ class DeleteMessageResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a successful response
         $deleteMessageResponse = DeleteMessageResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK'
-            )
+            ]
         );
 
         $this->assertTrue($deleteMessageResponse->isOk());
@@ -35,10 +35,10 @@ class DeleteMessageResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response
         $deleteMessageResponse = DeleteMessageResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $this->assertFalse($deleteMessageResponse->isOk());

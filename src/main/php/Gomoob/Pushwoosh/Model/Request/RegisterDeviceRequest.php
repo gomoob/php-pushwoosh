@@ -167,14 +167,14 @@ class RegisterDeviceRequest implements \JsonSerializable
             throw new PushwooshException('The \'pushToken\' property is not set !');
         }
     
-        $json = array(
+        $json = [
             'application' => $this->application,
             'push_token' => $this->pushToken,
             'language' => $this->language,
             'hwid' => $this->hwid,
             'timezone' => $this->timezone,
             'device_type' => $this->deviceType
-        );
+        ];
     
         return $json;
     }

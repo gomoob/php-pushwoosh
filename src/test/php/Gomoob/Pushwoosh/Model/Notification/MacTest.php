@@ -42,8 +42,8 @@ class MacTest extends \PHPUnit_Framework_TestCase
     public function testGetSetRootParams()
     {
         $mac = new Mac();
-        $this->assertSame($mac, $mac->setRootParams(array('content-available' => '1')));
-        $this->assertSame(array('content-available' => '1'), $mac->getRootParams());
+        $this->assertSame($mac, $mac->setRootParams(['content-available' => '1']));
+        $this->assertSame(['content-available' => '1'], $mac->getRootParams());
     }
 
     /**
@@ -73,14 +73,14 @@ class MacTest extends \PHPUnit_Framework_TestCase
     {
         $array = Mac::create()
             ->setBadges(3)
-            ->setRootParams(array('content-available' => '1'))
+            ->setRootParams(['content-available' => '1'])
             ->setSound('sound.caf')
             ->setTtl(3600)
             ->jsonSerialize();
 
         $this->assertCount(4, $array);
         $this->assertSame(3, $array['mac_badges']);
-        $this->assertSame(array('content-available' => '1'), $array['mac_root_params']);
+        $this->assertSame(['content-available' => '1'], $array['mac_root_params']);
         $this->assertSame('sound.caf', $array['mac_sound']);
         $this->assertSame(3600, $array['mac_ttl']);
     }

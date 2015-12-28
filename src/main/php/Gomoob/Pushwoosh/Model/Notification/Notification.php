@@ -208,8 +208,7 @@ class Notification implements \JsonSerializable
     public function addCondition(ICondition $condition)
     {
         if (!isset($this->conditions)) {
-            $this->conditions = array();
-
+            $this->conditions = [];
         }
 
         $this->conditions[] = $condition;
@@ -226,8 +225,7 @@ class Notification implements \JsonSerializable
     public function addDevice($device)
     {
         if (!isset($this->devices)) {
-            $this->devices = array();
-
+            $this->devices = [];
         }
 
         $this->devices[] = $device;
@@ -246,8 +244,7 @@ class Notification implements \JsonSerializable
     public function addPlatform(Platform $platform)
     {
         if (!isset($this->platforms)) {
-            $this->platforms = array();
-
+            $this->platforms = [];
         }
 
         $this->platforms[] = $platform;
@@ -509,7 +506,7 @@ class Notification implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         // Mandatory parameters
         $json['ignore_user_timezone'] = $this->ignoreUserTimezone;
@@ -525,7 +522,7 @@ class Notification implements \JsonSerializable
         isset($this->pageId) ? $json['page_id'] = $this->pageId : false;
     
         if (isset($this->conditions)) {
-            $conditionsArray = array();
+            $conditionsArray = [];
     
             foreach ($this->conditions as $condition) {
                 $conditionsArray[] = $condition->jsonSerialize();
@@ -535,7 +532,7 @@ class Notification implements \JsonSerializable
         }
     
         if (isset($this->platforms)) {
-            $platformsArray = array();
+            $platformsArray = [];
     
             foreach ($this->platforms as $platform) {
                 $platformsArray[] = $platform->getValue();

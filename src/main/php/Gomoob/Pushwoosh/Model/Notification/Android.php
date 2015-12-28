@@ -180,7 +180,7 @@ class Android implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->badges) ? $json['android_badges'] = $this->badges : false;
         isset($this->banner) ? $json['android_banner'] = $this->banner : false;

@@ -80,10 +80,10 @@ class DeleteMessageRequest implements \JsonSerializable
     
         }
     
-        return array(
+        return [
             'auth' => $this->auth,
             'message' => $this->message
-        );
+        ];
     }
 
     /**

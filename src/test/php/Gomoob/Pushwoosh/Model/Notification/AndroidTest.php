@@ -120,8 +120,8 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     public function testGetSetRootParams()
     {
         $android = new Android();
-        $this->assertSame($android, $android->setRootParams(array('key' => 'value')));
-        $this->assertSame(array('key' => 'value'), $android->getRootParams());
+        $this->assertSame($android, $android->setRootParams(['key' => 'value']));
+        $this->assertSame(['key' => 'value'], $android->getRootParams());
     }
 
     /**
@@ -159,7 +159,7 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
             ->setIcon('icon')
             ->setLed('#4455cc')
             ->setPriority(-1)
-            ->setRootParams(array('key' => 'value'))
+            ->setRootParams(['key' => 'value'])
             ->setSound('push.mp3')
             ->setVibration(true)
             ->jsonSerialize();
@@ -174,7 +174,7 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('icon', $array['android_icon']);
         $this->assertSame('#4455cc', $array['android_led']);
         $this->assertSame(-1, $array['android_priority']);
-        $this->assertSame(array('key' => 'value'), $array['android_root_params']);
+        $this->assertSame(['key' => 'value'], $array['android_root_params']);
         $this->assertSame('push.mp3', $array['android_sound']);
         $this->assertSame(1, $array['android_vibration']);
     }

@@ -23,10 +23,10 @@ class SetBadgeResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a success response
         $setBadgeResponse = SetBadgeResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK'
-            )
+            ]
         );
 
         $this->assertTrue($setBadgeResponse->isOk());
@@ -35,10 +35,10 @@ class SetBadgeResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response
         $setBadgeResponse = SetBadgeResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $this->assertFalse($setBadgeResponse->isOk());

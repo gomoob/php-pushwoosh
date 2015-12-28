@@ -79,10 +79,10 @@ class UnregisterDeviceRequest implements \JsonSerializable
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
     
-        $json = array(
+        $json = [
             'application' => $this->application,
             'hwid' => $this->hwid
-        );
+        ];
     
         return $json;
     }

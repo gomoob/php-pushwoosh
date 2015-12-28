@@ -23,10 +23,10 @@ class PushStatResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a success response
         $pushStatResponse = PushStatResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK'
-            )
+            ]
         );
 
         $this->assertTrue($pushStatResponse->isOk());
@@ -35,10 +35,10 @@ class PushStatResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response
         $pushStatResponse = PushStatResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $this->assertFalse($pushStatResponse->isOk());

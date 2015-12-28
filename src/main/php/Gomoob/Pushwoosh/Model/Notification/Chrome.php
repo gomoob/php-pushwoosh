@@ -82,7 +82,7 @@ class Chrome implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->gcmTtl) ? $json['chrome_gcm_ttl'] = $this->gcmTtl : false;
         isset($this->icon) ? $json['chrome_icon'] = $this->icon : false;

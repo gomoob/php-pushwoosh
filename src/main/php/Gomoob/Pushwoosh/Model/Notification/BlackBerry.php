@@ -39,7 +39,7 @@ class BlackBerry implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->header) ? $json['blackberry_header'] = $this->header : false;
     

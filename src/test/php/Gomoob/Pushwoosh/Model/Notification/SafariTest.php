@@ -62,8 +62,8 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     public function testGetSetUrlArgs()
     {
         $safari = new Safari();
-        $this->assertSame($safari, $safari->setUrlArgs(array('firstArgument', 'secondArgument')));
-        $this->assertSame(array('firstArgument', 'secondArgument'), $safari->getUrlArgs());
+        $this->assertSame($safari, $safari->setUrlArgs(['firstArgument', 'secondArgument']));
+        $this->assertSame(['firstArgument', 'secondArgument'], $safari->getUrlArgs());
     }
 
     /**
@@ -75,13 +75,13 @@ class SafariTest extends \PHPUnit_Framework_TestCase
             ->setAction('Click here')
             ->setTitle('Title')
             ->setTtl(3600)
-            ->setUrlArgs(array('firstArgument', 'secondArgument'))
+            ->setUrlArgs(['firstArgument', 'secondArgument'])
             ->jsonSerialize();
 
         $this->assertCount(4, $array);
         $this->assertSame('Click here', $array['safari_action']);
         $this->assertSame('Title', $array['safari_title']);
         $this->assertSame(3600, $array['safari_ttl']);
-        $this->assertSame(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
+        $this->assertSame(['firstArgument', 'secondArgument'], $array['safari_url_args']);
     }
 }

@@ -63,8 +63,7 @@ class SetTagsRequest implements \JsonSerializable
     public function addTag($tagName, $tagValue)
     {
         if (!isset($this->tags)) {
-            $this->tags = array();
-
+            $this->tags = [];
         }
 
         // The same tag cannot be added 2 times
@@ -73,7 +72,6 @@ class SetTagsRequest implements \JsonSerializable
                 'The tag \'' . $tagName .
                 '\' has already been added, use the \'setTag\' method if you want to overwrite its value !'
             );
-
         }
 
         $this->tags[$tagName] = $tagValue;
@@ -143,11 +141,11 @@ class SetTagsRequest implements \JsonSerializable
             throw new PushwooshException('The \'tags\' property is not set !');
         }
     
-        $json = array(
+        $json = [
             'application' => $this->application,
             'hwid' => $this->hwid,
             'tags' => $this->tags
-        );
+        ];
     
         return $json;
     }
@@ -207,8 +205,7 @@ class SetTagsRequest implements \JsonSerializable
     public function setTag($tagName, $tagValue)
     {
         if (!isset($this->tags)) {
-            $this->tags = array();
-
+            $this->tags = [];
         }
 
         $this->tags[$tagName] = $tagValue;

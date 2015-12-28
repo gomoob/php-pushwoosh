@@ -80,8 +80,8 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     public function testGetSetRootParams()
     {
         $aDM = new ADM();
-        $this->assertSame($aDM, $aDM->setRootParams(array('key' => 'value')));
-        $this->assertSame(array('key' => 'value'), $aDM->getRootParams());
+        $this->assertSame($aDM, $aDM->setRootParams(['key' => 'value']));
+        $this->assertSame(['key' => 'value'], $aDM->getRootParams());
     }
 
     /**
@@ -115,7 +115,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
             ->setHeader('Header')
             ->setIcon('icon')
             ->setPriority(-1)
-            ->setRootParams(array('key' => 'value'))
+            ->setRootParams(['key' => 'value'])
             ->setSound('push.mp3')
             ->setTtl(3600)
             ->jsonSerialize();
@@ -126,7 +126,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Header', $array['adm_header']);
         $this->assertSame('icon', $array['adm_icon']);
         $this->assertSame(-1, $array['adm_priority']);
-        $this->assertSame(array('key' => 'value'), $array['adm_root_params']);
+        $this->assertSame(['key' => 'value'], $array['adm_root_params']);
         $this->assertSame('push.mp3', $array['adm_sound']);
         $this->assertSame(3600, $array['adm_ttl']);
     }

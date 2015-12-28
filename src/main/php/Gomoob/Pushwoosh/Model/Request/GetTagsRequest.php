@@ -100,11 +100,11 @@ class GetTagsRequest implements \JsonSerializable
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
     
-        return array(
+        return [
             'application' => $this->application,
             'auth' => $this->auth,
             'hwid' => $this->hwid
-        );
+        ];
     }
 
     /**

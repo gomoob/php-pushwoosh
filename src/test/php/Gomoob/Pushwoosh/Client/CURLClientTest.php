@@ -37,11 +37,11 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
         try {
             $response = $curlClient->pushwooshCall(
                 'getTags',
-                array(
+                [
                     'application' => 'XXXXXXXX',
                     'auth' => 'XXXXXXXX',
                     'hwid' => 'XXXXXXXX'
-                )
+                ]
             );
             
             $this->fail('Must have thrown a PushwooshException !');
@@ -63,11 +63,11 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
         // Second test with a CURL error encountered
         $curlRequest = $this->getMock('\Gomoob\Pushwoosh\Curl\CURLRequest');
         $curlRequest->method('exec')->willReturn(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'Test with valid JSON response but CURL error encountered.',
                 'response' => null
-            )
+            ]
         );
         $curlRequest->method('error')->willReturn('CURL_ERROR');
         $curlRequest->method('getInfo')->willReturn('CURL_INFO');
@@ -77,11 +77,11 @@ class CURLClientTest extends \PHPUnit_Framework_TestCase
         try {
             $response = $curlClient->pushwooshCall(
                 'getTags',
-                array(
+                [
                     'application' => 'XXXXXXXX',
                     'auth' => 'XXXXXXXX',
                     'hwid' => 'XXXXXXXX'
-                )
+                ]
             );
                 
             $this->fail('Must have thrown a PushwooshException !');

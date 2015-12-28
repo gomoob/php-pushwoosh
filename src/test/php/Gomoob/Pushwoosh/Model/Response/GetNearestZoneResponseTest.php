@@ -23,17 +23,17 @@ class GetNearestZoneResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a success response
         $getNearestZoneResponse = GetNearestZoneResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK',
-                'response' => array(
+                'response' => [
                     'name' => 'zoneName',
                     'lat' => 42,
                     'lng' => 13,
                     'range' => 100,
                     'distance' => 4715784
-                )
-            )
+                ]
+            ]
         );
 
         $this->assertTrue($getNearestZoneResponse->isOk());
@@ -50,10 +50,10 @@ class GetNearestZoneResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response without any 'response' field
         $getNearestZoneResponse = GetNearestZoneResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $this->assertFalse($getNearestZoneResponse->isOk());
@@ -63,11 +63,11 @@ class GetNearestZoneResponseTest extends \PHPUnit_Framework_TestCase
         // Test with an error response with a null 'response' field
         // Fix https://github.com/gomoob/php-pushwoosh/issues/13
         $getNearestZoneResponse = GetNearestZoneResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO',
                 'response' => null
-            )
+            ]
         );
         
         $this->assertFalse($getNearestZoneResponse->isOk());

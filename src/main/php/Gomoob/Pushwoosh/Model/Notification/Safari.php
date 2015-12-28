@@ -55,7 +55,7 @@ class Safari implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
     
         isset($this->action) ? $json['safari_action'] = $this->action : false;
         isset($this->title) ? $json['safari_title'] = $this->title : false;

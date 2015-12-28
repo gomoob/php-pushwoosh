@@ -23,26 +23,26 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a successful response
         $createMessageResponse = CreateMessageResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK',
-                'response' => array(
-                    'Messages' => array(
+                'response' => [
+                    'Messages' => [
                         'notificationCode0',
                         'notificationCode1',
                         'notificationCode2'
-                    )
-                )
-            )
+                    ]
+                ]
+            ]
         );
 
         $createMessageResponseResponse = $createMessageResponse->getResponse();
         $this->assertNotNull($createMessageResponseResponse);
         $messages = $createMessageResponseResponse->getMessages();
         $this->assertCount(3, $messages);
-        $this->assertTrue(in_array('notificationCode0', $messages));
-        $this->assertTrue(in_array('notificationCode1', $messages));
-        $this->assertTrue(in_array('notificationCode2', $messages));
+        $this->assertContains('notificationCode0', $messages);
+        $this->assertContains('notificationCode1', $messages);
+        $this->assertContains('notificationCode2', $messages);
 
         $this->assertTrue($createMessageResponse->isOk());
         $this->assertSame(200, $createMessageResponse->getStatusCode());
@@ -50,10 +50,10 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response without any 'response' field
         $createMessageResponse = CreateMessageResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $createMessageResponseResponse = $createMessageResponse->getResponse();
@@ -65,11 +65,11 @@ class CreateMessageResponseTest extends \PHPUnit_Framework_TestCase
         // Test with an error response with a null 'response' field
         // Fix https://github.com/gomoob/php-pushwoosh/issues/13
         $createMessageResponse = CreateMessageResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO',
                 'response' => null
-            )
+            ]
         );
         
         $createMessageResponseResponse = $createMessageResponse->getResponse();

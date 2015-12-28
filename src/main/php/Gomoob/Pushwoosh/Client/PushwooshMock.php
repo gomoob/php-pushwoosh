@@ -162,7 +162,7 @@ class PushwooshMock implements IPushwoosh
      */
     public function clear()
     {
-        $this->pushwhooshRequests = array();
+        $this->pushwhooshRequests = [];
     }
     
     /**

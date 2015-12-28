@@ -74,7 +74,7 @@ class WNS implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = array();
+        $json = [];
 
         isset($this->content) ? $json['wns_content'] = $this->content : false;
         isset($this->tag) ? $json['wns_tag'] = $this->tag : false;

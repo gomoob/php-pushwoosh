@@ -23,10 +23,10 @@ class SetTagsResponseTest extends \PHPUnit_Framework_TestCase
     {
         // Test with a success response
         $setTagsResponse = SetTagsResponse::create(
-            array(
+            [
                 'status_code' => 200,
                 'status_message' => 'OK'
-            )
+            ]
         );
 
         $this->assertTrue($setTagsResponse->isOk());
@@ -35,10 +35,10 @@ class SetTagsResponseTest extends \PHPUnit_Framework_TestCase
 
         // Test with an error response
         $setTagsResponse = SetTagsResponse::create(
-            array(
+            [
                 'status_code' => 400,
                 'status_message' => 'KO'
-            )
+            ]
         );
 
         $this->assertFalse($setTagsResponse->isOk());
