@@ -16,15 +16,14 @@ namespace Gomoob\Pushwoosh;
 class JsonUtils
 {
     /**
-     * Merge a `\JsonSerializable` serilized object into an array.
+     * Merge multiple `\JsonSerializable` serializable objects into an array.
      *
      * @param array $array The array into witch one to merge the values of the `JsonSerializable` object.
-     * @param array $jsonSerializable The `JsonSerializable` to merge.
+     * @param array $jsonSerializables The `JsonSerializable` objects to merge.
      *
-     * @return array The resul of the merge as an array, this is equal to the first array if the second array is not
-     *         defined (i.e null).
+     * @return array The resul of the merge as an array.
      */
-    public static function mergeJsonSerializables(&$array, /* \JsonSerializable */ $jsonSerializable)
+    public static function mergeJsonSerializables(&$array /*, \JsonSerializable ... */)
     {
         $numberOfArguments = func_num_args();
         $arguments = func_get_args();
