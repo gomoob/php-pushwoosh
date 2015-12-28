@@ -1,24 +1,25 @@
 language: php
 
-php: 
+php:
+  - 5.5.9
   - 5.5
   - 5.6
   - 7.0
   - hhvm
 
-before_install: 
+before_install:
   - curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
   - sudo apt-get install --yes nodejs
   - npm install -g grunt-cli
 
-install: 
+install:
   - npm install
   - composer install
 
-script: 
+script:
   - grunt
 
-after_script: 
+after_script:
   - php vendor/bin/coveralls -v
   - chmod +x code-climate-test-reporter
   - CODECLIMATE_REPO_TOKEN=fbbb8faf1226ee12fa1f4f6b838fb021e0fcfcb4c48a8be1906adedcc255a860 ./code-climate-test-reporter
