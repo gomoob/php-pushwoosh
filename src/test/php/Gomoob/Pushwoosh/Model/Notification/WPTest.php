@@ -87,11 +87,10 @@ class WPTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
-
         $array = WP::create()
             ->setBackbackground('/Resources/Green.jpg')
             ->setBackcontent('back content')
@@ -99,7 +98,7 @@ class WPTest extends \PHPUnit_Framework_TestCase
             ->setBacktitle('back title')
             ->setCount(3)
             ->setType('Tile')
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(6, $array);
         $this->assertSame('/Resources/Green.jpg', $array['wp_backbackground']);
@@ -108,6 +107,5 @@ class WPTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('back title', $array['wp_backtitle']);
         $this->assertSame(3, $array['wp_count']);
         $this->assertSame('Tile', $array['wp_type']);
-
     }
 }

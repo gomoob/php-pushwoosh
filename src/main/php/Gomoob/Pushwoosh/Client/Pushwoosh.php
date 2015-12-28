@@ -137,7 +137,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('createMessage', $createMessageRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('createMessage', $createMessageRequest->jsonSerialize());
 
         return CreateMessageResponse::create($response);
 
@@ -163,7 +163,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('deleteMessage', $deleteMessageRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('deleteMessage', $deleteMessageRequest->jsonSerialize());
 
         return DeleteMessageResponse::create($response);
 
@@ -223,7 +223,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('getNearestZone', $getNearestZoneRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('getNearestZone', $getNearestZoneRequest->jsonSerialize());
 
         return GetNearestZoneResponse::create($response);
 
@@ -261,10 +261,9 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('getTags', $getTagsRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('getTags', $getTagsRequest->jsonSerialize());
 
         return GetTagsResponse::create($response);
-
     }
 
     /**
@@ -285,7 +284,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('pushState', $pushStatRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('pushState', $pushStatRequest->jsonSerialize());
 
         return PushStatResponse::create($response);
 
@@ -309,7 +308,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('registerDevice', $registerDeviceRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('registerDevice', $registerDeviceRequest->jsonSerialize());
 
         return RegisterDeviceResponse::create($response);
 
@@ -363,7 +362,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('setBadge', $setBadgeRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('setBadge', $setBadgeRequest->jsonSerialize());
 
         return SetBadgeResponse::create($response);
 
@@ -400,10 +399,9 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('setTags', $setTagsRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('setTags', $setTagsRequest->jsonSerialize());
 
         return SetTagsResponse::create($response);
-
     }
 
     /**
@@ -414,19 +412,17 @@ class Pushwoosh implements IPushwoosh
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
         if ($unregisterDeviceRequest->getApplication() === null) {
+
             // The 'application' must be set
             if (!isset($this->application)) {
                 throw new PushwooshException('The  \'application\' property is not set !');
-
             }
 
             $unregisterDeviceRequest->setApplication($this->application);
-
         }
 
-        $response = $this->cURLClient->pushwooshCall('unregisterDevice', $unregisterDeviceRequest->toJSON());
+        $response = $this->cURLClient->pushwooshCall('unregisterDevice', $unregisterDeviceRequest->jsonSerialize());
 
         return UnregisterDeviceResponse::create($response);
-
     }
 }

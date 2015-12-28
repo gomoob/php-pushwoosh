@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Safari
+class Safari implements \JsonSerializable
 {
     private $action;
     private $title;
@@ -28,31 +28,42 @@ class Safari
     public static function create()
     {
         return new Safari();
-
     }
 
     public function getAction()
     {
         return $this->action;
-
     }
 
     public function getTitle()
     {
         return $this->title;
-
     }
 
     public function getTtl()
     {
         return $this->ttl;
-
     }
 
     public function getUrlArgs()
     {
         return $this->urlArgs;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        isset($this->action) ? $json['safari_action'] = $this->action : false;
+        isset($this->title) ? $json['safari_title'] = $this->title : false;
+        isset($this->ttl) ? $json['safari_ttl'] = $this->ttl : false;
+        isset($this->urlArgs) ? $json['safari_url_args'] = $this->urlArgs : false;
+    
+        return $json;
+    
     }
 
     public function setAction($action)
@@ -81,23 +92,5 @@ class Safari
         $this->urlArgs = $urlArgs;
 
         return $this;
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-
-        isset($this->action) ? $json['safari_action'] = $this->action : false;
-        isset($this->title) ? $json['safari_title'] = $this->title : false;
-        isset($this->ttl) ? $json['safari_ttl'] = $this->ttl : false;
-        isset($this->urlArgs) ? $json['safari_url_args'] = $this->urlArgs : false;
-
-        return $json;
-
     }
 }

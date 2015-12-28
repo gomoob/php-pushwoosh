@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class RegisterDeviceRequest
+class RegisterDeviceRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID for which one to register a new device.
@@ -74,7 +74,6 @@ class RegisterDeviceRequest
     public static function create()
     {
         return new RegisterDeviceRequest();
-
     }
 
     /**
@@ -85,7 +84,6 @@ class RegisterDeviceRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -102,7 +100,6 @@ class RegisterDeviceRequest
     public function getDeviceType()
     {
         return $this->deviceType;
-
     }
 
     /**
@@ -115,7 +112,6 @@ class RegisterDeviceRequest
     public function getHwid()
     {
         return $this->hwid;
-
     }
 
     /**
@@ -126,7 +122,6 @@ class RegisterDeviceRequest
     public function getLanguage()
     {
         return $this->language;
-
     }
 
     /**
@@ -137,7 +132,6 @@ class RegisterDeviceRequest
     public function getPushToken()
     {
         return $this->pushToken;
-
     }
 
     /**
@@ -148,7 +142,41 @@ class RegisterDeviceRequest
     public function getTimezone()
     {
         return $this->timezone;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+            throw new PushwooshException('The \'application\' property is not set !');
+        }
+    
+        // The 'deviceType' parameter must have been defined and must be valid.
+        $this->checkDeviceType();
+    
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+            throw new PushwooshException('The \'hwid\' property is not set !');
+        }
+    
+        // The 'pushToken' parameter must have been defined.
+        if (!isset($this->pushToken)) {
+            throw new PushwooshException('The \'pushToken\' property is not set !');
+        }
+    
+        $json = array(
+            'application' => $this->application,
+            'push_token' => $this->pushToken,
+            'language' => $this->language,
+            'hwid' => $this->hwid,
+            'timezone' => $this->timezone,
+            'device_type' => $this->deviceType
+        );
+    
+        return $json;
     }
 
     /**
@@ -163,7 +191,6 @@ class RegisterDeviceRequest
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -184,7 +211,6 @@ class RegisterDeviceRequest
         $this->deviceType = $deviceType;
 
         return $this;
-
     }
 
     /**
@@ -201,7 +227,6 @@ class RegisterDeviceRequest
         $this->hwid = $hwid;
 
         return $this;
-
     }
 
     /**
@@ -216,7 +241,6 @@ class RegisterDeviceRequest
         $this->language = $language;
 
         return $this;
-
     }
 
     /**
@@ -231,7 +255,6 @@ class RegisterDeviceRequest
         $this->pushToken = $pushToken;
 
         return $this;
-
     }
 
     /**
@@ -246,45 +269,6 @@ class RegisterDeviceRequest
         $this->timezone = $timezone;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'application' parameter must have been defined.
-        if (!isset($this->application)) {
-            throw new PushwooshException('The \'application\' property is not set !');
-        }
-
-        // The 'deviceType' parameter must have been defined and must be valid.
-        $this->checkDeviceType();
-
-        // The 'hwid' parameter must have been defined.
-        if (!isset($this->hwid)) {
-            throw new PushwooshException('The \'hwid\' property is not set !');
-        }
-
-        // The 'pushToken' parameter must have been defined.
-        if (!isset($this->pushToken)) {
-            throw new PushwooshException('The \'pushToken\' property is not set !');
-        }
-        
-        $json = array(
-            'application' => $this->application,
-            'push_token' => $this->pushToken,
-            'language' => $this->language,
-            'hwid' => $this->hwid,
-            'timezone' => $this->timezone,
-            'device_type' => $this->deviceType
-        );
-
-        return $json;
-
     }
 
     /**
@@ -294,11 +278,9 @@ class RegisterDeviceRequest
      */
     private function checkDeviceType()
     {
-
         // The 'deviceType' parameter must have been defined.
         if (!isset($this->deviceType)) {
             throw new PushwooshException('The \'deviceType\' property is not set !');
-
         }
 
         // The 'deviceType' must be valid
@@ -349,6 +331,5 @@ class RegisterDeviceRequest
                 throw new PushwooshException('The \'deviceType\' value \'' . $this->deviceType . '\' is invalid !');
                 break;
         }
-
     }
 }

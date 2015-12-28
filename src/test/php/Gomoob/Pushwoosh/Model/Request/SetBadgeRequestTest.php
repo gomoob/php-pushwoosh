@@ -62,15 +62,15 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>toJSON()</tt> function.
+     * Test method for the <tt>jsonSerialize()</tt> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $setBadgeRequest = new SetBadgeRequest();
 
         // Test without the 'application' parameter set
         try {
-            $setBadgeRequest->toJSON();
+            $setBadgeRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
@@ -79,7 +79,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'badge' parameter set
         $setBadgeRequest->setApplication('APPLICATION');
         try {
-            $setBadgeRequest->toJSON();
+            $setBadgeRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'badge\' property is not set !', $pe->getMessage());
@@ -88,7 +88,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $setBadgeRequest->setBadge(5);
         try {
-            $setBadgeRequest->toJSON();
+            $setBadgeRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
@@ -97,7 +97,7 @@ class SetBadgeRequestTest extends \PHPUnit_Framework_TestCase
         $setBadgeRequest->setHwid('HWID');
 
         // Test with valid values
-        $array = $setBadgeRequest->toJSON();
+        $array = $setBadgeRequest->jsonSerialize();
         $this->assertSame('APPLICATION', $array['application']);
         $this->assertSame(5, $array['badge']);
         $this->assertSame('HWID', $array['hwid']);

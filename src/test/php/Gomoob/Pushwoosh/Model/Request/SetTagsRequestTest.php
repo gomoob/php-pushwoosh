@@ -201,15 +201,15 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>toJSON()</tt> function.
+     * Test method for the <tt>jsonSerialize()</tt> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $setTagsRequest = new SetTagsRequest();
 
         // Test without the 'application' parameter set
         try {
-            $setTagsRequest->toJSON();
+            $setTagsRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
@@ -218,7 +218,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $setTagsRequest->setApplication('APPLICATION');
         try {
-            $setTagsRequest->toJSON();
+            $setTagsRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
@@ -227,7 +227,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'tags' parameter set
         $setTagsRequest->setHwid('HWID');
         try {
-            $setTagsRequest->toJSON();
+            $setTagsRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'tags\' property is not set !', $pe->getMessage());
@@ -242,7 +242,7 @@ class SetTagsRequestTest extends \PHPUnit_Framework_TestCase
         );
 
         // Test with valid values
-        $array = $setTagsRequest->toJSON();
+        $array = $setTagsRequest->jsonSerialize();
         $this->assertSame('APPLICATION', $setTagsRequest->getApplication());
         $this->assertSame('HWID', $setTagsRequest->getHwid());
 

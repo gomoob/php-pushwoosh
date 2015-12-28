@@ -67,16 +67,16 @@ class MacTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = Mac::create()
             ->setBadges(3)
             ->setRootParams(array('content-available' => '1'))
             ->setSound('sound.caf')
             ->setTtl(3600)
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(4, $array);
         $this->assertSame(3, $array['mac_badges']);

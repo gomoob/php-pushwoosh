@@ -71,9 +71,9 @@ class WNSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
 
         $array = WNS::create()
@@ -85,7 +85,7 @@ class WNSTest extends \PHPUnit_Framework_TestCase
             )
             ->setTag('myTag')
             ->setType('Badge')
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(3, $array);
         $this->assertSame(
@@ -97,6 +97,5 @@ class WNSTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertSame('myTag', $array['wns_tag']);
         $this->assertSame('Badge', $array['wns_type']);
-
     }
 }

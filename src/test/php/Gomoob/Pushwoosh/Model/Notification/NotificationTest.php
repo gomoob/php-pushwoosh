@@ -345,9 +345,9 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>toJSON()</tt> function.
+     * Test method for the <tt>jsonSerialize()</tt> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = Notification::create()
             ->setSendDate('now')
@@ -473,7 +473,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                     ->setCount(3)
                     ->setType('Tile')
             )
-            ->toJSON();
+            ->jsonSerialize();
 
         // Test the generic properties
         $this->assertCount(58, $array);
@@ -586,6 +586,5 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('back title', $array['wp_backtitle']);
         $this->assertSame(3, $array['wp_count']);
         $this->assertSame('Tile', $array['wp_type']);
-
     }
 }

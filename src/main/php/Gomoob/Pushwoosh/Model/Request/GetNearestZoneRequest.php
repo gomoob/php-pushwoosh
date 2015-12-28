@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class GetNearestZoneRequest
+class GetNearestZoneRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID where you send the message to.
@@ -53,7 +53,6 @@ class GetNearestZoneRequest
     public static function create()
     {
         return new GetNearestZoneRequest();
-
     }
 
     /**
@@ -64,7 +63,6 @@ class GetNearestZoneRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -75,7 +73,6 @@ class GetNearestZoneRequest
     public function getHwid()
     {
         return $this->hwid;
-
     }
 
     /**
@@ -86,7 +83,6 @@ class GetNearestZoneRequest
     public function getLat()
     {
         return $this->lat;
-
     }
 
     /**
@@ -97,7 +93,39 @@ class GetNearestZoneRequest
     public function getLng()
     {
         return $this->lng;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+            throw new PushwooshException('The \'application\' property is not set !');
+        }
+    
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+            throw new PushwooshException('The \'hwid\' property is not set !');
+        }
+    
+        // The 'lat' parameter must have been defined
+        if (!isset($this->lat)) {
+            throw new PushwooshException('The \'lat\' property is not set !');
+        }
+    
+        // The 'lng' parameter must have been defined
+        if (!isset($this->lng)) {
+            throw new PushwooshException('The \'lng\' property is not set !');
+        }
+    
+        return array(
+            'application' => $this->application,
+            'hwid' => $this->hwid,
+            'lat' => $this->lat,
+            'lng' => $this->lng
+        );
     }
 
     /**
@@ -157,46 +185,6 @@ class GetNearestZoneRequest
         $this->lng = $lng;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'application' parameter must have been defined.
-        if (!isset($this->application)) {
-            throw new PushwooshException('The \'application\' property is not set !');
-
-        }
-
-        // The 'hwid' parameter must have been defined.
-        if (!isset($this->hwid)) {
-            throw new PushwooshException('The \'hwid\' property is not set !');
-
-        }
-
-        // The 'lat' parameter must have been defined
-        if (!isset($this->lat)) {
-            throw new PushwooshException('The \'lat\' property is not set !');
-
-        }
-
-        // The 'lng' parameter must have been defined
-        if (!isset($this->lng)) {
-            throw new PushwooshException('The \'lng\' property is not set !');
-
-        }
-
-        return array(
-            'application' => $this->application,
-            'hwid' => $this->hwid,
-            'lat' => $this->lat,
-            'lng' => $this->lng
-        );
 
     }
 }

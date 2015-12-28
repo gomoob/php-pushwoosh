@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class GetTagsRequest
+class GetTagsRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
@@ -46,7 +46,6 @@ class GetTagsRequest
     public static function create()
     {
         return new GetTagsRequest();
-
     }
 
     /**
@@ -57,7 +56,6 @@ class GetTagsRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -70,7 +68,6 @@ class GetTagsRequest
     public function getAuth()
     {
         return $this->auth;
-
     }
 
     /**
@@ -81,7 +78,33 @@ class GetTagsRequest
     public function getHwid()
     {
         return $this->hwid;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+            throw new PushwooshException('The \'application\' property is not set !');
+        }
+    
+        // The 'auth' parameter must have been set
+        if (!isset($this->auth)) {
+            throw new PushwooshException('The \'auth\' property is not set !');
+        }
+    
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+            throw new PushwooshException('The \'hwid\' property is not set !');
+        }
+    
+        return array(
+            'application' => $this->application,
+            'auth' => $this->auth,
+            'hwid' => $this->hwid
+        );
     }
 
     /**
@@ -96,7 +119,6 @@ class GetTagsRequest
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -113,7 +135,6 @@ class GetTagsRequest
         $this->auth = $auth;
 
         return $this;
-
     }
 
     /**
@@ -128,39 +149,5 @@ class GetTagsRequest
         $this->hwid = $hwid;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'application' parameter must have been defined.
-        if (!isset($this->application)) {
-            throw new PushwooshException('The \'application\' property is not set !');
-
-        }
-
-        // The 'auth' parameter must have been set
-        if (!isset($this->auth)) {
-            throw new PushwooshException('The \'auth\' property is not set !');
-
-        }
-
-        // The 'hwid' parameter must have been defined.
-        if (!isset($this->hwid)) {
-            throw new PushwooshException('The \'hwid\' property is not set !');
-
-        }
-
-        return array(
-            'application' => $this->application,
-            'auth' => $this->auth,
-            'hwid' => $this->hwid
-        );
-
     }
 }

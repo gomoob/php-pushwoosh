@@ -17,7 +17,7 @@ use Gomoob\Pushwoosh\Model\Notification\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class CreateMessageRequest
+class CreateMessageRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
@@ -55,7 +55,6 @@ class CreateMessageRequest
     public static function create()
     {
         return new CreateMessageRequest();
-
     }
 
     /**
@@ -75,7 +74,6 @@ class CreateMessageRequest
         $this->notifications[] = $notification;
 
         return $this;
-
     }
 
     /**
@@ -88,7 +86,6 @@ class CreateMessageRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -99,7 +96,6 @@ class CreateMessageRequest
     public function getApplicationsGroup()
     {
         return $this->applicationsGroup;
-
     }
 
     /**
@@ -112,7 +108,6 @@ class CreateMessageRequest
     public function getAuth()
     {
         return $this->auth;
-
     }
 
     /**
@@ -124,7 +119,45 @@ class CreateMessageRequest
     public function getNotifications()
     {
         return $this->notifications;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // One of the 'application' or 'applicationsGroup' parameter must have been defined.
+        if (!isset($this->application) && !isset($this->applicationsGroup)) {
+            throw new PushwooshException('None of the \'application\' or \'applicationsGroup\' properties are set !');
+        }
+    
+        // If the 'application' or 'applicationsGroup' parameters are both set this is an error
+        if (isset($this->application) && isset($this->applicationsGroup)) {
+            throw new PushwooshException('Both \'application\' and \'applicationsGroup\' properties are set !');
+        }
+    
+        // The 'auth' parameter must have been set
+        if (!isset($this->auth)) {
+            throw new PushwooshException('The \'auth\' property is not set !');
+        }
+    
+        $json = array(
+            'application' => $this->application,
+            'applicationsGroup' => $this->applicationsGroup,
+            'auth' => $this->auth,
+            'notifications' => array()
+        );
+    
+        // Adds the notifications
+        // Please note that the Pushwoosh REST API seems to authorize calls to the 'createMessage' service with a create
+        // message request which do not define any notification. This is authorized but has no effect.
+        if (isset($this->notifications)) {
+            foreach ($this->notifications as $notification) {
+                $json['notifications'][] = $notification->jsonSerialize();
+            }
+        }
+    
+        return $json;
     }
 
     /**
@@ -141,7 +174,6 @@ class CreateMessageRequest
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -157,7 +189,6 @@ class CreateMessageRequest
         $this->applicationsGroup = $applicationsGroup;
 
         return $this;
-
     }
 
     /**
@@ -174,7 +205,6 @@ class CreateMessageRequest
         $this->auth = $auth;
 
         return $this;
-
     }
 
     /**
@@ -190,53 +220,5 @@ class CreateMessageRequest
         $this->notifications = $notifications;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // One of the 'application' or 'applicationsGroup' parameter must have been defined.
-        if (!isset($this->application) && !isset($this->applicationsGroup)) {
-            throw new PushwooshException('None of the \'application\' or \'applicationsGroup\' properties are set !');
-
-        }
-
-        // If the 'application' or 'applicationsGroup' parameters are both set this is an error
-        if (isset($this->application) && isset($this->applicationsGroup)) {
-            throw new PushwooshException('Both \'application\' and \'applicationsGroup\' properties are set !');
-
-        }
-
-        // The 'auth' parameter must have been set
-        if (!isset($this->auth)) {
-            throw new PushwooshException('The \'auth\' property is not set !');
-
-        }
-
-        $json = array(
-            'application' => $this->application,
-            'applicationsGroup' => $this->applicationsGroup,
-            'auth' => $this->auth,
-            'notifications' => array()
-        );
-
-        // Adds the notifications
-        // Please note that the Pushwoosh REST API seems to authorize calls to the 'createMessage' service with a create
-        // message request which do not define any notification. This is authorized but has no effect.
-        if (isset($this->notifications)) {
-            foreach ($this->notifications as $notification) {
-                $json['notifications'][] = $notification->toJSON();
-
-            }
-
-        }
-
-        return $json;
-
     }
 }

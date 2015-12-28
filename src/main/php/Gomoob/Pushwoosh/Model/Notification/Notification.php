@@ -8,6 +8,7 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use Gomoob\Pushwoosh\JsonUtils;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 use Gomoob\Pushwoosh\Model\Condition\ICondition;
 
@@ -16,7 +17,7 @@ use Gomoob\Pushwoosh\Model\Condition\ICondition;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Notification
+class Notification implements \JsonSerializable
 {
     /**
      * An object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).
@@ -500,6 +501,63 @@ class Notification
     {
         return $this->wP;
     }
+    
+    /**
+     * Creates a JSON representation of this request.
+     *
+     * @return array a PHP which can be passed to the 'json_encode' PHP method.
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        // Mandatory parameters
+        $json['ignore_user_timezone'] = $this->ignoreUserTimezone;
+        $json['send_date'] = is_string($this->sendDate) ? $this->sendDate : $this->sendDate->format('Y-m-d H:i');
+    
+        // Optional parameters
+        isset($this->content) ? $json['content'] = $this->content : false;
+        isset($this->data) ? $json['data'] = $this->data : false;
+        isset($this->devices) ? $json['devices'] = $this->devices : false;
+        isset($this->filter) ? $json['filter'] = $this->filter : false;
+        isset($this->link) ? $json['link'] = $this->link : false;
+        isset($this->minimizeLink) ? $json['minimize_link'] = $this->minimizeLink->getValue() : false;
+        isset($this->pageId) ? $json['page_id'] = $this->pageId : false;
+    
+        if (isset($this->conditions)) {
+            $conditionsArray = array();
+    
+            foreach ($this->conditions as $condition) {
+                $conditionsArray[] = $condition->jsonSerialize();
+            }
+    
+            $json['conditions'] = $conditionsArray;
+        }
+    
+        if (isset($this->platforms)) {
+            $platformsArray = array();
+    
+            foreach ($this->platforms as $platform) {
+                $platformsArray[] = $platform->getValue();
+            }
+    
+            $json['platforms'] = $platformsArray;
+        }
+    
+        // Merge specific platforms informations
+        return JsonUtils::mergeJsonSerializables(
+            $json,
+            $this->aDM,
+            $this->android,
+            $this->blackBerry,
+            $this->chrome,
+            $this->iOS,
+            $this->mac,
+            $this->safari,
+            $this->wNS,
+            $this->wP
+        );
+    }
 
     /**
      * Sets the object which contains specific Pushwoosh notification informations for ADM (Amazon Device Messaging).
@@ -837,95 +895,5 @@ class Notification
         $this->wP = $wP;
 
         return $this;
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-
-        // Mandatory parameters
-        $json['ignore_user_timezone'] = $this->ignoreUserTimezone;
-        $json['send_date'] = is_string($this->sendDate) ? $this->sendDate : $this->sendDate->format('Y-m-d H:i');
-
-        // Optional parameters
-        isset($this->content) ? $json['content'] = $this->content : false;
-        isset($this->data) ? $json['data'] = $this->data : false;
-        isset($this->devices) ? $json['devices'] = $this->devices : false;
-        isset($this->filter) ? $json['filter'] = $this->filter : false;
-        isset($this->link) ? $json['link'] = $this->link : false;
-        isset($this->minimizeLink) ? $json['minimize_link'] = $this->minimizeLink->getValue() : false;
-        isset($this->pageId) ? $json['page_id'] = $this->pageId : false;
-
-        if (isset($this->conditions)) {
-            $conditionsArray = array();
-
-            foreach ($this->conditions as $condition) {
-                $conditionsArray[] = $condition->toJSON();
-            }
-
-            $json['conditions'] = $conditionsArray;
-        }
-
-        if (isset($this->platforms)) {
-            $platformsArray = array();
-
-            foreach ($this->platforms as $platform) {
-                $platformsArray[] = $platform->getValue();
-            }
-
-            $json['platforms'] = $platformsArray;
-        }
-
-        // Amazon Device Messaging specific informations
-        if (isset($this->aDM)) {
-            $json = array_merge($json, $this->aDM->toJSON());
-        }
-
-        // Android specific informations
-        if (isset($this->android)) {
-            $json = array_merge($json, $this->android->toJSON());
-        }
-
-        // BlackBerry specific informations
-        if (isset($this->blackBerry)) {
-            $json = array_merge($json, $this->blackBerry->toJSON());
-        }
-        
-        // Chrome specific informations
-        if (isset($this->chrome)) {
-            $json = array_merge($json, $this->chrome->toJSON());
-        }
-
-        // iOS specific informations
-        if (isset($this->iOS)) {
-            $json = array_merge($json, $this->iOS->toJSON());
-        }
-
-        // Mac specific informations
-        if (isset($this->mac)) {
-            $json = array_merge($json, $this->mac->toJSON());
-        }
-
-        // Safari specific informations
-        if (isset($this->safari)) {
-            $json = array_merge($json, $this->safari->toJSON());
-        }
-
-        // Windows Notification Service specific informations
-        if (isset($this->wNS)) {
-            $json = array_merge($json, $this->wNS->toJSON());
-        }
-
-        // Windows Phone specific informations
-        if (isset($this->wP)) {
-            $json = array_merge($json, $this->wP->toJSON());
-        }
-
-        return $json;
     }
 }

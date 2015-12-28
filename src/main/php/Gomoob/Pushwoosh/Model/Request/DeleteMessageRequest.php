@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class DeleteMessageRequest
+class DeleteMessageRequest implements \JsonSerializable
 {
     /**
      * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
@@ -39,7 +39,6 @@ class DeleteMessageRequest
     public static function create()
     {
         return new DeleteMessageRequest();
-
     }
 
     /**
@@ -52,7 +51,6 @@ class DeleteMessageRequest
     public function getAuth()
     {
         return $this->auth;
-
     }
 
     /**
@@ -63,7 +61,29 @@ class DeleteMessageRequest
     public function getMessage()
     {
         return $this->message;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'auth' parameter must have been set
+        if (!isset($this->auth)) {
+            throw new PushwooshException('The \'auth\' property is not set !');
+    
+        }
+    
+        // The 'message' parameter must have been set
+        if (!isset($this->message)) {
+            throw new PushwooshException('The \'message\' property is not set !');
+    
+        }
+    
+        return array(
+            'auth' => $this->auth,
+            'message' => $this->message
+        );
     }
 
     /**
@@ -80,7 +100,6 @@ class DeleteMessageRequest
         $this->auth = $auth;
 
         return $this;
-
     }
 
     /**
@@ -95,32 +114,5 @@ class DeleteMessageRequest
         $this->message = $message;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'auth' parameter must have been set
-        if (!isset($this->auth)) {
-            throw new PushwooshException('The \'auth\' property is not set !');
-
-        }
-
-        // The 'message' parameter must have been set
-        if (!isset($this->message)) {
-            throw new PushwooshException('The \'message\' property is not set !');
-
-        }
-
-        return array(
-            'auth' => $this->auth,
-            'message' => $this->message
-        );
-
     }
 }

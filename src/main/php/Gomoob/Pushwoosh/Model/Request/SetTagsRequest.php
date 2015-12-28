@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class SetTagsRequest
+class SetTagsRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID for which one to set tags.
@@ -47,7 +47,6 @@ class SetTagsRequest
     public static function create()
     {
         return new SetTagsRequest();
-
     }
 
     /**
@@ -78,7 +77,6 @@ class SetTagsRequest
         }
 
         $this->tags[$tagName] = $tagValue;
-
     }
 
     /**
@@ -89,7 +87,6 @@ class SetTagsRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -102,7 +99,6 @@ class SetTagsRequest
     public function getHwid()
     {
         return $this->hwid;
-
     }
 
     /**
@@ -113,7 +109,6 @@ class SetTagsRequest
     public function getTags()
     {
         return $this->tags;
-
     }
 
     /**
@@ -127,6 +122,35 @@ class SetTagsRequest
     {
         return $this->tags !== null && array_key_exists($tagName, $this->tags);
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+            throw new PushwooshException('The \'application\' property is not set !');
+        }
+    
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+            throw new PushwooshException('The \'hwid\' property is not set !');
+        }
+    
+        // The 'tags' parameter must have been defined.
+        if (!isset($this->tags)) {
+            throw new PushwooshException('The \'tags\' property is not set !');
+        }
+    
+        $json = array(
+            'application' => $this->application,
+            'hwid' => $this->hwid,
+            'tags' => $this->tags
+        );
+    
+        return $json;
+    }
 
     /**
      * Function used to remove a tag from the Pushwoosh tags.
@@ -139,7 +163,6 @@ class SetTagsRequest
     {
         if ($this->tags !== null && array_key_exists($tagName, $this->tags)) {
             unset($this->tags[$tagName]);
-
         }
     }
 
@@ -155,7 +178,6 @@ class SetTagsRequest
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -172,7 +194,6 @@ class SetTagsRequest
         $this->hwid = $hwid;
 
         return $this;
-
     }
 
     /**
@@ -193,7 +214,6 @@ class SetTagsRequest
         $this->tags[$tagName] = $tagValue;
 
         return $this;
-
     }
 
     /**
@@ -208,41 +228,5 @@ class SetTagsRequest
         $this->tags = $tags;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'application' parameter must have been defined.
-        if (!isset($this->application)) {
-            throw new PushwooshException('The \'application\' property is not set !');
-
-        }
-
-        // The 'hwid' parameter must have been defined.
-        if (!isset($this->hwid)) {
-            throw new PushwooshException('The \'hwid\' property is not set !');
-
-        }
-
-        // The 'tags' parameter must have been defined.
-        if (!isset($this->tags)) {
-            throw new PushwooshException('The \'tags\' property is not set !');
-
-        }
-
-        $json = array(
-            'application' => $this->application,
-            'hwid' => $this->hwid,
-            'tags' => $this->tags
-        );
-
-        return $json;
-
     }
 }

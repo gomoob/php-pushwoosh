@@ -22,7 +22,7 @@ class StringConditionTest extends \PHPUnit_Framework_TestCase
     public function testEq()
     {
         $stringCondition = StringCondition::create('A_TAG')->eq('VALUE');
-        $array = $stringCondition->toJSON();
+        $array = $stringCondition->jsonSerialize();
 
         $this->assertCount(3, $array);
 

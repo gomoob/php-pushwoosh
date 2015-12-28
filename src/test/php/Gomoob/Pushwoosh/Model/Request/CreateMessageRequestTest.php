@@ -109,15 +109,15 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>toJSON()</tt> function.
+     * Test method for the <tt>jsonSerialize()</tt> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $createMessageRequest = new CreateMessageRequest();
 
         // Test without the 'application' and 'applicationsGroup' parameters
         try {
-            $createMessageRequest->toJSON();
+            $createMessageRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame(
@@ -131,7 +131,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest->setApplicationsGroup('XXXX-XXXX');
 
         try {
-            $createMessageRequest->toJSON();
+            $createMessageRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame(
@@ -144,7 +144,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $createMessageRequest->setApplicationsGroup(null);
 
         try {
-            $createMessageRequest->toJSON();
+            $createMessageRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'auth\' property is not set !', $pe->getMessage());
@@ -153,7 +153,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         // Test with the 'auth' and 'application' parameters set and no notification
         $createMessageRequest->setAuth('XXXX');
 
-        $json = $createMessageRequest->toJSON();
+        $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
         $this->assertTrue(array_key_exists('applicationsGroup', $json));
@@ -169,7 +169,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $notification->setContent('CONTENT');
         $createMessageRequest->addNotification($notification);
 
-        $json = $createMessageRequest->toJSON();
+        $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
         $this->assertTrue(array_key_exists('applicationsGroup', $json));
@@ -193,7 +193,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $json = $createMessageRequest->toJSON();
+        $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
         $this->assertTrue(array_key_exists('applicationsGroup', $json));
@@ -217,7 +217,7 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $notification->addDevice('DEVICE_TOKEN_2');
         $notification->addDevice('DEVICE_TOKEN_3');
 
-        $json = $createMessageRequest->toJSON();
+        $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
         $this->assertTrue(array_key_exists('applicationsGroup', $json));

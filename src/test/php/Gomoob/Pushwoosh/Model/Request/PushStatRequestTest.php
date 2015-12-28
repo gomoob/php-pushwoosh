@@ -62,15 +62,15 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>toJSON()</tt> function.
+     * Test method for the <tt>jsonSerialize()</tt> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $pushStatRequest = new PushStatRequest();
 
         // Test without the 'application' parameter set
         try {
-            $pushStatRequest->toJSON();
+            $pushStatRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
@@ -79,7 +79,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hash' parameter set
         $pushStatRequest->setApplication('APPLICATION');
         try {
-            $pushStatRequest->toJSON();
+            $pushStatRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'hash\' property is not set !', $pe->getMessage());
@@ -88,7 +88,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $pushStatRequest->setHash('hash');
         try {
-            $pushStatRequest->toJSON();
+            $pushStatRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
@@ -96,7 +96,7 @@ class PushStatRequestTest extends \PHPUnit_Framework_TestCase
 
         // Test with valid values
         $pushStatRequest->setHwid('HWID');
-        $array = $pushStatRequest->toJSON();
+        $array = $pushStatRequest->jsonSerialize();
         $this->assertSame('APPLICATION', $array['application']);
         $this->assertSame('hash', $array['hash']);
         $this->assertSame('HWID', $array['hwid']);

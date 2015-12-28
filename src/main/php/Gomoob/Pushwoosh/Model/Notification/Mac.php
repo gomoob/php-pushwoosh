@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Mac
+class Mac implements \JsonSerializable
 {
     private $badges;
     private $rootParams;
@@ -52,7 +52,22 @@ class Mac
     public function getTtl()
     {
         return $this->ttl;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        isset($this->badges) ? $json['mac_badges'] = $this->badges : false;
+        isset($this->rootParams) ? $json['mac_root_params'] = $this->rootParams : false;
+        isset($this->sound) ? $json['mac_sound'] = $this->sound : false;
+        isset($this->ttl) ? $json['mac_ttl'] = $this->ttl : false;
+    
+        return $json;
+    
     }
 
     public function setBadges($badges)
@@ -81,23 +96,5 @@ class Mac
         $this->ttl = $ttl;
 
         return $this;
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-
-        isset($this->badges) ? $json['mac_badges'] = $this->badges : false;
-        isset($this->rootParams) ? $json['mac_root_params'] = $this->rootParams : false;
-        isset($this->sound) ? $json['mac_sound'] = $this->sound : false;
-        isset($this->ttl) ? $json['mac_ttl'] = $this->ttl : false;
-
-        return $json;
-
     }
 }

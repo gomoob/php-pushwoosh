@@ -51,15 +51,15 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>toJSON()</tt> function.
+     * Test method for the <tt>jsonSerialize()</tt> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $unregisterDeviceRequest = new UnregisterDeviceRequest();
 
         // Test without the 'application' parameter set
         try {
-            $unregisterDeviceRequest->toJSON();
+            $unregisterDeviceRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'application\' property is not set !', $pe->getMessage());
@@ -68,7 +68,7 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         // Test without the 'hwid' parameter set
         $unregisterDeviceRequest->setApplication('APPLICATION');
         try {
-            $unregisterDeviceRequest->toJSON();
+            $unregisterDeviceRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'hwid\' property is not set !', $pe->getMessage());
@@ -77,7 +77,7 @@ class UnregisterDeviceRequestTest extends \PHPUnit_Framework_TestCase
         $unregisterDeviceRequest->setHwid('HWID');
 
         // Test with valid values
-        $array = $unregisterDeviceRequest->toJSON();
+        $array = $unregisterDeviceRequest->jsonSerialize();
         $this->assertSame('APPLICATION', $unregisterDeviceRequest->getApplication());
         $this->assertSame('HWID', $unregisterDeviceRequest->getHwid());
     }

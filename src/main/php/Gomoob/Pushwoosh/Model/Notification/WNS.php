@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class WNS
+class WNS implements \JsonSerializable
 {
     private $content;
     private $tag;
@@ -70,11 +70,9 @@ class WNS
     }
 
     /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
+     * {@inheritdoc}
      */
-    public function toJSON()
+    public function jsonSerialize()
     {
         $json = array();
 

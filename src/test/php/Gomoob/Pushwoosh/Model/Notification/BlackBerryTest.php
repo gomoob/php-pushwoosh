@@ -36,16 +36,15 @@ class BlackBerryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = BlackBerry::create()
             ->setHeader('header')
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(1, $array);
         $this->assertSame('header', $array['blackberry_header']);
-
     }
 }

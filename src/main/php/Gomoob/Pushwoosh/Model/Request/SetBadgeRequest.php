@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class SetBadgeRequest
+class SetBadgeRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
@@ -46,7 +46,6 @@ class SetBadgeRequest
     public static function create()
     {
         return new SetBadgeRequest();
-
     }
 
     /**
@@ -57,7 +56,6 @@ class SetBadgeRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -78,7 +76,33 @@ class SetBadgeRequest
     public function getHwid()
     {
         return $this->hwid;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+            throw new PushwooshException('The \'application\' property is not set !');
+        }
+    
+        // The 'badge' parameter must have been defined
+        if (!isset($this->badge)) {
+            throw new PushwooshException('The \'badge\' property is not set !');
+        }
+    
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+            throw new PushwooshException('The \'hwid\' property is not set !');
+        }
+    
+        return array(
+            'application' => $this->application,
+            'badge' => $this->badge,
+            'hwid' => $this->hwid
+        );
     }
 
     /**
@@ -93,7 +117,6 @@ class SetBadgeRequest
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -120,39 +143,5 @@ class SetBadgeRequest
         $this->hwid = $hwid;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'application' parameter must have been defined.
-        if (!isset($this->application)) {
-            throw new PushwooshException('The \'application\' property is not set !');
-
-        }
-
-        // The 'badge' parameter must have been defined
-        if (!isset($this->badge)) {
-            throw new PushwooshException('The \'badge\' property is not set !');
-
-        }
-
-        // The 'hwid' parameter must have been defined.
-        if (!isset($this->hwid)) {
-            throw new PushwooshException('The \'hwid\' property is not set !');
-
-        }
-
-        return array(
-            'application' => $this->application,
-            'badge' => $this->badge,
-            'hwid' => $this->hwid
-        );
-
     }
 }

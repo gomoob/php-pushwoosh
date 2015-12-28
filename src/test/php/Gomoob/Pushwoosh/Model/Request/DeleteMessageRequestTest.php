@@ -51,15 +51,15 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>toJSON()</tt> function.
+     * Test method for the <tt>jsonSerialize()</tt> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $deleteMessageRequest = new DeleteMessageRequest();
 
         // Test without the 'auth' parameter set
         try {
-            $deleteMessageRequest->toJSON();
+            $deleteMessageRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'auth\' property is not set !', $pe->getMessage());
@@ -69,7 +69,7 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         $deleteMessageRequest->setAuth('XXXX');
 
         try {
-            $deleteMessageRequest->toJSON();
+            $deleteMessageRequest->jsonSerialize();
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $pe) {
             $this->assertSame('The \'message\' property is not set !', $pe->getMessage());
@@ -78,7 +78,7 @@ class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
         // Test with valid values
         $deleteMessageRequest->setMessage('MESSAGE');
 
-        $array = $deleteMessageRequest->toJSON();
+        $array = $deleteMessageRequest->jsonSerialize();
         $this->assertSame('XXXX', $array['auth']);
         $this->assertSame('MESSAGE', $array['message']);
     }

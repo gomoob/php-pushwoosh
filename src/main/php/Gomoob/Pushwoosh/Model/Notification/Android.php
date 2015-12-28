@@ -14,7 +14,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @see    https://developer.android.com/google/gcm/index.html
  */
-class Android
+class Android implements \JsonSerializable
 {
     /**
      * Android application icon badge number.
@@ -176,6 +176,30 @@ class Android
     }
     
     /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        isset($this->badges) ? $json['android_badges'] = $this->badges : false;
+        isset($this->banner) ? $json['android_banner'] = $this->banner : false;
+        isset($this->customIcon) ? $json['android_custom_icon'] = $this->customIcon : false;
+        isset($this->gcmTtl) ? $json['android_gcm_ttl'] = $this->gcmTtl : false;
+        isset($this->header) ? $json['android_header'] = $this->header : false;
+        isset($this->ibc) ? $json['android_ibc'] = $this->ibc : false;
+        isset($this->icon) ? $json['android_icon'] = $this->icon : false;
+        isset($this->led) ? $json['android_led'] = $this->led : false;
+        isset($this->priority) ? $json['android_priority'] = $this->priority : false;
+        isset($this->rootParams) ? $json['android_root_params'] = $this->rootParams : false;
+        isset($this->sound) ? $json['android_sound'] = $this->sound : false;
+        isset($this->vibration) ? $json['android_vibration'] = ($this->vibration ? 1 : 0) : false;
+    
+        return $json;
+    
+    }
+
+    /**
      * Sets the Android application icon badge number.
      *
      * @param int $badges The Android application icon badge number.
@@ -302,31 +326,5 @@ class Android
         $this->vibration = $vibration;
         
         return $this;
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-
-        isset($this->badges) ? $json['android_badges'] = $this->badges : false;
-        isset($this->banner) ? $json['android_banner'] = $this->banner : false;
-        isset($this->customIcon) ? $json['android_custom_icon'] = $this->customIcon : false;
-        isset($this->gcmTtl) ? $json['android_gcm_ttl'] = $this->gcmTtl : false;
-        isset($this->header) ? $json['android_header'] = $this->header : false;
-        isset($this->ibc) ? $json['android_ibc'] = $this->ibc : false;
-        isset($this->icon) ? $json['android_icon'] = $this->icon : false;
-        isset($this->led) ? $json['android_led'] = $this->led : false;
-        isset($this->priority) ? $json['android_priority'] = $this->priority : false;
-        isset($this->rootParams) ? $json['android_root_params'] = $this->rootParams : false;
-        isset($this->sound) ? $json['android_sound'] = $this->sound : false;
-        isset($this->vibration) ? $json['android_vibration'] = ($this->vibration ? 1 : 0) : false;
-
-        return $json;
-
     }
 }

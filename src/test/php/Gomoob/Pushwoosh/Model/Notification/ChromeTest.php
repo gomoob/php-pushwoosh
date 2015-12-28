@@ -55,15 +55,15 @@ class ChromeTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = Chrome::create()
             ->setGcmTtl(3600)
             ->setIcon('icon')
             ->setTitle('Title')
-            ->toJSON();
+            ->jsonSerialize();
         
         $this->assertCount(3, $array);
         $this->assertSame(3600, $array['chrome_gcm_ttl']);

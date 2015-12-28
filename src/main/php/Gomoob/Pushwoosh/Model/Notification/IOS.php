@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class IOS
+class IOS implements \JsonSerializable
 {
     /**
      * //TODO: TO BE DOCUMENTED !
@@ -93,6 +93,25 @@ class IOS
         return $this->trimContent;
 
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        isset($this->apnsTrimContent) ? $json['apns_trim_content'] = intval($this->apnsTrimContent) : false;
+        isset($this->badges) ? $json['ios_badges'] = $this->badges : false;
+        isset($this->categoryId) ? $json['category_id'] = $this->categoryId : false;
+        isset($this->rootParams) ? $json['ios_root_params'] = $this->rootParams : false;
+        isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
+        isset($this->ttl) ? $json['ios_ttl'] = $this->ttl : false;
+        isset($this->trimContent) ? $json['ios_trim_content'] = intval($this->trimContent) : false;
+    
+        return $json;
+    
+    }
 
     /**
      * TODO: TO BE DOCUMENTED !
@@ -159,26 +178,5 @@ class IOS
         $this->trimContent = $trimContent;
 
         return $this;
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-
-        isset($this->apnsTrimContent) ? $json['apns_trim_content'] = intval($this->apnsTrimContent) : false;
-        isset($this->badges) ? $json['ios_badges'] = $this->badges : false;
-        isset($this->categoryId) ? $json['category_id'] = $this->categoryId : false;
-        isset($this->rootParams) ? $json['ios_root_params'] = $this->rootParams : false;
-        isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
-        isset($this->ttl) ? $json['ios_ttl'] = $this->ttl : false;
-        isset($this->trimContent) ? $json['ios_trim_content'] = intval($this->trimContent) : false;
-
-        return $json;
-
     }
 }

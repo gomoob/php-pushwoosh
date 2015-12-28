@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class PushStatRequest
+class PushStatRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID where you send the message to.
@@ -46,7 +46,6 @@ class PushStatRequest
     public static function create()
     {
         return new PushStatRequest();
-
     }
 
     /**
@@ -57,7 +56,6 @@ class PushStatRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -68,7 +66,6 @@ class PushStatRequest
     public function getHash()
     {
         return $this->hash;
-
     }
 
     /**
@@ -79,7 +76,33 @@ class PushStatRequest
     public function getHwid()
     {
         return $this->hwid;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+            throw new PushwooshException('The \'application\' property is not set !');
+        }
+    
+        // The 'hash' parameter must have been defined.
+        if (!isset($this->hash)) {
+            throw new PushwooshException('The \'hash\' property is not set !');
+        }
+    
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+            throw new PushwooshException('The \'hwid\' property is not set !');
+        }
+    
+        return array(
+            'application' => $this->application,
+            'hash' => $this->hash,
+            'hwid' => $this->hwid
+        );
     }
 
     /**
@@ -94,7 +117,6 @@ class PushStatRequest
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -109,7 +131,6 @@ class PushStatRequest
         $this->hash = $hash;
 
         return $this;
-
     }
 
     /**
@@ -124,39 +145,5 @@ class PushStatRequest
         $this->hwid = $hwid;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'application' parameter must have been defined.
-        if (!isset($this->application)) {
-            throw new PushwooshException('The \'application\' property is not set !');
-
-        }
-
-        // The 'hash' parameter must have been defined.
-        if (!isset($this->hash)) {
-            throw new PushwooshException('The \'hash\' property is not set !');
-
-        }
-
-        // The 'hwid' parameter must have been defined.
-        if (!isset($this->hwid)) {
-            throw new PushwooshException('The \'hwid\' property is not set !');
-
-        }
-
-        return array(
-            'application' => $this->application,
-            'hash' => $this->hash,
-            'hwid' => $this->hwid
-        );
-
     }
 }

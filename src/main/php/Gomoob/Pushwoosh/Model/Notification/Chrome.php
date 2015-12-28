@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Chrome
+class Chrome implements \JsonSerializable
 {
     /**
      * The time to live parameter - the maximum lifespan of a message in seconds.
@@ -78,6 +78,21 @@ class Chrome
     }
     
     /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        isset($this->gcmTtl) ? $json['chrome_gcm_ttl'] = $this->gcmTtl : false;
+        isset($this->icon) ? $json['chrome_icon'] = $this->icon : false;
+        isset($this->title) ? $json['chrome_title'] = $this->title : false;
+    
+        return $json;
+    
+    }
+    
+    /**
      * Sets the time to live parameter - the maximum lifespan of a message in seconds.
      *
      * @param int $gcmTtl The time to live parameter.
@@ -117,22 +132,5 @@ class Chrome
         $this->title = $title;
     
         return $this;
-    }
-    
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-    
-        isset($this->gcmTtl) ? $json['chrome_gcm_ttl'] = $this->gcmTtl : false;
-        isset($this->icon) ? $json['chrome_icon'] = $this->icon : false;
-        isset($this->title) ? $json['chrome_title'] = $this->title : false;
-    
-        return $json;
-    
     }
 }

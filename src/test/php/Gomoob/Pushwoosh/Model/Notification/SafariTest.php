@@ -67,22 +67,21 @@ class SafariTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = Safari::create()
             ->setAction('Click here')
             ->setTitle('Title')
             ->setTtl(3600)
             ->setUrlArgs(array('firstArgument', 'secondArgument'))
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(4, $array);
         $this->assertSame('Click here', $array['safari_action']);
         $this->assertSame('Title', $array['safari_title']);
         $this->assertSame(3600, $array['safari_ttl']);
         $this->assertSame(array('firstArgument', 'secondArgument'), $array['safari_url_args']);
-
     }
 }

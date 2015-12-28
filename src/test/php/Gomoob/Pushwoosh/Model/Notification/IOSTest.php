@@ -88,9 +88,9 @@ class IOSTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = IOS::create()
             ->setApnsTrimContent(true)
@@ -99,7 +99,7 @@ class IOSTest extends \PHPUnit_Framework_TestCase
             ->setSound('sound file.wav')
             ->setTtl(3600)
             ->setTrimContent(true)
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(6, $array);
         $this->assertSame(1, $array['apns_trim_content']);
@@ -108,6 +108,5 @@ class IOSTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('sound file.wav', $array['ios_sound']);
         $this->assertSame(3600, $array['ios_ttl']);
         $this->assertSame(1, $array['ios_trim_content']);
-
     }
 }

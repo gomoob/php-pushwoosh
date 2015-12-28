@@ -105,9 +105,9 @@ class ADMTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = ADM::create()
             ->setBanner('http://example.com/banner.png')
@@ -118,7 +118,7 @@ class ADMTest extends \PHPUnit_Framework_TestCase
             ->setRootParams(array('key' => 'value'))
             ->setSound('push.mp3')
             ->setTtl(3600)
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(8, $array);
         $this->assertSame('http://example.com/banner.png', $array['adm_banner']);
@@ -129,6 +129,5 @@ class ADMTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array('key' => 'value'), $array['adm_root_params']);
         $this->assertSame('push.mp3', $array['adm_sound']);
         $this->assertSame(3600, $array['adm_ttl']);
-
     }
 }

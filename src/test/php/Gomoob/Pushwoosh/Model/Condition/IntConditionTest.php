@@ -22,7 +22,7 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     public function testBetween()
     {
         $intCondition = IntCondition::create('A_TAG')->between(10, 100);
-        $array = $intCondition->toJSON();
+        $array = $intCondition->jsonSerialize();
 
         $this->assertCount(3, $array);
 
@@ -48,7 +48,7 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     public function testEq()
     {
         $intCondition = IntCondition::create('A_TAG')->eq(10);
-        $array = $intCondition->toJSON();
+        $array = $intCondition->jsonSerialize();
 
         $this->assertCount(3, $array);
 
@@ -68,7 +68,7 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     public function testGte()
     {
         $intCondition = IntCondition::create('A_TAG')->gte(10);
-        $array = $intCondition->toJSON();
+        $array = $intCondition->jsonSerialize();
 
         $this->assertCount(3, $array);
 
@@ -88,7 +88,7 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     public function testLte()
     {
         $intCondition = IntCondition::create('A_TAG')->lte(10);
-        $array = $intCondition->toJSON();
+        $array = $intCondition->jsonSerialize();
 
         $this->assertCount(3, $array);
 

@@ -145,9 +145,9 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test method for the <code>#toJSON()</code> function.
+     * Test method for the <code>#jsonSerialize()</code> function.
      */
-    public function testToJSON()
+    public function testJsonSerialize()
     {
         $array = Android::create()
             ->setBanner('http://example.com/banner.png')
@@ -162,7 +162,7 @@ class AndroidTest extends \PHPUnit_Framework_TestCase
             ->setRootParams(array('key' => 'value'))
             ->setSound('push.mp3')
             ->setVibration(true)
-            ->toJSON();
+            ->jsonSerialize();
 
         $this->assertCount(12, $array);
         $this->assertSame('http://example.com/banner.png', $array['android_banner']);

@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class BlackBerry
+class BlackBerry implements \JsonSerializable
 {
     private $header;
 
@@ -33,26 +33,24 @@ class BlackBerry
         return $this->header;
 
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        isset($this->header) ? $json['blackberry_header'] = $this->header : false;
+    
+        return $json;
+    
+    }
 
     public function setHeader($header)
     {
         $this->header = $header;
 
         return $this;
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-
-        isset($this->header) ? $json['blackberry_header'] = $this->header : false;
-
-        return $json;
-
     }
 }

@@ -18,7 +18,7 @@ namespace Gomoob\Pushwoosh\Model\Condition;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-interface ICondition
+interface ICondition extends \JsonSerializable
 {
     /**
      * Gets the operand.
@@ -40,11 +40,4 @@ interface ICondition
      * @return string the name of the tag.
      */
     public function getTagName();
-
-    /**
-     * Creates a JSON representation of this condition.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON();
 }

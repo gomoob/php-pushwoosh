@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class UnregisterDeviceRequest
+class UnregisterDeviceRequest implements \JsonSerializable
 {
     /**
      * The Pushwoosh application ID for which one to register a new device.
@@ -40,7 +40,6 @@ class UnregisterDeviceRequest
     public static function create()
     {
         return new UnregisterDeviceRequest();
-
     }
 
     /**
@@ -51,7 +50,6 @@ class UnregisterDeviceRequest
     public function getApplication()
     {
         return $this->application;
-
     }
 
     /**
@@ -64,7 +62,29 @@ class UnregisterDeviceRequest
     public function getHwid()
     {
         return $this->hwid;
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        // The 'application' parameter must have been defined.
+        if (!isset($this->application)) {
+            throw new PushwooshException('The \'application\' property is not set !');
+        }
+    
+        // The 'hwid' parameter must have been defined.
+        if (!isset($this->hwid)) {
+            throw new PushwooshException('The \'hwid\' property is not set !');
+        }
+    
+        $json = array(
+            'application' => $this->application,
+            'hwid' => $this->hwid
+        );
+    
+        return $json;
     }
 
     /**
@@ -79,7 +99,6 @@ class UnregisterDeviceRequest
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -96,34 +115,5 @@ class UnregisterDeviceRequest
         $this->hwid = $hwid;
 
         return $this;
-
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        // The 'application' parameter must have been defined.
-        if (!isset($this->application)) {
-            throw new PushwooshException('The \'application\' property is not set !');
-
-        }
-
-        // The 'hwid' parameter must have been defined.
-        if (!isset($this->hwid)) {
-            throw new PushwooshException('The \'hwid\' property is not set !');
-
-        }
-
-        $json = array(
-            'application' => $this->application,
-            'hwid' => $this->hwid
-        );
-
-        return $json;
-
     }
 }

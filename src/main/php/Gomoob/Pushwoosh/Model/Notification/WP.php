@@ -13,7 +13,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class WP
+class WP implements \JsonSerializable
 {
     private $backbackground;
     private $backcontent;
@@ -30,7 +30,6 @@ class WP
     public static function create()
     {
         return new WP();
-
     }
 
     public function getBackbackground()
@@ -42,13 +41,11 @@ class WP
     public function getBackcontent()
     {
         return $this->backcontent;
-
     }
 
     public function getBackground()
     {
         return $this->background;
-
     }
 
     public function getBacktitle()
@@ -60,13 +57,29 @@ class WP
     public function getCount()
     {
         return $this->count;
-
     }
 
     public function getType()
     {
         return $this->type;
-
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        $json = array();
+    
+        isset($this->backbackground) ? $json['wp_backbackground'] = $this->backbackground : false;
+        isset($this->backcontent) ? $json['wp_backcontent'] = $this->backcontent : false;
+        isset($this->background) ? $json['wp_background'] = $this->background : false;
+        isset($this->backtitle) ? $json['wp_backtitle'] = $this->backtitle : false;
+        isset($this->count) ? $json['wp_count'] = $this->count : false;
+        isset($this->type) ? $json['wp_type'] = $this->type : false;
+    
+        return $json;
+    
     }
 
     public function setBackbackground($backbackground)
@@ -109,25 +122,5 @@ class WP
         $this->type = $type;
 
         return $this;
-    }
-
-    /**
-     * Creates a JSON representation of this request.
-     *
-     * @return array a PHP array which can be passed to the 'json_encode' PHP method.
-     */
-    public function toJSON()
-    {
-        $json = array();
-
-        isset($this->backbackground) ? $json['wp_backbackground'] = $this->backbackground : false;
-        isset($this->backcontent) ? $json['wp_backcontent'] = $this->backcontent : false;
-        isset($this->background) ? $json['wp_background'] = $this->background : false;
-        isset($this->backtitle) ? $json['wp_backtitle'] = $this->backtitle : false;
-        isset($this->count) ? $json['wp_count'] = $this->count : false;
-        isset($this->type) ? $json['wp_type'] = $this->type : false;
-
-        return $json;
-
     }
 }
