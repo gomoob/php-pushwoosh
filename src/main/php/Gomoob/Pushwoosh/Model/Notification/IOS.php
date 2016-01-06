@@ -103,7 +103,7 @@ class IOS implements \JsonSerializable
     
         isset($this->apnsTrimContent) ? $json['apns_trim_content'] = intval($this->apnsTrimContent) : false;
         isset($this->badges) ? $json['ios_badges'] = $this->badges : false;
-        isset($this->categoryId) ? $json['category_id'] = $this->categoryId : false;
+        isset($this->categoryId) ? $json['ios_category_id'] = $this->categoryId : false;
         isset($this->rootParams) ? $json['ios_root_params'] = $this->rootParams : false;
         isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
         isset($this->ttl) ? $json['ios_ttl'] = $this->ttl : false;
