@@ -109,7 +109,7 @@ $notification = Notification::create()->setConditions(
 	{% endhighlight %}
 </p>
 
-<!-- 'content -->
+<!-- 'content' -->
 <p>
     <code style="font-weight: bold;">content</code>
     <br/>
@@ -300,6 +300,51 @@ Notification::create()->setPlatforms(
 </p>
 
 <p>
+    <code style="font-weight: bold;">preset</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getPreset()</code>, <code>setPreset($preset)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setPreset('Q1A2Z-6X8SW');
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">remotePage</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getRemotePage()</code>, <code>setRemotePage($remotePage)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setRemotePage('http://myremoteurl.com');
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">richPageId</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getRichPageId()</code>, <code>setRichPageId($richPageId)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setRichPageId(42);
+?>
+    {% endhighlight %}
+</p>
+
+<p>
     <code style="font-weight: bold;">sendDate</code>
     <br/>
     <font style="font-weight: bold">Methods</font>
@@ -314,6 +359,21 @@ Notification::create()->setSendDate($dateTime);
 
 // Or simply set 'now'
 Notification::create()->setSendDate('now');
+?>
+    {% endhighlight %}
+</p>
+
+<p>
+    <code style="font-weight: bold;">sendRate</code>
+    <br/>
+    <font style="font-weight: bold">Methods</font>
+    <br/>
+    <code>getSendRate()</code>, <code>setSendRate($sendRate)</code>
+    <br/>
+    <font style="font-weight: bold">Sample</font>
+    {% highlight php %}
+<?php
+Notification::create()->setSendRate(200);
 ?>
     {% endhighlight %}
 </p>
