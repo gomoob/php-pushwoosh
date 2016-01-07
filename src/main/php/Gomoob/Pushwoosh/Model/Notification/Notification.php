@@ -118,6 +118,9 @@ class Notification implements \JsonSerializable
     // TODO: DOCUMENT ME !
     private $ignoreUserTimezone = true;
 
+    // TODO: DOCUMENT ME !
+    private $sendRate;
+
     /**
      * The object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification Service).
      *
@@ -513,6 +516,7 @@ class Notification implements \JsonSerializable
         $json['send_date'] = is_string($this->sendDate) ? $this->sendDate : $this->sendDate->format('Y-m-d H:i');
     
         // Optional parameters
+        isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
         isset($this->content) ? $json['content'] = $this->content : false;
         isset($this->data) ? $json['data'] = $this->data : false;
         isset($this->devices) ? $json['devices'] = $this->devices : false;
@@ -722,6 +726,14 @@ class Notification implements \JsonSerializable
     public function setIgnoreUserTimezone($ignoreUserTimezone)
     {
         $this->ignoreUserTimezone = $ignoreUserTimezone;
+
+        return $this;
+    }
+
+    // TODO: DOCUMENT ME !
+    public function setSendRate($sendRate)
+    {
+        $this->sendRate = $sendRate;
 
         return $this;
     }
