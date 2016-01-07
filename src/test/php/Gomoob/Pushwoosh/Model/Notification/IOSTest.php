@@ -35,6 +35,16 @@ class IOSTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($iOS, $iOS->setBadges(5));
         $this->assertSame(5, $iOS->getBadges());
     }
+    
+    /**
+     * Test method for the <code>#getCategoryId()</code> and <code>#setCategoryId($categoryId)</code> functions.
+     */
+    public function testGetSetCategoryId()
+    {
+        $iOS = new IOS();
+        $this->assertSame($iOS, $iOS->setCategoryId('1'));
+        $this->assertSame('1', $iOS->getCategoryId());
+    }
 
     /**
      * Test method for the <code>#getRootParams()</code> and <code>#setRootParams($rootParams)</code> functions.
@@ -95,15 +105,17 @@ class IOSTest extends \PHPUnit_Framework_TestCase
         $array = IOS::create()
             ->setApnsTrimContent(true)
             ->setBadges(5)
+            ->setCategoryId('1')
             ->setRootParams(['aps' => ['content-available' => '1']])
             ->setSound('sound file.wav')
             ->setTtl(3600)
             ->setTrimContent(true)
             ->jsonSerialize();
 
-        $this->assertCount(6, $array);
+        $this->assertCount(7, $array);
         $this->assertSame(1, $array['apns_trim_content']);
         $this->assertSame(5, $array['ios_badges']);
+        $this->assertSame('1', $array['ios_category_id']);
         $this->assertSame(['aps' => ['content-available' => '1']], $array['ios_root_params']);
         $this->assertSame('sound file.wav', $array['ios_sound']);
         $this->assertSame(3600, $array['ios_ttl']);

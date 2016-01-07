@@ -251,6 +251,50 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($notification, $notification->setPageId(15));
         $this->assertSame(15, $notification->getPageId());
     }
+    
+    /**
+     * Test method for the <tt>getPreset()</tt> and <tt>setPreset($preset)</tt> functions.
+     */
+    public function testGetSetPreset()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getPreset());
+        $this->assertSame($notification, $notification->setPreset('Q1A2Z-6X8SW'));
+        $this->assertSame('Q1A2Z-6X8SW', $notification->getPreset());
+    }
+    
+    /**
+     * Test method for the <tt>getRemotePage()</tt> and <tt>setRemotePage($remotePage)</tt> functions.
+     */
+    public function testGetSetRemotePage()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getRemotePage());
+        $this->assertSame($notification, $notification->setRemotePage('http://myremoteurl.com'));
+        $this->assertSame('http://myremoteurl.com', $notification->getRemotePage());
+    }
+
+    /**
+     * Test method for the <tt>getRichPageId()</tt> and <tt>setRichPageId($richPageId)</tt> functions.
+     */
+    public function testGetSetRichPageId()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getRichPageId());
+        $this->assertSame($notification, $notification->setRichPageId(42));
+        $this->assertSame(42, $notification->getRichPageId());
+    }
+    
+    /**
+     * Test method for the <tt>getPageId()</tt> and <tt>setPageId($pageId)</tt> functions.
+     */
+    public function testGetSetSendRate()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getSendRate());
+        $this->assertSame($notification, $notification->setSendRate(200));
+        $this->assertSame(200, $notification->getSendRate());
+    }
 
     /**
      * Test method for the <tt>getSafari()</tt> and <tt>setSafari($safari)</tt> functions.
@@ -360,6 +404,9 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                 ]
             )
             ->setPageId(39)
+            ->setRemotePage('http://myremoteurl.com')
+            ->setRichPageId(42)
+            ->setSendRate(200)
             ->setLink('http://google.com')
             ->setMinimizeLink(MinimizeLink::none())
             ->setData(
@@ -434,6 +481,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
                 IOS::create()
                     ->setApnsTrimContent(true)
                     ->setBadges(5)
+                    ->setCategoryId('1')
                     ->setRootParams(['aps' => ['content-available' => '1']])
                     ->setSound('sound file.wav')
                     ->setTtl(3600)
@@ -476,7 +524,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->jsonSerialize();
 
         // Test the generic properties
-        $this->assertCount(58, $array);
+        $this->assertCount(62, $array);
         $this->assertSame('now', $array['send_date']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
@@ -484,6 +532,9 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Русский', $array['content']['ru']);
         $this->assertSame('Deutsch', $array['content']['de']);
         $this->assertSame(39, $array['page_id']);
+        $this->assertSame('http://myremoteurl.com', $array['remote_page']);
+        $this->assertSame(42, $array['rich_page_id']);
+        $this->assertSame(200, $array['send_rate']);
         $this->assertSame('http://google.com', $array['link']);
         $this->assertSame(0, $array['minimize_link']);
         $this->assertCount(1, $array['data']);
@@ -551,6 +602,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         // Test IOS parameters
         $this->assertSame(1, $array['apns_trim_content']);
         $this->assertSame(5, $array['ios_badges']);
+        $this->assertSame('1', $array['ios_category_id']);
         $this->assertSame(['aps' => ['content-available' => '1']], $array['ios_root_params']);
         $this->assertSame('sound file.wav', $array['ios_sound']);
         $this->assertSame(3600, $array['ios_ttl']);

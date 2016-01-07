@@ -118,9 +118,6 @@ class Notification implements \JsonSerializable
     // TODO: DOCUMENT ME !
     private $ignoreUserTimezone = true;
 
-    // TODO: DOCUMENT ME !
-    private $sendRate;
-
     /**
      * The object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification Service).
      *
@@ -159,6 +156,27 @@ class Notification implements \JsonSerializable
      * @var \Gomoob\Pushwoosh\Model\Notification\Platform[]
      */
     private $platforms;
+    
+    /**
+     * Sets the Push Preset ID from your Control Panel.
+     *
+     * @var string
+     */
+    private $preset;
+
+    /**
+     * The remote Rich HTML Page URL. <scheme>://<authority>.
+     *
+     * @var string
+     */
+    private $remotePage;
+    
+    /**
+     * The new Rich HTML page identifier.
+     *
+     * @var int
+     */
+    private $richPageId;
 
     /**
      * The object which contains specific Pushwoosh notification informations for Safari.
@@ -177,6 +195,13 @@ class Notification implements \JsonSerializable
      * @var \DateTime | string
      */
     private $sendDate = 'now';
+    
+    /**
+     * The throttling, valid values are from 100 to 1000 pushes/second.
+     *
+     * @var int
+     */
+    private $sendRate;
 
     /**
      * The object which contains specific Pushwoosh notification informations for WNS (Windows Notification Service).
@@ -215,7 +240,6 @@ class Notification implements \JsonSerializable
         }
 
         $this->conditions[] = $condition;
-
     }
 
     /**
@@ -234,7 +258,6 @@ class Notification implements \JsonSerializable
         $this->devices[] = $device;
 
         return $this;
-
     }
 
     /**
@@ -253,7 +276,6 @@ class Notification implements \JsonSerializable
         $this->platforms[] = $platform;
 
         return $this;
-
     }
 
     /**
@@ -377,7 +399,6 @@ class Notification implements \JsonSerializable
     public function getFilter()
     {
         return $this->filter;
-
     }
 
     // TODO: DOCUMENT ME !
@@ -402,7 +423,6 @@ class Notification implements \JsonSerializable
     public function getLink()
     {
         return $this->link;
-
     }
 
     /**
@@ -414,7 +434,6 @@ class Notification implements \JsonSerializable
     public function getMac()
     {
         return $this->mac;
-
     }
 
     /**
@@ -426,7 +445,6 @@ class Notification implements \JsonSerializable
     public function getMinimizeLink()
     {
         return $this->minimizeLink;
-
     }
 
     /**
@@ -438,7 +456,6 @@ class Notification implements \JsonSerializable
     public function getPageId()
     {
         return $this->pageId;
-
     }
 
     /**
@@ -449,7 +466,36 @@ class Notification implements \JsonSerializable
     public function getPlatforms()
     {
         return $this->platforms;
-
+    }
+    
+    /**
+     * Gets the Push Preset ID from your Control Panel.
+     *
+     * @return string the Push Preset ID from your Control Panel.
+     */
+    public function getPreset()
+    {
+        return $this->preset;
+    }
+    
+    /**
+     * Gets the remote Rich HTML Page URL. <scheme>://<authority>.
+     *
+     * @return string the remote Rich HTML Page URL. <scheme>://<authority>.
+     */
+    public function getRemotePage()
+    {
+        return $this->remotePage;
+    }
+    
+    /**
+     * Gets the new Rich HTML page identifier.
+     *
+     * @return int the new Rich HTML page identifier.
+     */
+    public function getRichPageId()
+    {
+        return $this->richPageId;
     }
 
     /**
@@ -461,7 +507,6 @@ class Notification implements \JsonSerializable
     public function getSafari()
     {
         return $this->safari;
-
     }
 
     /**
@@ -475,7 +520,16 @@ class Notification implements \JsonSerializable
     public function getSendDate()
     {
         return $this->sendDate;
-
+    }
+    
+    /**
+     * Gets the throttling, valid values are from 100 to 1000 pushes/second.
+     *
+     * @return int The throttling in pushes/second.
+     */
+    public function getSendRate()
+    {
+        return $this->sendRate;
     }
 
     /**
@@ -488,7 +542,6 @@ class Notification implements \JsonSerializable
     public function getWNS()
     {
         return $this->wNS;
-
     }
 
     /**
@@ -516,7 +569,6 @@ class Notification implements \JsonSerializable
         $json['send_date'] = is_string($this->sendDate) ? $this->sendDate : $this->sendDate->format('Y-m-d H:i');
     
         // Optional parameters
-        isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
         isset($this->content) ? $json['content'] = $this->content : false;
         isset($this->data) ? $json['data'] = $this->data : false;
         isset($this->devices) ? $json['devices'] = $this->devices : false;
@@ -524,6 +576,9 @@ class Notification implements \JsonSerializable
         isset($this->link) ? $json['link'] = $this->link : false;
         isset($this->minimizeLink) ? $json['minimize_link'] = $this->minimizeLink->getValue() : false;
         isset($this->pageId) ? $json['page_id'] = $this->pageId : false;
+        isset($this->remotePage) ? $json['remote_page'] = $this->remotePage : false;
+        isset($this->richPageId) ? $json['rich_page_id'] = $this->richPageId : false;
+        isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
     
         if (isset($this->conditions)) {
             $conditionsArray = [];
@@ -730,14 +785,6 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
-    // TODO: DOCUMENT ME !
-    public function setSendRate($sendRate)
-    {
-        $this->sendRate = $sendRate;
-
-        return $this;
-    }
-
     /**
      * Sets the object which contains specific Pushwoosh notification informations for IOS (Apple Push Notification
      * Service).
@@ -822,6 +869,48 @@ class Notification implements \JsonSerializable
 
         return $this;
     }
+    
+    /**
+     * Sets the Push Preset ID from your Control Panel.
+     *
+     * @param string $preset the Push Preset ID from your Control Panel.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setPreset($preset)
+    {
+        $this->preset = $preset;
+         
+        return $this;
+    }
+    
+    /**
+     * Sets the remote Rich HTML Page URL. <scheme>://<authority>.
+     *
+     * @param string $remotePage the remote Rich HTML Page URL. <scheme>://<authority>.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setRemotePage($remotePage)
+    {
+        $this->remotePage = $remotePage;
+        
+        return $this;
+    }
+    
+    /**
+     * Sets the new Rich HTML page identifier.
+     *
+     * @param int $richPageId the new Rich HTML page identifier.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setRichPageId($richPageId)
+    {
+        $this->richPageId = $richPageId;
+         
+        return $this;
+    }
 
     /**
      * Sets the object which contains specific Pushwoosh notification informations for Safari.
@@ -856,7 +945,6 @@ class Notification implements \JsonSerializable
             // The provided send date string is invalid
             if ($newSendDate === false) {
                 throw new PushwooshException('Invalid send date provided !');
-
             }
 
             $this->sendDate = $newSendDate;
@@ -872,7 +960,20 @@ class Notification implements \JsonSerializable
         }
 
         return $this;
-
+    }
+    
+    /**
+     * Sets the throttling, valid values are from 100 to 1000 pushes/second.
+     *
+     * @param int $sendRate The throttling in pushes/second.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setSendRate($sendRate)
+    {
+        $this->sendRate = $sendRate;
+    
+        return $this;
     }
 
     /**
