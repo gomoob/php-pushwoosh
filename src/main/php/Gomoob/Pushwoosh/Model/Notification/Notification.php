@@ -516,7 +516,7 @@ class Notification implements \JsonSerializable
         $json['send_date'] = is_string($this->sendDate) ? $this->sendDate : $this->sendDate->format('Y-m-d H:i');
     
         // Optional parameters
-	isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
+        isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
         isset($this->content) ? $json['content'] = $this->content : false;
         isset($this->data) ? $json['data'] = $this->data : false;
         isset($this->devices) ? $json['devices'] = $this->devices : false;
