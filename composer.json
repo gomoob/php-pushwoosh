@@ -1,6 +1,6 @@
 {
 	"name" : "gomoob/php-pushwoosh",
-	"description" : "A PHP Library to easily work with the Pushwoosh REST Web Services.",
+	"description" : "A PHP Library to easily send push notifications with the Pushwoosh REST Web Services.",
 	"version" : "1.4.0",
 	"license" : "MIT",
 	"type" : "library",

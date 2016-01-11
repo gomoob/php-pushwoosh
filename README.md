@@ -1,6 +1,6 @@
 # php-pushwoosh
 
-> A PHP Library to easily work with the Pushwoosh REST Web Services.
+> A PHP Library to easily send push notifications with the Pushwoosh REST Web Services.
 
 [![Total Downloads](https://img.shields.io/packagist/dt/gomoob/php-pushwoosh.svg?style=flat)](https://packagist.org/packages/gomoob/php-pushwoosh) 
 [![Latest Stable Version](https://img.shields.io/packagist/v/gomoob/php-pushwoosh.svg?style=flat)](https://packagist.org/packages/gomoob/php-pushwoosh) 
