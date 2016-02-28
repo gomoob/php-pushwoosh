@@ -164,8 +164,30 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     {
         $notification = new Notification();
         $this->assertNull($notification->getContent());
-        $this->assertSame($notification, $notification->setContent('CONTENT'));
-        $this->assertSame('CONTENT', $notification->getContent());
+
+        // Test with a simple string
+        $this->assertSame($notification, $notification->setContent('Hello !'));
+        $this->assertSame('Hello !', $notification->getContent());
+        
+        // Test with a map of ISO 639-1 language => message
+        $this->assertSame(
+            $notification,
+            $notification->setContent(
+                [
+                    'fr' => 'Bonjour !',
+                    'en' => 'Hello !',
+                    'es' => 'Buenos dias !'
+                ]
+            )
+        );
+        $this->assertSame(
+            [
+                'fr' => 'Bonjour !',
+                'en' => 'Hello !',
+                'es' => 'Buenos dias !'
+            ],
+            $notification->getContent()
+        );
     }
 
     /**

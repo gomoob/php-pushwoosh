@@ -80,9 +80,21 @@ class Notification implements \JsonSerializable
     private $conditions;
 
     /**
-     * The text push message delivered to the application.
+     * The text push message delivered to the application. This can be a plain string or an array which maps ISO 639-1
+     * language codes to associated messages. If the content is a plain string then the message is supposed to be
+     * written in English. If the content is an array it has to have the following structure.
      *
-     * @var string
+     * ```
+     * [
+     *     'en' => 'Hello !',
+     *     'fr' => 'Bonjour !',
+     *     'es' => 'Buenos dias !'
+     * ]
+     * ```
+     *
+     * For Windows 8 this parameter is ignored, use `wns_content` instead.
+     *
+     * @var string|string[]
      */
     private $content;
 
@@ -225,7 +237,6 @@ class Notification implements \JsonSerializable
     public static function create()
     {
         return new Notification();
-
     }
 
     /**
@@ -355,9 +366,21 @@ class Notification implements \JsonSerializable
     }
 
     /**
-     * Gets the text push message delivered to the application.
+     * Gets the text push message delivered to the application. This can be a plain string or an array which maps ISO
+     * 639-1 language codes to associated messages. If the content is a plain string then the message is supposed to be
+     * written in English. If the content is an array it has to have the following structure.
      *
-     * @return string the test push message delivered to the application.
+     * ```
+     * [
+     *     'en' => 'Hello !',
+     *     'fr' => 'Bonjour !',
+     *     'es' => 'Buenos dias !'
+     * ]
+     * ```
+     *
+     * For Windows 8 this parameter is ignored, use `wns_content` instead.
+     *
+     * @return string|string[] the text push message delivered to the application.
      */
     public function getContent()
     {
@@ -715,9 +738,21 @@ class Notification implements \JsonSerializable
     }
 
     /**
-     * Sets the text push message delivered to the application.
+     * Sets the text push message delivered to the application. This can be a plain string or an array which maps ISO
+     * 639-1 language codes to associated messages. If the content is a plain string then the message is supposed to be
+     * written in English. If the content is an array it has to have the following structure.
      *
-     * @param string $content the text push message delivered to the application.
+     * ```
+     * [
+     *     'en' => 'Hello !',
+     *     'fr' => 'Bonjour !',
+     *     'es' => 'Buenos dias !'
+     * ]
+     * ```
+     *
+     * For Windows 8 this parameter is ignored, use `wns_content` instead.
+     *
+     * @param string|string[] $content the text push message delivered to the application.
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
      */

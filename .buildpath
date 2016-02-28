@@ -61,12 +61,12 @@
 	<buildpathentry kind="src" path="vendor/symfony/console"/>
 	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src/Doctrine/Instantiator"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs"/>
+	<buildpathentry kind="src" path="vendor/pdepend/pdepend/src/main/php/PDepend"/>
 	<buildpathentry kind="src" path="vendor/justinrainbow/json-schema/src/JsonSchema"/>
 	<buildpathentry kind="src" path="vendor/container-interop/container-interop/src/Interop/Container"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-i18n/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/DocGenerators"/>
-	<buildpathentry kind="src" path="vendor/pdepend/pdepend/src/main/php"/>
 	<buildpathentry kind="src" path="vendor/symfony/config"/>
 	<buildpathentry kind="src" path="vendor/symfony/yaml"/>
 	<buildpathentry kind="src" path="vendor/sebastian/diff/src"/>
