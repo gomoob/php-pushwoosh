@@ -284,7 +284,7 @@ class Pushwoosh implements IPushwoosh
 
         }
 
-        $response = $this->cURLClient->pushwooshCall('pushState', $pushStatRequest->jsonSerialize());
+        $response = $this->cURLClient->pushwooshCall('pushStat', $pushStatRequest->jsonSerialize());
 
         return PushStatResponse::create($response);
 
