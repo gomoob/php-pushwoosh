@@ -5,6 +5,50 @@ title: Release History
 
 <h1>Release history</h1>
 
+<h2>1.5.0 (2015-03-10)</h2>
+<ul>
+	<li>
+	    Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/40">#40</a> - Content is supposed to be string type 
+	    only ;
+	</li>
+	<li>
+	    Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/41">#41</a> - Fix pushStat endpoint call ;
+	</li>
+	<li>
+	    Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/37">#37</a> - Implementation for 
+	    <code>/createTargetedMessage</code> ;
+	</li>
+	<li>
+		Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/17">#17</a> - Add the library to awesome-php ;
+	</li>
+	<li>
+		Add a new <code>IRequest</code> interface common to all requests ;
+	</li>
+	<li>
+		Add a new <code>IResponse</code> interface common to all responses ;
+	</li>
+	<li>
+		Add a new <code>DateCondition</code> which works with <code>\DateTime</code> objects and supports the 
+		<code>BETWEEN</code>, <code>EQ</code>, <code>GTE</code>, <code>IN</code>, <code>LTE</code>, <code>NOTEQ</code> 
+		and <code>NOTIN</code> operators ;
+	</li>
+	<li>
+		Now the  <code>IntCondition</code> supports the <code>IN</code>, <code>NOTEQ</code> and <code>NOTIN</code> 
+		operators ;
+	</li>
+	<li>
+	    Now the <code>StringCondition</code> supports the <code>IN</code>, <code>NOTEQ</code> and <code>NOTIN</code> 
+	    operators ;
+	</li>
+	<li>
+	    Now the <code>Notification</code> class supports the <code>campain</code> and <code>timezone</code> properties ;
+	</li>
+	<li>
+	    Improves the request implementations and add a new `isAuthSupported()` method to know if a specific request 
+	    supports the auth property.
+	</li>
+</ul>
+
 <h2>1.4.0 (2015-01-07)</h2>
 <ul>
     <li>

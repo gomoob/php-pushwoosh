@@ -1,0 +1,65 @@
+---
+layout: default
+title: /createTargetedMessage
+---
+
+<h1>/createTargetedMessage</h1>
+
+<p>
+    <b style="font-weight: bold;">Remote API Guide link</b> 
+    <br/>
+    <a href="http://docs.pushwoosh.com/docs/createtargetedmessage"
+       target="_blank">
+        Method /createTargetedMessage
+    </a>
+</p>
+<p>
+    <b style="font-weight: bold;">Signature</b>
+    <br/>
+    <code>
+        CreateTargetedMessageResponse createTargetedMessage(CreateTargetedMessageRequest $createTargetedMessageRequest)
+    </code>
+</p>
+
+<h2>CreateTargetedMessageRequest class</h2>
+
+<p>
+    <b style="font-weight: bold;">Full name</b>
+    <br/>
+    <code>Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest</code>
+</p>
+{% highlight php %}
+<?php
+use Gomoob\Pushwoosh\Model\Notification\MinimizeLink;
+use Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest;
+
+// Create our request
+$request = CreateTargetedMessageRequest::create()
+    ->setSendDate('now')
+    ->setTimezone('America/New_York')
+    ->setIgnoreUserTimezone(true)
+    ->setContent(
+        [
+            'en' => 'English',
+            'ru' => 'Русский',
+            'de' => 'Deutsch'
+        ]
+    )
+    ->setPageId(39)
+    ->setRemotePage('http://myremoteurl.com')
+    ->setRichPageId(42)
+    ->setSendRate(200)
+    ->setLink('http://google.com')
+    ->setMinimizeLink(MinimizeLink::bitly())
+    ->setData(
+        [
+            'custom' => 'json data'
+        ]
+    )
+    ->setDevicesFilter('A(\"00000-00000\") * T(\"age\", BETWEEN, [17, 19])');
+
+// Call the '/createTargetedMessage' Web Service
+$response = $pushwoosh->createTargetedMessage($request);
+
+?>
+{% endhighlight %}
