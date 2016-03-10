@@ -10,15 +10,15 @@ namespace Gomoob\Pushwoosh\Model\Filter;
 
 /**
  * Abstract class common to all devices filters.
- * 
+ *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
 abstract class AbstractFilter implements IFilter
 {
-	/**
-	 * The letter used to construct the string filter, this can be equal to `A`, `T`, `G` or `AT`.
-	 * 
-	 * @var string
-	 */
+    /**
+     * The letter used to construct the string filter, this can be equal to `A`, `T`, `G` or `AT`.
+     *
+     * @var string
+     */
     protected $letter;
 }

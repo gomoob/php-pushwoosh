@@ -12,12 +12,12 @@ use Gomoob\Pushwoosh\Model\Condition\AbstractPlatformsFilter;
 
 /**
  * Class which represents an Application filter (i.e `T("age", BETWEEN, [17,20])A("ABCDE-FGHIJ", ["iOS", "Android"])`).
- * 
+ *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
 class ApplicationFilter extends AbstractPlatformsFilter
 {
-	/**
+    /**
      * The Pushwoosh application ID where to send the messages.
      *
      * @var string
@@ -29,7 +29,7 @@ class ApplicationFilter extends AbstractPlatformsFilter
      */
     public function __construct()
     {
-        $this->letter = 'A';	
+        $this->letter = 'A';
     }
 
     /**
@@ -39,7 +39,7 @@ class ApplicationFilter extends AbstractPlatformsFilter
      */
     public function getApplication()
     {
-    	return $this->application;
+        return $this->application;
     }
     
     /**
@@ -51,8 +51,8 @@ class ApplicationFilter extends AbstractPlatformsFilter
      */
     public function setApplication($application)
     {
-    	$this->application = $application;
+        $this->application = $application;
     
-    	return $this;
+        return $this;
     }
 }

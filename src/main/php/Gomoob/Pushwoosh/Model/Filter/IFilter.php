@@ -10,7 +10,7 @@ namespace Gomoob\Pushwoosh\Model\Filter;
 
 /**
  * Interface which represents a device filter to be used in the `/createTargetedMessage' Pushwoosh requests.
- * 
+ *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
 interface IFilter

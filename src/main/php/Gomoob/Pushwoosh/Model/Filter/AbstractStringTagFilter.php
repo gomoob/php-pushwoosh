@@ -10,7 +10,7 @@ namespace Gomoob\Pushwoosh\Model\Filter;
 
 /**
  * Abstract class common to all string tag filters.
- * 
+ *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
 abstract class AbstractStringTagFilter extends AbstractTagFilter

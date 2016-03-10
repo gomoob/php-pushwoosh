@@ -1,100 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
 	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/src"/>
+	<buildpathentry kind="src" path="vendor/symfony/event-dispatcher"/>
 	<buildpathentry kind="src" path="vendor/sebastian/environment/src"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-hydrator/src"/>
 	<buildpathentry kind="src" path="src/main/php/Gomoob"/>
+	<buildpathentry kind="src" path="vendor/phpunit/phpunit/src"/>
+	<buildpathentry kind="src" path="vendor/jms/parser-lib/src"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection/tests/unit"/>
 	<buildpathentry kind="src" path="vendor/codeclimate/php-test-reporter/src"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection/tests/mocks"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-file-iterator/src"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/fileset/src"/>
+	<buildpathentry kind="src" path="vendor/symfony/console"/>
+	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src/Doctrine/Instantiator"/>
+	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/symfony/validator"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/unified-asset-installer/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/finder-facade/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/phpcpd/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-serializer/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/global-state/src"/>
+	<buildpathentry kind="src" path="vendor/pdepend/pdepend/src/main/php/PDepend"/>
 	<buildpathentry kind="src" path="vendor/doctrine/lexer/lib"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry kind="src" path="vendor/symfony/translation"/>
+	<buildpathentry kind="src" path="vendor/container-interop/container-interop/src/Interop/Container"/>
+	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-i18n/src"/>
+	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/DocGenerators"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/fileset/tests/unit"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PSR1/Sniffs"/>
+	<buildpathentry kind="src" path="vendor/symfony/config"/>
+	<buildpathentry kind="src" path="vendor/symfony/yaml"/>
 	<buildpathentry kind="src" path="vendor/symfony/polyfill-mbstring"/>
+	<buildpathentry kind="src" path="vendor/sebastian/diff/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/git/src"/>
+	<buildpathentry kind="src" path="vendor/jms/serializer/src"/>
+	<buildpathentry kind="src" path="vendor/cilex/cilex/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/comparator/src"/>
 	<buildpathentry kind="src" path="vendor/phpunit/phpunit-mock-objects/src"/>
 	<buildpathentry kind="src" path="vendor/symfony/stopwatch"/>
 	<buildpathentry kind="src" path="vendor/symfony/filesystem"/>
 	<buildpathentry kind="src" path="vendor/sebastian/exporter/src"/>
+	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-filter/src"/>
+	<buildpathentry kind="src" path="vendor/dflydev/markdown/src"/>
 	<buildpathentry kind="src" path="vendor/guzzle/guzzle/tests"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Tokenizers"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-config/src"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-cache/src"/>
-	<buildpathentry kind="src" path="vendor/symfony/finder"/>
-	<buildpathentry kind="src" path="vendor/zetacomponents/document/src"/>
-	<buildpathentry kind="src" path="vendor/jms/metadata/src"/>
-	<buildpathentry kind="src" path="vendor/nikic/php-parser/lib"/>
-	<buildpathentry kind="src" path="vendor/zetacomponents/base/src"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-stdlib/src"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-json/src"/>
-	<buildpathentry kind="src" path="vendor/kherge/version/src/lib"/>
-	<buildpathentry kind="src" path="vendor/herrera-io/json/src/lib"/>
-	<buildpathentry kind="src" path="vendor/symfony/dependency-injection"/>
-	<buildpathentry kind="src" path="vendor/phpdocumentor/graphviz/src"/>
-	<buildpathentry kind="src" path="vendor/herrera-io/phar-update/src/lib"/>
-	<buildpathentry kind="src" path="vendor/seld/jsonlint/src/Seld/JsonLint"/>
-	<buildpathentry excluding="Generic/Sniffs/|MySource/Sniffs/|PEAR/Sniffs/|PSR1/Sniffs/|PSR2/Sniffs/|Squiz/Sniffs/|Zend/Sniffs/" kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards"/>
-	<buildpathentry kind="src" path="vendor/phpspec/prophecy/src"/>
-	<buildpathentry kind="src" path="vendor/symfony/process"/>
-	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PSR2/Sniffs"/>
-	<buildpathentry kind="src" path="vendor/phpoption/phpoption/src"/>
-	<buildpathentry excluding="DocGenerators/|Reports/|Standards/|Tokenizers/" kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-eventmanager/src"/>
-	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Generic/Sniffs"/>
-	<buildpathentry kind="src" path="vendor/phpcollection/phpcollection/src"/>
-	<buildpathentry kind="src" path="vendor/twig/twig/lib"/>
-	<buildpathentry kind="src" path="vendor/doctrine/annotations/lib"/>
-	<buildpathentry kind="src" path="vendor/symfony/event-dispatcher"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-hydrator/src"/>
-	<buildpathentry kind="src" path="vendor/phpunit/phpunit/src"/>
-	<buildpathentry kind="src" path="vendor/jms/parser-lib/src"/>
-	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection/tests/mocks"/>
-	<buildpathentry kind="src" path="vendor/phpdocumentor/fileset/src"/>
-	<buildpathentry kind="src" path="vendor/symfony/console"/>
-	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src/Doctrine/Instantiator"/>
-	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs"/>
-	<buildpathentry kind="src" path="vendor/pdepend/pdepend/src/main/php/PDepend"/>
-	<buildpathentry kind="src" path="vendor/justinrainbow/json-schema/src/JsonSchema"/>
-	<buildpathentry kind="src" path="vendor/container-interop/container-interop/src/Interop/Container"/>
-	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-i18n/src"/>
-	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/DocGenerators"/>
-	<buildpathentry kind="src" path="vendor/symfony/config"/>
-	<buildpathentry kind="src" path="vendor/symfony/yaml"/>
-	<buildpathentry kind="src" path="vendor/sebastian/diff/src"/>
-	<buildpathentry kind="src" path="vendor/jms/serializer/src"/>
-	<buildpathentry kind="src" path="vendor/cilex/cilex/src"/>
-	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-servicemanager/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/version/src"/>
 	<buildpathentry kind="src" path="vendor/psr/log"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-config/src"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-cache/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-math/src"/>
+	<buildpathentry kind="src" path="vendor/symfony/finder"/>
 	<buildpathentry kind="src" path="vendor/monolog/monolog/src/Monolog"/>
 	<buildpathentry kind="src" path="vendor/pimple/pimple/lib"/>
+	<buildpathentry kind="src" path="vendor/jms/metadata/src"/>
+	<buildpathentry kind="src" path="vendor/nikic/php-parser/lib"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/phpdocumentor/tests/unit"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection-docblock/src"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-stdlib/src"/>
 	<buildpathentry kind="src" path="vendor/theseer/fdomdocument/src"/>
-	<buildpathentry kind="src" path="vendor/erusev/parsedown"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-json/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/recursion-context/src"/>
 	<buildpathentry kind="src" path="vendor/guzzle/guzzle/src"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-code-coverage/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs"/>
+	<buildpathentry kind="src" path="vendor/symfony/dependency-injection"/>
+	<buildpathentry kind="src" path="vendor/phpdocumentor/graphviz/src"/>
 	<buildpathentry kind="src" path="vendor/phpmd/phpmd/src/main/php"/>
 	<buildpathentry kind="src" path="vendor/cilex/console-service-provider/src"/>
+	<buildpathentry excluding="Generic/Sniffs/|MySource/Sniffs/|PEAR/Sniffs/|PSR1/Sniffs/|PSR2/Sniffs/|Squiz/Sniffs/|Zend/Sniffs/" kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards"/>
+	<buildpathentry kind="src" path="vendor/phpspec/prophecy/src"/>
 	<buildpathentry kind="src" path="vendor/composer"/>
+	<buildpathentry kind="src" path="vendor/symfony/process"/>
+	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PSR2/Sniffs"/>
+	<buildpathentry kind="src" path="vendor/phpoption/phpoption/src"/>
 	<buildpathentry excluding="CodeSniffer/" kind="src" path="vendor/squizlabs/php_codesniffer"/>
+	<buildpathentry excluding="DocGenerators/|Reports/|Standards/|Tokenizers/" kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer"/>
 	<buildpathentry kind="src" path="vendor/satooshi/php-coveralls/src"/>
 	<buildpathentry kind="src" path="vendor/phploc/phploc/src"/>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-eventmanager/src"/>
+	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Generic/Sniffs"/>
+	<buildpathentry kind="src" path="vendor/phpcollection/phpcollection/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Reports"/>
+	<buildpathentry kind="src" path="vendor/twig/twig/lib"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-timer/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Zend/Sniffs"/>
+	<buildpathentry kind="src" path="vendor/doctrine/annotations/lib"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/phpdocumentor/src"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection/src"/>
 </buildpath>

@@ -10,14 +10,14 @@ namespace Gomoob\Pushwoosh\Model\Filter;
 
 /**
  * Class which represents an Application Integer Tag filter (i.e `AT("ABCDE-FGHIJ", "TagName", EQ, 10)`).
- * 
+ *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
 class ApplicationIntTagFilter extends AbstractTagFilter
 {
     /**
      * Create a new `ApplicationIntTagFilter` instance.
-     * 
+     *
      * @param string The name of the tag.
      */
     private function __construct($tagName)
@@ -34,6 +34,6 @@ class ApplicationIntTagFilter extends AbstractTagFilter
      */
     public static function create($tagName)
     {
-    	return new ApplicationIntTagFilter($tagName);
+        return new ApplicationIntTagFilter($tagName);
     }
 }
