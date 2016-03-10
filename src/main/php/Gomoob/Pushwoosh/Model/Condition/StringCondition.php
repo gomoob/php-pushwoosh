@@ -16,7 +16,7 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 class StringCondition extends AbstractCondition
 {
     /**
-     * Create a new <code>StringCondition</code> instance.
+     * Create a new `StringCondition` instance.
      */
     private function __construct($tagName)
     {
@@ -24,7 +24,7 @@ class StringCondition extends AbstractCondition
     }
 
     /**
-     * Create a new <code>StringCondition</code> instance.
+     * Create a new `StringCondition` instance.
      *
      * @param string $tagName the name of the tag.
      *
@@ -48,6 +48,50 @@ class StringCondition extends AbstractCondition
         $this->operand = $value;
 
         return $this;
+    }
+    
+    /**
+     * Apply an inclusion operator (i.e `IN`) to a specified array of values.
+     *
+     * @param string[] $values the array of string values to check for inclusion.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
+    public function in(array $values = [])
+    {
+        $this->operator = 'IN';
+        $this->operand = $values;
 
+        return $this;
+    }
+    
+    /**
+     * Apply a not equals operator (i.e `NOTEQ`) to a specified operand value.
+     *
+     * @param string $value the string value to compare with.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\StringCondition this instance.
+     */
+    public function noteq($value)
+    {
+        $this->operator = 'NOTEQ';
+        $this->operand = $value;
+    
+        return $this;
+    }
+    
+    /**
+     * Apply an exclusion operator (i.e `NOTIN`) to a specified array of values.
+     *
+     * @param string[] $values the array of string values to check for exclusion.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
+    public function notin(array $values = [])
+    {
+        $this->operator = 'NOTIN';
+        $this->operand = $values;
+    
+        return $this;
     }
 }

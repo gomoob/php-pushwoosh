@@ -16,7 +16,9 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 class IntCondition extends AbstractCondition
 {
     /**
-     * Create a new <code>IntCondition</code> instance.
+     * Create a new `IntCondition` instance.
+     *
+     * @param string The name of the tag.
      */
     private function __construct($tagName)
     {
@@ -24,7 +26,7 @@ class IntCondition extends AbstractCondition
     }
 
     /**
-     * Apply a between operator to min and max operand values.
+     * Apply a between operator (i.e `BETWEEN`) to min and max operand values.
      *
      * @param int $minValue the integer min value of the range.
      * @param int $maxValue the integer max value of the range.
@@ -37,11 +39,10 @@ class IntCondition extends AbstractCondition
         $this->operand = [$minValue, $maxValue];
 
         return $this;
-
     }
 
     /**
-     * Create a new <code>IntCondition</code> instance.
+     * Create a new `IntCondition` instance.
      *
      * @param string $tagName the name of the tag.
      *
@@ -53,7 +54,7 @@ class IntCondition extends AbstractCondition
     }
 
     /**
-     * Apply an equals operator to a specified operand value.
+     * Apply an equals operator (i.e `EQ`) to a specified operand value.
      *
      * @param int $value the integer value to compare with.
      *
@@ -65,11 +66,10 @@ class IntCondition extends AbstractCondition
         $this->operand = $value;
 
         return $this;
-
     }
 
     /**
-     * Apply a greater than or equals operator to a specified operand value.
+     * Apply a greater than or equals operator (i.e `GTE`) to a specified operand value.
      *
      * @param int $value the integer value to compare with.
      *
@@ -81,11 +81,25 @@ class IntCondition extends AbstractCondition
         $this->operand = $value;
 
         return $this;
-
+    }
+    
+    /**
+     * Apply an inclusion operator (i.e `IN`) to a specified array of values.
+     *
+     * @param int[] $values the array of integer values to check for inclusion.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
+    public function in(array $values = [])
+    {
+        $this->operator = 'IN';
+        $this->operand = $values;
+        
+        return $this;
     }
 
     /**
-     * Apply a less than or equals operator to a specified operand value.
+     * Apply a less than or equals operator (i.e `LTE`) to a specified operand value.
      *
      * @param int $value the integer value to compare with.
      *
@@ -97,6 +111,35 @@ class IntCondition extends AbstractCondition
         $this->operand = $value;
 
         return $this;
-
+    }
+    
+    /**
+     * Apply a not equals operator (i.e `NOTEQ`) to a specified operand value.
+     *
+     * @param int $value the integer value to compare with.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
+    public function noteq($value)
+    {
+        $this->operator = 'NOTEQ';
+        $this->operand = $value;
+         
+        return $this;
+    }
+    
+    /**
+     * Apply an exclusion operator (i.e `NOTIN`) to a specified array of values.
+     *
+     * @param int[] $values the array of integer values to check for exclusion.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\IntCondition this instance.
+     */
+    public function notin(array $values = [])
+    {
+        $this->operator = 'NOTIN';
+        $this->operand = $values;
+    
+        return $this;
     }
 }

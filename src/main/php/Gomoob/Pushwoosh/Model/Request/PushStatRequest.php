@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class PushStatRequest implements \JsonSerializable
+class PushStatRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID where you send the message to.
@@ -76,6 +76,14 @@ class PushStatRequest implements \JsonSerializable
     public function getHwid()
     {
         return $this->hwid;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return false;
     }
     
     /**

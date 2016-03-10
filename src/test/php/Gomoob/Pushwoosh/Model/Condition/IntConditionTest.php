@@ -9,7 +9,7 @@
 namespace Gomoob\Pushwoosh\Model\Condition;
 
 /**
- * Test case used to test the <code>IntCondition</code> class.
+ * Test case used to test the `IntCondition` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  IntConditionTest
@@ -17,7 +17,7 @@ namespace Gomoob\Pushwoosh\Model\Condition;
 class IntConditionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test method for the <code>#between($minValue, $maxValue)</code> function.
+     * Test method for the `#between($minValue, $maxValue)` function.
      */
     public function testBetween()
     {
@@ -43,7 +43,7 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#eq($value)</code> function.
+     * Test method for the `#eq($value)` function.
      */
     public function testEq()
     {
@@ -63,7 +63,7 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <code>#gte($value)</code> function.
+     * Test method for the `#gte($value)` function.
      */
     public function testGte()
     {
@@ -81,9 +81,29 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(10, $array[2]);
         $this->assertSame(10, $intCondition->getOperand());
     }
+    
+    /**
+     * Test method for the `#in($values)` function.
+     */
+    public function testIn()
+    {
+        $intCondition = IntCondition::create('A_TAG')->in([10, 11, 12]);
+        $array = $intCondition->jsonSerialize();
+        
+        $this->assertCount(3, $array);
+        
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $intCondition->getTagName());
+        
+        $this->assertSame('IN', $array[1]);
+        $this->assertSame('IN', $intCondition->getOperator());
+        
+        $this->assertSame([10, 11, 12], $array[2]);
+        $this->assertSame([10, 11, 12], $intCondition->getOperand());
+    }
 
     /**
-     * Test method for the <code>#lte($value)</code> function.
+     * Test method for the `#lte($value)` function.
      */
     public function testLte()
     {
@@ -100,5 +120,45 @@ class IntConditionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(10, $array[2]);
         $this->assertSame(10, $intCondition->getOperand());
+    }
+    
+    /**
+     * Test method for the `#noteq($value)` function.
+     */
+    public function testNoteq()
+    {
+        $intCondition = IntCondition::create('A_TAG')->noteq(10);
+        $array = $intCondition->jsonSerialize();
+
+        $this->assertCount(3, $array);
+
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $intCondition->getTagName());
+
+        $this->assertSame('NOTEQ', $array[1]);
+        $this->assertSame('NOTEQ', $intCondition->getOperator());
+
+        $this->assertSame(10, $array[2]);
+        $this->assertSame(10, $intCondition->getOperand());
+    }
+    
+    /**
+     * Test method for the `#notin($values)` function.
+     */
+    public function testNotin()
+    {
+        $intCondition = IntCondition::create('A_TAG')->notin([10, 11, 12]);
+        $array = $intCondition->jsonSerialize();
+         
+        $this->assertCount(3, $array);
+         
+        $this->assertSame('A_TAG', $array[0]);
+        $this->assertSame('A_TAG', $intCondition->getTagName());
+         
+        $this->assertSame('NOTIN', $array[1]);
+        $this->assertSame('NOTIN', $intCondition->getOperator());
+         
+        $this->assertSame([10, 11, 12], $array[2]);
+        $this->assertSame([10, 11, 12], $intCondition->getOperand());
     }
 }

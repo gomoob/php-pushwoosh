@@ -14,7 +14,7 @@ use Gomoob\Pushwoosh\Model\Condition\StringCondition;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 /**
- * Test case used to test the <code>Notification</code> class.
+ * Test case used to test the `Notification` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  NotificationTest
@@ -22,8 +22,8 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class NotificationTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test method for the <tt>addCondition($condition)</tt>, <tt>getConditions()</tt> and
-     * <tt>setConditions($conditions)</tt> functions.
+     * Test method for the `addCondition($condition)`, `getConditions()` and
+     * `setConditions($conditions)` functions.
      */
     public function testAddGetSetConditions()
     {
@@ -58,7 +58,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>addDevice($device)</tt>, <tt>getDevices()</tt> and <tt>setDevices($devices)</tt>
+     * Test method for the `addDevice($device)`, `getDevices()` and `setDevices($devices)`
      * functions.
      */
     public function testAddGetSetDevices()
@@ -88,8 +88,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>addPlatform($platform)</tt>, <tt>getPlatforms()</tt> and
-     * <tt>setPlatforms($platforms)</tt> functions.
+     * Test method for the `addPlatform($platform)`, `getPlatforms()` and
+     * `setPlatforms($platforms)` functions.
      */
     public function testGetSetPlatforms()
     {
@@ -122,7 +122,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getADM()</tt> and <tt>setADM($aDM)</tt> functions.
+     * Test method for the `getADM()` and `setADM($aDM)` functions.
      */
     public function testGetSetADM()
     {
@@ -134,7 +134,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getAndroid()</tt> and <tt>setAndroid($android)</tt> functions.
+     * Test method for the `getAndroid()` and `setAndroid($android)` functions.
      */
     public function testGetSetAndroid()
     {
@@ -146,7 +146,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getBlackBerry()</tt> and <tt>setBlackBerry($blackBerry)</tt> functions.
+     * Test method for the `getBlackBerry()` and `setBlackBerry($blackBerry)` functions.
      */
     public function testGetSetBlackBerry()
     {
@@ -156,9 +156,20 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($notification, $notification->setBlackBerry($blackBerry));
         $this->assertSame($blackBerry, $notification->getBlackBerry());
     }
+    
+    /**
+     * Test method for the `getCampain()` and `setCampain($campain)` functions.
+     */
+    public function testGetSetCampain()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getFilter());
+        $this->assertSame($notification, $notification->setCampain('CAMPAIN'));
+        $this->assertSame('CAMPAIN', $notification->getCampain());
+    }
 
     /**
-     * Test method for the <tt>getContent()</tt> and <tt>setContent($aDM)</tt> functions.
+     * Test method for the `getContent()` and `setContent($aDM)` functions.
      */
     public function testGetSetContent()
     {
@@ -191,7 +202,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getData()</tt> and <tt>setData($data)</tt> functions.
+     * Test method for the `getData()` and `setData($data)` functions.
      */
     public function testGetSetData()
     {
@@ -206,7 +217,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getFilter()</tt> and <tt>setFilter($filter)</tt> functions.
+     * Test method for the `getFilter()` and `setFilter($filter)` functions.
      */
     public function testGetSetFilter()
     {
@@ -217,7 +228,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getIOS()</tt> and <tt>setIOS($iOS)</tt> functions.
+     * Test method for the `getIOS()` and `setIOS($iOS)` functions.
      */
     public function testGetSetIOS()
     {
@@ -229,7 +240,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getLink()</tt> and <tt>setLink($link)</tt> functions.
+     * Test method for the `getLink()` and `setLink($link)` functions.
      */
     public function testGetSetLink()
     {
@@ -240,7 +251,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getMac()</tt> and <tt>setMac($mac)</tt> functions.
+     * Test method for the `getMac()` and `setMac($mac)` functions.
      */
     public function testGetSetMac()
     {
@@ -252,7 +263,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getMinimizeLink()</tt> and <tt>setMinimizeLink($minimizeLink)</tt> functions.
+     * Test method for the `getMinimizeLink()` and `setMinimizeLink($minimizeLink)` functions.
      */
     public function testGetSetMinimizeLink()
     {
@@ -264,7 +275,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getPageId()</tt> and <tt>setPageId($pageId)</tt> functions.
+     * Test method for the `getPageId()` and `setPageId($pageId)` functions.
      */
     public function testGetSetPageId()
     {
@@ -275,7 +286,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test method for the <tt>getPreset()</tt> and <tt>setPreset($preset)</tt> functions.
+     * Test method for the `getPreset()` and `setPreset($preset)` functions.
      */
     public function testGetSetPreset()
     {
@@ -286,7 +297,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test method for the <tt>getRemotePage()</tt> and <tt>setRemotePage($remotePage)</tt> functions.
+     * Test method for the `getRemotePage()` and `setRemotePage($remotePage)` functions.
      */
     public function testGetSetRemotePage()
     {
@@ -297,7 +308,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getRichPageId()</tt> and <tt>setRichPageId($richPageId)</tt> functions.
+     * Test method for the `getRichPageId()` and `setRichPageId($richPageId)` functions.
      */
     public function testGetSetRichPageId()
     {
@@ -306,20 +317,9 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($notification, $notification->setRichPageId(42));
         $this->assertSame(42, $notification->getRichPageId());
     }
-    
-    /**
-     * Test method for the <tt>getPageId()</tt> and <tt>setPageId($pageId)</tt> functions.
-     */
-    public function testGetSetSendRate()
-    {
-        $notification = new Notification();
-        $this->assertNull($notification->getSendRate());
-        $this->assertSame($notification, $notification->setSendRate(200));
-        $this->assertSame(200, $notification->getSendRate());
-    }
 
     /**
-     * Test method for the <tt>getSafari()</tt> and <tt>setSafari($safari)</tt> functions.
+     * Test method for the `getSafari()` and `setSafari($safari)` functions.
      */
     public function testGetSetSafari()
     {
@@ -331,7 +331,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getSendDate</tt> and <tt>setSendDate($sendDate)</tt> functions.
+     * Test method for the `getSendDate` and `setSendDate($sendDate)` functions.
      */
     public function testGetSetSendDate()
     {
@@ -374,9 +374,31 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($dateTime, $notification->getSendDate());
 
     }
+    
+    /**
+     * Test method for the `getSendRate()` and `setSendRate($sendRate)` functions.
+     */
+    public function testGetSetSendRate()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getSendRate());
+        $this->assertSame($notification, $notification->setSendRate(200));
+        $this->assertSame(200, $notification->getSendRate());
+    }
+    
+    /**
+     * Test method for the `getTimezone()` and `setTimezone($timezone)` functions.
+     */
+    public function testGetSetTimezone()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getTimezone());
+        $this->assertSame($notification, $notification->setTimezone('America/New_York'));
+        $this->assertSame('America/New_York', $notification->getTimezone());
+    }
 
     /**
-     * Test method for the <tt>getWNS()</tt> and <tt>setWNS($wNS)</tt> functions.
+     * Test method for the `getWNS()` and `setWNS($wNS)` functions.
      */
     public function testGetSetWNS()
     {
@@ -388,7 +410,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getWP()</tt> and <tt>setWP($wP)</tt> functions.
+     * Test method for the `getWP()` and `setWP($wP)` functions.
      */
     public function testGetSetWP()
     {
@@ -400,7 +422,7 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>isIgnoreUserTimezone()</tt> and <tt>setIgnoreUserTimezone()</tt> functions.
+     * Test method for the `isIgnoreUserTimezone()` and `setIgnoreUserTimezone()` functions.
      */
     public function testIsSetIgnoreUserTimezone()
     {
@@ -411,12 +433,13 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>jsonSerialize()</tt> function.
+     * Test method for the `jsonSerialize()` function.
      */
     public function testJsonSerialize()
     {
         $array = Notification::create()
             ->setSendDate('now')
+            ->setTimezone('America/New_York')
             ->setIgnoreUserTimezone(true)
             ->setContent(
                 [
@@ -546,8 +569,9 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             ->jsonSerialize();
 
         // Test the generic properties
-        $this->assertCount(62, $array);
+        $this->assertCount(63, $array);
         $this->assertSame('now', $array['send_date']);
+        $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
         $this->assertCount(3, $array['content']);
         $this->assertSame('English', $array['content']['en']);

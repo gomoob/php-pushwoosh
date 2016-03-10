@@ -11,6 +11,7 @@ namespace Gomoob\Pushwoosh\Client;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\RegisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
@@ -21,7 +22,7 @@ use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 /**
- * Test case used to test the <code>Pushwoosh</code> class.
+ * Test case used to test the `Pushwoosh` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  PushwooshTest
@@ -57,7 +58,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>create()</tt> function.
+     * Test method for the `create()` function.
      *
      * @group PushwooshTest.create
      */
@@ -69,7 +70,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>createMessage($createMessageRequest)</tt> function.
+     * Test method for the `createMessage($createMessageRequest)` function.
      *
      * @group PushwooshTest.testCreateMessage
      */
@@ -228,9 +229,98 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($createMessageResponse->getResponse());
 
     }
+    
+    /**
+     * Test method for the `createTargetedMessage($createMessageRequest)` function.
+     *
+     * @group PushwooshTest.testCreateTargetedMessage
+     */
+    public function testCreateTargetedMessage()
+    {
+        // Create a fake CURL client
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                [
+                    'status_code' => 200,
+                    'status_message' => 'OK',
+                    'response' => ['messageCode' => 'XXXX-XXXXXXXX-XXXXXXXX']
+                ]
+            )
+        );
+    
+        $pushwoosh = new Pushwoosh();
+        $pushwoosh->setCURLClient($cURLClient);
+        $createTargetedMessageRequest = new CreateTargetedMessageRequest();
+
+        // Call with the 'auth' parameter set in the Pushwoosh client
+        $pushwoosh->setAuth('AUTH');
+        $createTargetedMessageRequest->setAuth(null);
+        $createTargetedMessageResponse = $pushwoosh->createTargetedMessage($createTargetedMessageRequest);
+
+        $this->assertSame('AUTH', $createTargetedMessageRequest->getAuth());
+        $this->assertTrue($createTargetedMessageResponse->isOk());
+        $this->assertSame(200, $createTargetedMessageResponse->getStatusCode());
+        $this->assertSame('OK', $createTargetedMessageResponse->getStatusMessage());
+        $this->assertNotNull($createTargetedMessageResponse->getResponse());
+        $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
+        
+        // Call with 'auth' parameter set on the request
+        $pushwoosh->setAuth(null);
+        $createTargetedMessageRequest->setAuth('AUTH');
+        $createTargetedMessageResponse = $pushwoosh->createTargetedMessage($createTargetedMessageRequest);
+
+        $this->assertSame('AUTH', $createTargetedMessageRequest->getAuth());
+        $this->assertTrue($createTargetedMessageResponse->isOk());
+        $this->assertSame(200, $createTargetedMessageResponse->getStatusCode());
+        $this->assertSame('OK', $createTargetedMessageResponse->getStatusMessage());
+        $this->assertNotNull($createTargetedMessageResponse->getResponse());
+        $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
+    
+        // Test a call with an error response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                [
+                    'status_code' => 400,
+                    'status_message' => 'KO',
+                    'response' => ['messageCode' => 'XXXX-XXXXXXXX-XXXXXXXX']
+                ]
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        
+        $createTargetedMessageResponse = $pushwoosh->createTargetedMessage($createTargetedMessageRequest);
+        $this->assertSame('AUTH', $createTargetedMessageRequest->getAuth());
+        $this->assertFalse($createTargetedMessageResponse->isOk());
+        $this->assertSame(400, $createTargetedMessageResponse->getStatusCode());
+        $this->assertSame('KO', $createTargetedMessageResponse->getStatusMessage());
+        $this->assertNotNull($createTargetedMessageResponse->getResponse());
+        $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
+    
+        // Test a call with an error response and no 'response' property in the response
+        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient->expects($this->any())->method('pushwooshCall')->will(
+            $this->returnValue(
+                [
+                    'status_code' => 400,
+                    'status_message' => 'KO'
+                ]
+            )
+        );
+        $pushwoosh->setCURLClient($cURLClient);
+        
+        $createTargetedMessageResponse = $pushwoosh->createTargetedMessage($createTargetedMessageRequest);
+        $this->assertSame('AUTH', $createTargetedMessageRequest->getAuth());
+        $this->assertFalse($createTargetedMessageResponse->isOk());
+        $this->assertSame(400, $createTargetedMessageResponse->getStatusCode());
+        $this->assertSame('KO', $createTargetedMessageResponse->getStatusMessage());
+        $this->assertNull($createTargetedMessageResponse->getResponse());
+    
+    }
 
     /**
-     * Test method for the <tt>deleteMessage($deleteMessageRequest)</tt> function.
+     * Test method for the `deleteMessage($deleteMessageRequest)` function.
      *
      * @group PushwooshTest.deleteMessage
      */
@@ -295,7 +385,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getNearestZone($nearestZoneRequest)</tt> function.
+     * Test method for the `getNearestZone($nearestZoneRequest)` function.
      */
     public function testGetNearestZone()
     {
@@ -360,7 +450,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getApplication()</tt> and <tt>setApplication($application)</tt> functions.
+     * Test method for the `getApplication()` and `setApplication($application)` functions.
      */
     public function testGetSetApplication()
     {
@@ -371,7 +461,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getApplicationsGroup()</tt> and <tt>setApplicationsGroup($applicationsGroup)</tt>
+     * Test method for the `getApplicationsGroup()` and `setApplicationsGroup($applicationsGroup)`
      * functions.
      */
     public function testGetSetApplicationsGroup()
@@ -383,7 +473,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getAuth()</tt> and <tt>setAuth($auth)</tt> functions.
+     * Test method for the `getAuth()` and `setAuth($auth)` functions.
      */
     public function testGetSetAuth()
     {
@@ -394,7 +484,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>getTags($getTagsRequest)</tt> function.
+     * Test method for the `getTags($getTagsRequest)` function.
      */
     public function testGetTags()
     {
@@ -511,7 +601,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>pushStat($pushStatRequest)</tt> function.
+     * Test method for the `pushStat($pushStatRequest)` function.
      */
     public function testPushStat()
     {
@@ -574,7 +664,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>registerDevice($registerDevice)</tt> function.
+     * Test method for the `registerDevice($registerDevice)` function.
      *
      * @group PushwooshTest.testRegisterDevice
      */
@@ -643,7 +733,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>setBadge($setBadgeRequest)</tt> function.
+     * Test method for the `setBadge($setBadgeRequest)` function.
      *
      * @group PushwooshTest.setBadge
      */
@@ -708,7 +798,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>setTags($setTagsRequest)</tt> function.
+     * Test method for the `setTags($setTagsRequest)` function.
      *
      * @group PushwooshTest.setTags
      */
@@ -775,7 +865,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test method for the <tt>unregisterDevice($unregisterDeviceRequest)</tt> function.
+     * Test method for the `unregisterDevice($unregisterDeviceRequest)` function.
      *
      * @group PushwooshTest.testUnregisterDevice
      */

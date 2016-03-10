@@ -20,7 +20,7 @@ use Gomoob\Pushwoosh\Model\Notification\Notification;
 class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test method for the <tt>create()</tt> function.
+     * Test method for the `create()` function.
      */
     public function testCreate()
     {

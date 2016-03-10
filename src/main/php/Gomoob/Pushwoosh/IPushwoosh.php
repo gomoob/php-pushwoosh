@@ -9,6 +9,7 @@
 namespace Gomoob\Pushwoosh;
 
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
 use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
@@ -35,6 +36,17 @@ interface IPushwoosh
      */
     public function createMessage(CreateMessageRequest $createMessageRequest);
 
+    /**
+     * Function used to create a Pushwoosh message using a '/createTargetedMessage' request.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest $createTargetedMessageRequest the
+     *        '/createMessage' request used to create the Pushwoosh message.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\CreateTargetedMessageResponse the resulting '/createTargetedMessage'
+     *         response.
+     */
+    public function createTargetedMessage(CreateTargetedMessageRequest $createTargetedMessageRequest);
+    
     /**
      * Function used to delete a Pushwoosh message using a '/deleteMessage' request.
      *

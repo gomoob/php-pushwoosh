@@ -41,6 +41,13 @@ class Notification implements \JsonSerializable
     private $blackBerry;
     
     /**
+     * The campaign code to which you want to assign this push message.
+     *
+     * @var string
+     */
+    private $campain;
+
+    /**
      * The object which contains specific Pushwoosh notification informations for Chrome.
      *
      * @var \Gomoob\Pushwoosh\Model\Notification\Chrome
@@ -127,7 +134,13 @@ class Notification implements \JsonSerializable
      */
     private $filter;
 
-    // TODO: DOCUMENT ME !
+    /**
+     * Boolean used to indicate if the user timezone should be ignored.
+     *
+     * This parameter is optional
+     *
+     * @var bool
+     */
     private $ignoreUserTimezone = true;
 
     /**
@@ -214,6 +227,14 @@ class Notification implements \JsonSerializable
      * @var int
      */
     private $sendRate;
+    
+    /**
+     * The timezone to use with the `sendDate` property, if ignored UTC-0 is default in "send_date".
+     * See http://php.net/manual/timezones.php for the list of the supported timezones.
+     *
+     * @var string
+     */
+    private $timezone;
 
     /**
      * The object which contains specific Pushwoosh notification informations for WNS (Windows Notification Service).
@@ -321,6 +342,16 @@ class Notification implements \JsonSerializable
     }
     
     /**
+     * Gets the campaign code to which you want to assign this push message.
+     *
+     * @return string the campaign code to which you want to assign this push message.
+     */
+    public function getCampain()
+    {
+        return $this->campain;
+    }
+    
+    /**
      * Gets the object which contains specific Pushwoosh notification informations for Chrome.
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Chrome
@@ -424,7 +455,11 @@ class Notification implements \JsonSerializable
         return $this->filter;
     }
 
-    // TODO: DOCUMENT ME !
+    /**
+     * Indicates if the user timezone should be ignored.
+     *
+     * @return boolean `true` if the user timezone should be ignored, `false` otherwise.
+     */
     public function isIgnoreUserTimezone()
     {
         return $this->ignoreUserTimezone;
@@ -534,7 +569,7 @@ class Notification implements \JsonSerializable
 
     /**
      * Gets the date when the message has to be sent, if a string is provided it must respect the following formats :
-     *     - 'now'                : To indicate the message has to be sent when "now".
+     *  - 'now'                : To indicate the message has to be sent when "now".
      *  - 'YYYY-MM-DD HH:mm    : Specify your own send date.
      *
      * @return \DateTime | string the date when the message has to be sent, the returned value is a PHP DateTime or the
@@ -553,6 +588,18 @@ class Notification implements \JsonSerializable
     public function getSendRate()
     {
         return $this->sendRate;
+    }
+    
+    /**
+     * Gets the timezone to use with the `sendDate` property, if ignored UTC-0 is default in `sendDate`. See
+     * http://php.net/manual/timezones.php for the list of the supported timezones.
+     *
+     * @return string the timezone to use with the `sendDate` property, if ignored UTC-0 is default in `sendDate`. See
+     *         http://php.net/manual/timezones.php for the list of the supported timezones.
+     */
+    public function getTimezone()
+    {
+        return $this->timezone;
     }
 
     /**
@@ -602,6 +649,7 @@ class Notification implements \JsonSerializable
         isset($this->remotePage) ? $json['remote_page'] = $this->remotePage : false;
         isset($this->richPageId) ? $json['rich_page_id'] = $this->richPageId : false;
         isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
+        isset($this->timezone)? $json['timezone'] = $this->timezone : false;
     
         if (isset($this->conditions)) {
             $conditionsArray = [];
@@ -680,6 +728,20 @@ class Notification implements \JsonSerializable
     {
         $this->blackBerry = $blackBerry;
 
+        return $this;
+    }
+    
+    /**
+     * Sets the campaign code to which you want to assign this push message.
+     *
+     * @param string $campain the campaign code to which you want to assign this push message.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setCampain($campain)
+    {
+        $this->campain = $campain;
+         
         return $this;
     }
     
@@ -812,7 +874,13 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
-    // TODO: DOCUMENT ME !
+    /**
+     * Sets if the user timezone should ne ignored.
+     *
+     * @param bool $ignoreUserTimezone `true` to ignore the user timezone, `false` otherwise.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
     public function setIgnoreUserTimezone($ignoreUserTimezone)
     {
         $this->ignoreUserTimezone = $ignoreUserTimezone;
@@ -964,7 +1032,7 @@ class Notification implements \JsonSerializable
 
     /**
      * Sets the date when the message has to be sent, if a string is provided it must respect the following formats :
-     *     - 'now'                : To indicate the message has to be sent when "now".
+     *  - 'now'                : To indicate the message has to be sent when "now".
      *  - 'YYYY-MM-DD HH:mm    : Specify your own send date.
      *
      * @param \DateTime | string $sendDate the date when the message has to be sent.
@@ -1011,6 +1079,21 @@ class Notification implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * Sets the timezone to use with the `sendDate` property, if ignored UTC-0 is default in `sendDate`. See
+     * http://php.net/manual/timezones.php for the list of the supported timezones.
+     *
+     * @param string $timezone the timezone to use with the `sendDate` property.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setTimezone($timezone)
+    {
+        $this->timezone = $timezone;
+        
+        return $this;
+    }
+    
     /**
      * Sets the object which contains specific Pushwoosh notification informations for WNS (Windows Notification
      * Service).

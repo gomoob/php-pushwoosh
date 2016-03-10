@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class UnregisterDeviceRequest implements \JsonSerializable
+class UnregisterDeviceRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID for which one to register a new device.
@@ -62,6 +62,14 @@ class UnregisterDeviceRequest implements \JsonSerializable
     public function getHwid()
     {
         return $this->hwid;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return false;
     }
 
     /**

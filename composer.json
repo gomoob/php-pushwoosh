@@ -36,16 +36,16 @@
 		"php" : ">=5.5.9"
 	},
 	"require-dev" : {
-		"codeclimate/php-test-reporter" : "~0.2",
+		"codeclimate/php-test-reporter" : "~0.3",
 		"pdepend/pdepend" : "~2.2",
 		"phpdocumentor/phpdocumentor" : "2.*",
-		"phploc/phploc" : "~2.1",
-		"phpmd/phpmd" : "~2.3",
-		"phpunit/phpunit" : "~4.8",
-		"satooshi/php-coveralls" : "~0.6",
+		"phploc/phploc" : "~3.0",
+		"phpmd/phpmd" : "~2.4",
+		"phpunit/phpunit" : "~5.2",
+		"satooshi/php-coveralls" : "~1.0",
 		"sebastian/phpcpd" : "~2.0",
-		"squizlabs/php_codesniffer" : "~2.3",
-		"symfony/stopwatch" : "^2.8 || ^3.0",
-		"symfony/yaml" : "^2.8 || ^3.0"
+		"squizlabs/php_codesniffer" : "~2.5",
+		"symfony/stopwatch" : "~3.0",
+		"symfony/yaml" : "~3.0"
 	}
 }

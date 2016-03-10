@@ -8,16 +8,18 @@
  */
 namespace Gomoob\Pushwoosh\Model\Response;
 
+use Gomoob\Pushwoosh\Model\IResponse;
+
 /**
  * Abstract class common to all response objects.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-abstract class AbstractResponse
+abstract class AbstractResponse implements IResponse
 {
     /**
      * The Pushwoosh status code, the Pushwoosh API can return the following create message status codes :
-     *     - 200    : (HTTP Status Code = 200) Message succesfully created.
+     *  - 200    : (HTTP Status Code = 200) Message succesfully created.
      *  - 210    : (HTTP Status Code = 200) Argument error. See statusMessage for more info.
      *  - 400    : (HTTP Status Code = N/A) Malformed request string.
      *  - 500    : (HTTP Status Code = 500) Internal error.
@@ -34,65 +36,42 @@ abstract class AbstractResponse
     protected $statusMessage;
 
     /**
-     * Gets the Pushwoosh status code, , the Pushwoosh API can return the following create message status codes :
-     *     - 200    : (HTTP Status Code = 200) Message succesfully created.
-     *  - 210    : (HTTP Status Code = 200) Argument error. See statusMessage for more info.
-     *  - 400    : (HTTP Status Code = N/A) Malformed request string.
-     *  - 500    : (HTTP Status Code = 500) Internal error.
-     *
-     * @return int the Pushwoosh status code.
+     * {@inheritDoc}
      */
     public function getStatusCode()
     {
         return $this->statusCode;
-
     }
 
     /**
-     * Gets the Pushwoosh status message.
-     *
-     * @return string the Pushwoosh status message.
+     * {@inheritDoc}
      */
     public function getStatusMessage()
     {
         return $this->statusMessage;
-
     }
 
     /**
-     * Function used to indicate if the response represents a success.
-     *
-     * @return boolean true if the response represents a success, false otherwise.
+     * {@inheritDoc}
      */
     public function isOk()
     {
         return $this->statusCode === 200;
-
     }
 
     /**
-     * Sets the Pushwoosh status code, the Pushwoosh API can return the following create message status codes :
-     *     - 200    : (HTTP Status Code = 200) Message succesfully created.
-     *  - 210    : (HTTP Status Code = 200) Argument error. See statusMessage for more info.
-     *  - 400    : (HTTP Status Code = N/A) Malformed request string.
-     *  - 500    : (HTTP Status Code = 500) Internal error.
-     *
-     * @param int $statusCode the Pushwoosh status code.
+     * {@inheritDoc}
      */
     public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
-
     }
 
     /**
-     * Sets the Pushwoosh status message.
-     *
-     * @param string $statusMessage the pushwoosh status message.
+     * {@inheritDoc}
      */
     public function setStatusMessage($statusMessage)
     {
         $this->statusMessage = $statusMessage;
-
     }
 }

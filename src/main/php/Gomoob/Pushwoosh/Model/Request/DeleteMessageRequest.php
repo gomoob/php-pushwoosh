@@ -15,15 +15,8 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class DeleteMessageRequest implements \JsonSerializable
+class DeleteMessageRequest extends AbstractRequest
 {
-    /**
-     * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
-     *
-     * @var string
-     */
-    private $auth;
-
     /**
      * The message code obtained in createMessage.
      *
@@ -42,18 +35,6 @@ class DeleteMessageRequest implements \JsonSerializable
     }
 
     /**
-     * Gets the API access token from the Pushwoosh control panel (create this token at
-     * https://cp.pushwoosh.com/api_access).
-     *
-     * @return string the API access token from the Pushwoosh control panel (create this token at
-     *         https://cp.pushwoosh.com/api_access).
-     */
-    public function getAuth()
-    {
-        return $this->auth;
-    }
-
-    /**
      * Gets the message code obtained in createMessage.
      *
      * @return string the message code obtained in createMessage.
@@ -62,7 +43,15 @@ class DeleteMessageRequest implements \JsonSerializable
     {
         return $this->message;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return true;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -84,22 +73,6 @@ class DeleteMessageRequest implements \JsonSerializable
             'auth' => $this->auth,
             'message' => $this->message
         ];
-    }
-
-    /**
-     * Sets the API access token from the Pushwoosh control panel (create this token at
-     * https://cp.pushwoosh.com/api_access).
-     *
-     * @param string $auth the API access token from the Pushwoosh control panel (create this token at
-     *        https://cp.pushwoosh.com/api_access).
-     *
-     * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
-     */
-    public function setAuth($auth)
-    {
-        $this->auth = $auth;
-
-        return $this;
     }
 
     /**

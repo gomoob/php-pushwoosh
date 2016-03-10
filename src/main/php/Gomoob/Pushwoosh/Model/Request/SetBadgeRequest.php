@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class SetBadgeRequest implements \JsonSerializable
+class SetBadgeRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
@@ -76,6 +76,14 @@ class SetBadgeRequest implements \JsonSerializable
     public function getHwid()
     {
         return $this->hwid;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return false;
     }
     
     /**

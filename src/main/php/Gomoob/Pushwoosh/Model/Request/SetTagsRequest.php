@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class SetTagsRequest implements \JsonSerializable
+class SetTagsRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID for which one to set tags.
@@ -119,6 +119,14 @@ class SetTagsRequest implements \JsonSerializable
     public function hasTag($tagName)
     {
         return $this->tags !== null && array_key_exists($tagName, $this->tags);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return false;
     }
     
     /**

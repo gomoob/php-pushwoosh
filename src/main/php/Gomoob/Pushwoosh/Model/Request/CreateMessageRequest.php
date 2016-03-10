@@ -17,7 +17,7 @@ use Gomoob\Pushwoosh\Model\Notification\Notification;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class CreateMessageRequest implements \JsonSerializable
+class CreateMessageRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
@@ -32,13 +32,6 @@ class CreateMessageRequest implements \JsonSerializable
      * @var string
      */
     private $applicationsGroup;
-
-    /**
-     * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
-     *
-     * @var string
-     */
-    private $auth;
 
     /**
      * The Pushwoosh notifications to attach to the create message request.
@@ -98,18 +91,6 @@ class CreateMessageRequest implements \JsonSerializable
     }
 
     /**
-     * Gets the API access token from the Pushwoosh control panel (create this token at
-     * https://cp.pushwoosh.com/api_access).
-     *
-     * @return string the API access token from the Pushwoosh control panel (create this token at
-     *         https://cp.pushwoosh.com/api_access).
-     */
-    public function getAuth()
-    {
-        return $this->auth;
-    }
-
-    /**
      * Gets the Pushwoosh notifications to attach to the create message request.
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Notification[] the Pushwoosh notifications to attach to the create
@@ -120,6 +101,14 @@ class CreateMessageRequest implements \JsonSerializable
         return $this->notifications;
     }
     
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return true;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -186,22 +175,6 @@ class CreateMessageRequest implements \JsonSerializable
     public function setApplicationsGroup($applicationsGroup)
     {
         $this->applicationsGroup = $applicationsGroup;
-
-        return $this;
-    }
-
-    /**
-     * Sets the API access token from the Pushwoosh control panel (create this token at
-     * https://cp.pushwoosh.com/api_access).
-     *
-     * @param string $auth the API access token from the Pushwoosh control panel (create this token at
-     *        https://cp.pushwoosh.com/api_access).
-     *
-     * @return \Gomoob\Pushwoosh\Model\Request\CreateMessageRequest this instance.
-     */
-    public function setAuth($auth)
-    {
-        $this->auth = $auth;
 
         return $this;
     }

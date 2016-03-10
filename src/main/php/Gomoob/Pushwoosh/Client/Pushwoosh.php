@@ -12,7 +12,9 @@ use Gomoob\Pushwoosh\ICURLClient;
 use Gomoob\Pushwoosh\IPushwoosh;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
+use Gomoob\Pushwoosh\Model\IRequest;
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
 use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
@@ -23,6 +25,7 @@ use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
 use Gomoob\Pushwoosh\Model\Response\CreateMessageResponse;
+use Gomoob\Pushwoosh\Model\Response\CreateTargetedMessageResponse;
 use Gomoob\Pushwoosh\Model\Response\DeleteMessageResponse;
 use Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse;
 use Gomoob\Pushwoosh\Model\Response\GetTagsResponse;
@@ -76,9 +79,7 @@ class Pushwoosh implements IPushwoosh
      */
     public function __construct()
     {
-
         $this->cURLClient = new CURLClient();
-
     }
 
     /**
@@ -89,7 +90,6 @@ class Pushwoosh implements IPushwoosh
     public static function create()
     {
         return new Pushwoosh();
-
     }
 
     /**
@@ -124,55 +124,45 @@ class Pushwoosh implements IPushwoosh
         }
 
         // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
-        if ($createMessageRequest->getAuth() === null) {
-            // The 'auth' parameter is expected here
-            if (!isset($this->auth)) {
-                throw new PushwooshException('The \'auth\' parameter is not set !');
-
-                // Use the 'auth' parameter defined in the Pushwoosh client
-            } else {
-                $createMessageRequest->setAuth($this->auth);
-
-            }
-
-        }
+        $this->setAuthIfNotSet($createMessageRequest);
 
         $response = $this->cURLClient->pushwooshCall('createMessage', $createMessageRequest->jsonSerialize());
 
         return CreateMessageResponse::create($response);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function createTargetedMessage(CreateTargetedMessageRequest $createTargetedMessageRequest)
+    {
+        // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
+        $this->setAuthIfNotSet($createTargetedMessageRequest);
 
+        $response = $this->cURLClient->pushwooshCall(
+            'createTargetedMessage',
+            $createTargetedMessageRequest->jsonSerialize()
+        );
+
+        return CreateTargetedMessageResponse::create($response);
     }
 
     /**
      * {@inheritDoc}
      */
-
     public function deleteMessage(DeleteMessageRequest $deleteMessageRequest)
     {
         // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
-        if ($deleteMessageRequest->getAuth() === null) {
-            // The 'auth' parameter is expected here
-            if (!isset($this->auth)) {
-                throw new PushwooshException('The \'auth\' parameter is not set !');
-
-                // Use the 'auth' parameter defined in the Pushwoosh client
-            } else {
-                $deleteMessageRequest->setAuth($this->auth);
-
-            }
-
-        }
+        $this->setAuthIfNotSet($deleteMessageRequest);
 
         $response = $this->cURLClient->pushwooshCall('deleteMessage', $deleteMessageRequest->jsonSerialize());
 
         return DeleteMessageResponse::create($response);
-
     }
 
     /**
      * {@inheritDoc}
      */
-
     public function getApplication()
     {
         return $this->application;
@@ -181,7 +171,6 @@ class Pushwoosh implements IPushwoosh
     /**
      * {@inheritDoc}
      */
-
     public function getApplicationsGroup()
     {
         return $this->applicationsGroup;
@@ -212,21 +201,11 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
-        if ($getNearestZoneRequest->getApplication() === null) {
-            // The 'application' must be set
-            if (!isset($this->application)) {
-                throw new PushwooshException('The  \'application\' property is not set !');
-
-            }
-
-            $getNearestZoneRequest->setApplication($this->application);
-
-        }
+        $this->setApplicationIfNotSet($getNearestZoneRequest);
 
         $response = $this->cURLClient->pushwooshCall('getNearestZone', $getNearestZoneRequest->jsonSerialize());
 
         return GetNearestZoneResponse::create($response);
-
     }
 
     /**
@@ -236,30 +215,10 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
-        if ($getTagsRequest->getApplication() === null) {
-            // The 'application' must be set
-            if (!isset($this->application)) {
-                throw new PushwooshException('The  \'application\' property is not set !');
-
-            }
-
-            $getTagsRequest->setApplication($this->application);
-
-        }
+        $this->setApplicationIfNotSet($getTagsRequest);
 
         // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
-        if ($getTagsRequest->getAuth() === null) {
-            // The 'auth' parameter is expected here
-            if (!isset($this->auth)) {
-                throw new PushwooshException('The \'auth\' parameter is not set !');
-
-                // Use the 'auth' parameter defined in the Pushwoosh client
-            } else {
-                $getTagsRequest->setAuth($this->auth);
-
-            }
-
-        }
+        $this->setAuthIfNotSet($getTagsRequest);
 
         $response = $this->cURLClient->pushwooshCall('getTags', $getTagsRequest->jsonSerialize());
 
@@ -273,21 +232,11 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
-        if ($pushStatRequest->getApplication() === null) {
-            // The 'application' must be set
-            if (!isset($this->application)) {
-                throw new PushwooshException('The  \'application\' property is not set !');
+        $this->setApplicationIfNotSet($pushStatRequest);
 
-            }
-
-            $pushStatRequest->setApplication($this->application);
-
-        }
-
-        $response = $this->cURLClient->pushwooshCall('pushState', $pushStatRequest->jsonSerialize());
+        $response = $this->cURLClient->pushwooshCall('pushStat', $pushStatRequest->jsonSerialize());
 
         return PushStatResponse::create($response);
-
     }
 
     /**
@@ -297,21 +246,11 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
-        if ($registerDeviceRequest->getApplication() === null) {
-            // The 'application' must be set
-            if (!isset($this->application)) {
-                throw new PushwooshException('The  \'application\' property is not set !');
-
-            }
-
-            $registerDeviceRequest->setApplication($this->application);
-
-        }
+        $this->setApplicationIfNotSet($registerDeviceRequest);
 
         $response = $this->cURLClient->pushwooshCall('registerDevice', $registerDeviceRequest->jsonSerialize());
 
         return RegisterDeviceResponse::create($response);
-
     }
 
     /**
@@ -351,21 +290,11 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
-        if ($setBadgeRequest->getApplication() === null) {
-            // The 'application' must be set
-            if (!isset($this->application)) {
-                throw new PushwooshException('The  \'application\' property is not set !');
-
-            }
-
-            $setBadgeRequest->setApplication($this->application);
-
-        }
+        $this->setApplicationIfNotSet($setBadgeRequest);
 
         $response = $this->cURLClient->pushwooshCall('setBadge', $setBadgeRequest->jsonSerialize());
 
         return SetBadgeResponse::create($response);
-
     }
 
     /**
@@ -378,7 +307,6 @@ class Pushwoosh implements IPushwoosh
     public function setCURLClient(ICURLClient $cURLClient)
     {
         $this->cURLClient = $cURLClient;
-
     }
 
     /**
@@ -388,16 +316,7 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
-        if ($setTagsRequest->getApplication() === null) {
-            // The 'application' must be set
-            if (!isset($this->application)) {
-                throw new PushwooshException('The  \'application\' property is not set !');
-
-            }
-
-            $setTagsRequest->setApplication($this->application);
-
-        }
+        $this->setApplicationIfNotSet($setTagsRequest);
 
         $response = $this->cURLClient->pushwooshCall('setTags', $setTagsRequest->jsonSerialize());
 
@@ -411,18 +330,51 @@ class Pushwoosh implements IPushwoosh
     {
         // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
         // client
-        if ($unregisterDeviceRequest->getApplication() === null) {
-
-            // The 'application' must be set
-            if (!isset($this->application)) {
-                throw new PushwooshException('The  \'application\' property is not set !');
-            }
-
-            $unregisterDeviceRequest->setApplication($this->application);
-        }
+        $this->setApplicationIfNotSet($unregisterDeviceRequest);
 
         $response = $this->cURLClient->pushwooshCall('unregisterDevice', $unregisterDeviceRequest->jsonSerialize());
 
         return UnregisterDeviceResponse::create($response);
+    }
+    
+    /**
+     * Function used to check if the `application` parameter is set on a Pushwoosh request and if no try to set it from
+     * the Pushwoosh client `auth` parameter.
+     *
+     * @param \Gomoob\Pushwoosh\Model\IRequest $request The Pushwoosh request to update.
+     */
+    private function setApplicationIfNotSet(IRequest $request)
+    {
+        // If the 'application' attribute is not set in the request we try to get a default one from the Pushwoosh
+        // client
+        if ($request->getApplication() === null) {
+            // The 'application' must be set
+            if (!isset($this->application)) {
+                throw new PushwooshException('The  \'application\' property is not set !');
+            }
+        
+            $request->setApplication($this->application);
+        }
+    }
+    
+    /**
+     * Function used to check if the `auth` parameter is set on a Pushwoosh request and if no try to set it from the
+     * Pushwoosh client `auth` parameter.
+     *
+     * @param \Gomoob\Pushwoosh\Model\IRequest $request The Pushwoosh request to update.
+     */
+    private function setAuthIfNotSet(IRequest $request)
+    {
+        // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
+        if ($request->getAuth() === null) {
+            // The 'auth' parameter is expected here
+            if (!isset($this->auth)) {
+                throw new PushwooshException('The \'auth\' parameter is not set !');
+    
+                // Use the 'auth' parameter defined in the Pushwoosh client
+            } else {
+                $request->setAuth($this->auth);
+            }
+        }
     }
 }

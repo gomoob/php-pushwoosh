@@ -76,9 +76,8 @@ class Android implements \JsonSerializable
     public static function create()
     {
         return new Android();
-
     }
-    
+
     /**
      * Gets the Android application icon badge number.
      *

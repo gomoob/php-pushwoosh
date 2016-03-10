@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class RegisterDeviceRequest implements \JsonSerializable
+class RegisterDeviceRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID for which one to register a new device.
@@ -142,6 +142,14 @@ class RegisterDeviceRequest implements \JsonSerializable
     public function getTimezone()
     {
         return $this->timezone;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return false;
     }
     
     /**

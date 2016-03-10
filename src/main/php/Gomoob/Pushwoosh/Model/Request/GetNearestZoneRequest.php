@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class GetNearestZoneRequest implements \JsonSerializable
+class GetNearestZoneRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID where you send the message to.
@@ -96,6 +96,14 @@ class GetNearestZoneRequest implements \JsonSerializable
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return false;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function jsonSerialize()
@@ -140,7 +148,6 @@ class GetNearestZoneRequest implements \JsonSerializable
         $this->application = $application;
 
         return $this;
-
     }
 
     /**
@@ -155,7 +162,6 @@ class GetNearestZoneRequest implements \JsonSerializable
         $this->hwid = $hwid;
 
         return $this;
-
     }
 
     /**
@@ -170,7 +176,6 @@ class GetNearestZoneRequest implements \JsonSerializable
         $this->lat = $lat;
 
         return $this;
-
     }
 
     /**
@@ -185,6 +190,5 @@ class GetNearestZoneRequest implements \JsonSerializable
         $this->lng = $lng;
 
         return $this;
-
     }
 }

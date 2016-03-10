@@ -15,7 +15,7 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class GetTagsRequest implements \JsonSerializable
+class GetTagsRequest extends AbstractRequest
 {
     /**
      * The Pushwoosh application ID where to send the message to (cannot be used together with "applicationsGroup").
@@ -23,13 +23,6 @@ class GetTagsRequest implements \JsonSerializable
      * @var string
      */
     private $application;
-
-    /**
-     * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
-     *
-     * @var string
-     */
-    private $auth;
 
     /**
      * The hardware device id used in registerDevice function call.
@@ -59,18 +52,6 @@ class GetTagsRequest implements \JsonSerializable
     }
 
     /**
-     * Gets the API access token from the Pushwoosh control panel (create this token at
-     * https://cp.pushwoosh.com/api_access).
-     *
-     * @return string the API access token from the Pushwoosh control panel (create this token at
-     *         https://cp.pushwoosh.com/api_access).
-     */
-    public function getAuth()
-    {
-        return $this->auth;
-    }
-
-    /**
      * Gets the hardware device id used in registerDevice function call.
      *
      * @return string the hardware device id used in registerDevice function call.
@@ -78,6 +59,14 @@ class GetTagsRequest implements \JsonSerializable
     public function getHwid()
     {
         return $this->hwid;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function isAuthSupported()
+    {
+        return true;
     }
     
     /**
@@ -117,22 +106,6 @@ class GetTagsRequest implements \JsonSerializable
     public function setApplication($application)
     {
         $this->application = $application;
-
-        return $this;
-    }
-
-    /**
-     * Sets the API access token from the Pushwoosh control panel (create this token at
-     * https://cp.pushwoosh.com/api_access).
-     *
-     * @param string $auth the API access token from the Pushwoosh control panel (create this token at
-     *        https://cp.pushwoosh.com/api_access).
-     *
-     * @return \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest this instance.
-     */
-    public function setAuth($auth)
-    {
-        $this->auth = $auth;
 
         return $this;
     }
