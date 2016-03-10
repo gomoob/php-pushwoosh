@@ -36,13 +36,13 @@
 		"php" : ">=5.5.9"
 	},
 	"require-dev" : {
-		"codeclimate/php-test-reporter" : "~0.3",
+		"codeclimate/php-test-reporter" : "~0.2",
 		"pdepend/pdepend" : "~2.2",
 		"phpdocumentor/phpdocumentor" : "2.*",
 		"phploc/phploc" : "~2.1",
 		"phpmd/phpmd" : "~2.4",
 		"phpunit/phpunit" : "~4.8",
-		"satooshi/php-coveralls" : "~1.0",
+		"satooshi/php-coveralls" : "~0.6",
 		"sebastian/phpcpd" : "~2.0",
 		"squizlabs/php_codesniffer" : "~2.5",
 		"symfony/stopwatch" : "~3.0",
