@@ -28,6 +28,8 @@ use Gomoob\Pushwoosh\Model\Response\SetBadgeResponse;
 use Gomoob\Pushwoosh\Model\Response\PushStatResponse;
 use Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse;
 use Gomoob\Pushwoosh\Model\Response\GetTagsResponse;
+use Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest;
+use Gomoob\Pushwoosh\Model\Response\CreateTargetedMessageResponse;
 
 /**
  * Class which defines a Pushwoosh client mock.
@@ -43,7 +45,7 @@ class PushwooshMock implements IPushwoosh
      * @var string
      */
     private $application;
-    
+
     /**
      * The Pushwoosh applications group code to be used to defautl by all the requests performed by the Pushwoosh client
      * . This identifier can be overwritten by requests if needed.
@@ -53,28 +55,28 @@ class PushwooshMock implements IPushwoosh
      * @var string
      */
     private $applicationsGroup;
-    
+
     /**
      * The API access token from the Pushwoosh control panel (create this token at https://cp.pushwoosh.com/api_access).
      *
      * @var string
      */
     private $auth;
-    
+
     /**
      * An array which contains all pushwoosh requests sent by this pushwoosh client.
      *
      * @var array
      */
     private $pushwhooshRequests;
-    
+
     /**
      * {@inheritDoc}
      */
     public function createMessage(CreateMessageRequest $createMessageRequest)
     {
         $this->pushwhooshRequests[] = $createMessageRequest;
-        
+
         return CreateMessageResponse::create(
             json_decode('{
                 "status_code":200,
@@ -85,14 +87,33 @@ class PushwooshMock implements IPushwoosh
             }', true)
         );
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createTargetedMessage(CreateTargetedMessageRequest $createTargetedMessageRequest)
+    {
+        // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
+        $this->setAuthIfNotSet($createTargetedMessageRequest);
+
+        return CreateTargetedMessageResponse::create(
+            json_decode('{
+                "status_code":200,
+                "status_message":"OK",
+                "response": {
+                    "Messages":[]
+                }
+            }', true)
+        );
+    }
+
     /**
      * {@inheritDoc}
      */
     public function deleteMessage(DeleteMessageRequest $deleteMessageRequest)
     {
         $this->pushwhooshRequests[] = $deleteMessageRequest;
-        
+
         return DeleteMessageResponse::create(
             json_decode('{
                 "status_code":200,
@@ -100,7 +121,7 @@ class PushwooshMock implements IPushwoosh
             }', true)
         );
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -108,7 +129,7 @@ class PushwooshMock implements IPushwoosh
     {
         return $this->application;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -116,7 +137,7 @@ class PushwooshMock implements IPushwoosh
     {
         return $this->applicationsGroup;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -124,24 +145,24 @@ class PushwooshMock implements IPushwoosh
     {
         return $this->auth;
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public function getNearestZone(GetNearestZoneRequest $getNearestZoneRequest)
     {
         $this->pushwhooshRequests[] = $getNearestZoneRequest;
-        
+
         return GetNearestZoneResponse::create(
             json_decode('{
                "status_code":200,
                "status_message":"OK"
-               "response": {  
+               "response": {
                   "name":"zone name",
                   "lat":42,
                   "lng":42,
-                  "range":100,         
-                  "distance":4715784 
+                  "range":100,
+                  "distance":4715784
                }
             }', true)
         );
@@ -156,7 +177,7 @@ class PushwooshMock implements IPushwoosh
     {
         return $this->pushwhooshRequests;
     }
-    
+
     /**
      * Clears the create message requests which have been sent with this Pushwoosh client.
      */
@@ -164,14 +185,14 @@ class PushwooshMock implements IPushwoosh
     {
         $this->pushwhooshRequests = [];
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public function getTags(GetTagsRequest $getTagsRequest)
     {
         $this->pushwhooshRequests[] = $getTagsRequest;
-        
+
         return GetTagsResponse::create(
             json_decode('{
               "status_code": 200,
@@ -184,14 +205,14 @@ class PushwooshMock implements IPushwoosh
             }', true)
         );
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public function pushStat(PushStatRequest $pushStatRequest)
     {
         $this->pushwhooshRequests[] = $pushStatRequest;
-        
+
         return PushStatResponse::create(
             json_decode('{
                 "status_code":200,
@@ -199,14 +220,14 @@ class PushwooshMock implements IPushwoosh
             }', true)
         );
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public function registerDevice(RegisterDeviceRequest $registerDeviceRequest)
     {
         $this->pushwhooshRequests[] = $registerDeviceRequest;
-        
+
         return RegisterDeviceResponse::create(
             json_decode('{
                 "status_code":200,
@@ -215,7 +236,7 @@ class PushwooshMock implements IPushwoosh
             }', true)
         );
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -225,7 +246,7 @@ class PushwooshMock implements IPushwoosh
 
         return $this;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -235,7 +256,7 @@ class PushwooshMock implements IPushwoosh
 
         return $this;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -245,7 +266,7 @@ class PushwooshMock implements IPushwoosh
 
         return $this;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -260,7 +281,7 @@ class PushwooshMock implements IPushwoosh
             }', true)
         );
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -276,7 +297,7 @@ class PushwooshMock implements IPushwoosh
             }', true)
         );
     }
-    
+
     /**
      * {@inheritDoc}
      */
