@@ -60,13 +60,11 @@ class DeleteMessageRequest extends AbstractRequest
         // The 'auth' parameter must have been set
         if (!isset($this->auth)) {
             throw new PushwooshException('The \'auth\' property is not set !');
-    
         }
     
         // The 'message' parameter must have been set
         if (!isset($this->message)) {
             throw new PushwooshException('The \'message\' property is not set !');
-    
         }
     
         return [

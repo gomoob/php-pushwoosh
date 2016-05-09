@@ -29,7 +29,6 @@ class JsonUtils
         $arguments = func_get_args();
 
         for ($i = 1; $i < $numberOfArguments; ++$i) {
-            
             $argument = $arguments[$i];
 
             if (isset($argument)) {

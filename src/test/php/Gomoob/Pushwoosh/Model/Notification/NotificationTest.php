@@ -341,20 +341,16 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
         try {
             $notification->setSendDate('aaa');
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
             // Expected
-
         }
 
         // Test with a send date which is neither a \DateTime neither a string
         try {
             $notification->setSendDate(654);
             $this->fail('Must have thrown a PushwooshException !');
-
         } catch (PushwooshException $pe) {
             // Expected
-
         }
 
         // Test with 'now'

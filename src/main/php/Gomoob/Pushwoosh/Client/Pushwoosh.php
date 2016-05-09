@@ -118,9 +118,7 @@ class Pushwoosh implements IPushwoosh
                 // Sets the 'applicationsGroup' attribute
             } elseif (isset($this->applicationsGroup)) {
                 $createMessageRequest->setApplicationsGroup($this->applicationsGroup);
-
             }
-
         }
 
         // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client

@@ -105,20 +105,14 @@ class DateCondition extends AbstractCondition
         
         // The operand is an array of date and time objects
         if (is_array($this->operand)) {
-
             $operandWithString = [];
 
             foreach ($this->operand as $dateAndTime) {
-                
                 $operandWithString[] = $dateAndTime->format('Y-m-d h:i');
-                
             }
-            
         } // The operand is a date and time object
         else {
-
             $operandWithString = $this->operand->format('Y-m-d h:i');
-
         }
         
         return [

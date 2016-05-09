@@ -33,9 +33,7 @@ abstract class AbstractRequest implements IRequest
     {
         // If the `auth` parameter is not supported we throw an exception
         if (!$this->isAuthSupported()) {
-
             throw new PushwooshException('This request does not support the \'auth\' parameter !');
-
         }
 
         return $this->auth;
@@ -48,9 +46,7 @@ abstract class AbstractRequest implements IRequest
     {
         // If the `auth` parameter is not supported we throw an exception
         if (!$this->isAuthSupported()) {
-        
             throw new PushwooshException('This request does not support the \'auth\' parameter !');
-        
         }
 
         $this->auth = $auth;

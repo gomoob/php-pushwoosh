@@ -44,7 +44,6 @@ class GetNearestZoneResponse extends AbstractResponse
             $getNearestZoneResponseResponse->setName($json['response']['name']);
             $getNearestZoneResponseResponse->setRange($json['response']['range']);
             $getNearestZoneResponse->setResponse($getNearestZoneResponseResponse);
-
         }
 
         return $getNearestZoneResponse;

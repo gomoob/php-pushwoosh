@@ -94,7 +94,6 @@ class CURLClient implements ICURLClient
                     'curl_info' => $info
                 ]
             );
-
         }
 
         $jsonResult = json_decode($response, true);
@@ -116,7 +115,6 @@ class CURLClient implements ICURLClient
             
             // Close the CURL handle
             $this->curlRequest->close();
-            
         }
         
         // Close the CURL handle

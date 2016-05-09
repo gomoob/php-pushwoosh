@@ -42,11 +42,9 @@ class CreateMessageResponse extends AbstractResponse
             // If 'Messages' are provided
             if (array_key_exists('Messages', $json['response'])) {
                 $createMessageResponseResponse->setMessages($json['response']['Messages']);
-
             }
 
             $createMessageResponse->setResponse($createMessageResponseResponse);
-
         }
 
         return $createMessageResponse;

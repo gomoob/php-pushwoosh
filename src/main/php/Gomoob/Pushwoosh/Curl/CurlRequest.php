@@ -48,11 +48,9 @@ class CurlRequest implements ICurlRequest
             // The provided URL must be valid
             if (!$this->isUrlValid($url)) {
                 throw new \Exception('Invalid URL provided \'' . $url . '\' !', -1, null);
-
             }
 
             $this->init($url);
-
         }
 
     }
@@ -92,7 +90,6 @@ class CurlRequest implements ICurlRequest
         // If a previous CURL handle exists close it
         if ($this->ch) {
             $this->close();
-
         }
 
         $this->ch = curl_init($url);

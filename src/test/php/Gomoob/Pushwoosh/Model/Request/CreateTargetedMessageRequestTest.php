@@ -187,7 +187,6 @@ class CreateTargetedMessageRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $createTargetedMessageRequest->setSendDate('aaa');
             $this->fail('Must have thrown a PushwooshException !');
-    
         } catch (PushwooshException $pe) {
             // Expected
         }
@@ -196,7 +195,6 @@ class CreateTargetedMessageRequestTest extends \PHPUnit_Framework_TestCase
         try {
             $createTargetedMessageRequest->setSendDate(654);
             $this->fail('Must have thrown a PushwooshException !');
-    
         } catch (PushwooshException $pe) {
             // Expected
         }

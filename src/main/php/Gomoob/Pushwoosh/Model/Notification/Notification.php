@@ -1059,7 +1059,6 @@ class Notification implements \JsonSerializable
             // Invalid send date provided
         } else {
             throw new PushwooshException('Invalid send date provided !');
-
         }
 
         return $this;

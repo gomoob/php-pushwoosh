@@ -42,11 +42,9 @@ class GetTagsResponse extends AbstractResponse
             // If a 'result' is provided
             if (array_key_exists('result', $json['response'])) {
                 $getTagsResponseResponse->setResult($json['response']['result']);
-
             }
 
             $getTagsResponse->setResponse($getTagsResponseResponse);
-
         }
 
         return $getTagsResponse;

@@ -45,7 +45,6 @@ class CreateTargetedMessageResponse extends AbstractResponse
             }
     
             $createTargetedMessageResponse->setResponse($createTargetedMessageResponseResponse);
-    
         }
     
         return $createTargetedMessageResponse;
