@@ -317,6 +317,11 @@ class CreateTargetedMessageRequest extends AbstractRequest
      */
     public function jsonSerialize()
     {
+        // The 'auth' parameter must have been set
+        if (!isset($this->auth)) {
+            throw new PushwooshException('The \'auth\' property is not set !');
+        }
+
         $json = ['auth' => $this->auth];
         
         // Mandatory parameters

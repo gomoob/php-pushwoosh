@@ -263,7 +263,7 @@ class CreateTargetedMessageRequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testJsonSerialize()
     {
-        $array = CreateTargetedMessageRequest::create()
+        $createTargetedMessageRequest = CreateTargetedMessageRequest::create()
             ->setSendDate('now')
             ->setTimezone('America/New_York')
             ->setIgnoreUserTimezone(true)
@@ -285,11 +285,21 @@ class CreateTargetedMessageRequestTest extends \PHPUnit_Framework_TestCase
                     'custom' => 'json data'
                 ]
             )
-            ->setDevicesFilter('A(\"00000-00000\") * T(\"age\", BETWEEN, [17, 19])')
-            ->jsonSerialize();
+            ->setDevicesFilter('A(\"00000-00000\") * T(\"age\", BETWEEN, [17, 19])');
+        
+        // Test with an 'auth' property which is not set
+        try {
+            $array = $createTargetedMessageRequest->jsonSerialize();
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('The \'auth\' property is not set !', $pex->getMessage());
+        }
 
-        // Test the generic properties
-        $this->assertCount(12, $array);
+        // Test with an 'auth' property and check results
+        $array = $createTargetedMessageRequest->setAuth('XXXX')->jsonSerialize();
+
+        $this->assertCount(13, $array);
+        $this->assertSame('XXXX', $array['auth']);
         $this->assertSame('now', $array['send_date']);
         $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
