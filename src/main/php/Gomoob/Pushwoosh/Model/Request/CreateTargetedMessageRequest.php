@@ -317,7 +317,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
      */
     public function jsonSerialize()
     {
-        $json = [];
+        $json = ['auth' => $this->auth];
         
         // Mandatory parameters
         $json['ignore_user_timezone'] = $this->ignoreUserTimezone;
