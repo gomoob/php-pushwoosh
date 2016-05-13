@@ -484,8 +484,6 @@ footer a:hover {
 }
 .search-input-wrapper > span {
 	color: white;
-	font-family: inherit;
-	font-weight: bold;
 	vertical-align: middle;
 }	
 .search-input-wrapper #search-input {
@@ -497,4 +495,7 @@ footer a:hover {
     padding: 8px;
     margin: 4px;
     color: #727272;
+    min-width: 240px;
+    font-family: inherit;
+	font-weight: bold;
 }
