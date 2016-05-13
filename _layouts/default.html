@@ -11,6 +11,9 @@
         <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
         <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
         <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+        
+        <!-- Algolia Doc Search CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" />
 
         <!--[if lt IE 9]>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -28,6 +31,9 @@
                    class="button">
                     <small>View project on</small>GitHub
                 </a>
+                <div>
+                    Search <input type="text" id="search-input" style="display:block;">
+                </div>
             </div>
         </header>
 
@@ -78,5 +84,15 @@
                  pageTracker._trackPageview();
             } catch(err) {}
         </script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+		<script type="text/javascript">
+		    docsearch(
+		        {
+		            apiKey: 'ddb663c8ab7326a59fe786306d7dde9a',
+		            indexName: 'php-pushwoosh',
+		            inputSelector: '#search-input'
+		        }
+		    );
+		</script>
     </body>
 </html>
