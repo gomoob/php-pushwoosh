@@ -477,3 +477,21 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+/* Search Input for Algolia Search Doc */
+.search-input-wrapper {
+	margin-top: 16px;
+}
+.search-input-wrapper > span {
+	color: white;
+}	
+.search-input-wrapper #search-input {
+    vertical-align: top;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    padding: 8px;
+    margin: 4px;
+    color: #727272;
+}
