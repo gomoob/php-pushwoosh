@@ -484,6 +484,9 @@ footer a:hover {
 }
 .search-input-wrapper > span {
 	color: white;
+	font-family: inherit;
+	font-weight: bold;
+	vertical-align: middle;
 }	
 .search-input-wrapper #search-input {
     vertical-align: top;
