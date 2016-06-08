@@ -55,6 +55,13 @@ class Notification implements \JsonSerializable
     private $chrome;
 
     /**
+     * The object which contains specific Pushwoosh notification informations for Firefox.
+     *
+     * @var \Gomoob\Pushwoosh\Model\Notification\Firefox
+     */
+    private $firefox;
+
+    /**
      * An array of tag conditions, an AND logical operator is applied between two tag conditions, for exemple to send
      * push notifications to subscribers in Brazil that speaks Portuguese language you need to specify condition like
      * this:
@@ -150,7 +157,10 @@ class Notification implements \JsonSerializable
      */
     private $iOS;
 
-    // TODO: DOCUMENT ME!
+    /**
+     * Parameter Link
+     * @var string
+     */
     private $link;
 
     /**
@@ -456,6 +466,16 @@ class Notification implements \JsonSerializable
     }
 
     /**
+     * Gets the object which contains specific Pushwoosh notification informations for Firefox.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Firefox
+     */
+    public function getFirefox()
+    {
+        return $this->firefox;
+    }
+
+    /**
      * Indicates if the user timezone should be ignored.
      *
      * @return boolean `true` if the user timezone should be ignored, `false` otherwise.
@@ -477,7 +497,10 @@ class Notification implements \JsonSerializable
         return $this->iOS;
     }
 
-    // TODO: DOCUMENT ME!
+    /**
+     * Get Link Param
+     * @return string
+     */
     public function getLink()
     {
         return $this->link;
@@ -678,6 +701,7 @@ class Notification implements \JsonSerializable
             $this->android,
             $this->blackBerry,
             $this->chrome,
+            $this->firefox,
             $this->iOS,
             $this->mac,
             $this->safari,
@@ -870,6 +894,21 @@ class Notification implements \JsonSerializable
     public function setFilter($filter)
     {
         $this->filter = $filter;
+
+        return $this;
+    }
+
+    /**
+     * Sets the object which contains specific Pushwoosh notification informations for Firfox.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Notification\Firefox $firefox the object which contains specific Pushwoosh
+     *                                                            notification informations for Firefox.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setFirefox($firefox)
+    {
+        $this->firefox = $firefox;
 
         return $this;
     }
