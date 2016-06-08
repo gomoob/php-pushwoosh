@@ -95,4 +95,12 @@ class PlatformTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(8, Platform::windows8()->getValue());
     }
+
+    /**
+     * Test method for the <code>#firefox</code> function.
+     */
+    public function testFirefox()
+    {
+        $this->assertSame(12, Platform::firefox()->getValue());
+    }
 }

@@ -16,6 +16,51 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 class Platform
 {
     /**
+     * @const string iOS
+     */
+    const IOS = 1;
+    /**
+     * @const string BlackBerry
+     */
+    const BLACKBERRY = 2;
+    /**
+     * @const string Android
+     */
+    const ANDROID = 3;
+    /**
+     * @const string Nokia ASHA
+     */
+    const NOKIA_ASHA = 4;
+    /**
+     * @const string Windows Phone 7
+     */
+    const WINDOWS_PHONE_7 = 5;
+    /**
+     * @const string Mac OS X
+     */
+    const MAC_OS_X = 7;
+    /**
+     * @const string Windows 8
+     */
+    const WINDOWS_8 = 8;
+    /**
+     * @const string Amazon
+     */
+    const AMAZON = 9;
+    /**
+     * @const string Safari
+     */
+    const SAFARI = 10;
+    /**
+     * @const string Chrome
+     */
+    const CHROME = 11;
+    /**
+     * @const string Firefox
+     */
+    const FIREFOX = 12;
+
+    /**
      * The value of the platform, this can be equal to :
      *  - 1 : iOS
      *  - 2 : BlackBerry
@@ -27,6 +72,7 @@ class Platform
      *  - 9 : Amazon
      *  - 10: Safari
      *  - 11: Chrome
+     *  - 12: Firefox
      *
      * @var int
      */
@@ -49,7 +95,7 @@ class Platform
      */
     public static function amazon()
     {
-        return new Platform(9);
+        return new Platform(self::AMAZON);
     }
 
     /**
@@ -59,7 +105,7 @@ class Platform
      */
     public static function android()
     {
-        return new Platform(3);
+        return new Platform(self::ANDROID);
     }
 
     /**
@@ -69,7 +115,7 @@ class Platform
      */
     public static function blackBerry()
     {
-        return new Platform(2);
+        return new Platform(self::BLACKBERRY);
     }
     
     /**
@@ -79,7 +125,7 @@ class Platform
      */
     public static function chrome()
     {
-        return new Platform(11);
+        return new Platform(self::CHROME);
     }
 
     /**
@@ -89,7 +135,7 @@ class Platform
      */
     public static function iOS()
     {
-        return new Platform(1);
+        return new Platform(self::IOS);
     }
 
     /**
@@ -99,7 +145,7 @@ class Platform
      */
     public static function macOSX()
     {
-        return new Platform(7);
+        return new Platform(self::MAC_OS_X);
     }
 
     /**
@@ -109,7 +155,7 @@ class Platform
      */
     public static function nokia()
     {
-        return new Platform(4);
+        return new Platform(self::NOKIA_ASHA);
     }
 
     /**
@@ -119,7 +165,7 @@ class Platform
      */
     public static function safari()
     {
-        return new Platform(10);
+        return new Platform(self::SAFARI);
     }
 
     /**
@@ -129,7 +175,7 @@ class Platform
      */
     public static function windowsPhone7()
     {
-        return new Platform(5);
+        return new Platform(self::WINDOWS_PHONE_7);
     }
 
     /**
@@ -139,7 +185,17 @@ class Platform
      */
     public static function windows8()
     {
-        return new Platform(8);
+        return new Platform(self::WINDOWS_8);
+    }
+
+    /**
+     * Get a <code>Platform</code> instance for Firefox.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Platform the created <code>Platform</code> instance.
+     */
+    public static function firefox()
+    {
+        return new Platform(self::FIREFOX);
     }
 
     /**
@@ -154,6 +210,7 @@ class Platform
      *  - 9 : Amazon
      *  - 10: Safari
      *  - 11: Chrome
+     *  - 12: Firefox
      *
      * @return int the value of the platform.
      */
