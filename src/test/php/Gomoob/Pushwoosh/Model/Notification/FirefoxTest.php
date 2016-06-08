@@ -5,7 +5,7 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 
 /**
  * Test case used to test the <code>Firefox</code> class.
- * 
+ *
  * @author: Oleg Bespalov <o.bespalov@rambler-co.ru>
  * @group  FirefoxTest
  */
