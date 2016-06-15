@@ -131,7 +131,7 @@ class CreateMessageRequest extends AbstractRequest
     
         $json = [
             'application' => $this->application,
-            'applicationsGroup' => $this->applicationsGroup,
+            'applications_group' => $this->applicationsGroup,
             'auth' => $this->auth,
             'notifications' => []
         ];
