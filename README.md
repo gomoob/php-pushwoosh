@@ -54,4 +54,4 @@ you like to start your next project with us? That's great! Give us a call or sen
 you as soon as possible !
 
 You can contact us by email at [contact@gomoob.com](mailto:contact@gomoob.com) or by phone number 
-[(+33)6 85 12 81 26](tel:+33685128126) or [(+33) 6 28 35 04 49](tel:+33685128126).
+[(+33) 6 85 12 81 26](tel:+33685128126) or [(+33) 6 28 35 04 49](tel:+33685128126).

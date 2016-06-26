@@ -53,7 +53,6 @@
 	<buildpathentry kind="src" path="vendor/psr/log"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-config/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-cache/src"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-math/src"/>
 	<buildpathentry kind="src" path="vendor/symfony/finder"/>
 	<buildpathentry kind="src" path="vendor/monolog/monolog/src/Monolog"/>
 	<buildpathentry kind="src" path="vendor/pimple/pimple/lib"/>

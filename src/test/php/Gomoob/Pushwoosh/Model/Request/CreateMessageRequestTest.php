@@ -156,11 +156,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
-        $this->assertTrue(array_key_exists('applicationsGroup', $json));
+        $this->assertTrue(array_key_exists('applications_group', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
         $this->assertSame('XXXX-XXXX', $json['application']);
-        $this->assertNull($json['applicationsGroup']);
+        $this->assertNull($json['applications_group']);
         $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(0, $json['notifications']);
 
@@ -172,11 +172,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
-        $this->assertTrue(array_key_exists('applicationsGroup', $json));
+        $this->assertTrue(array_key_exists('applications_group', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
         $this->assertSame('XXXX-XXXX', $json['application']);
-        $this->assertNull($json['applicationsGroup']);
+        $this->assertNull($json['applications_group']);
         $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(1, $json['notifications']);
         $this->assertCount(3, $json['notifications'][0]);
@@ -196,11 +196,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
-        $this->assertTrue(array_key_exists('applicationsGroup', $json));
+        $this->assertTrue(array_key_exists('applications_group', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
         $this->assertSame('XXXX-XXXX', $json['application']);
-        $this->assertNull($json['applicationsGroup']);
+        $this->assertNull($json['applications_group']);
         $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(1, $json['notifications']);
         $this->assertCount(4, $json['notifications'][0]);
@@ -220,11 +220,11 @@ class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
         $json = $createMessageRequest->jsonSerialize();
         $this->assertCount(4, $json);
         $this->assertTrue(array_key_exists('application', $json));
-        $this->assertTrue(array_key_exists('applicationsGroup', $json));
+        $this->assertTrue(array_key_exists('applications_group', $json));
         $this->assertTrue(array_key_exists('auth', $json));
         $this->assertTrue(array_key_exists('notifications', $json));
         $this->assertSame('XXXX-XXXX', $json['application']);
-        $this->assertNull($json['applicationsGroup']);
+        $this->assertNull($json['applications_group']);
         $this->assertSame('XXXX', $json['auth']);
         $this->assertCount(1, $json['notifications']);
         $this->assertCount(5, $json['notifications'][0]);
