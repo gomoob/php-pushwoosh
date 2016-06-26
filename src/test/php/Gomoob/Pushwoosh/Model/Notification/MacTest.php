@@ -16,14 +16,12 @@ namespace Gomoob\Pushwoosh\Model\Notification;
  */
 class MacTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test method for the <code>#create()</code> function;
      */
     public function testCreate()
     {
         $this->assertNotNull(Mac::create());
-
     }
 
     /**

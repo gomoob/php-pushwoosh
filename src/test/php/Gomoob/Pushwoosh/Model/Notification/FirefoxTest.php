@@ -1,12 +1,17 @@
 <?php
 
-
+/**
+ * gomoob/php-pushwoosh
+ *
+ * @copyright Copyright (c) 2016, GOMOOB SARL (http://gomoob.com)
+ * @license   http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE.md file)
+ */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
 /**
  * Test case used to test the <code>Firefox</code> class.
  *
- * @author: Oleg Bespalov <o.bespalov@rambler-co.ru>
+ * @author Oleg Bespalov <o.bespalov@rambler-co.ru>
  * @group  FirefoxTest
  */
 class FirefoxTest extends \PHPUnit_Framework_TestCase

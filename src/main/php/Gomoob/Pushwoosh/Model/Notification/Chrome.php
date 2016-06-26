@@ -44,7 +44,6 @@ class Chrome implements \JsonSerializable
     public static function create()
     {
         return new Chrome();
-    
     }
 
     /**

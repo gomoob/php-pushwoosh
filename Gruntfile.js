@@ -118,11 +118,6 @@ module.exports = function(grunt) {
                 
                 phpdocumentor : {
                     command : function() {
-                    	
-                    	// FIXME: https://github.com/gomoob/php-pushwoosh/issues/52
-                    	//        https://github.com/phpDocumentor/phpDocumentor2/issues/1602
-                    	fs.writeFileSync('vendor/dompdf/dompdf/dompdf_config.inc.php', '<?php ');
-                    	
                         return 'php vendor/phpdocumentor/phpdocumentor/bin/phpdoc.php --target=build/reports/phpdocumentor --directory=src/main/php';
                     }
                 },
