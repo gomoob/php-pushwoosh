@@ -25,6 +25,6 @@ $app = new Application($rootDir, 'Code Climate PHP Test Reporter', Version::VERS
 
 // This is only a trick to publish only one Code Coverage Payload to Code Climate, this is important because Code 
 // Climate does not support multiple payload for now
-if (version_compare(phpversion(), '5.6.0', '<')) {
+if (version_compare(phpversion(), '7.0.0', '<')) {
     $app->run();
 }
