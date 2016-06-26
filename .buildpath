@@ -3,7 +3,6 @@
 	<buildpathentry kind="src" path="vendor/phpunit/php-token-stream/src"/>
 	<buildpathentry kind="src" path="vendor/symfony/event-dispatcher"/>
 	<buildpathentry kind="src" path="vendor/sebastian/environment/src"/>
-	<buildpathentry kind="src" path="vendor/zendframework/zend-hydrator/src"/>
 	<buildpathentry kind="src" path="src/main/php/Gomoob"/>
 	<buildpathentry kind="src" path="vendor/phpunit/phpunit/src"/>
 	<buildpathentry kind="src" path="vendor/jms/parser-lib/src"/>
@@ -22,10 +21,8 @@
 	<buildpathentry kind="src" path="vendor/sebastian/global-state/src"/>
 	<buildpathentry kind="src" path="vendor/pdepend/pdepend/src/main/php/PDepend"/>
 	<buildpathentry kind="src" path="vendor/doctrine/lexer/lib"/>
-	<buildpathentry kind="src" path="vendor/justinrainbow/json-schema/src/JsonSchema"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry kind="src" path="vendor/symfony/translation"/>
-	<buildpathentry kind="src" path="vendor/container-interop/container-interop/src/Interop/Container"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Squiz/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-i18n/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/DocGenerators"/>
@@ -64,18 +61,14 @@
 	<buildpathentry kind="src" path="vendor/theseer/fdomdocument/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-json/src"/>
 	<buildpathentry kind="src" path="vendor/erusev/parsedown"/>
-	<buildpathentry kind="src" path="vendor/kherge/version/src/lib"/>
 	<buildpathentry kind="src" path="vendor/sebastian/recursion-context/src"/>
 	<buildpathentry kind="src" path="vendor/guzzle/guzzle/src"/>
-	<buildpathentry kind="src" path="vendor/herrera-io/json/src/lib"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-code-coverage/src"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PEAR/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/symfony/dependency-injection"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/graphviz/src"/>
 	<buildpathentry kind="src" path="vendor/phpmd/phpmd/src/main/php"/>
 	<buildpathentry kind="src" path="vendor/cilex/console-service-provider/src"/>
-	<buildpathentry kind="src" path="vendor/herrera-io/phar-update/src/lib"/>
-	<buildpathentry kind="src" path="vendor/seld/jsonlint/src/Seld/JsonLint"/>
 	<buildpathentry excluding="Generic/Sniffs/|MySource/Sniffs/|PEAR/Sniffs/|PSR1/Sniffs/|PSR2/Sniffs/|Squiz/Sniffs/|Zend/Sniffs/" kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards"/>
 	<buildpathentry kind="src" path="vendor/phpspec/prophecy/src"/>
 	<buildpathentry kind="src" path="vendor/composer"/>

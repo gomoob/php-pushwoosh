@@ -38,7 +38,7 @@
 	"require-dev" : {
 		"codeclimate/php-test-reporter" : "~0.2",
 		"pdepend/pdepend" : "~2.2",
-		"phpdocumentor/phpdocumentor" : "^2.7.0",
+		"phpdocumentor/phpdocumentor" : "2.7.0",
 		"phploc/phploc" : "~2.1",
 		"phpmd/phpmd" : "~2.4",
 		"phpunit/phpunit" : "~4.8",
