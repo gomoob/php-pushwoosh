@@ -16,7 +16,6 @@
 	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src/Doctrine/Instantiator"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/MySource/Sniffs"/>
 	<buildpathentry kind="src" path="vendor/symfony/validator"/>
-	<buildpathentry kind="src" path="vendor/phpdocumentor/unified-asset-installer/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/finder-facade/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/phpcpd/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-serializer/src"/>
@@ -45,7 +44,6 @@
 	<buildpathentry kind="src" path="vendor/sebastian/exporter/src"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-text-template/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-filter/src"/>
-	<buildpathentry kind="src" path="vendor/dflydev/markdown/src"/>
 	<buildpathentry kind="src" path="vendor/guzzle/guzzle/tests"/>
 	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/CodeSniffer/Tokenizers"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-servicemanager/src"/>
