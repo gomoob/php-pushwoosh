@@ -33,11 +33,9 @@ class PushwooshException extends \Exception
      */
     public function __construct($message = null, $code = null, $previous = null, array $data = [])
     {
-
         parent::__construct($message, $code, $previous);
-
-        $this->data = $data;
         
+        $this->data = $data;
     }
 
     
@@ -50,18 +48,5 @@ class PushwooshException extends \Exception
     public function getData()
     {
         return $this->data;
-    }
-
-    /**
-     * Sets the additional data attached to the exception, those data must be represented as an array which is
-     * serializable in a JSON format.
-     *
-     * @param array $data Additional data / details to attach to the exception.
-     */
-    public function setData(array $data)
-    {
-
-        $this->data = $data;
-        
     }
 }
