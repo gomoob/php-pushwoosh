@@ -77,7 +77,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testCreateMessage()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -188,7 +188,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, $createMessageResponse->getResponse()->getMessages());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -206,7 +206,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, $createMessageResponse->getResponse()->getMessages());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -232,7 +232,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testCreateTargetedMessage()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -272,7 +272,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
     
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -293,7 +293,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
     
         // Test a call with an error response and no 'response' property in the response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -321,7 +321,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testDeleteMessage()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -359,7 +359,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $deleteMessageResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -382,7 +382,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testGetNearestZone()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -422,7 +422,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $getNearestZoneResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -479,7 +479,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testGetTags()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -570,7 +570,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $getTagsResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -592,7 +592,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testPushStat()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -631,7 +631,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $pushStatResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -655,7 +655,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testRegisterDevice()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -697,7 +697,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $registerDeviceResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -722,7 +722,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testSetBadge()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -761,7 +761,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $setBadgeResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -785,7 +785,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testSetTags()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -825,7 +825,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $setTagsResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -850,7 +850,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
     public function testUnregisterDevice()
     {
         // Create a fake CURL client
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
@@ -887,7 +887,7 @@ class PushwooshTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('OK', $unregisterDeviceResponse->getStatusMessage());
 
         // Test a call with an error response
-        $cURLClient = $this->getMock('Gomoob\Pushwoosh\ICURLClient');
+        $cURLClient = $this->createMock('Gomoob\Pushwoosh\ICURLClient');
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
             $this->returnValue(
                 [
