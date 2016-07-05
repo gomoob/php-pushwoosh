@@ -21,13 +21,15 @@ use Gomoob\Pushwoosh\Model\Request\SetBadgeRequest;
 use Gomoob\Pushwoosh\Model\Request\SetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the `Pushwoosh` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  PushwooshTest
  */
-class PushwooshTest extends \PHPUnit_Framework_TestCase
+class PushwooshTest extends TestCase
 {
     /**
      * An array which contains test configuration properties.

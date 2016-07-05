@@ -10,13 +10,15 @@ namespace Gomoob\Pushwoosh\Model\Request;
 
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>GetTagsRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  GetTagsRequestTest
  */
-class GetTagsRequestTest extends \PHPUnit_Framework_TestCase
+class GetTagsRequestTest extends TestCase
 {
     /**
      * Test method for the <tt>create()</tt> function.

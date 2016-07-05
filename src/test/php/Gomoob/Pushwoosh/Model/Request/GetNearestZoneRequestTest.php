@@ -10,13 +10,15 @@ namespace Gomoob\Pushwoosh\Model\Request;
 
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>GetNearestZoneRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  GetNearestZoneRequestTest
  */
-class GetNearestZoneRequestTest extends \PHPUnit_Framework_TestCase
+class GetNearestZoneRequestTest extends TestCase
 {
     /**
      * Test method for the <tt>create()</tt> function.

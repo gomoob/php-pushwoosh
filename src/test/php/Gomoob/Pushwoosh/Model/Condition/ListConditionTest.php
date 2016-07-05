@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Condition;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>ListCondition</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  ListConditionTest
  */
-class ListConditionTest extends \PHPUnit_Framework_TestCase
+class ListConditionTest extends TestCase
 {
     /**
      * Test method for the <code>#in(array $values)</code> function.

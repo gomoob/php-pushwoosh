@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>Firefox</code> class.
  *
  * @author Oleg Bespalov <o.bespalov@rambler-co.ru>
  * @group  FirefoxTest
  */
-class FirefoxTest extends \PHPUnit_Framework_TestCase
+class FirefoxTest extends TestCase
 {
     /**
      * Test method for the <code>#create()</code> function;

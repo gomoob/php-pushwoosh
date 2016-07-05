@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>Platform</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  PlatformTest
  */
-class PlatformTest extends \PHPUnit_Framework_TestCase
+class PlatformTest extends TestCase
 {
     /**
      * Test method for the <code>#amazon()</code> function.

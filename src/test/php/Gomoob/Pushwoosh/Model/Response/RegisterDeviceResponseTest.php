@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Response;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>RegisterDeviceResponse</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  RegisterDeviceResponseTest
  */
-class RegisterDeviceResponseTest extends \PHPUnit_Framework_TestCase
+class RegisterDeviceResponseTest extends TestCase
 {
     /**
      * Test method for the <tt>create(array $json)</tt> function.

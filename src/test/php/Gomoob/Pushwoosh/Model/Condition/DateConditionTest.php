@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Condition;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the `DateCondition` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  DateConditionTest
  */
-class DateConditionTest extends \PHPUnit_Framework_TestCase
+class DateConditionTest extends TestCase
 {
     /**
      * Test method for the `#between($minValue, $maxValue)` function.

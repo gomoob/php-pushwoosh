@@ -12,13 +12,15 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 
 use Gomoob\Pushwoosh\Model\Notification\MinimizeLink;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the `CreateTargetedMessageRequest` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  CreateTargetedMessageRequest
  */
-class CreateTargetedMessageRequestTest extends \PHPUnit_Framework_TestCase
+class CreateTargetedMessageRequestTest extends TestCase
 {
     /**
      * Test method for the `create()` function.

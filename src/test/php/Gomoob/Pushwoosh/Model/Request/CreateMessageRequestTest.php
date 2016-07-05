@@ -11,13 +11,15 @@ namespace Gomoob\Pushwoosh\Model\Request;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 use Gomoob\Pushwoosh\Model\Notification\Notification;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>CreateMessageRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  CreateMessageRequestTest
  */
-class CreateMessageRequestTest extends \PHPUnit_Framework_TestCase
+class CreateMessageRequestTest extends TestCase
 {
     /**
      * Test method for the `create()` function.

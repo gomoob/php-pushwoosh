@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>ADM</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  ADMTest
  */
-class ADMTest extends \PHPUnit_Framework_TestCase
+class ADMTest extends TestCase
 {
     /**
      * Test method for the <code>#create()</code> function;

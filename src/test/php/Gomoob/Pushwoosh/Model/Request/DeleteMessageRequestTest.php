@@ -10,13 +10,15 @@ namespace Gomoob\Pushwoosh\Model\Request;
 
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>DeleteMessageRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  DeleteMessageRequestTest
  */
-class DeleteMessageRequestTest extends \PHPUnit_Framework_TestCase
+class DeleteMessageRequestTest extends TestCase
 {
     /**
      * Test method for the <tt>create()</tt> function.

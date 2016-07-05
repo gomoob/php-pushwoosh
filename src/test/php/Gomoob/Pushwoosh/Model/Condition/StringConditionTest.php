@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Condition;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the `StringCondition` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  StringConditionTest
  */
-class StringConditionTest extends \PHPUnit_Framework_TestCase
+class StringConditionTest extends TestCase
 {
     /**
      * Test method for the `#eq($value)` function.

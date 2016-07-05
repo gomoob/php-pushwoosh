@@ -13,13 +13,15 @@ use Gomoob\Pushwoosh\Model\Condition\ListCondition;
 use Gomoob\Pushwoosh\Model\Condition\StringCondition;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the `Notification` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  NotificationTest
  */
-class NotificationTest extends \PHPUnit_Framework_TestCase
+class NotificationTest extends TestCase
 {
     /**
      * Test method for the `addCondition($condition)`, `getConditions()` and

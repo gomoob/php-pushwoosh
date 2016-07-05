@@ -10,13 +10,15 @@ namespace Gomoob\Pushwoosh\Model\Request;
 
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>PushStatRequest</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  PushStateRequestTest
  */
-class PushStatRequestTest extends \PHPUnit_Framework_TestCase
+class PushStatRequestTest extends TestCase
 {
     /**
      * Test method for the <tt>create()</tt> function.

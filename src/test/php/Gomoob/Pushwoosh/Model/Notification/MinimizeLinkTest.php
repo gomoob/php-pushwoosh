@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>MinimizeLink</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  MinimizeLinkTest
  */
-class MinimizeLinkTest extends \PHPUnit_Framework_TestCase
+class MinimizeLinkTest extends TestCase
 {
     /**
      * Test method for the <code>#bitly()</code> function.

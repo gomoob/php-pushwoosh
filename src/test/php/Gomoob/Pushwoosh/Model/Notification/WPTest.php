@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>WP</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  WPTest
  */
-class WPTest extends \PHPUnit_Framework_TestCase
+class WPTest extends TestCase
 {
     /**
      * Test method for the <code>#create()</code> function;
@@ -22,7 +24,6 @@ class WPTest extends \PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $this->assertNotNull(WP::create());
-
     }
 
     /**

@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Condition;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the `IntCondition` class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  IntConditionTest
  */
-class IntConditionTest extends \PHPUnit_Framework_TestCase
+class IntConditionTest extends TestCase
 {
     /**
      * Test method for the `#between($minValue, $maxValue)` function.

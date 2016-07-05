@@ -8,13 +8,15 @@
  */
 namespace Gomoob\Pushwoosh\Model\Notification;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test case used to test the <code>Chrome</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  ChromeTest
  */
-class ChromeTest extends \PHPUnit_Framework_TestCase
+class ChromeTest extends TestCase
 {
     /**
      * Test method for the <code>#create()</code> function;
