@@ -52,7 +52,6 @@ class CurlRequest implements ICurlRequest
 
             $this->init($url);
         }
-
     }
 
     /**
@@ -86,7 +85,6 @@ class CurlRequest implements ICurlRequest
      */
     public function init($url = null)
     {
-
         // If a previous CURL handle exists close it
         if ($this->ch) {
             $this->close();
@@ -94,7 +92,6 @@ class CurlRequest implements ICurlRequest
 
         $this->ch = curl_init($url);
         return $this->ch;
-
     }
 
     /**
