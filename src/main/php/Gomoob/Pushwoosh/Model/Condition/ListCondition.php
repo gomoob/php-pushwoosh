@@ -50,4 +50,19 @@ class ListCondition extends AbstractCondition
         return $this;
 
     }
+    
+     /**
+     * Apply an NOTIN operator to a specified operand value.
+     *
+     * @param string[] $values the string values used to build in NOTIN value set.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Condition\ListCondition this instance.
+     */
+    public function notin($values)
+    {
+        $this->operator = 'NOTIN';
+        $this->operand = $values;
+    
+        return $this;
+    }
 }
