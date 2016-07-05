@@ -20,7 +20,6 @@ class MinimizeLink
      *  - 0 or false : do not minimize the link
      *  - 1 : (Default) Minimze with Google
      *  - 2 : Minimize with Bitly
-     *  - 3 : Minimize with Baidu (china)
      *
      * @var int
      */
@@ -34,16 +33,6 @@ class MinimizeLink
     private function __construct($value)
     {
         $this->value = $value;
-    }
-
-    /**
-     * Gets a <code>MinimizeLink</code> instance for Baidu (china) minimization.
-     *
-     * @return \Gomoob\Pushwoosh\Model\Notification\MinimizeLink the created <code>MinimizeLink</code> instance.
-     */
-    public static function baiduChina()
-    {
-        return new MinimizeLink(3);
     }
 
     /**
@@ -78,10 +67,9 @@ class MinimizeLink
 
     /**
      * Gets the value of the minimize link, this can be equal to :
-     *     - 0 or false : do not minimize the link
+     *  - 0 or false : do not minimize the link
      *  - 1 : (Default) Minimze with Google
      *  - 2 : Minimize with Bitly
-     *  - 3 : Minimize with Baidu (china)
      *
      * @return int the value of the minimize link.
      */

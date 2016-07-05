@@ -32,7 +32,7 @@ class Firefox implements \JsonSerializable
     /**
      *  Utility function used to create a new Firefox instance.
      *
-     * @return Firefox
+     * @return \Gomoob\Pushwoosh\Model\Notification\Firefox the new created instance.
      */
     public static function create()
     {

@@ -17,14 +17,6 @@ namespace Gomoob\Pushwoosh\Model\Notification;
 class MinimizeLinkTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test method for the <code>#baiduChina()</code> function.
-     */
-    public function testBaiduChina()
-    {
-        $this->assertSame(3, MinimizeLink::baiduChina()->getValue());
-    }
-
-    /**
      * Test method for the <code>#bitly()</code> function.
      */
     public function testBitly()
