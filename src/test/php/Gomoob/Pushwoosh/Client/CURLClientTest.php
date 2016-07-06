@@ -10,15 +10,13 @@ namespace Gomoob\Pushwoosh\Client;
 
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * Test case used to test the <code>Pushwoosh</code> class.
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  * @group  CURLClientTest
  */
-class CURLClientTest extends TestCase
+class CURLClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test method for the `pushwooshCall($method, arra $data)` function.
