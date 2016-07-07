@@ -46,6 +46,7 @@ module.exports = function(grunt) {
                 }, 
                 
                 options: {
+                	bin : 'vendor/bin/phpunit',
                     configuration : 'phpunit.xml.dist',
                     //group : 'CURLClientTest'
                 }
