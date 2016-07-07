@@ -5,6 +5,44 @@ title: Release History
 
 <h1>Release history</h1>
 
+<h2>1.6.1 (2016-07-07)</h2>
+<ul>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/56">#56</a> - <code>getMock()</code> undefined in 
+        unit tests with HHVM.
+    </li>
+</ul>
+
+<h2>1.6.0 (2016-07-06)</h2>
+<ul>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/50">#50</a> - Add Firefox specific notification 
+        properties support with a new <code>\Gomoob\Pushwoosh\Model\Notification\Firefox</code> class. Also now the 
+        <code>\Gomoob\Pushwoosh\Model\Notification\Platform</code> class adds utility constants for platforms, the 
+        following constants are available <code>IOS</code>, <code>BLACKBERRY</code>, <code>ANDROID</code>, 
+        <code>NOKIA_ASHA</code>, <code>WINDOWS_PHONE_7</code>, <code>MAC_OS_X</code>, <code>WINDOWS_8</code>, 
+        <code>AMAZON</code>, <code>SAFARI</code>, <code>CHROME</code>, <code>FIREFOX</code> ;
+    </li>
+    <li>
+    	<strong>BREAKING CHANGE</strong> - Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/52">#52</a> - 
+    	Abandon support for PHP <code>5.5.X</code> because end of life associated to PHP 5.5 is planned for 10 July 2016
+    	(see <a href="http://php.net/supported-versions.php">http://php.net/supported-versions.php</a>) ;
+   	</li>
+   	<li>
+    	<strong>BREAKING CHANGE</strong> - Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/53">#53</a> - 
+    	Remove Baidu minimize link supported because this feature will be removed by Pushwoosh soon ;
+   	</li>
+   	<li>
+    	<strong>BREAKING CHANGE</strong> - Remove 
+    	<code>\Gomoob\Pushwoosh\Exception\PushwooshException->setData(array $data)</code> function because its not used
+    	and their are no reasons to use it ;
+    </li>
+    <li>
+        Remove use of PHPUnit <code>getMock(...)</code> because its now deprecated, replace it with calls to 
+        <code>createMock(...)</code> instead.
+    </li>
+</ul>
+
 <h2>1.5.3 (2016-06-26)</h2>
 <ul>
 	<li>
