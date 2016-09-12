@@ -673,7 +673,11 @@ class Notification implements \JsonSerializable
         isset($this->richPageId) ? $json['rich_page_id'] = $this->richPageId : false;
         isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
         isset($this->timezone)? $json['timezone'] = $this->timezone : false;
-    
+
+        if (isset($this->campain)) {
+            $json['campaign'] = $this->campain;
+        }
+
         if (isset($this->conditions)) {
             $conditionsArray = [];
     
