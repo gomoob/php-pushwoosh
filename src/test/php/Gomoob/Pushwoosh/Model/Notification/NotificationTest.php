@@ -564,10 +564,11 @@ class NotificationTest extends TestCase
                     ->setCount(3)
                     ->setType('Tile')
             )
+            ->setCampain('CAMPAIGN')
             ->jsonSerialize();
 
         // Test the generic properties
-        $this->assertCount(63, $array);
+        $this->assertCount(64, $array);
         $this->assertSame('now', $array['send_date']);
         $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
@@ -610,6 +611,7 @@ class NotificationTest extends TestCase
         $this->assertSame('value0', $array['conditions'][2][2][0]);
         $this->assertSame('value1', $array['conditions'][2][2][1]);
         $this->assertSame('value2', $array['conditions'][2][2][2]);
+        $this->assertSame('CAMPAIGN', $array['campaign']);
 
         // Test the ADM parameters
         $this->assertSame('http://example.com/banner.png', $array['adm_banner']);
