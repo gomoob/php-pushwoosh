@@ -68,6 +68,7 @@
 	<buildpathentry kind="src" path="vendor/guzzle/guzzle/src"/>
 	<buildpathentry kind="src" path="vendor/herrera-io/json/src/lib"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-code-coverage/src"/>
+	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer/src"/>
 	<buildpathentry kind="src" path="vendor/symfony/dependency-injection"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/graphviz/src"/>
 	<buildpathentry kind="src" path="vendor/phpmd/phpmd/src/main/php"/>
@@ -78,7 +79,7 @@
 	<buildpathentry kind="src" path="vendor/composer"/>
 	<buildpathentry kind="src" path="vendor/symfony/process"/>
 	<buildpathentry kind="src" path="vendor/phpoption/phpoption/src"/>
-	<buildpathentry kind="src" path="vendor/squizlabs/php_codesniffer"/>
+	<buildpathentry excluding="src/" kind="src" path="vendor/squizlabs/php_codesniffer"/>
 	<buildpathentry kind="src" path="vendor/phploc/phploc/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-eventmanager/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/object-enumerator/src"/>
