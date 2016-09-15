@@ -99,7 +99,7 @@ class Pushwoosh implements IPushwoosh
     {
         // If both the 'application' and 'applicationsGroup' attribute are not set in the request we try to get a
         // default one from the Pushwoosh client
-        if ($createMessageRequest->getApplication() === null && $createMessageRequest->getApplicationsGroup()== null
+        if ($createMessageRequest->getApplication() === null && $createMessageRequest->getApplicationsGroup() === null
         ) {
             // Setting both 'application' and 'applicationsGroup' is forbidden
             if (!isset($this->application) && !isset($this->applicationsGroup)) {

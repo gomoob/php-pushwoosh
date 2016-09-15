@@ -56,7 +56,6 @@ class NotificationTest extends TestCase
         $this->assertSame($condition0, $conditions[0]);
         $this->assertSame($condition1, $conditions[1]);
         $this->assertSame($condition2, $conditions[2]);
-
     }
 
     /**
@@ -120,7 +119,6 @@ class NotificationTest extends TestCase
         $this->assertSame($platform0, $platforms[0]);
         $this->assertSame($platform1, $platforms[1]);
         $this->assertSame($platform2, $platforms[2]);
-
     }
 
     /**
@@ -165,7 +163,7 @@ class NotificationTest extends TestCase
     public function testGetSetCampain()
     {
         $notification = new Notification();
-        $this->assertNull($notification->getFilter());
+        $this->assertNull($notification->getCampain());
         $this->assertSame($notification, $notification->setCampain('CAMPAIN'));
         $this->assertSame('CAMPAIN', $notification->getCampain());
     }
@@ -370,7 +368,6 @@ class NotificationTest extends TestCase
         $dateTime = \DateTime::createFromFormat('Y-m-d H:i', '2014-01-01 10:06');
         $this->assertSame($notification, $notification->setSendDate($dateTime));
         $this->assertSame($dateTime, $notification->getSendDate());
-
     }
     
     /**
@@ -439,6 +436,7 @@ class NotificationTest extends TestCase
             ->setSendDate('now')
             ->setTimezone('America/New_York')
             ->setIgnoreUserTimezone(true)
+            ->setCampain('CAMPAIGN')
             ->setContent(
                 [
                     'en' => 'English',
@@ -564,7 +562,6 @@ class NotificationTest extends TestCase
                     ->setCount(3)
                     ->setType('Tile')
             )
-            ->setCampain('CAMPAIGN')
             ->jsonSerialize();
 
         // Test the generic properties
@@ -572,6 +569,7 @@ class NotificationTest extends TestCase
         $this->assertSame('now', $array['send_date']);
         $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
+        $this->assertSame('CAMPAIGN', $array['campaign']);
         $this->assertCount(3, $array['content']);
         $this->assertSame('English', $array['content']['en']);
         $this->assertSame('Русский', $array['content']['ru']);

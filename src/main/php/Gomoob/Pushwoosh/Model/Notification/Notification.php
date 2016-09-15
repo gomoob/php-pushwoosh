@@ -662,6 +662,7 @@ class Notification implements \JsonSerializable
         $json['send_date'] = is_string($this->sendDate) ? $this->sendDate : $this->sendDate->format('Y-m-d H:i');
     
         // Optional parameters
+        isset($this->campain) ? $json['campaign'] = $this->campain : false;
         isset($this->content) ? $json['content'] = $this->content : false;
         isset($this->data) ? $json['data'] = $this->data : false;
         isset($this->devices) ? $json['devices'] = $this->devices : false;
@@ -673,10 +674,6 @@ class Notification implements \JsonSerializable
         isset($this->richPageId) ? $json['rich_page_id'] = $this->richPageId : false;
         isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
         isset($this->timezone)? $json['timezone'] = $this->timezone : false;
-
-        if (isset($this->campain)) {
-            $json['campaign'] = $this->campain;
-        }
 
         if (isset($this->conditions)) {
             $conditionsArray = [];
@@ -945,7 +942,6 @@ class Notification implements \JsonSerializable
         $this->iOS = $iOS;
 
         return $this;
-
     }
 
     // TODO: DOCUMENT ME!

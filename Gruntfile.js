@@ -76,14 +76,17 @@ module.exports = function(grunt) {
                 phpcs : {
                     command : function() {
                         
-                        var command = 'php ./vendor/squizlabs/php_codesniffer/scripts/phpcs';
+                    	var command = 'php ./vendor/squizlabs/php_codesniffer/bin/phpcs';
+                        command += ' --cache'; 
+                        command += ' --filter=GitModified';
+                        command += ' --parallel=16'; // Requires PHP to be compiled with PCNTL package
                         command += ' --standard=PSR2';
                         command += ' -v';
                         
                         if(grunt.option('checkstyle') === true) {
                             
                             command += ' --report=checkstyle';
-                            command += ' --report-file=build/reports/phpcs/phpcs.xml'; 
+                            command += ' --report-file=target/reports/phpcs/phpcs.xml'; 
                         }
 
                         command += ' src/main/php';
@@ -98,11 +101,13 @@ module.exports = function(grunt) {
                     command : function() {
                         
                         var command = 'php ./vendor/squizlabs/php_codesniffer/scripts/phpcbf';
+                        var command = 'php ./vendor/squizlabs/php_codesniffer/bin/phpcbf';
+                        command += ' --cache'; 
+                        command += ' --filter=GitModified';
+                        command += ' --parallel=16'; // Requires PHP to be compiled with PCNTL package
                         command += ' --standard=PSR2';
-                        command += ' --no-patch';
                         command += ' src/main/php';
                         command += ' src/test/php';
-                        
                         
                         return command;
                         

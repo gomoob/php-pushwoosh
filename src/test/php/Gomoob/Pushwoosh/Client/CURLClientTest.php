@@ -8,6 +8,9 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
+use Gomoob\Pushwoosh\Curl\CurlRequest;
+use Gomoob\Pushwoosh\Exception\PushwooshException;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,7 +31,7 @@ class CURLClientTest extends TestCase
         $curlClient = new CURLClient();
     
         // First test with a response return which does not correspond to a valid JSON payload
-        $curlRequest = $this->createMock(CURLRequest::class);
+        $curlRequest = $this->createMock(CurlRequest::class);
         $curlRequest->method('exec')->willReturn(false);
         $curlRequest->method('getInfo')->willReturn('CURL_INFO');
 

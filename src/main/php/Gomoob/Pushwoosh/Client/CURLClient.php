@@ -104,6 +104,9 @@ class CURLClient implements ICURLClient
             // Get additional informations about the failed CURL transfert
             $info = $this->curlRequest->getInfo();
             
+            // Close the CURL handle
+            $this->curlRequest->close();
+            
             throw new PushwooshException(
                 'Bad response encountered while requesting the Pushwoosh web services using CURL !',
                 -1,
@@ -112,16 +115,12 @@ class CURLClient implements ICURLClient
                     'curl_info' => $info
                 ]
             );
-            
-            // Close the CURL handle
-            $this->curlRequest->close();
         }
         
         // Close the CURL handle
         $this->curlRequest->close();
         
         return $jsonResult;
-        
     }
     
     /**
