@@ -26,7 +26,7 @@ class CURLClient implements ICURLClient
      * @var \Gomoob\Curl\ICurlRequest
      */
     private $curlRequest;
-    
+
     /**
      * Creates a new CURL client instance.
      */
@@ -34,7 +34,7 @@ class CURLClient implements ICURLClient
     {
         $this->curlRequest = new CurlRequest();
     }
-    
+
     /**
      * Gets the CURL Request object currently in use.
      *
@@ -44,7 +44,7 @@ class CURLClient implements ICURLClient
     {
         return $this->curlRequest;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -84,45 +84,47 @@ class CURLClient implements ICURLClient
 
             // Close the CURL handle
             $this->curlRequest->close();
-            
+
             throw new PushwooshException(
                 'CURL error encountered while requesting the Pushwoosh web services using CURL !',
                 -1,
                 null,
                 [
                     'curl_error' => $error,
-                    'curl_info' => $info
+                    'curl_info' => $info,
+                    'response' => $response
                 ]
             );
         }
 
         $jsonResult = json_decode($response, true);
-        
+
         // This should never append but we want to be 100% sure our response is well formatted for the PHP Pushwoosh
         // APIs. If its not the case we throw an exception with as much details as possible.
         if (!is_array($jsonResult)) {
             // Get additional informations about the failed CURL transfert
             $info = $this->curlRequest->getInfo();
-            
+
             // Close the CURL handle
             $this->curlRequest->close();
-            
+
             throw new PushwooshException(
                 'Bad response encountered while requesting the Pushwoosh web services using CURL !',
                 -1,
                 null,
                 [
-                    'curl_info' => $info
+                    'curl_info' => $info,
+                    'response' => $response
                 ]
             );
         }
-        
+
         // Close the CURL handle
         $this->curlRequest->close();
-        
+
         return $jsonResult;
     }
-    
+
     /**
      * Sets the CURL request object to be used.
      *

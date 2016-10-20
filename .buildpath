@@ -12,6 +12,7 @@
 	<buildpathentry kind="src" path="vendor/phpdocumentor/reflection/tests/mocks"/>
 	<buildpathentry kind="src" path="vendor/phpunit/php-file-iterator/src"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/fileset/src"/>
+	<buildpathentry kind="src" path="vendor/psr/log/Psr/Log"/>
 	<buildpathentry kind="src" path="vendor/symfony/console"/>
 	<buildpathentry kind="src" path="vendor/doctrine/instantiator/src/Doctrine/Instantiator"/>
 	<buildpathentry kind="src" path="vendor/symfony/validator"/>
@@ -47,7 +48,6 @@
 	<buildpathentry kind="src" path="vendor/satooshi/php-coveralls/src/Satooshi"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-servicemanager/src"/>
 	<buildpathentry kind="src" path="vendor/sebastian/version/src"/>
-	<buildpathentry kind="src" path="vendor/psr/log"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-config/src"/>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-cache/src"/>
 	<buildpathentry kind="src" path="vendor/symfony/finder"/>
@@ -72,6 +72,7 @@
 	<buildpathentry kind="src" path="vendor/symfony/dependency-injection"/>
 	<buildpathentry kind="src" path="vendor/phpdocumentor/graphviz/src"/>
 	<buildpathentry kind="src" path="vendor/phpmd/phpmd/src/main/php"/>
+	<buildpathentry kind="src" path="vendor/symfony/debug"/>
 	<buildpathentry kind="src" path="vendor/cilex/console-service-provider/src"/>
 	<buildpathentry kind="src" path="vendor/herrera-io/phar-update/src/lib"/>
 	<buildpathentry kind="src" path="vendor/seld/jsonlint/src/Seld/JsonLint"/>

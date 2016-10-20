@@ -29,7 +29,7 @@ class CURLClientTest extends TestCase
     public function testPushwooshCall()
     {
         $curlClient = new CURLClient();
-    
+
         // First test with a response return which does not correspond to a valid JSON payload
         $curlRequest = $this->createMock(CurlRequest::class);
         $curlRequest->method('exec')->willReturn(false);
@@ -46,21 +46,23 @@ class CURLClientTest extends TestCase
                     'hwid' => 'XXXXXXXX'
                 ]
             );
-            
+
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $ex) {
             $this->assertSame(
                 'Bad response encountered while requesting the Pushwoosh web services using CURL !',
                 $ex->getMessage()
             );
-            
+
             $data = $ex->getData();
-            
-            $this->assertCount(1, $data);
+
+            $this->assertCount(2, $data);
             $this->assertTrue(array_key_exists('curl_info', $data));
+            $this->assertTrue(array_key_exists('response', $data));
             $this->assertSame('CURL_INFO', $data['curl_info']);
+            $this->assertFalse($data['response']);
         }
-        
+
         // Second test with a CURL error encountered
         $curlRequest = $this->createMock(CURLRequest::class);
         $curlRequest->method('exec')->willReturn(
@@ -74,7 +76,7 @@ class CURLClientTest extends TestCase
         $curlRequest->method('getInfo')->willReturn('CURL_INFO');
 
         $curlClient->setCurlRequest($curlRequest);
-        
+
         try {
             $response = $curlClient->pushwooshCall(
                 'getTags',
@@ -84,21 +86,30 @@ class CURLClientTest extends TestCase
                     'hwid' => 'XXXXXXXX'
                 ]
             );
-                
+
             $this->fail('Must have thrown a PushwooshException !');
         } catch (PushwooshException $ex) {
             $this->assertSame(
                 'CURL error encountered while requesting the Pushwoosh web services using CURL !',
                 $ex->getMessage()
             );
-        
+
             $data = $ex->getData();
-        
-            $this->assertCount(2, $data);
+
+            $this->assertCount(3, $data);
             $this->assertTrue(array_key_exists('curl_error', $data));
             $this->assertTrue(array_key_exists('curl_info', $data));
+            $this->assertTrue(array_key_exists('response', $data));
             $this->assertSame('CURL_ERROR', $data['curl_error']);
             $this->assertSame('CURL_INFO', $data['curl_info']);
+            $this->assertSame(
+                [
+                    'status_code' => 400,
+                    'status_message' => 'Test with valid JSON response but CURL error encountered.',
+                    'response' => null
+                ],
+                $data['response']
+            );
         }
     }
 }
