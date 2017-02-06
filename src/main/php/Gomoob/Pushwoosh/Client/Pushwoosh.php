@@ -76,20 +76,22 @@ class Pushwoosh implements IPushwoosh
 
     /**
      * Create a new instance of the Pushwoosh client.
+     * @param $url string - API server url
      */
-    public function __construct()
+    public function __construct($url = '')
     {
-        $this->cURLClient = new CURLClient();
+        $this->cURLClient = new CURLClient($url);
     }
 
     /**
      * Utility function used to create a new instance of the Pushwoosh client.
      *
+     * @param $url string - API server url
      * @return \Gomoob\Pushwoosh\Client\Pushwoosh the new created instance.
      */
-    public static function create()
+    public static function create($url = '')
     {
-        return new Pushwoosh();
+        return new Pushwoosh($url);
     }
 
     /**
