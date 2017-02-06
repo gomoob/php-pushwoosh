@@ -28,11 +28,22 @@ class CURLClient implements ICURLClient
     private $curlRequest;
     
     /**
+     * API server url
+     *
+     * @var string
+     */
+    private $apiUrl = 'https://cp.pushwoosh.com/json/1.3/';
+    
+    /**
      * Creates a new CURL client instance.
      */
-    public function __construct()
+    public function __construct($url = '')
     {
         $this->curlRequest = new CurlRequest();
+        
+        if(!empty($url)) {
+            $this->apiUrl = $url;
+        }
     }
     
     /**
@@ -50,7 +61,7 @@ class CURLClient implements ICURLClient
      */
     public function pushwooshCall($method, array $data)
     {
-        $url = 'https://cp.pushwoosh.com/json/1.3/' . $method;
+        $url = $this->apiUrl . $method;
         $request = json_encode(['request' => $data]);
 
         $this->curlRequest->init($url);
