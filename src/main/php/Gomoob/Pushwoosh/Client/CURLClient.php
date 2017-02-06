@@ -36,6 +36,8 @@ class CURLClient implements ICURLClient
     
     /**
      * Creates a new CURL client instance.
+     *
+     * @param $url string - API server url
      */
     public function __construct($url = '')
     {
