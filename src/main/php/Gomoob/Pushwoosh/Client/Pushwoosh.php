@@ -40,7 +40,7 @@ use Gomoob\Pushwoosh\Model\Response\UnregisterDeviceResponse;
  *
  * @author Baptiste GAILLARD (baptiste.gaillard@gomoob.com)
  */
-class Pushwoosh implements IPushwoosh
+class Pushwoosh implements IPushwoosh // NOSONAR
 {
     /**
      * The the Pushwoosh application ID to be used by default by all the requests performed by the Pushwoosh client.
@@ -76,22 +76,30 @@ class Pushwoosh implements IPushwoosh
 
     /**
      * Create a new instance of the Pushwoosh client.
-     * @param $url string - API server url
+     *
+     * @param string $apiUrl (Optional) the root URL to the API server to use, if this parameter is not provided then
+     *        the default API URL will be equal to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise
+     *        Pushwoosh plan then you have a dedicated API server URL like `https://your-company.pushwoosh.com`, you can
+     *        provide this custom API server URL here.
      */
-    public function __construct($url = '')
+    public function __construct($apiUrl = ICURLClient::DEFAULT_API_URL)
     {
-        $this->cURLClient = new CURLClient($url);
+        $this->cURLClient = new CURLClient($apiUrl);
     }
 
     /**
      * Utility function used to create a new instance of the Pushwoosh client.
      *
-     * @param $url string - API server url
+     * @param string $apiUrl (Optional) the root URL to the API server to use, if this parameter is not provided then
+     *        the default API URL will be equal to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise
+     *        Pushwoosh plan then you have a dedicated API server URL like `https://your-company.pushwoosh.com`, you can
+     *        provide this custom API server URL here.
+     *
      * @return \Gomoob\Pushwoosh\Client\Pushwoosh the new created instance.
      */
-    public static function create($url = '')
+    public static function create($apiUrl = ICURLClient::DEFAULT_API_URL)
     {
-        return new Pushwoosh($url);
+        return new Pushwoosh($apiUrl);
     }
 
     /**
@@ -130,7 +138,7 @@ class Pushwoosh implements IPushwoosh
 
         return CreateMessageResponse::create($response);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -302,7 +310,7 @@ class Pushwoosh implements IPushwoosh
      *
      * @param \Gomoob\Pushwoosh\ICURLClient $cURLClient the CURL client used to request the Pushwoosh Web Services.
      *
-     * @return \Gommob\Pushwoosh\IPushwoosh this instance.
+     * @return \Gomoob\Pushwoosh\IPushwoosh this instance.
      */
     public function setCURLClient(ICURLClient $cURLClient)
     {
@@ -336,7 +344,7 @@ class Pushwoosh implements IPushwoosh
 
         return UnregisterDeviceResponse::create($response);
     }
-    
+
     /**
      * Function used to check if the `application` parameter is set on a Pushwoosh request and if no try to set it from
      * the Pushwoosh client `auth` parameter.
@@ -352,11 +360,11 @@ class Pushwoosh implements IPushwoosh
             if (!isset($this->application)) {
                 throw new PushwooshException('The  \'application\' property is not set !');
             }
-        
+
             $request->setApplication($this->application);
         }
     }
-    
+
     /**
      * Function used to check if the `auth` parameter is set on a Pushwoosh request and if no try to set it from the
      * Pushwoosh client `auth` parameter.
@@ -370,7 +378,7 @@ class Pushwoosh implements IPushwoosh
             // The 'auth' parameter is expected here
             if (!isset($this->auth)) {
                 throw new PushwooshException('The \'auth\' parameter is not set !');
-    
+
                 // Use the 'auth' parameter defined in the Pushwoosh client
             } else {
                 $request->setAuth($this->auth);

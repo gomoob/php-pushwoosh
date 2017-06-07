@@ -63,7 +63,7 @@ class CurlRequest implements ICurlRequest
 
         $this->ch = null;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -113,7 +113,7 @@ class CurlRequest implements ICurlRequest
     /**
      * Gets the CURL handle is use.
      *
-     * @throws IllegalStateException If the init method has not been called.
+     * @throws \Exception If the init method has not been called.
      */
     private function getCh()
     {
@@ -123,7 +123,7 @@ class CurlRequest implements ICurlRequest
 
         return $this->ch;
     }
-    
+
     /**
      * Indicates if a URL is valid.
      *

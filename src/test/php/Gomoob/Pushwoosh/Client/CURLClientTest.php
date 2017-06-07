@@ -8,6 +8,7 @@
  */
 namespace Gomoob\Pushwoosh\Client;
 
+use Gomoob\Pushwoosh\ICURLClient;
 use Gomoob\Pushwoosh\Curl\CurlRequest;
 use Gomoob\Pushwoosh\Exception\PushwooshException;
 
@@ -21,6 +22,30 @@ use PHPUnit\Framework\TestCase;
  */
 class CURLClientTest extends TestCase
 {
+    /**
+     * Test method for the `getApiUrl()` and `setApiUrl($apiUrl)` functions.
+     */
+    public function testGetSetApiUrl()
+    {
+        $curlClient = new CURLClient();
+        $this->assertSame(ICURLClient::DEFAULT_API_URL, $curlClient->getApiUrl());
+        $curlClient->setApiUrl('https://your-company.pushwoosh.com');
+        $this->assertSame('https://your-company.pushwoosh.com', $curlClient->getApiUrl());
+    }
+
+    /**
+     * Test method for the `getCurlRequest()` and `setCurlRequest($curlRequest)` functions.
+     */
+    public function testGetSetCurlRequest()
+    {
+        $curlRequest = $this->createMock(CurlRequest::class);
+
+        $curlClient = new CURLClient();
+        $this->assertNotNull($curlClient->getCurlRequest());
+        $curlClient->setCurlRequest($curlRequest);
+        $this->assertSame($curlRequest, $curlClient->getCurlRequest());
+    }
+
     /**
      * Test method for the `pushwooshCall($method, arra $data)` function.
      *

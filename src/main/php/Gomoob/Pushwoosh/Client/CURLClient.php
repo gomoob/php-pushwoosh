@@ -23,35 +23,45 @@ class CURLClient implements ICURLClient
     /**
      * The CURL Request object currently in use.
      *
-     * @var \Gomoob\Curl\ICurlRequest
+     * @var \Gomoob\Pushwoosh\Curl\ICurlRequest
      */
     private $curlRequest;
 
     /**
-     * API server url
+     * The root URL of the API server to use, if this parameter is not provided then the default API URL will be equal
+     * to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise Pushwoosh plan then you have a dedicated API
+     * server URL like `https://your-company.pushwoosh.com`, you can provide this custom API server URL here.
      *
      * @var string
      */
-    private $apiUrl = 'https://cp.pushwoosh.com/json/1.3/';
-    
+    private $apiUrl = ICURLClient::DEFAULT_API_URL;
+
     /**
      * Creates a new CURL client instance.
      *
-     * @param $url string - API server url
+     * @param string $apiUrl (Optional) the root URL of the API server to use, if this parameter is not provided then
+     *        the default API URL will be equal to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise
+     *        Pushwoosh plan then you have a dedicated API server URL like `https://your-company.pushwoosh.com`, you can
+     *        provide this custom API server URL here.
      */
-    public function __construct($url = '')
+    public function __construct($apiUrl = ICURLClient::DEFAULT_API_URL)
     {
+        $this->apiUrl = $apiUrl;
         $this->curlRequest = new CurlRequest();
-        
-        if(!empty($url)) {
-            $this->apiUrl = $url;
-        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getApiUrl()
+    {
+        return $this->apiUrl;
     }
 
     /**
      * Gets the CURL Request object currently in use.
      *
-     * @return \Gomoob\Curl\ICurlRequest The CURL request object currently in use.
+     * @return \Gomoob\Pushwoosh\Curl\ICurlRequest The CURL request object currently in use.
      */
     public function getCurlRequest()
     {
@@ -63,7 +73,10 @@ class CURLClient implements ICURLClient
      */
     public function pushwooshCall($method, array $data)
     {
-        $url = $this->apiUrl . $method;
+        // Creates the absolute Web Service URL to call, here we first remove trailing '/' characters to be sure the URL
+        // is well formed
+        $url = rtrim($this->apiUrl, '/') . '/' . $method;
+
         $request = json_encode(['request' => $data]);
 
         $this->curlRequest->init($url);
@@ -139,9 +152,17 @@ class CURLClient implements ICURLClient
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function setApiUrl($apiUrl)
+    {
+        $this->apiUrl = $apiUrl;
+    }
+
+    /**
      * Sets the CURL request object to be used.
      *
-     * @param \Gomoob\Curl\ICurlRequest $curlRequest The CURL request object to use.
+     * @param \Gomoob\Pushwoosh\Curl\ICurlRequest $curlRequest The CURL request object to use.
      */
     public function setCurlRequest(ICurlRequest $curlRequest)
     {

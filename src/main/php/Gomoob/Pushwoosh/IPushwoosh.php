@@ -46,11 +46,11 @@ interface IPushwoosh
      *         response.
      */
     public function createTargetedMessage(CreateTargetedMessageRequest $createTargetedMessageRequest);
-    
+
     /**
      * Function used to delete a Pushwoosh message using a '/deleteMessage' request.
      *
-     * @param \Gomoob\Pushwoosh\Model\Request\DeletMessageRequest $deleteMessageRequest the '/deleteMessage' request
+     * @param \Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest $deleteMessageRequest the '/deleteMessage' request
      *                                                                                  used to delete a Pushwoosh
      *                                                                                  message.
      *
@@ -140,7 +140,7 @@ interface IPushwoosh
      * @param string $application the Pushwoosh application ID to be used by default by all the requests performed by
      *        the Pushwoosh client. This identifier can be overwritten by request if needed.
      *
-     * @return \Gommob\Pushwoosh\IPushwoosh this instance.
+     * @return \Gomoob\Pushwoosh\IPushwoosh this instance.
      */
     public function setApplication($application);
 
@@ -153,7 +153,7 @@ interface IPushwoosh
      * @param string $applicationsGroup the Pushwoosh applications group code to be used to defautl by all the requests
      *        performed by the Pushwoosh client.
      *
-     * @return \Gommob\Pushwoosh\IPushwoosh this instance.
+     * @return \Gomoob\Pushwoosh\IPushwoosh this instance.
      */
     public function setApplicationsGroup($applicationsGroup);
 
@@ -162,9 +162,9 @@ interface IPushwoosh
      * https://cp.pushwoosh.com/api_access).
      *
      * @param string $auth the API access token from the Pushwoosh control panel (create this token at
-     * https://cp.pushwoosh.com/api_access).
+     *         https://cp.pushwoosh.com/api_access).
      *
-     * @return \Gommob\Pushwoosh\IPushwoosh this instance.
+     * @return \Gomoob\Pushwoosh\IPushwoosh this instance.
      */
     public function setAuth($auth);
 

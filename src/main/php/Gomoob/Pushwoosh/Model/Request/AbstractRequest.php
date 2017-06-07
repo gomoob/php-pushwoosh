@@ -25,7 +25,7 @@ abstract class AbstractRequest implements IRequest
      * @var string
      */
     protected $auth;
-    
+
     /**
      * {@inheritDoc}
      */
@@ -50,7 +50,7 @@ abstract class AbstractRequest implements IRequest
         }
 
         $this->auth = $auth;
-    
+
         return $this;
     }
 }

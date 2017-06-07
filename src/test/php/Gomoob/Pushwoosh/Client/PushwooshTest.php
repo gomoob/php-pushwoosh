@@ -67,9 +67,17 @@ class PushwooshTest extends TestCase
      */
     public function testCreate()
     {
+        // Test creation without a custom API URL
         $pushwoosh = Pushwoosh::create();
         $this->assertNotNull($pushwoosh);
         $this->assertNotNull($pushwoosh->getCURLClient());
+        $this->assertSame(ICURLClient::DEFAULT_API_URL, $pushwoosh->getCURLClient()->getApiUrl());
+
+        // Test creation with a custom API URL
+        $pushwoosh = Pushwoosh::create('https://your-company.pushwoosh.com');
+        $this->assertNotNull($pushwoosh);
+        $this->assertNotNull($pushwoosh->getCURLClient());
+        $this->assertSame('https://your-company.pushwoosh.com', $pushwoosh->getCURLClient()->getApiUrl());
     }
 
     /**
@@ -226,7 +234,7 @@ class PushwooshTest extends TestCase
         $this->assertNull($createMessageResponse->getResponse());
 
     }
-    
+
     /**
      * Test method for the `createTargetedMessage($createMessageRequest)` function.
      *
@@ -245,7 +253,7 @@ class PushwooshTest extends TestCase
                 ]
             )
         );
-    
+
         $pushwoosh = new Pushwoosh();
         $pushwoosh->setCURLClient($cURLClient);
         $createTargetedMessageRequest = new CreateTargetedMessageRequest();
@@ -261,7 +269,7 @@ class PushwooshTest extends TestCase
         $this->assertSame('OK', $createTargetedMessageResponse->getStatusMessage());
         $this->assertNotNull($createTargetedMessageResponse->getResponse());
         $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
-        
+
         // Call with 'auth' parameter set on the request
         $pushwoosh->setAuth(null);
         $createTargetedMessageRequest->setAuth('AUTH');
@@ -273,7 +281,7 @@ class PushwooshTest extends TestCase
         $this->assertSame('OK', $createTargetedMessageResponse->getStatusMessage());
         $this->assertNotNull($createTargetedMessageResponse->getResponse());
         $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
-    
+
         // Test a call with an error response
         $cURLClient = $this->createMock(ICURLClient::class);
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
@@ -286,7 +294,7 @@ class PushwooshTest extends TestCase
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
-        
+
         $createTargetedMessageResponse = $pushwoosh->createTargetedMessage($createTargetedMessageRequest);
         $this->assertSame('AUTH', $createTargetedMessageRequest->getAuth());
         $this->assertFalse($createTargetedMessageResponse->isOk());
@@ -294,7 +302,7 @@ class PushwooshTest extends TestCase
         $this->assertSame('KO', $createTargetedMessageResponse->getStatusMessage());
         $this->assertNotNull($createTargetedMessageResponse->getResponse());
         $this->assertSame('XXXX-XXXXXXXX-XXXXXXXX', $createTargetedMessageResponse->getResponse()->getMessageCode());
-    
+
         // Test a call with an error response and no 'response' property in the response
         $cURLClient = $this->createMock(ICURLClient::class);
         $cURLClient->expects($this->any())->method('pushwooshCall')->will(
@@ -306,14 +314,14 @@ class PushwooshTest extends TestCase
             )
         );
         $pushwoosh->setCURLClient($cURLClient);
-        
+
         $createTargetedMessageResponse = $pushwoosh->createTargetedMessage($createTargetedMessageRequest);
         $this->assertSame('AUTH', $createTargetedMessageRequest->getAuth());
         $this->assertFalse($createTargetedMessageResponse->isOk());
         $this->assertSame(400, $createTargetedMessageResponse->getStatusCode());
         $this->assertSame('KO', $createTargetedMessageResponse->getStatusMessage());
         $this->assertNull($createTargetedMessageResponse->getResponse());
-    
+
     }
 
     /**

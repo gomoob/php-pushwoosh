@@ -25,7 +25,7 @@ interface IRequest extends \JsonSerializable
      * @throws \Gomoob\Pushwoosh\Exception\PushwooshException If the `auth` property is not supported by the request.
      */
     public function getAuth();
-    
+
     /**
      * Function used to indicate if the concrete implementation of the request supports the `auth` property.
      *

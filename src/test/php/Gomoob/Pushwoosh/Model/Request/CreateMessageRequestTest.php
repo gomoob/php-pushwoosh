@@ -41,7 +41,6 @@ class CreateMessageRequestTest extends TestCase
         $this->assertNull($createMessageRequest->getApplication());
         $createMessageRequest->setApplication('APPLICATION');
         $this->assertSame('APPLICATION', $createMessageRequest->getApplication());
-
     }
 
     /**
