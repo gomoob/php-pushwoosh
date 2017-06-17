@@ -17,14 +17,9 @@ namespace Gomoob\Pushwoosh\Curl;
 interface ICurlRequest
 {
     /**
-     * Set an option for a cURL transfer.
-     *
-     * @param int option The CURLOPT_ option to set.
-     * @param mixed $value The value to be set on option.
-     *
-     * @return bool Returns TRUE on success or FALSE on failure.
+     * Close a cURL session.
      */
-    public function setOpt($option, $value);
+    public function close();
 
     /**
      * Return a string containing the last error for the current session.
@@ -32,7 +27,7 @@ interface ICurlRequest
      * @return string Returns a clear text error message for the last cURL operation.
      */
     public function error();
-    
+
     /**
      * Perform a cURL session.
      *
@@ -119,7 +114,12 @@ interface ICurlRequest
     public function getInfo($opt = 0);
 
     /**
-     * Close a cURL session.
+     * Set an option for a cURL transfer.
+     *
+     * @param int option The CURLOPT_ option to set.
+     * @param mixed $value The value to be set on option.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function close();
+    public function setOpt($option, $value);
 }

@@ -21,13 +21,6 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class CURLClient implements ICURLClient
 {
     /**
-     * The CURL Request object currently in use.
-     *
-     * @var \Gomoob\Pushwoosh\Curl\ICurlRequest
-     */
-    private $curlRequest;
-
-    /**
      * The root URL of the API server to use, if this parameter is not provided then the default API URL will be equal
      * to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise Pushwoosh plan then you have a dedicated API
      * server URL like `https://your-company.pushwoosh.com`, you can provide this custom API server URL here.
@@ -35,6 +28,20 @@ class CURLClient implements ICURLClient
      * @var string
      */
     private $apiUrl = ICURLClient::DEFAULT_API_URL;
+
+    /**
+     * The CURL Request object currently in use.
+     *
+     * @var \Gomoob\Pushwoosh\Curl\ICurlRequest
+     */
+    private $curlRequest;
+
+    /**
+     * The default CURL options to use at request time.
+     *
+     * @var array
+     */
+    private $defaultCurlOpts = [];
 
     /**
      * Creates a new CURL client instance.
@@ -77,30 +84,21 @@ class CURLClient implements ICURLClient
         // is well formed
         $url = rtrim($this->apiUrl, '/') . '/' . $method;
 
+        // Creates the JSON request to POST
         $request = json_encode(['request' => $data]);
 
+        // Initialize the CURL request
         $this->curlRequest->init($url);
 
-        // FIXME: FIX THIS !!!
-        // see: http://curl.haxx.se/docs/sslcerts.html
-        $this->curlRequest->setOpt(CURLOPT_SSL_VERIFYHOST, 0);
-        $this->curlRequest->setOpt(CURLOPT_SSL_VERIFYPEER, 0);
+        // Apply CURL options
+        foreach ($this->createMergedCurlOpts($request) as $option => $value) {
+            $this->curlRequest->setOpt($option, $value);
+        }
 
-        $this->curlRequest->setOpt(CURLOPT_RETURNTRANSFER, true);
-        // $curlRequest->setOpt(CURLOPT_SSL_VERIFYPEER, true);
-        $this->curlRequest->setOpt(CURLOPT_ENCODING, 'gzip, deflate');
-        $this->curlRequest->setOpt(CURLOPT_POST, true);
-        $this->curlRequest->setOpt(CURLOPT_POSTFIELDS, $request);
-        $this->curlRequest->setOpt(
-            CURLOPT_HTTPHEADER,
-            [
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($request)
-            ]
-        );
-
+        // Executes the CURL request
         $response = $this->curlRequest->exec();
 
+        // Retrieves potential errors
         $error = $this->curlRequest->error();
 
         // If an error has been encountered
@@ -167,5 +165,56 @@ class CURLClient implements ICURLClient
     public function setCurlRequest(ICurlRequest $curlRequest)
     {
         $this->curlRequest = $curlRequest;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDefaultCurlOpt($option, $value)
+    {
+        $this->defaultCurlOpts[$option] = $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDefaultCurlOpts(array $defaultCurlOpts)
+    {
+        $this->defaultCurlOpts = $defaultCurlOpts;
+    }
+
+    /**
+     * Utility function used to create a set of CURL options from default CURL options defined on the CURL client and
+     * not overwritable CURL options.
+     *
+     * @param array $request the request to POST to the Pushwoosh Web Services.
+     *
+     * @return array the resulting CURL options to use.
+     */
+    private function createMergedCurlOpts($request)
+    {
+        // Merge default CURL options with overwritable CURL options
+        $mergedCurlOpts = array_merge(
+            [
+                // FIXME: FIX THIS !!!
+                // see: http://curl.haxx.se/docs/sslcerts.html
+                CURLOPT_SSL_VERIFYHOST => 0,
+                CURLOPT_SSL_VERIFYPEER => 0
+                // $curlRequest->setOpt(CURLOPT_SSL_VERIFYPEER, true);
+            ],
+            $this->defaultCurlOpts
+        );
+
+        // Set not overwritable CURL options
+        $mergedCurlOpts[CURLOPT_RETURNTRANSFER] = true;
+        $mergedCurlOpts[CURLOPT_ENCODING] = 'gzip, deflate';
+        $mergedCurlOpts[CURLOPT_POST] = true;
+        $mergedCurlOpts[CURLOPT_POSTFIELDS] = $request;
+        $mergedCurlOpts[CURLOPT_HTTPHEADER] = [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($request)
+        ];
+
+        return $mergedCurlOpts;
     }
 }
