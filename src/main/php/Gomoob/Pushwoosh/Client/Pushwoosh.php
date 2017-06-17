@@ -315,6 +315,8 @@ class Pushwoosh implements IPushwoosh // NOSONAR
     public function setCURLClient(ICURLClient $cURLClient)
     {
         $this->cURLClient = $cURLClient;
+
+        return $this;
     }
 
     /**
