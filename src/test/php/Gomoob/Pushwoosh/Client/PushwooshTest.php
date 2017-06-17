@@ -40,27 +40,6 @@ class PushwooshTest extends TestCase
     private $pushwooshTestProperties;
 
     /**
-     * Function called before each test execution.
-     */
-    public function setUp()
-    {
-        /*
-        $testConfigurationFile = TEST_RESOURCES_DIRECTORY . '/pushwoosh-test-properties.json';
-
-        // The test configuration must exist
-        if (!file_exists($testConfigurationFile)) {
-
-            throw new \Exception('The file \'' . $testConfigurationFile . '\' does not exist !');
-
-        }
-
-        // Read the test configuration
-        $this->pushwooshTestProperties = json_decode(file_get_contents($testConfigurationFile), true);
-        */
-
-    }
-
-    /**
      * Test method for the `create()` function.
      *
      * @group PushwooshTest.create

@@ -230,15 +230,16 @@ class CURLClient implements ICURLClient
     private function createMergedCurlOpts($request)
     {
         // Merge default CURL options with overwritable CURL options
-        $mergedCurlOpts = array_merge(
-            [
-                // see: http://curl.haxx.se/docs/sslcerts.html
-                CURLOPT_CAINFO => __DIR__ . '/../../../../resources/cacert.pem',
-                CURLOPT_SSL_VERIFYHOST => true,
-                CURLOPT_SSL_VERIFYPEER => true
-            ],
-            $this->additionalCurlOpts
-        );
+        $mergedCurlOpts = [
+            // see: http://curl.haxx.se/docs/sslcerts.html
+            CURLOPT_CAINFO => __DIR__ . '/../../../../resources/cacert.pem',
+            CURLOPT_SSL_VERIFYHOST => 2,
+            CURLOPT_SSL_VERIFYPEER => true
+        ];
+
+        foreach($this->additionalCurlOpts as $option => $value) {
+            $mergedCurlOpts[$option] = $value;
+        }
 
         // Set not overwritable CURL options
         $mergedCurlOpts[CURLOPT_RETURNTRANSFER] = true;

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.pushwoosh.demoapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Phonegap-Push</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <engine name="android" spec="^6.2.3" />
+    <plugin name="cordova-plugin-console" spec="^1.0.7" />
+    <plugin name="cordova-plugin-device" spec="^1.1.6" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
+    <plugin name="pushwoosh-cordova-plugin" spec="^6.5.3">
+        <variable name="LOG_LEVEL" value="DEBUG" />
+        <variable name="IOS_FOREGROUND_ALERT_TYPE" value="NONE" />
+        <variable name="ANDROID_FOREGROUND_PUSH" value="false" />
+    </plugin>
+</widget>
