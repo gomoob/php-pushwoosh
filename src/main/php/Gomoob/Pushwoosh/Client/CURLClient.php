@@ -21,6 +21,13 @@ use Gomoob\Pushwoosh\Exception\PushwooshException;
 class CURLClient implements ICURLClient
 {
     /**
+     * The additional CURL options to use at request time.
+     *
+     * @var array
+     */
+    private $additionalCurlOpts = [];
+
+    /**
      * The root URL of the API server to use, if this parameter is not provided then the default API URL will be equal
      * to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise Pushwoosh plan then you have a dedicated API
      * server URL like `https://your-company.pushwoosh.com`, you can provide this custom API server URL here.
@@ -37,13 +44,6 @@ class CURLClient implements ICURLClient
     private $curlRequest;
 
     /**
-     * The default CURL options to use at request time.
-     *
-     * @var array
-     */
-    private $defaultCurlOpts = [];
-
-    /**
      * Creates a new CURL client instance.
      *
      * @param string $apiUrl (Optional) the root URL of the API server to use, if this parameter is not provided then
@@ -55,6 +55,14 @@ class CURLClient implements ICURLClient
     {
         $this->apiUrl = $apiUrl;
         $this->curlRequest = new CurlRequest();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAdditionalCurlOpts()
+    {
+        return $this->additionalCurlOpts;
     }
 
     /**
@@ -152,6 +160,50 @@ class CURLClient implements ICURLClient
     /**
      * {@inheritDoc}
      */
+    public function setAdditionalCurlOpt($option, $value)
+    {
+        $notOverwritableOptions = [
+            CURLOPT_ENCODING,
+            CURLOPT_HTTPHEADER,
+            CURLOPT_POST,
+            CURLOPT_POSTFIELDS,
+            CURLOPT_RETURNTRANSFER
+        ];
+        $notOverwritableOptionNames = [
+            CURLOPT_ENCODING => 'CURLOPT_ENCODING',
+            CURLOPT_HTTPHEADER => 'CURLOPT_HTTPHEADER',
+            CURLOPT_POST => 'CURLOPT_POST',
+            CURLOPT_POSTFIELDS => 'CURLOPT_POSTFIELDS',
+            CURLOPT_RETURNTRANSFER => 'CURLOPT_RETURNTRANSFER'
+        ];
+
+        // The provided option must not be a not overwritable option
+        if (in_array($option, $notOverwritableOptions)) {
+            throw new PushwooshException(
+                'The option \'' . $notOverwritableOptionNames[$option] . '\' cannot be set as an additional CURL ' .
+                'option because its internally used by the CURL client and modifying it would break valid Pushwoosh ' .
+                'Web Service calls !',
+                -1
+            );
+        }
+
+        $this->additionalCurlOpts[$option] = $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAdditionalCurlOpts(array $additionalCurlOpts)
+    {
+        // Set additional CURL option one by one to ensure each option is not a not overwritable CURL option
+        foreach ($additionalCurlOpts as $option => $value) {
+            $this->setAdditionalCurlOpt($option, $value);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setApiUrl($apiUrl)
     {
         $this->apiUrl = $apiUrl;
@@ -168,23 +220,7 @@ class CURLClient implements ICURLClient
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function setDefaultCurlOpt($option, $value)
-    {
-        $this->defaultCurlOpts[$option] = $value;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDefaultCurlOpts(array $defaultCurlOpts)
-    {
-        $this->defaultCurlOpts = $defaultCurlOpts;
-    }
-
-    /**
-     * Utility function used to create a set of CURL options from default CURL options defined on the CURL client and
+     * Utility function used to create a set of CURL options from additional CURL options defined on the CURL client and
      * not overwritable CURL options.
      *
      * @param array $request the request to POST to the Pushwoosh Web Services.
@@ -201,7 +237,7 @@ class CURLClient implements ICURLClient
                 CURLOPT_SSL_VERIFYHOST => true,
                 CURLOPT_SSL_VERIFYPEER => true
             ],
-            $this->defaultCurlOpts
+            $this->additionalCurlOpts
         );
 
         // Set not overwritable CURL options

@@ -25,6 +25,22 @@ interface ICURLClient
     const DEFAULT_API_URL = 'https://cp.pushwoosh.com/json/1.3';
 
     /**
+     * Gets the additional CURL options to be used while requesting the Pushwoosh Web Services. This method can be used
+     * when you want to customize the behavior of CURL at request time.
+     *
+     * In most cases using this method is absolutly not necessary because the `php-pushwoosh` is configured with best
+     * settings to work correctly. However sometimes, depending on your environment and on the characteristics
+     * of you servers you'll need to overwrite some CURL settings.
+     *
+     * Please note that this method will only allow to overwrite the CURL parameters which are not strictly necessary to
+     * call the Pushwoosh Web Services. If you try to overwrite a CURL parameter which would lead to bad Web Services
+     * calls this method will throw an explicit exception.
+     *
+     * @return array an array which maps CURL option name to CURL option values.
+     */
+    public function getAdditionalCurlOpts();
+
+    /**
      * Gets the root URL of the API server to use, if this parameter is not provided then the default API URL will be
      * equal to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise Pushwoosh plan then you have a dedicated
      * API server URL like `https://your-company.pushwoosh.com`, you can provide this custom API server URL here.
@@ -61,17 +77,7 @@ interface ICURLClient
     public function pushwooshCall($method, array $data);
 
     /**
-     * Sets the the root URL of the API server to use, if this parameter is not provided then the default API URL will
-     * be equal to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise Pushwoosh plan then you have a
-     * dedicated API server URL like `https://your-company.pushwoosh.com`, you can provide this custom API server URL
-     * here.
-     *
-     * @param string $apiUrl the root URL of the API server to use.
-     */
-    public function setApiUrl($apiUrl);
-
-    /**
-     * Sets a default CURL option to be used while requesting the Pushwoosh Web Services. This method can be used
+     * Sets an additional CURL option to be used while requesting the Pushwoosh Web Services. This method can be used
      * when you want to customize the behavior of CURL at request time.
      *
      * In most cases using this method is absolutly not necessary because the `php-pushwoosh` is configured with best
@@ -87,10 +93,10 @@ interface ICURLClient
      *
      * @throws \Gomoob\Pushwoosh\Exception\PushwooshException if one of the CURL option provided cannot be overwritten.
      */
-    public function setDefaultCurlOpt($option, $value);
+    public function setAdditionalCurlOpt($option, $value);
 
     /**
-     * Sets the default CURL options to be used while requesting the Pushwoosh Web Services. This method can be used
+     * Sets the additional CURL options to be used while requesting the Pushwoosh Web Services. This method can be used
      * when you want to customize the behavior of CURL at request time.
      *
      * In most cases using this method is absolutly not necessary because the `php-pushwoosh` is configured with best
@@ -105,7 +111,17 @@ interface ICURLClient
      *
      * @throws \Gomoob\Pushwoosh\Exception\PushwooshException if one of the CURL option provided cannot be overwritten.
      */
-    public function setDefaultCurlOpts(array $defaultCurlOpts);
+    public function setAdditionalCurlOpts(array $defaultCurlOpts);
+
+    /**
+     * Sets the the root URL of the API server to use, if this parameter is not provided then the default API URL will
+     * be equal to `https://cp.pushwoosh.com/json/1.3`. If you have an enterprise Pushwoosh plan then you have a
+     * dedicated API server URL like `https://your-company.pushwoosh.com`, you can provide this custom API server URL
+     * here.
+     *
+     * @param string $apiUrl the root URL of the API server to use.
+     */
+    public function setApiUrl($apiUrl);
 
     /**
      * Sets the CURL request object to be used.

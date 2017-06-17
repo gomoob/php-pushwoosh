@@ -34,6 +34,150 @@ class CURLClientTest extends TestCase
     }
 
     /**
+     * Test method for the `setAdditionalCurlOpt($option, $value)` function.
+     */
+    public function testGetSetAdditionalCurlOpt()
+    {
+        $curlClient = new CURLClient();
+
+        // Initially no additional CURL options are defined
+        $this->assertEmpty($curlClient->getAdditionalCurlOpts());
+
+        // Tests with not allowed CURL options
+        try {
+            $curlClient->setAdditionalCurlOpt(CURLOPT_ENCODING, '');
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_ENCODING\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpt(CURLOPT_HTTPHEADER, '');
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_HTTPHEADER\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpt(CURLOPT_POST, '');
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_POST\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpt(CURLOPT_POSTFIELDS, '');
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_POSTFIELDS\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpt(CURLOPT_RETURNTRANSFER, '');
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_RETURNTRANSFER\' cannot be set as an additional CURL option because its ' .
+                'internally used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+
+        // Test with allowed additional CURL options
+        $curlClient->setAdditionalCurlOpt(CURLOPT_CONNECTTIMEOUT, 5);
+        $curlClient->setAdditionalCurlOpt(CURLOPT_TIMEOUT, 15);
+        $this->assertCount(2, $curlClient->getAdditionalCurlOpts());
+        $this->assertSame(5, $curlClient->getAdditionalCurlOpts()[CURLOPT_CONNECTTIMEOUT]);
+        $this->assertSame(15, $curlClient->getAdditionalCurlOpts()[CURLOPT_TIMEOUT]);
+    }
+
+    /**
+     * Test method for the `getAdditioanlCurlOpts()` and `setAdditionalCurlOpts(array $additionalCurlOpts)` functions.
+     */
+    public function testGetSetAdditionalCurlOpts()
+    {
+        $curlClient = new CURLClient();
+
+        // Initially no additional CURL options are defined
+        $this->assertEmpty($curlClient->getAdditionalCurlOpts());
+
+        // Tests with not allowed CURL options
+        try {
+            $curlClient->setAdditionalCurlOpts([CURLOPT_ENCODING => '']);
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_ENCODING\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpts([CURLOPT_HTTPHEADER => '']);
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_HTTPHEADER\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpts([CURLOPT_POST => '']);
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_POST\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpts([CURLOPT_POSTFIELDS => '']);
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_POSTFIELDS\' cannot be set as an additional CURL option because its internally ' .
+                'used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+        try {
+            $curlClient->setAdditionalCurlOpts([CURLOPT_RETURNTRANSFER => '']);
+            $this->fail('Must have thrown a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame(
+                'The option \'CURLOPT_RETURNTRANSFER\' cannot be set as an additional CURL option because its ' .
+                'internally used by the CURL client and modifying it would break valid Pushwoosh Web Service calls !',
+                $pex->getMessage()
+            );
+        }
+
+        // Test with allowed additional CURL options
+        $curlClient->setAdditionalCurlOpts(
+            [
+                CURLOPT_CONNECTTIMEOUT => 5,
+                CURLOPT_TIMEOUT => 15
+            ]
+        );
+        $this->assertCount(2, $curlClient->getAdditionalCurlOpts());
+        $this->assertSame(5, $curlClient->getAdditionalCurlOpts()[CURLOPT_CONNECTTIMEOUT]);
+        $this->assertSame(15, $curlClient->getAdditionalCurlOpts()[CURLOPT_TIMEOUT]);
+    }
+
+    /**
      * Test method for the `getCurlRequest()` and `setCurlRequest($curlRequest)` functions.
      */
     public function testGetSetCurlRequest()
