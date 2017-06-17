@@ -196,11 +196,10 @@ class CURLClient implements ICURLClient
         // Merge default CURL options with overwritable CURL options
         $mergedCurlOpts = array_merge(
             [
-                // FIXME: FIX THIS !!!
                 // see: http://curl.haxx.se/docs/sslcerts.html
-                CURLOPT_SSL_VERIFYHOST => 0,
-                CURLOPT_SSL_VERIFYPEER => 0
-                // $curlRequest->setOpt(CURLOPT_SSL_VERIFYPEER, true);
+                CURLOPT_CAINFO => __DIR__ . '/../../../../resources/cacert.pem',
+                CURLOPT_SSL_VERIFYHOST => true,
+                CURLOPT_SSL_VERIFYPEER => true
             ],
             $this->defaultCurlOpts
         );
