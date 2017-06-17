@@ -94,7 +94,7 @@ class GetNearestZoneRequest extends AbstractRequest
     {
         return $this->lng;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -112,22 +112,22 @@ class GetNearestZoneRequest extends AbstractRequest
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
         }
-    
+
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
-    
+
         // The 'lat' parameter must have been defined
         if (!isset($this->lat)) {
             throw new PushwooshException('The \'lat\' property is not set !');
         }
-    
+
         // The 'lng' parameter must have been defined
         if (!isset($this->lng)) {
             throw new PushwooshException('The \'lng\' property is not set !');
         }
-    
+
         return [
             'application' => $this->application,
             'hwid' => $this->hwid,

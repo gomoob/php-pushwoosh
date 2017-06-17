@@ -143,7 +143,7 @@ class RegisterDeviceRequest extends AbstractRequest
     {
         return $this->timezone;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -151,7 +151,7 @@ class RegisterDeviceRequest extends AbstractRequest
     {
         return false;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -161,20 +161,20 @@ class RegisterDeviceRequest extends AbstractRequest
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
         }
-    
+
         // The 'deviceType' parameter must have been defined and must be valid.
         $this->checkDeviceType();
-    
+
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
-    
+
         // The 'pushToken' parameter must have been defined.
         if (!isset($this->pushToken)) {
             throw new PushwooshException('The \'pushToken\' property is not set !');
         }
-    
+
         $json = [
             'application' => $this->application,
             'push_token' => $this->pushToken,
@@ -183,7 +183,7 @@ class RegisterDeviceRequest extends AbstractRequest
             'timezone' => $this->timezone,
             'device_type' => $this->deviceType
         ];
-    
+
         return $json;
     }
 

@@ -77,7 +77,7 @@ class SetBadgeRequest extends AbstractRequest
     {
         return $this->hwid;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -85,7 +85,7 @@ class SetBadgeRequest extends AbstractRequest
     {
         return false;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -95,17 +95,17 @@ class SetBadgeRequest extends AbstractRequest
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
         }
-    
+
         // The 'badge' parameter must have been defined
         if (!isset($this->badge)) {
             throw new PushwooshException('The \'badge\' property is not set !');
         }
-    
+
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
-    
+
         return [
             'application' => $this->application,
             'badge' => $this->badge,

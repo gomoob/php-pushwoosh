@@ -44,7 +44,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
      * @var string|string[]
      */
     private $content;
-    
+
     /**
      * Use this only if you want to pass custom data to the application (JSON format) or omit this parameter. Please
      * note that iOS push is limited to 256 bytes.
@@ -61,7 +61,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
      * @var string
      */
     private $devicesFilter;
-    
+
     /**
      * Boolean used to indicate if the user timezone should be ignored.
      *
@@ -70,17 +70,17 @@ class CreateTargetedMessageRequest extends AbstractRequest
      * @var bool
      */
     private $ignoreUserTimezone = true;
-    
+
     // TODO: DOCUMENT ME!
     private $link;
-    
+
     /**
      * Parameter used to indicate if the link must be minimized and how to minimize it.
      *
      * @var \Gomoob\Pushwoosh\Model\Notification\MinimizeLink
      */
     private $minimizeLink;
-    
+
     /**
      * HTML page id (created from Application's HTML Pages). Use this if you want to deliver additional HTML content to
      * the application or omit this parameter.
@@ -88,21 +88,21 @@ class CreateTargetedMessageRequest extends AbstractRequest
      * @var int
      */
     private $pageId;
-    
+
     /**
      * Sets the Push Preset ID from your Control Panel.
      *
      * @var string
      */
     private $preset;
-    
+
     /**
      * The remote Rich HTML Page URL. <scheme>://<authority>.
      *
      * @var string
      */
     private $remotePage;
-    
+
     /**
      * The new Rich HTML page identifier.
      *
@@ -120,14 +120,14 @@ class CreateTargetedMessageRequest extends AbstractRequest
      * @var \DateTime | string
      */
     private $sendDate = 'now';
-    
+
     /**
      * The throttling, valid values are from 100 to 1000 pushes/second.
      *
      * @var int
      */
     private $sendRate;
-    
+
     /**
      * The timezone to use with the `sendDate` property, if ignored UTC-0 is default in `sendDate`.
      * See http://php.net/manual/timezones.php for the list of the supported timezones.
@@ -145,7 +145,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return new CreateTargetedMessageRequest();
     }
-    
+
     /**
      * Gets the campaign code to which you want to assign this push message.
      *
@@ -155,7 +155,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->campain;
     }
-    
+
     /**
      * Gets the text push message to send. This can be a plain string or an array which maps ISO 639-1 language codes to
      * associated messages. If the content is a plain string then the message is supposed to be written in English. If
@@ -177,7 +177,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->content;
     }
-    
+
     /**
      * Gets additional data to attach to the notification, use this only if you want to pass custom data to the
      * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
@@ -190,7 +190,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->data;
     }
-    
+
     /**
      * Gets the devices filter used to identify the devices to which ones to send the notifications.
      *
@@ -200,13 +200,13 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->devicesFilter;
     }
-    
+
     // TODO: DOCUMENT ME!
     public function getLink()
     {
         return $this->link;
     }
-    
+
     /**
      * Gets the parameter used to indicate if the link must be minimized and how to minimize it.
      *
@@ -217,7 +217,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->minimizeLink;
     }
-    
+
     /**
      * Gets the HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML
      * content to the application or omit this parameter.
@@ -228,7 +228,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->pageId;
     }
-    
+
     /**
      * Gets the Push Preset ID from your Control Panel.
      *
@@ -238,7 +238,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->preset;
     }
-    
+
     /**
      * Gets the remote Rich HTML Page URL. <scheme>://<authority>.
      *
@@ -248,7 +248,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->remotePage;
     }
-    
+
     /**
      * Gets the new Rich HTML page identifier.
      *
@@ -258,7 +258,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->richPageId;
     }
-    
+
     /**
      * Gets the date when the message has to be sent, if a string is provided it must respect the following formats :
      *  - 'now'                : To indicate the message has to be sent when "now".
@@ -271,7 +271,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->sendDate;
     }
-    
+
     /**
      * Gets the throttling, valid values are from 100 to 1000 pushes/second.
      *
@@ -281,7 +281,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->sendRate;
     }
-    
+
     /**
      * Gets the timezone to use with the `sendDate` property, if ignored UTC-0 is default in `sendDate`. See
      * http://php.net/manual/timezones.php for the list of the supported timezones.
@@ -301,7 +301,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return true;
     }
-    
+
     /**
      * Indicates if the user timezone should be ignored.
      *
@@ -311,7 +311,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     {
         return $this->ignoreUserTimezone;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -323,11 +323,11 @@ class CreateTargetedMessageRequest extends AbstractRequest
         }
 
         $json = ['auth' => $this->auth];
-        
+
         // Mandatory parameters
         $json['ignore_user_timezone'] = $this->ignoreUserTimezone;
         $json['send_date'] = is_string($this->sendDate) ? $this->sendDate : $this->sendDate->format('Y-m-d H:i');
-        
+
         // Optional parameters
         isset($this->content) ? $json['content'] = $this->content : false;
         isset($this->data) ? $json['data'] = $this->data : false;
@@ -340,7 +340,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
         isset($this->richPageId) ? $json['rich_page_id'] = $this->richPageId : false;
         isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
         isset($this->timezone)? $json['timezone'] = $this->timezone : false;
-        
+
         return $json;
     }
 
@@ -354,10 +354,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setCampain($campain)
     {
         $this->campain = $campain;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the text push message to send. This can be a plain string or an array which maps ISO 639-1 language codes to
      * associated messages. If the content is a plain string then the message is supposed to be written in English. If
@@ -380,10 +380,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setContent($content)
     {
         $this->content = $content;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the additional data to attach to the notification, use this only if you want to pass custom data to the
      * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
@@ -397,10 +397,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setData(array $data)
     {
         $this->data = $data;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the devices filter used to identify the devices to which ones to send the notifications.
      *
@@ -412,10 +412,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setDevicesFilter($devicesFilter)
     {
         $this->devicesFilter = $devicesFilter;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets if the user timezone should ne ignored.
      *
@@ -426,18 +426,18 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setIgnoreUserTimezone($ignoreUserTimezone)
     {
         $this->ignoreUserTimezone = $ignoreUserTimezone;
-    
+
         return $this;
     }
-    
+
     // TODO: DOCUMENT ME!
     public function setLink($link)
     {
         $this->link = $link;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the parameter used to indicate if the link must be minimized and how to minimize it.
      *
@@ -449,10 +449,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setMinimizeLink(MinimizeLink $minimizeLink)
     {
         $this->minimizeLink = $minimizeLink;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the HTML page id (created from Application’s HTML Pages). Use this if you want to deliver additional HTML
      * content to the application or omit this parameter.
@@ -464,10 +464,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setPageId($pageId)
     {
         $this->pageId = $pageId;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the Push Preset ID from your Control Panel.
      *
@@ -478,10 +478,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setPreset($preset)
     {
         $this->preset = $preset;
-         
+
         return $this;
     }
-    
+
     /**
      * Sets the remote Rich HTML Page URL. <scheme>://<authority>.
      *
@@ -492,10 +492,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setRemotePage($remotePage)
     {
         $this->remotePage = $remotePage;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the new Rich HTML page identifier.
      *
@@ -506,10 +506,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setRichPageId($richPageId)
     {
         $this->richPageId = $richPageId;
-         
+
         return $this;
     }
-    
+
     /**
      * Sets the date when the message has to be sent, if a string is provided it must respect the following formats :
      *  - 'now'                : To indicate the message has to be sent when "now".
@@ -524,26 +524,26 @@ class CreateTargetedMessageRequest extends AbstractRequest
         // Try to parse a string date
         if (is_string($sendDate) && $sendDate !== 'now') {
             $newSendDate = \DateTime::createFromFormat('Y-m-d H:i', $sendDate);
-    
+
             // The provided send date string is invalid
             if ($newSendDate === false) {
                 throw new PushwooshException('Invalid send date provided !');
             }
-    
+
             $this->sendDate = $newSendDate;
-    
+
             // If the date is equal to 'now' or a DateTime its ok
         } elseif ($sendDate === 'now' || $sendDate instanceof \DateTime) {
             $this->sendDate = $sendDate;
-    
+
             // Invalid send date provided
         } else {
             throw new PushwooshException('Invalid send date provided !');
         }
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the throttling, valid values are from 100 to 1000 pushes/second.
      *
@@ -554,10 +554,10 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setSendRate($sendRate)
     {
         $this->sendRate = $sendRate;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the timezone to use with the `sendDate` property, if ignored UTC-0 is default in `sendDate`. See
      * http://php.net/manual/timezones.php for the list of the supported timezones.
@@ -569,7 +569,7 @@ class CreateTargetedMessageRequest extends AbstractRequest
     public function setTimezone($timezone)
     {
         $this->timezone = $timezone;
-         
+
         return $this;
     }
 }

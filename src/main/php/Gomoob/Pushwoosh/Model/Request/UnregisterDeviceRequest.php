@@ -63,7 +63,7 @@ class UnregisterDeviceRequest extends AbstractRequest
     {
         return $this->hwid;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -81,18 +81,16 @@ class UnregisterDeviceRequest extends AbstractRequest
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
         }
-    
+
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
-    
-        $json = [
+
+        return [
             'application' => $this->application,
             'hwid' => $this->hwid
         ];
-    
-        return $json;
     }
 
     /**

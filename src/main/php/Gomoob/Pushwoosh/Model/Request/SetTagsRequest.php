@@ -120,7 +120,7 @@ class SetTagsRequest extends AbstractRequest
     {
         return $this->tags !== null && array_key_exists($tagName, $this->tags);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -128,7 +128,7 @@ class SetTagsRequest extends AbstractRequest
     {
         return false;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -138,23 +138,23 @@ class SetTagsRequest extends AbstractRequest
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
         }
-    
+
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
-    
+
         // The 'tags' parameter must have been defined.
         if (!isset($this->tags)) {
             throw new PushwooshException('The \'tags\' property is not set !');
         }
-    
+
         $json = [
             'application' => $this->application,
             'hwid' => $this->hwid,
             'tags' => $this->tags
         ];
-    
+
         return $json;
     }
 

@@ -77,7 +77,7 @@ class PushStatRequest extends AbstractRequest
     {
         return $this->hwid;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -85,7 +85,7 @@ class PushStatRequest extends AbstractRequest
     {
         return false;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -95,17 +95,17 @@ class PushStatRequest extends AbstractRequest
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
         }
-    
+
         // The 'hash' parameter must have been defined.
         if (!isset($this->hash)) {
             throw new PushwooshException('The \'hash\' property is not set !');
         }
-    
+
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
-    
+
         return [
             'application' => $this->application,
             'hash' => $this->hash,

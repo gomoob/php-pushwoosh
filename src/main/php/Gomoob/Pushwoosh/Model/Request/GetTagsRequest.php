@@ -60,7 +60,7 @@ class GetTagsRequest extends AbstractRequest
     {
         return $this->hwid;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -68,7 +68,7 @@ class GetTagsRequest extends AbstractRequest
     {
         return true;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -78,17 +78,17 @@ class GetTagsRequest extends AbstractRequest
         if (!isset($this->application)) {
             throw new PushwooshException('The \'application\' property is not set !');
         }
-    
+
         // The 'auth' parameter must have been set
         if (!isset($this->auth)) {
             throw new PushwooshException('The \'auth\' property is not set !');
         }
-    
+
         // The 'hwid' parameter must have been defined.
         if (!isset($this->hwid)) {
             throw new PushwooshException('The \'hwid\' property is not set !');
         }
-    
+
         return [
             'application' => $this->application,
             'auth' => $this->auth,

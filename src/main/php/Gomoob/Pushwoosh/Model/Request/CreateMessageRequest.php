@@ -100,7 +100,7 @@ class CreateMessageRequest extends AbstractRequest
     {
         return $this->notifications;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -118,24 +118,24 @@ class CreateMessageRequest extends AbstractRequest
         if (!isset($this->application) && !isset($this->applicationsGroup)) {
             throw new PushwooshException('None of the \'application\' or \'applicationsGroup\' properties are set !');
         }
-    
+
         // If the 'application' or 'applicationsGroup' parameters are both set this is an error
         if (isset($this->application) && isset($this->applicationsGroup)) {
             throw new PushwooshException('Both \'application\' and \'applicationsGroup\' properties are set !');
         }
-    
+
         // The 'auth' parameter must have been set
         if (!isset($this->auth)) {
             throw new PushwooshException('The \'auth\' property is not set !');
         }
-    
+
         $json = [
             'application' => $this->application,
             'applications_group' => $this->applicationsGroup,
             'auth' => $this->auth,
             'notifications' => []
         ];
-    
+
         // Adds the notifications
         // Please note that the Pushwoosh REST API seems to authorize calls to the 'createMessage' service with a create
         // message request which do not define any notification. This is authorized but has no effect.
@@ -144,7 +144,7 @@ class CreateMessageRequest extends AbstractRequest
                 $json['notifications'][] = $notification->jsonSerialize();
             }
         }
-    
+
         return $json;
     }
 
