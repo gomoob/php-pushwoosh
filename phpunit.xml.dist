@@ -5,9 +5,9 @@
     stopOnIncomplete="true"
     stopOnSkipped="true"
     verbose="true">
-    
+
     <logging>
-        
+
         <!-- Log Unit Test results into a JUnit XML file -->
         <log type="junit" 
              target="build/reports/phpunit/TEST-phpunit.report.xml" 
@@ -21,19 +21,19 @@
              highlight="false"
              lowUpperBound="35" 
              highLowerBound="70" />
-        
+
         <!-- Log Code Coverage results as a Clover XML file (WARNING: Path must no be changed because its Needed by Code 
              Climate). -->
         <log type="coverage-clover" 
              target="build/logs/clover.xml" />
 
     </logging>
-    
+
     <!-- Includes and Excludes files for Code Coverage -->
-	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="true">
-			<directory suffix=".php">src/main/php</directory>
-		</whitelist>
-	</filter>
-	
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src/main/php</directory>
+        </whitelist>
+    </filter>
+
 </phpunit>
