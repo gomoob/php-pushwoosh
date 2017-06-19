@@ -156,7 +156,7 @@ class NotificationTest extends TestCase
         $this->assertSame($notification, $notification->setBlackBerry($blackBerry));
         $this->assertSame($blackBerry, $notification->getBlackBerry());
     }
-    
+
     /**
      * Test method for the `getCampain()` and `setCampain($campain)` functions.
      */
@@ -166,6 +166,18 @@ class NotificationTest extends TestCase
         $this->assertNull($notification->getCampain());
         $this->assertSame($notification, $notification->setCampain('CAMPAIN'));
         $this->assertSame('CAMPAIN', $notification->getCampain());
+    }
+
+    /**
+     * Test method for the `getChrome()` and `setChrome($chrome)` functions.
+     */
+    public function testGetSetChrome()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getChrome());
+        $chrome = new Chrome();
+        $this->assertSame($notification, $notification->setChrome($chrome));
+        $this->assertSame($chrome, $notification->getChrome());
     }
 
     /**
@@ -179,7 +191,7 @@ class NotificationTest extends TestCase
         // Test with a simple string
         $this->assertSame($notification, $notification->setContent('Hello !'));
         $this->assertSame('Hello !', $notification->getContent());
-        
+
         // Test with a map of ISO 639-1 language => message
         $this->assertSame(
             $notification,
@@ -225,6 +237,18 @@ class NotificationTest extends TestCase
         $this->assertNull($notification->getFilter());
         $this->assertSame($notification, $notification->setFilter('FILTER'));
         $this->assertSame('FILTER', $notification->getFilter());
+    }
+
+    /**
+     * Test method for the `getFirefox()` and `setFirefox($firefox)` functions.
+     */
+    public function testGetSetFirefox()
+    {
+        $notification = new Notification();
+        $this->assertNull($notification->getChrome());
+        $firefox = new Firefox();
+        $this->assertSame($notification, $notification->setFirefox($firefox));
+        $this->assertSame($firefox, $notification->getFirefox());
     }
 
     /**
@@ -284,7 +308,7 @@ class NotificationTest extends TestCase
         $this->assertSame($notification, $notification->setPageId(15));
         $this->assertSame(15, $notification->getPageId());
     }
-    
+
     /**
      * Test method for the `getPreset()` and `setPreset($preset)` functions.
      */
@@ -295,7 +319,7 @@ class NotificationTest extends TestCase
         $this->assertSame($notification, $notification->setPreset('Q1A2Z-6X8SW'));
         $this->assertSame('Q1A2Z-6X8SW', $notification->getPreset());
     }
-    
+
     /**
      * Test method for the `getRemotePage()` and `setRemotePage($remotePage)` functions.
      */
@@ -369,7 +393,7 @@ class NotificationTest extends TestCase
         $this->assertSame($notification, $notification->setSendDate($dateTime));
         $this->assertSame($dateTime, $notification->getSendDate());
     }
-    
+
     /**
      * Test method for the `getSendRate()` and `setSendRate($sendRate)` functions.
      */
@@ -380,7 +404,7 @@ class NotificationTest extends TestCase
         $this->assertSame($notification, $notification->setSendRate(200));
         $this->assertSame(200, $notification->getSendRate());
     }
-    
+
     /**
      * Test method for the `getTimezone()` and `setTimezone($timezone)` functions.
      */
