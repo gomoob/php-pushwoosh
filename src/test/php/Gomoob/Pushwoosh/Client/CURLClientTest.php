@@ -233,13 +233,13 @@ class CURLClientTest extends TestCase
         }
 
         // Second test with a CURL error encountered
-        $curlRequest = $this->createMock(CURLRequest::class);
+        $curlRequest = $this->createMock(CurlRequest::class);
         $curlRequest->method('exec')->willReturn(
-            [
-                'status_code' => 400,
-                'status_message' => 'Test with valid JSON response but CURL error encountered.',
-                'response' => null
-            ]
+            '{
+                "status_code" : 400,
+                "status_message" : "Test with valid JSON response but CURL error encountered.",
+                "response" : null
+            }'
         );
         $curlRequest->method('error')->willReturn('CURL_ERROR');
         $curlRequest->method('getInfo')->willReturn('CURL_INFO');
@@ -272,13 +272,40 @@ class CURLClientTest extends TestCase
             $this->assertSame('CURL_ERROR', $data['curl_error']);
             $this->assertSame('CURL_INFO', $data['curl_info']);
             $this->assertSame(
-                [
-                    'status_code' => 400,
-                    'status_message' => 'Test with valid JSON response but CURL error encountered.',
-                    'response' => null
-                ],
+                '{
+                "status_code" : 400,
+                "status_message" : "Test with valid JSON response but CURL error encountered.",
+                "response" : null
+            }',
                 $data['response']
             );
         }
+
+        // Thrird test with a valid call
+        $curlRequest = $this->createMock(CurlRequest::class);
+        $curlRequest->method('exec')->willReturn(
+            '{
+                "status_code" : 200,
+                "status_message" : "OK"
+            }'
+        );
+        $curlRequest->method('error')->willReturn('');
+        $curlRequest->method('getInfo')->willReturn('CURL_INFO');
+
+        $curlClient->setCurlRequest($curlRequest);
+
+        $response = $curlClient->pushwooshCall(
+            'getTags',
+            [
+                'application' => 'XXXXXXXX',
+                'auth' => 'XXXXXXXX',
+                'hwid' => 'XXXXXXXX'
+            ]
+        );
+        $this->assertCount(2, $response);
+        $this->assertArrayHasKey('status_code', $response);
+        $this->assertSame(200, $response['status_code']);
+        $this->assertArrayHasKey('status_message', $response);
+        $this->assertSame('OK', $response['status_message']);
     }
 }
