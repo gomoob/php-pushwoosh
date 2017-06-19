@@ -42,6 +42,30 @@ class RegisterDeviceRequestTest extends TestCase
     }
 
     /**
+     * Test method for the `getAuth()` and `setAuth($auth)` functions.
+     */
+    public function testGetSetAuth()
+    {
+        $registerDeviceRequest = new RegisterDeviceRequest();
+
+        // Gets for `getAuth()`
+        try {
+            $registerDeviceRequest->getAuth();
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+
+        // Gets for `getAuth()`
+        try {
+            $registerDeviceRequest->setAuth('XXXX');
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+    }
+
+    /**
      * Test method for the <tt>getDeviceType()</tt> and <tt>setDeviceType($deviceType)</tt> functions.
      */
     public function testGetSetDeviceType()

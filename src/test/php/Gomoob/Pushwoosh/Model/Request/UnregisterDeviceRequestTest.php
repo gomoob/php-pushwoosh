@@ -42,6 +42,30 @@ class UnregisterDeviceRequestTest extends TestCase
     }
 
     /**
+     * Test method for the `getAuth()` and `setAuth($auth)` functions.
+     */
+    public function testGetSetAuth()
+    {
+        $unregisterDeviceRequest = new UnregisterDeviceRequest();
+
+        // Gets for `getAuth()`
+        try {
+            $unregisterDeviceRequest->getAuth();
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+
+        // Gets for `getAuth()`
+        try {
+            $unregisterDeviceRequest->setAuth('XXXX');
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+    }
+
+    /**
      * Test method for the <tt>getHwid()</tt> and <tt>setHwid($hwid)</tt> functions.
      */
     public function testGetSetHwid()

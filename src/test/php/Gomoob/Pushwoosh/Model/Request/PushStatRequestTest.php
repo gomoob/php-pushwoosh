@@ -42,6 +42,30 @@ class PushStatRequestTest extends TestCase
     }
 
     /**
+     * Test method for the `getAuth()` and `setAuth($auth)` functions.
+     */
+    public function testGetSetAuth()
+    {
+        $pushStatRequest = new PushStatRequest();
+
+        // Gets for `getAuth()`
+        try {
+            $pushStatRequest->getAuth();
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+
+        // Gets for `getAuth()`
+        try {
+            $pushStatRequest->setAuth('XXXX');
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+    }
+
+    /**
      * Test method for the <tt>getHash()</tt> and <tt>setHash($hash)</tt> functions.
      */
     public function testGetSetHash()

@@ -42,6 +42,30 @@ class SetBadgeRequestTest extends TestCase
     }
 
     /**
+     * Test method for the `getAuth()` and `setAuth($auth)` functions.
+     */
+    public function testGetSetAuth()
+    {
+        $setBadgeRequest = new SetBadgeRequest();
+
+        // Gets for `getAuth()`
+        try {
+            $setBadgeRequest->getAuth();
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+
+        // Gets for `getAuth()`
+        try {
+            $setBadgeRequest->setAuth('XXXX');
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+    }
+
+    /**
      * Test method for the <tt>getBadge()</tt> and <tt>setBadge($badge)</tt> functions.
      */
     public function testGetSetBadge()
