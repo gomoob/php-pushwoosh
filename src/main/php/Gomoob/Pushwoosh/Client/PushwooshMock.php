@@ -151,7 +151,7 @@ class PushwooshMock implements IPushwoosh
         return GetNearestZoneResponse::create(
             json_decode('{
                "status_code":200,
-               "status_message":"OK"
+               "status_message":"OK",
                "response": {
                   "name":"zone name",
                   "lat":42,
@@ -191,7 +191,7 @@ class PushwooshMock implements IPushwoosh
         return GetTagsResponse::create(
             json_decode('{
               "status_code": 200,
-              "status_message": "OK"
+              "status_message": "OK",
               "response": {
                 "result": {
                   "Language": "fr"
