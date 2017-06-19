@@ -74,6 +74,30 @@ class SetTagsRequestTest extends TestCase
     }
 
     /**
+     * Test method for the `getAuth()` and `setAuth($auth)` functions.
+     */
+    public function testGetSetAuth()
+    {
+        $setTagsRequest = new SetTagsRequest();
+
+        // Gets for `getAuth()`
+        try {
+            $setTagsRequest->getAuth();
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+
+        // Gets for `getAuth()`
+        try {
+            $setTagsRequest->setAuth('XXXX');
+            $this->fail('Must have throw a PushwooshException !');
+        } catch (PushwooshException $pex) {
+            $this->assertSame('This request does not support the \'auth\' parameter !', $pex->getMessage());
+        }
+    }
+
+    /**
      * Test method for the <tt>getHwid()</tt> and <tt>setHwid($hwid)</tt> functions.
      */
     public function testGetSetHwid()
