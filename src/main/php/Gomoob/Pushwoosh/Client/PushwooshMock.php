@@ -93,16 +93,11 @@ class PushwooshMock implements IPushwoosh
      */
     public function createTargetedMessage(CreateTargetedMessageRequest $createTargetedMessageRequest)
     {
-        // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
-        $this->setAuthIfNotSet($createTargetedMessageRequest);
-
         return CreateTargetedMessageResponse::create(
             json_decode('{
                 "status_code":200,
                 "status_message":"OK",
-                "response": {
-                    "Messages":[]
-                }
+                "response": {}
             }', true)
         );
     }
