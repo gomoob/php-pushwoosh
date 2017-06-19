@@ -17,15 +17,15 @@ namespace Gomoob\Pushwoosh\Curl;
  */
 class CurlRequest implements ICurlRequest
 {
-	// @codingStandardsIgnoreStart
-	/**
-	 * A regular expression used to validate URLs.
-	 *
-	 * @see https://mathiasbynens.be/demo/url-regex
-	 * @see https://gist.github.com/dperini/729294
-	 */
-	const URL_REGEX = '_^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(localhost)|(?:(?:[a-z\x{00a1}-\x{ffff}0-9]-*)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.(?:[a-z\x{00a1}-\x{ffff}0-9]-*)*[a-z\x{00a1}-\x{ffff}0-9]+)*(?:\.(?:[a-z\x{00a1}-\x{ffff}]{2,})))(?::\d{2,5})?(?:/\S*)?$_iuS';
-	// @codingStandardsIgnoreEnd
+    // @codingStandardsIgnoreStart
+    /**
+     * A regular expression used to validate URLs.
+     *
+     * @see https://mathiasbynens.be/demo/url-regex
+     * @see https://gist.github.com/dperini/729294
+     */
+    const URL_REGEX = '_^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(localhost)|(?:(?:[a-z\x{00a1}-\x{ffff}0-9]-*)*[a-z\x{00a1}-\x{ffff}0-9]+)(?:\.(?:[a-z\x{00a1}-\x{ffff}0-9]-*)*[a-z\x{00a1}-\x{ffff}0-9]+)*(?:\.(?:[a-z\x{00a1}-\x{ffff}]{2,})))(?::\d{2,5})?(?:/\S*)?$_iuS';
+    // @codingStandardsIgnoreEnd
 
     /**
      * The current cURL handle.
@@ -43,15 +43,7 @@ class CurlRequest implements ICurlRequest
      */
     public function __construct($url = null)
     {
-        // If a URL is provided
-        if (isset($url)) {
-            // The provided URL must be valid
-            if (!$this->isUrlValid($url)) {
-                throw new \Exception('Invalid URL provided \'' . $url . '\' !', -1, null);
-            }
-
-            $this->init($url);
-        }
+        $this->init($url);
     }
 
     /**
@@ -90,16 +82,25 @@ class CurlRequest implements ICurlRequest
             $this->close();
         }
 
-        $this->ch = curl_init($url);
+        // If a URL is provided
+        if (isset($url)) {
+            // The provided URL must be valid
+            if (!$this->isUrlValid($url)) {
+                throw new \Exception('Invalid URL provided \'' . $url . '\' !', -1, null);
+            }
+
+            $this->ch = curl_init($url);
+        }
+
         return $this->ch;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getInfo($opt = 0)
+    public function getInfo($opt = CURLINFO_EFFECTIVE_URL)
     {
-        return curl_getinfo($this->ch, $opt);
+        return curl_getinfo($this->getCh(), $opt);
     }
 
     /**
@@ -107,7 +108,7 @@ class CurlRequest implements ICurlRequest
      */
     public function setOpt($option, $value)
     {
-        return curl_setopt($this->ch, $option, $value);
+        return curl_setopt($this->getCh(), $option, $value);
     }
 
     /**

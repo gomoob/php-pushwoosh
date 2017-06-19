@@ -3,7 +3,7 @@
 /**
  * gomoob/php-pushwoosh
  *
- * @copyright Copyright (c) 2014, GOMOOB SARL (http://gomoob.com)
+ * @copyright Copyright (c) 2017, GOMOOB SARL (http://gomoob.com)
  * @license   http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE.md file)
  */
 namespace Gomoob\Pushwoosh\Client;
@@ -32,7 +32,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `clear()` function.
      *
-     * @group PushwooshTest.clear
+     * @group PushwooshMockTest.testClear
      */
     public function testClear()
     {
@@ -59,7 +59,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `createMessage(CreateMessageRequest $createMessageRequest)` function.
      *
-     * @group PushwooshTest.createMessage
+     * @group PushwooshMockTest.testCreateMessage
      */
     public function testCreateMessage()
     {
@@ -89,7 +89,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `createTargetedMessage(CreateTargetedMessageRequest $createTargetedMessageRequest)` function.
      *
-     * @group PushwooshTest.createTargetedMessage
+     * @group PushwooshMockTest.testCreateTargetedMessage
      */
     public function testCreateTargetedMessage()
     {
@@ -113,7 +113,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `deleteMessage(DeleteMessageRequest $deleteMessageRequest)` function.
      *
-     * @group PushwooshTest.deleteMessage
+     * @group PushwooshMockTest.testDeleteMessage
      */
     public function testDeleteMessage()
     {
@@ -139,7 +139,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `getNearestZone(GetNearestZoneRequest $getNearestZoneRequest)` function.
      *
-     * @group PushwooshTest.getNearestZone
+     * @group PushwooshMockTest.testGetNearestZone
      */
     public function testGetNearestZone()
     {
@@ -207,7 +207,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `getTags(GetTagsRequest $getTagsRequest)` function.
      *
-     * @group PushwooshTest.getTags
+     * @group PushwooshMockTest.testGetTags
      */
     public function testGetTags()
     {
@@ -239,7 +239,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `pushStat(PushStatRequest $pushStatRequest)` function.
      *
-     * @group PushwooshTest.pushStat
+     * @group PushwooshMockTest.testPushStat
      */
     public function testPushStat()
     {
@@ -265,7 +265,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `registerDevice(RegisterDeviceRequest $registerDeviceRequest)` function.
      *
-     * @group PushwooshTest.registerDevice
+     * @group PushwooshMockTest.testRegisterDevice
      */
     public function testRegisterDevice()
     {
@@ -291,7 +291,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `setBadge(SetBadgeRequest $setBadgeRequest)` function.
      *
-     * @group PushwooshTest.setBadge
+     * @group PushwooshMockTest.testSetBadge
      */
     public function testSetBadge()
     {
@@ -317,7 +317,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `setTags(SetTagsRequest $setTagsRequest)` function.
      *
-     * @group PushwooshTest.setTags
+     * @group PushwooshMockTest.testSetTags
      */
     public function testSetTags()
     {
@@ -343,7 +343,7 @@ class PushwooshMockTest extends TestCase
     /**
      * Test method for the `unregisterDevice(UnregisterDeviceRequest $unregisterDeviceRequest)` function.
      *
-     * @group PushwooshTest.unregisterDevice
+     * @group PushwooshMockTest.testUnregisterDevice
      */
     public function testUnregisterDevice()
     {

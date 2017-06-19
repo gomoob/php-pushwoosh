@@ -111,7 +111,7 @@ interface ICurlRequest
      *         Note that private data is not included in the associative array and must be retrieved individually with
      *         the CURLINFO_PRIVATE option.
      */
-    public function getInfo($opt = 0);
+    public function getInfo($opt = CURLINFO_EFFECTIVE_URL0);
 
     /**
      * Set an option for a cURL transfer.
