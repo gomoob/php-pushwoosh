@@ -1,6 +1,7 @@
 /node_modules/
 /vendor/
 /composer.lock
+/src/
 /target/
 /_site/
 /Gemfile.lock

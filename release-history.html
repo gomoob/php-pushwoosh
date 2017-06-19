@@ -5,22 +5,57 @@ title: Release History
 
 <h1>Release history</h1>
 
-<h2>1.6.1 (2016-07-07)</h2>
+<h2>1.8.0 (2017-06-19)</h2>
 <ul>
     <li>
-        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/56">#56</a> - <code>getMock()</code> undefined in 
-        unit tests with HHVM.
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/18">#18</a> - Allow CURL to have SSL certificates
+        verification enabled ;
+    </li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/63">#63</a> - Allow to use own url for API server ;
+    </li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/65">#65</a> - The 
+        <code>setCURLClient(ICURClient $curlClient)</code> did not return <code>$this</code> ;
+    </li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/66">#66</a> - Now the library allows to overwrite
+        some CURL options ;
+    </li>
+    <li>
+        Add support for PHP <code>7.1</code> and execute tests with Travis and PHP <code>7.1</code> ;
+    </li>
+    <li>
+        Increase code coverage to <code>100%</code> ;
+    </li>
+    <li>
+        Add a testing Apache Cordova App in the <code>src/test/resources directory</code>, this application allows to
+        manually test the php-pushwoosh library by receiving notification inside a very simple Android or iOS
+        application ;
+    </li>
+    <li>
+        Update all Grunt dependencies and update the build scripts (only useful for contributors) ;
+    </li>
+    <li>
+        Close <a href="https://github.com/gomoob/php-pushwoosh/issues/23">#23</a> - Closing this issue, no serious
+        developer shoud use PHP without composer.
+    </li>
+</ul>
+<h2>1.7.1 (2016-10-20)</h2>
+<ul>
+    <li>
+        Add response value to Pushwoosh Exceptions when a curl request execution fails.
     </li>
 </ul>
 
 <h2>1.7.0 (2016-09-15)</h2>
 <ul>
     <li>
-        Fix <a href="">#60</a> - Add missing campain in <code>\Gomoob\Pushwoosh\Model\Notification\Notification</code> 
-        class ;
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/60">#60</a> - Add missing campain in
+        <code>\Gomoob\Pushwoosh\Model\Notification\Notification</code> class ;
     </li>
     <li>
-    	Update development composer dependencies.
+        Update development composer dependencies.
     </li>
 </ul>
 <h2>1.6.0 (2016-07-06)</h2>
@@ -34,18 +69,18 @@ title: Release History
         <code>AMAZON</code>, <code>SAFARI</code>, <code>CHROME</code>, <code>FIREFOX</code> ;
     </li>
     <li>
-    	<strong>BREAKING CHANGE</strong> - Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/52">#52</a> - 
-    	Abandon support for PHP <code>5.5.X</code> because end of life associated to PHP 5.5 is planned for 10 July 2016
-    	(see <a href="http://php.net/supported-versions.php">http://php.net/supported-versions.php</a>) ;
-   	</li>
-   	<li>
-    	<strong>BREAKING CHANGE</strong> - Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/53">#53</a> - 
-    	Remove Baidu minimize link supported because this feature will be removed by Pushwoosh soon ;
-   	</li>
-   	<li>
-    	<strong>BREAKING CHANGE</strong> - Remove 
-    	<code>\Gomoob\Pushwoosh\Exception\PushwooshException->setData(array $data)</code> function because its not used
-    	and their are no reasons to use it ;
+        <strong>BREAKING CHANGE</strong> - Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/52">#52</a> - 
+        Abandon support for PHP <code>5.5.X</code> because end of life associated to PHP 5.5 is planned for 10 July 2016
+        (see <a href="http://php.net/supported-versions.php">http://php.net/supported-versions.php</a>) ;
+       </li>
+       <li>
+        <strong>BREAKING CHANGE</strong> - Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/53">#53</a> - 
+        Remove Baidu minimize link supported because this feature will be removed by Pushwoosh soon ;
+       </li>
+       <li>
+        <strong>BREAKING CHANGE</strong> - Remove 
+        <code>\Gomoob\Pushwoosh\Exception\PushwooshException->setData(array $data)</code> function because its not used
+        and their are no reasons to use it ;
     </li>
     <li>
         Remove use of PHPUnit <code>getMock(...)</code> because its now deprecated, replace it with calls to 
@@ -55,22 +90,22 @@ title: Release History
 
 <h2>1.5.3 (2016-06-26)</h2>
 <ul>
-	<li>
-		Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/51">#51</a> - 
-		Fix field name for applications group in json request.
-	</li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/51">#51</a> - 
+        Fix field name for applications group in json request.
+    </li>
 </ul>
 
 <h2>1.5.2 (2016-05-09)</h2>
 <ul>
-	<li>
-		Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/47">#47</a> - 
-		<code>CreateTargetedMessageRequest</code>, the <code>auth</code> property was not injected in the request 
-		payload ; 
-	</li>
-	<li>
-	    Improve and enforce Code Sniffer checks.
-	</li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/47">#47</a> - 
+        <code>CreateTargetedMessageRequest</code>, the <code>auth</code> property was not injected in the request 
+        payload ; 
+    </li>
+    <li>
+        Improve and enforce Code Sniffer checks.
+    </li>
 </ul>
 
 <h2>1.5.1 (2016-03-11)</h2>
@@ -83,46 +118,46 @@ title: Release History
 
 <h2>1.5.0 (2016-03-10)</h2>
 <ul>
-	<li>
-	    Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/40">#40</a> - Content is supposed to be string type 
-	    only ;
-	</li>
-	<li>
-	    Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/41">#41</a> - Fix pushStat endpoint call ;
-	</li>
-	<li>
-	    Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/37">#37</a> - Implementation for 
-	    <code>/createTargetedMessage</code> ;
-	</li>
-	<li>
-		Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/17">#17</a> - Add the library to awesome-php ;
-	</li>
-	<li>
-		Add a new <code>IRequest</code> interface common to all requests ;
-	</li>
-	<li>
-		Add a new <code>IResponse</code> interface common to all responses ;
-	</li>
-	<li>
-		Add a new <code>DateCondition</code> which works with <code>\DateTime</code> objects and supports the 
-		<code>BETWEEN</code>, <code>EQ</code>, <code>GTE</code>, <code>IN</code>, <code>LTE</code>, <code>NOTEQ</code> 
-		and <code>NOTIN</code> operators ;
-	</li>
-	<li>
-		Now the  <code>IntCondition</code> supports the <code>IN</code>, <code>NOTEQ</code> and <code>NOTIN</code> 
-		operators ;
-	</li>
-	<li>
-	    Now the <code>StringCondition</code> supports the <code>IN</code>, <code>NOTEQ</code> and <code>NOTIN</code> 
-	    operators ;
-	</li>
-	<li>
-	    Now the <code>Notification</code> class supports the <code>campain</code> and <code>timezone</code> properties ;
-	</li>
-	<li>
-	    Improves the request implementations and add a new `isAuthSupported()` method to know if a specific request 
-	    supports the auth property.
-	</li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/40">#40</a> - Content is supposed to be string type 
+        only ;
+    </li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/pull/41">#41</a> - Fix pushStat endpoint call ;
+    </li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/37">#37</a> - Implementation for 
+        <code>/createTargetedMessage</code> ;
+    </li>
+    <li>
+        Fix <a href="https://github.com/gomoob/php-pushwoosh/issues/17">#17</a> - Add the library to awesome-php ;
+    </li>
+    <li>
+        Add a new <code>IRequest</code> interface common to all requests ;
+    </li>
+    <li>
+        Add a new <code>IResponse</code> interface common to all responses ;
+    </li>
+    <li>
+        Add a new <code>DateCondition</code> which works with <code>\DateTime</code> objects and supports the 
+        <code>BETWEEN</code>, <code>EQ</code>, <code>GTE</code>, <code>IN</code>, <code>LTE</code>, <code>NOTEQ</code> 
+        and <code>NOTIN</code> operators ;
+    </li>
+    <li>
+        Now the  <code>IntCondition</code> supports the <code>IN</code>, <code>NOTEQ</code> and <code>NOTIN</code> 
+        operators ;
+    </li>
+    <li>
+        Now the <code>StringCondition</code> supports the <code>IN</code>, <code>NOTEQ</code> and <code>NOTIN</code> 
+        operators ;
+    </li>
+    <li>
+        Now the <code>Notification</code> class supports the <code>campain</code> and <code>timezone</code> properties ;
+    </li>
+    <li>
+        Improves the request implementations and add a new `isAuthSupported()` method to know if a specific request 
+        supports the auth property.
+    </li>
 </ul>
 
 <h2>1.4.0 (2016-01-07)</h2>
