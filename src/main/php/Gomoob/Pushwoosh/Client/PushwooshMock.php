@@ -68,7 +68,7 @@ class PushwooshMock implements IPushwoosh
      *
      * @var array
      */
-    private $pushwhooshRequests;
+    private $pushwhooshRequests = [];
 
     /**
      * {@inheritDoc}
