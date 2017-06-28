@@ -590,7 +590,7 @@ class NotificationTest extends TestCase
             ->jsonSerialize();
 
         // Test the generic properties
-        $this->assertCount(64, $array);
+        $this->assertCount(65, $array);
         $this->assertSame('now', $array['send_date']);
         $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
