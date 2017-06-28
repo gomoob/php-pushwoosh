@@ -55,6 +55,16 @@ class ChromeTest extends TestCase
         $this->assertSame($chrome, $chrome->setTitle('Title'));
         $this->assertSame('Title', $chrome->getTitle());
     }
+
+    /**
+     * Test method for the <code>#getImage()</code> and <code>#setImage($image)</code> functions.
+     */
+    public function testGetSetImage()
+    {
+        $chrome = new Chrome();
+        $this->assertSame($chrome, $chrome->setImage('Image'));
+        $this->assertSame('Image', $chrome->getImage());
+    }    
     
     /**
      * Test method for the <code>#jsonSerialize()</code> function.
@@ -65,11 +75,13 @@ class ChromeTest extends TestCase
             ->setGcmTtl(3600)
             ->setIcon('icon')
             ->setTitle('Title')
+            ->setImage('Image')
             ->jsonSerialize();
         
         $this->assertCount(3, $array);
         $this->assertSame(3600, $array['chrome_gcm_ttl']);
         $this->assertSame('icon', $array['chrome_icon']);
         $this->assertSame('Title', $array['chrome_title']);
+        $this->assertSame('Image', $array['chrome_image']);
     }
 }
