@@ -541,6 +541,7 @@ class NotificationTest extends TestCase
                     ->setGcmTtl(3600)
                     ->setIcon('icon')
                     ->setTitle('Title')
+                    ->setImage('Image')
             )
             ->setIOS(
                 IOS::create()
@@ -589,7 +590,7 @@ class NotificationTest extends TestCase
             ->jsonSerialize();
 
         // Test the generic properties
-        $this->assertCount(64, $array);
+        $this->assertCount(65, $array);
         $this->assertSame('now', $array['send_date']);
         $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
@@ -666,6 +667,7 @@ class NotificationTest extends TestCase
         $this->assertSame(3600, $array['chrome_gcm_ttl']);
         $this->assertSame('icon', $array['chrome_icon']);
         $this->assertSame('Title', $array['chrome_title']);
+        $this->assertSame('Image', $array['chrome_image']);
 
         // Test IOS parameters
         $this->assertSame(1, $array['apns_trim_content']);

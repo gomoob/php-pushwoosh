@@ -35,6 +35,13 @@ class Chrome implements \JsonSerializable
      * @var string
      */
     private $title;
+
+    /**
+     * The image of the message.
+     *
+     * @var string
+     */
+    private $image;    
     
     /**
      * Utility function used to create a new Chrome instance.
@@ -75,6 +82,16 @@ class Chrome implements \JsonSerializable
     {
         return $this->title;
     }
+
+    /**
+     * Gets the image of the message.
+     *
+     * @var string The image of the message.
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }    
     
     /**
      * {@inheritdoc}
@@ -86,6 +103,7 @@ class Chrome implements \JsonSerializable
         isset($this->gcmTtl) ? $json['chrome_gcm_ttl'] = $this->gcmTtl : false;
         isset($this->icon) ? $json['chrome_icon'] = $this->icon : false;
         isset($this->title) ? $json['chrome_title'] = $this->title : false;
+        isset($this->image) ? $json['chrome_image'] = $this->image : false;
     
         return $json;
     
@@ -132,4 +150,18 @@ class Chrome implements \JsonSerializable
     
         return $this;
     }
+
+    /**
+     * Sets the image of the message.
+     *
+     * @param string $image The image of the message.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }    
 }
