@@ -78,7 +78,7 @@ class ChromeTest extends TestCase
             ->setImage('Image')
             ->jsonSerialize();
         
-        $this->assertCount(3, $array);
+        $this->assertCount(4, $array);
         $this->assertSame(3600, $array['chrome_gcm_ttl']);
         $this->assertSame('icon', $array['chrome_icon']);
         $this->assertSame('Title', $array['chrome_title']);
