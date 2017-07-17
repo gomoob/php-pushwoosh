@@ -261,6 +261,13 @@ class Notification implements \JsonSerializable
     private $wP;
 
     /**
+     * List of strings that contains the users' identifiers responsible to filter who will receive the notification.
+     *
+     * @var array
+     */
+    private $users;
+
+    /**
      * Utility function used to create a new notification.
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Notification the new created notification.
@@ -647,7 +654,17 @@ class Notification implements \JsonSerializable
     {
         return $this->wP;
     }
-    
+
+    /**
+     * Gets the list of strings that contains the users' identifiers responsible to filter who will receive the notification.
+     *
+     * @return string[] string list of users identifiers
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
     /**
      * Creates a JSON representation of this request.
      *
@@ -674,6 +691,7 @@ class Notification implements \JsonSerializable
         isset($this->richPageId) ? $json['rich_page_id'] = $this->richPageId : false;
         isset($this->sendRate)? $json['send_rate'] = $this->sendRate : false;
         isset($this->timezone)? $json['timezone'] = $this->timezone : false;
+        isset($this->users)? $json['users'] = $this->users : false;
 
         if (isset($this->conditions)) {
             $conditionsArray = [];
@@ -1159,6 +1177,20 @@ class Notification implements \JsonSerializable
     public function setWP(WP $wP)
     {
         $this->wP = $wP;
+
+        return $this;
+    }
+
+    /**
+     * Sets the list of users identifiers
+     *
+     * @param array $users
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Notification this instance.
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
 
         return $this;
     }
