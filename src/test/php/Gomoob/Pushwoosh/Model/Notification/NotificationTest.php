@@ -542,6 +542,10 @@ class NotificationTest extends TestCase
                     ->setIcon('icon')
                     ->setTitle('Title')
                     ->setImage('Image')
+                    ->setButtonText1('ButtonText1')
+                    ->setButtonUrl1('ButtonUrl1')
+                    ->setButtonText2('ButtonText2')
+                    ->setButtonUrl2('ButtonUrl2')
             )
             ->setIOS(
                 IOS::create()
@@ -590,7 +594,7 @@ class NotificationTest extends TestCase
             ->jsonSerialize();
 
         // Test the generic properties
-        $this->assertCount(65, $array);
+        $this->assertCount(69, $array);
         $this->assertSame('now', $array['send_date']);
         $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
@@ -668,6 +672,10 @@ class NotificationTest extends TestCase
         $this->assertSame('icon', $array['chrome_icon']);
         $this->assertSame('Title', $array['chrome_title']);
         $this->assertSame('Image', $array['chrome_image']);
+        $this->assertSame('ButtonText1', $array['chrome_button_text1']);
+        $this->assertSame('ButtonUrl1', $array['chrome_button_url1']);
+        $this->assertSame('ButtonText2', $array['chrome_button_text2']);
+        $this->assertSame('ButtonUrl2', $array['chrome_button_url2']);
 
         // Test IOS parameters
         $this->assertSame(1, $array['apns_trim_content']);

@@ -41,8 +41,36 @@ class Chrome implements \JsonSerializable
      *
      * @var string
      */
-    private $image;    
-    
+    private $image;
+
+    /**
+     * Text of the first button
+     *
+     * @var string
+     */
+    private $buttonText1;
+
+    /**
+     * Url of the first button
+     *
+     * @var
+     */
+    private $buttonUrl1;
+
+    /**
+     * Text of the second button
+     *
+     * @var string
+     */
+    private $buttonText2;
+
+    /**
+     * Url of the second button
+     *
+     * @var
+     */
+    private $buttonUrl2;
+
     /**
      * Utility function used to create a new Chrome instance.
      *
@@ -62,7 +90,7 @@ class Chrome implements \JsonSerializable
     {
         return $this->gcmTtl;
     }
-    
+
     /**
      * Gets the full path URL to the icon, or the path to the file in resources of the extension.
      *
@@ -72,7 +100,7 @@ class Chrome implements \JsonSerializable
     {
         return $this->icon;
     }
-    
+
     /**
      * Gets the header of the message.
      *
@@ -91,24 +119,68 @@ class Chrome implements \JsonSerializable
     public function getImage()
     {
         return $this->image;
-    }    
-    
+    }
+
+    /**
+     * Gets the text of the first button.
+     *
+     * @return string $text The text of the first button.
+     */
+    public function getButtonText1()
+    {
+        return $this->buttonText1;
+    }
+
+    /**
+     * Gets the url of the first button.
+     *
+     * @return string $url The url of the first button.*
+     */
+    public function getButtonUrl1($url)
+    {
+        return $this->buttonUrl1;
+    }
+
+    /**
+     * Gets the text of the second button.
+     *
+     * @return string $text The text of the second button.*
+     */
+    public function getButtonText2()
+    {
+        return $this->buttonText2;
+    }
+
+    /**
+     * Gets the url of the second button.
+     *
+     * @return string $url The url of the second button.
+     */
+    public function getButtonUrl2()
+    {
+        return $this->buttonUrl2;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function jsonSerialize()
     {
         $json = [];
-    
+
         isset($this->gcmTtl) ? $json['chrome_gcm_ttl'] = $this->gcmTtl : false;
         isset($this->icon) ? $json['chrome_icon'] = $this->icon : false;
         isset($this->title) ? $json['chrome_title'] = $this->title : false;
         isset($this->image) ? $json['chrome_image'] = $this->image : false;
-    
+        isset($this->buttonText1) ? $json['chrome_button_text1'] = $this->buttonText1 : false;
+        isset($this->buttonUrl1) ? $json['chrome_button_url1'] = $this->buttonUrl1 : false;
+        isset($this->buttonText2) ? $json['chrome_button_text2'] = $this->buttonText2 : false;
+        isset($this->buttonUrl2) ? $json['chrome_button_url2'] = $this->buttonUrl2 : false;
+
         return $json;
-    
+
     }
-    
+
     /**
      * Sets the time to live parameter - the maximum lifespan of a message in seconds.
      *
@@ -119,10 +191,10 @@ class Chrome implements \JsonSerializable
     public function setGcmTtl($gcmTtl)
     {
         $this->gcmTtl = $gcmTtl;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the full path URL to the icon, or the path to the file in resources of the extension.
      *
@@ -133,10 +205,10 @@ class Chrome implements \JsonSerializable
     public function setIcon($icon)
     {
         $this->icon = $icon;
-    
+
         return $this;
     }
-    
+
     /**
      * Sets the header of the message.
      *
@@ -147,7 +219,7 @@ class Chrome implements \JsonSerializable
     public function setTitle($title)
     {
         $this->title = $title;
-    
+
         return $this;
     }
 
@@ -161,7 +233,63 @@ class Chrome implements \JsonSerializable
     public function setImage($image)
     {
         $this->image = $image;
-    
+
         return $this;
-    }    
+    }
+
+    /**
+     * Sets the text of the first button.
+     *
+     * @param string $text The text of the first button.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
+     */
+    public function setButtonText1($text)
+    {
+        $this->buttonText1 = $text;
+
+        return $this;
+    }
+
+    /**
+     * Sets the url of the first button.
+     *
+     * @param string $url The url of the first button.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
+     */
+    public function setButtonUrl1($url)
+    {
+        $this->buttonUrl1 = $url;
+
+        return $this;
+    }
+
+    /**
+     * Sets the text of the second button.
+     *
+     * @param string $text The text of the second button.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
+     */
+    public function setButtonText2($text)
+    {
+        $this->buttonText2 = $text;
+
+        return $this;
+    }
+
+    /**
+     * Sets the url of the second button.
+     *
+     * @param string $url The url of the second button.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
+     */
+    public function setButtonUrl2($url)
+    {
+        $this->buttonUrl2 = $url;
+
+        return $this;
+    }
 }

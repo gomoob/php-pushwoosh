@@ -76,12 +76,20 @@ class ChromeTest extends TestCase
             ->setIcon('icon')
             ->setTitle('Title')
             ->setImage('Image')
+            ->setButtonText1('ButtonText1')
+            ->setButtonUrl1('ButtonUrl1')
+            ->setButtonText2('ButtonText2')
+            ->setButtonUrl2('ButtonUrl2')
             ->jsonSerialize();
         
-        $this->assertCount(4, $array);
+        $this->assertCount(8, $array);
         $this->assertSame(3600, $array['chrome_gcm_ttl']);
         $this->assertSame('icon', $array['chrome_icon']);
         $this->assertSame('Title', $array['chrome_title']);
         $this->assertSame('Image', $array['chrome_image']);
+        $this->assertSame('ButtonText1', $array['chrome_button_text1']);
+        $this->assertSame('ButtonUrl1', $array['chrome_button_url1']);
+        $this->assertSame('ButtonText2', $array['chrome_button_text2']);
+        $this->assertSame('ButtonUrl2', $array['chrome_button_url2']);
     }
 }
