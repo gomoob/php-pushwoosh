@@ -542,10 +542,10 @@ class NotificationTest extends TestCase
                     ->setIcon('icon')
                     ->setTitle('Title')
                     ->setImage('Image')
-                    ->setButtonText1('ButtonText1')
-                    ->setButtonUrl1('ButtonUrl1')
-                    ->setButtonText2('ButtonText2')
-                    ->setButtonUrl2('ButtonUrl2')
+                    ->setButtonTextOne('ButtonTextOne')
+                    ->setButtonUrlOne('ButtonUrlOne')
+                    ->setButtonTextTwo('ButtonTextTwo')
+                    ->setButtonUrlTwo('ButtonUrlTwo')
             )
             ->setIOS(
                 IOS::create()
@@ -672,10 +672,10 @@ class NotificationTest extends TestCase
         $this->assertSame('icon', $array['chrome_icon']);
         $this->assertSame('Title', $array['chrome_title']);
         $this->assertSame('Image', $array['chrome_image']);
-        $this->assertSame('ButtonText1', $array['chrome_button_text1']);
-        $this->assertSame('ButtonUrl1', $array['chrome_button_url1']);
-        $this->assertSame('ButtonText2', $array['chrome_button_text2']);
-        $this->assertSame('ButtonUrl2', $array['chrome_button_url2']);
+        $this->assertSame('ButtonTextOne', $array['chrome_button_text1']);
+        $this->assertSame('ButtonUrlOne', $array['chrome_button_url1']);
+        $this->assertSame('ButtonTextTwo', $array['chrome_button_text2']);
+        $this->assertSame('ButtonUrlTwo', $array['chrome_button_url2']);
 
         // Test IOS parameters
         $this->assertSame(1, $array['apns_trim_content']);

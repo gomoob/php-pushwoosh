@@ -48,28 +48,28 @@ class Chrome implements \JsonSerializable
      *
      * @var string
      */
-    private $buttonText1;
+    private $buttonTextOne;
 
     /**
      * Url of the first button
      *
      * @var
      */
-    private $buttonUrl1;
+    private $buttonUrlOne;
 
     /**
      * Text of the second button
      *
      * @var string
      */
-    private $buttonText2;
+    private $buttonTextTwo;
 
     /**
      * Url of the second button
      *
      * @var
      */
-    private $buttonUrl2;
+    private $buttonUrlTwo;
 
     /**
      * Utility function used to create a new Chrome instance.
@@ -126,9 +126,9 @@ class Chrome implements \JsonSerializable
      *
      * @return string $text The text of the first button.
      */
-    public function getButtonText1()
+    public function getButtonTextOne()
     {
-        return $this->buttonText1;
+        return $this->buttonTextOne;
     }
 
     /**
@@ -136,9 +136,9 @@ class Chrome implements \JsonSerializable
      *
      * @return string $url The url of the first button.*
      */
-    public function getButtonUrl1($url)
+    public function getButtonUrlOne($url)
     {
-        return $this->buttonUrl1;
+        return $this->buttonUrlOne;
     }
 
     /**
@@ -146,9 +146,9 @@ class Chrome implements \JsonSerializable
      *
      * @return string $text The text of the second button.*
      */
-    public function getButtonText2()
+    public function getButtonTextTwo()
     {
-        return $this->buttonText2;
+        return $this->buttonTextTwo;
     }
 
     /**
@@ -156,9 +156,9 @@ class Chrome implements \JsonSerializable
      *
      * @return string $url The url of the second button.
      */
-    public function getButtonUrl2()
+    public function getButtonUrlTwo()
     {
-        return $this->buttonUrl2;
+        return $this->buttonUrlTwo;
     }
 
     /**
@@ -172,10 +172,10 @@ class Chrome implements \JsonSerializable
         isset($this->icon) ? $json['chrome_icon'] = $this->icon : false;
         isset($this->title) ? $json['chrome_title'] = $this->title : false;
         isset($this->image) ? $json['chrome_image'] = $this->image : false;
-        isset($this->buttonText1) ? $json['chrome_button_text1'] = $this->buttonText1 : false;
-        isset($this->buttonUrl1) ? $json['chrome_button_url1'] = $this->buttonUrl1 : false;
-        isset($this->buttonText2) ? $json['chrome_button_text2'] = $this->buttonText2 : false;
-        isset($this->buttonUrl2) ? $json['chrome_button_url2'] = $this->buttonUrl2 : false;
+        isset($this->buttonTextOne) ? $json['chrome_button_text1'] = $this->buttonTextOne : false;
+        isset($this->buttonUrlOne) ? $json['chrome_button_url1'] = $this->buttonUrlOne : false;
+        isset($this->buttonTextTwo) ? $json['chrome_button_text2'] = $this->buttonTextTwo : false;
+        isset($this->buttonUrlTwo) ? $json['chrome_button_url2'] = $this->buttonUrlTwo : false;
 
         return $json;
 
@@ -244,9 +244,9 @@ class Chrome implements \JsonSerializable
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
      */
-    public function setButtonText1($text)
+    public function setButtonTextOne($text)
     {
-        $this->buttonText1 = $text;
+        $this->buttonTextOne = $text;
 
         return $this;
     }
@@ -258,9 +258,9 @@ class Chrome implements \JsonSerializable
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
      */
-    public function setButtonUrl1($url)
+    public function setButtonUrlOne($url)
     {
-        $this->buttonUrl1 = $url;
+        $this->buttonUrlOne = $url;
 
         return $this;
     }
@@ -272,9 +272,9 @@ class Chrome implements \JsonSerializable
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
      */
-    public function setButtonText2($text)
+    public function setButtonTextTwo($text)
     {
-        $this->buttonText2 = $text;
+        $this->buttonTextTwo = $text;
 
         return $this;
     }
@@ -286,9 +286,9 @@ class Chrome implements \JsonSerializable
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
      */
-    public function setButtonUrl2($url)
+    public function setButtonUrlTwo($url)
     {
-        $this->buttonUrl2 = $url;
+        $this->buttonUrlTwo = $url;
 
         return $this;
     }
