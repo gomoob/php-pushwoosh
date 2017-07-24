@@ -136,7 +136,7 @@ class Chrome implements \JsonSerializable
      *
      * @return string $url The url of the first button.*
      */
-    public function getButtonUrlOne($url)
+    public function getButtonUrlOne()
     {
         return $this->buttonUrlOne;
     }
