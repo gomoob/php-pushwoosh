@@ -64,8 +64,48 @@ class ChromeTest extends TestCase
         $chrome = new Chrome();
         $this->assertSame($chrome, $chrome->setImage('Image'));
         $this->assertSame('Image', $chrome->getImage());
-    }    
-    
+    }
+
+    /**
+     * Test method for the <code>#getButtonTextOne()</code> and <code>#setButtonTextOne($text)</code> functions.
+     */
+    public function testGetButtonTextOne()
+    {
+        $chrome = new Chrome();
+        $this->assertSame($chrome, $chrome->setButtonTextOne('ButtonTextOne'));
+        $this->assertSame('ButtonTextOne', $chrome->getButtonTextOne());
+    }
+
+    /**
+     * Test method for the <code>#getButtonUrlOne()</code> and <code>#setButtonUrlOne($url)</code> functions.
+     */
+    public function testGetButtonUrlOne()
+    {
+        $chrome = new Chrome();
+        $this->assertSame($chrome, $chrome->setButtonUrlOne('ButtonUrlOne'));
+        $this->assertSame('ButtonUrlOne', $chrome->getButtonUrlOne());
+    }
+
+    /**
+     * Test method for the <code>#getButtonTextTwo()</code> and <code>#setButtonTextTwo($text)</code> functions.
+     */
+    public function testGetButtonTextTwo()
+    {
+        $chrome = new Chrome();
+        $this->assertSame($chrome, $chrome->setButtonTextTwo('ButtonTextTwo'));
+        $this->assertSame('ButtonTextTwo', $chrome->getButtonTextTwo());
+    }
+
+    /**
+     * Test method for the <code>#getButtonUrlTwo()</code> and <code>#setButtonUrlTwo($url)</code> functions.
+     */
+    public function testGetButtonUrlTwo()
+    {
+        $chrome = new Chrome();
+        $this->assertSame($chrome, $chrome->setButtonUrlTwo('ButtonUrlTwo'));
+        $this->assertSame('ButtonUrlTwo', $chrome->getButtonUrlTwo());
+    }
+
     /**
      * Test method for the <code>#jsonSerialize()</code> function.
      */
@@ -76,12 +116,20 @@ class ChromeTest extends TestCase
             ->setIcon('icon')
             ->setTitle('Title')
             ->setImage('Image')
+            ->setButtonTextOne('ButtonTextOne')
+            ->setButtonUrlOne('ButtonUrlOne')
+            ->setButtonTextTwo('ButtonTextTwo')
+            ->setButtonUrlTwo('ButtonUrlTwo')
             ->jsonSerialize();
         
-        $this->assertCount(4, $array);
+        $this->assertCount(8, $array);
         $this->assertSame(3600, $array['chrome_gcm_ttl']);
         $this->assertSame('icon', $array['chrome_icon']);
         $this->assertSame('Title', $array['chrome_title']);
         $this->assertSame('Image', $array['chrome_image']);
+        $this->assertSame('ButtonTextOne', $array['chrome_button_text1']);
+        $this->assertSame('ButtonUrlOne', $array['chrome_button_url1']);
+        $this->assertSame('ButtonTextTwo', $array['chrome_button_text2']);
+        $this->assertSame('ButtonUrlTwo', $array['chrome_button_url2']);
     }
 }
