@@ -452,6 +452,18 @@ class NotificationTest extends TestCase
     }
 
     /**
+     * Test method for the `getUsers()` and `setUsers($users)` functions.
+     */
+    public function testGetSetUsers()
+    {
+        $notification = new Notification();
+        $this->assertEmpty($notification->getUsers());
+        $users = ['1', '2', '3', '4'];
+        $this->assertSame($notification, $notification->setUsers($users));
+        $this->assertSame($users, $notification->getUsers());
+    }
+
+    /**
      * Test method for the `jsonSerialize()` function.
      */
     public function testJsonSerialize()
@@ -587,10 +599,11 @@ class NotificationTest extends TestCase
                     ->setCount(3)
                     ->setType('Tile')
             )
+            ->setUsers(['1', '2', '3'])
             ->jsonSerialize();
 
         // Test the generic properties
-        $this->assertCount(65, $array);
+        $this->assertCount(66, $array);
         $this->assertSame('now', $array['send_date']);
         $this->assertSame('America/New_York', $array['timezone']);
         $this->assertTrue($array['ignore_user_timezone']);
@@ -635,6 +648,7 @@ class NotificationTest extends TestCase
         $this->assertSame('value1', $array['conditions'][2][2][1]);
         $this->assertSame('value2', $array['conditions'][2][2][2]);
         $this->assertSame('CAMPAIGN', $array['campaign']);
+        $this->assertSame(['1', '2', '3'], $array['users']);
 
         // Test the ADM parameters
         $this->assertSame('http://example.com/banner.png', $array['adm_banner']);
