@@ -35,6 +35,8 @@ class IOS implements \JsonSerializable
     private $sound;
     private $ttl;
     private $trimContent;
+    private $title;
+    private $subtitle;
 
     /**
      * Utility function used to create a new IOS instance.
@@ -91,7 +93,16 @@ class IOS implements \JsonSerializable
     public function isTrimContent()
     {
         return $this->trimContent;
-
+    }
+    
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    
+    public function getSubtitle()
+    {
+        return $this->subtitle;
     }
     
     /**
@@ -108,6 +119,8 @@ class IOS implements \JsonSerializable
         isset($this->sound) ? $json['ios_sound'] = $this->sound : false;
         isset($this->ttl) ? $json['ios_ttl'] = $this->ttl : false;
         isset($this->trimContent) ? $json['ios_trim_content'] = intval($this->trimContent) : false;
+        isset($this->title) ? $json['ios_title'] = $this->title : false;
+        isset($this->subtitle) ? $json['ios_subtitle'] = $this->subtitle : false;
     
         return $json;
     
@@ -177,6 +190,20 @@ class IOS implements \JsonSerializable
     {
         $this->trimContent = $trimContent;
 
+        return $this;
+    }
+    
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        
+        return $this;
+    }
+    
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+        
         return $this;
     }
 }
