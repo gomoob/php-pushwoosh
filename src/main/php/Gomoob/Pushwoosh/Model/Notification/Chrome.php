@@ -44,6 +44,13 @@ class Chrome implements \JsonSerializable
     private $image;    
     
     /**
+     * Changes chrome push display time. Set to 0 to display push until user interacts with it
+     *
+     * @var int
+     */
+    private $duration;
+    
+    /**
      * Utility function used to create a new Chrome instance.
      *
      * @return \Gomoob\Pushwoosh\Model\Notification\Chrome the new created instance.
@@ -76,7 +83,7 @@ class Chrome implements \JsonSerializable
     /**
      * Gets the header of the message.
      *
-     * @var string The header of the message.
+     * @return string The header of the message.
      */
     public function getTitle()
     {
@@ -86,12 +93,22 @@ class Chrome implements \JsonSerializable
     /**
      * Gets the image of the message.
      *
-     * @var string The image of the message.
+     * @return string The image of the message.
      */
     public function getImage()
     {
         return $this->image;
     }    
+
+    /**
+     * Gets the duration
+     *
+     * @return int
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
     
     /**
      * {@inheritdoc}
@@ -104,9 +121,9 @@ class Chrome implements \JsonSerializable
         isset($this->icon) ? $json['chrome_icon'] = $this->icon : false;
         isset($this->title) ? $json['chrome_title'] = $this->title : false;
         isset($this->image) ? $json['chrome_image'] = $this->image : false;
+        isset($this->duration) ? $json['chrome_duration'] = $this->duration : false;
     
         return $json;
-    
     }
     
     /**
@@ -164,4 +181,18 @@ class Chrome implements \JsonSerializable
     
         return $this;
     }    
+
+    /**
+     * Sets the duration
+     *
+     * @param $duration
+     *
+     * @return \Gomoob\Pushwoosh\Model\Notification\Chrome this instance.
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
 }
