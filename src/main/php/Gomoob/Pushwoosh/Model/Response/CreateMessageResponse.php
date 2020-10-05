@@ -23,6 +23,11 @@ class CreateMessageResponse extends AbstractResponse
     private $response;
 
     /**
+     * @var array
+     */
+    private $json;
+
+    /**
      * Utility function used to create a new instance from a JSON string.
      *
      * @param array $json a PHP array which contains the result of a 'json_decode' execution.
@@ -32,6 +37,7 @@ class CreateMessageResponse extends AbstractResponse
     public static function create(array $json)
     {
         $createMessageResponse = new CreateMessageResponse();
+        $createMessageResponse->setRawResponse($json);
         $createMessageResponse->setStatusCode($json['status_code']);
         $createMessageResponse->setStatusMessage($json['status_message']);
 
@@ -42,6 +48,10 @@ class CreateMessageResponse extends AbstractResponse
             // If 'Messages' are provided
             if (array_key_exists('Messages', $json['response'])) {
                 $createMessageResponseResponse->setMessages($json['response']['Messages']);
+            }
+
+            if (isset($json['response']['TrackingCodes'])) {
+                $createMessageResponseResponse->setTrackingCodes($json['response']['TrackingCodes']);
             }
 
             $createMessageResponse->setResponse($createMessageResponseResponse);
@@ -70,5 +80,21 @@ class CreateMessageResponse extends AbstractResponse
     public function setResponse(CreateMessageResponseResponse $response)
     {
         $this->response = $response;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRawResponse(): array
+    {
+        return $this->json;
+    }
+
+    /**
+     * @param array $json
+     */
+    public function setRawResponse(array $json): void
+    {
+        $this->json = $json;
     }
 }
