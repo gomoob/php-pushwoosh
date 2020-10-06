@@ -52,7 +52,7 @@ class CreateMessageResponseResponse
     /**
      * @return string[]
      */
-    public function getTrackingCodes(): array
+    public function getTrackingCodes()
     {
         return $this->trackingCodes;
     }
@@ -60,7 +60,7 @@ class CreateMessageResponseResponse
     /**
      * @param array $trackingCodes
      */
-    public function setTrackingCodes(array $trackingCodes): void
+    public function setTrackingCodes(array $trackingCodes)
     {
         $this->trackingCodes = $trackingCodes;
     }

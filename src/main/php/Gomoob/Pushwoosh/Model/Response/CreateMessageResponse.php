@@ -85,7 +85,7 @@ class CreateMessageResponse extends AbstractResponse
     /**
      * @return array
      */
-    public function getRawResponse(): array
+    public function getRawResponse()
     {
         return $this->json;
     }
@@ -93,7 +93,7 @@ class CreateMessageResponse extends AbstractResponse
     /**
      * @param array $json
      */
-    public function setRawResponse(array $json): void
+    public function setRawResponse(array $json)
     {
         $this->json = $json;
     }
