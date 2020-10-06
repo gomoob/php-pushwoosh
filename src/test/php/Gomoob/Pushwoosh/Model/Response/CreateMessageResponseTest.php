@@ -23,20 +23,25 @@ class CreateMessageResponseTest extends TestCase
      */
     public function testCreate()
     {
+        $responseMock = [
+            'status_code' => 200,
+            'status_message' => 'OK',
+            'response' => [
+                'Messages' => [
+                    'notificationCode0',
+                    'notificationCode1',
+                    'notificationCode2'
+                ],
+                'TrackingCodes' => [
+                    'T-0000-00000000-00000000',
+                    'T-0000-00000000-00000001',
+                    'T-0000-00000000-00000002'
+                ],
+            ],
+        ];
+
         // Test with a successful response
-        $createMessageResponse = CreateMessageResponse::create(
-            [
-                'status_code' => 200,
-                'status_message' => 'OK',
-                'response' => [
-                    'Messages' => [
-                        'notificationCode0',
-                        'notificationCode1',
-                        'notificationCode2'
-                    ]
-                ]
-            ]
-        );
+        $createMessageResponse = CreateMessageResponse::create($responseMock);
 
         $createMessageResponseResponse = $createMessageResponse->getResponse();
         $this->assertNotNull($createMessageResponseResponse);
@@ -45,6 +50,13 @@ class CreateMessageResponseTest extends TestCase
         $this->assertContains('notificationCode0', $messages);
         $this->assertContains('notificationCode1', $messages);
         $this->assertContains('notificationCode2', $messages);
+        $trackingCodes = $createMessageResponseResponse->getTrackingCodes();
+        $this->assertCount(3, $trackingCodes);
+        $this->assertContains('T-0000-00000000-00000000', $trackingCodes);
+        $this->assertContains('T-0000-00000000-00000001', $trackingCodes);
+        $this->assertContains('T-0000-00000000-00000002', $trackingCodes);
+
+        $this->assertEquals($createMessageResponse->getRawResponse(), $responseMock);
 
         $this->assertTrue($createMessageResponse->isOk());
         $this->assertSame(200, $createMessageResponse->getStatusCode());
@@ -73,7 +85,7 @@ class CreateMessageResponseTest extends TestCase
                 'response' => null
             ]
         );
-        
+
         $createMessageResponseResponse = $createMessageResponse->getResponse();
         $this->assertNull($createMessageResponseResponse);
         $this->assertFalse($createMessageResponse->isOk());

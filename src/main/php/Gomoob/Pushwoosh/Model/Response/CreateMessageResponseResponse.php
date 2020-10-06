@@ -23,6 +23,11 @@ class CreateMessageResponseResponse
     private $messages;
 
     /**
+     * @var string[]
+     */
+    private $trackingCodes;
+
+    /**
      * Gets the Pushwoosh messages sent in response to a Create Message request.
      *
      * @return string[]
@@ -42,5 +47,21 @@ class CreateMessageResponseResponse
     {
         $this->messages = $messages;
 
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getTrackingCodes()
+    {
+        return $this->trackingCodes;
+    }
+
+    /**
+     * @param array $trackingCodes
+     */
+    public function setTrackingCodes(array $trackingCodes)
+    {
+        $this->trackingCodes = $trackingCodes;
     }
 }
