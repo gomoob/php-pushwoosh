@@ -1,5 +1,5 @@
 {
-	"name" : "cybercog/php-pushwoosh",
+	"name" : "dvpost/php-pushwoosh",
 	"description" : "A PHP Library to easily send push notifications with the Pushwoosh REST Web Services.",
 	"license" : "MIT",
 	"type" : "library",
